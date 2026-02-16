@@ -41,3 +41,6 @@ export { default as CoreCard } from './CoreCard';
 export { default as CoreLoader } from './CoreLoader';
 export { default as CoreError } from './CoreError';
 export { default as CoreModal } from './CoreModal';
+
+// Module registry
+export { MODULE_ROUTES } from './CoreNavigation';
