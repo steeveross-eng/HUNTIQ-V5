@@ -931,6 +931,8 @@ function App() {
         <div className="App min-h-screen bg-background">
           <BrowserRouter>
             <SEOHead />
+            {/* Logo BIONIC Global - Visible sur toutes les pages (desktop) */}
+            <BionicLogoGlobal size={96} />
             <Navigation cartCount={cartCount} onCartOpen={() => setIsCartOpen(true)} />
             <CartSheet 
               isOpen={isCartOpen} 
