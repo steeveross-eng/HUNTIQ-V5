@@ -1,19 +1,24 @@
 /**
  * BionicLogo - Composant Logo Global V5-ULTIME-FUSION
  * 
- * DIRECTIVES STRICTES:
- * - Taille: 2.2x de 96px = 211px
- * - Position: coin supérieur gauche, sous le header
- * - Fond: TRANSPARENT (aucun carré, aucun bloc)
- * - Aucun effet, aucune animation, aucun hover
+ * DIRECTIVES:
+ * - PAGE PRINCIPALE: logo 2.2x (211px)
+ * - AUTRES PAGES: logo taille normale (96px)
+ * - TOUTES PAGES: transparent, sans carré, sans fond
+ * - Position: coin supérieur gauche, sous header
  */
 
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
-// Logo global fixe - TOUTES les pages
-// Taille: 96px x 2.2 = 211px
+// Logo global fixe - Taille variable selon la page
 export const BionicLogoGlobal = () => {
+  const location = useLocation();
+  const isHomePage = location.pathname === '/' || location.pathname === '';
+  
+  // Taille: 211px sur page principale, 96px ailleurs
+  const logoSize = isHomePage ? 211 : 96;
+  
   return (
     <Link 
       to="/"
@@ -22,13 +27,16 @@ export const BionicLogoGlobal = () => {
         top: '80px',
         left: '16px',
         zIndex: 50,
-        width: '211px',
-        height: '211px',
-        background: 'transparent',
+        width: `${logoSize}px`,
+        height: `${logoSize}px`,
+        background: 'none',
+        backgroundColor: 'transparent',
         border: 'none',
         padding: 0,
         margin: 0,
-        display: 'block'
+        display: 'block',
+        boxShadow: 'none',
+        outline: 'none'
       }}
       data-testid="bionic-logo-global"
       aria-label="BIONIC - Retour à l'accueil"
@@ -37,18 +45,20 @@ export const BionicLogoGlobal = () => {
         src="/logos/bionic-logo-official.png"
         alt="BIONIC Chasse / Hunt"
         style={{
-          width: '211px',
-          height: '211px',
+          width: `${logoSize}px`,
+          height: `${logoSize}px`,
           objectFit: 'contain',
-          background: 'transparent',
-          border: 'none'
+          background: 'none',
+          backgroundColor: 'transparent',
+          border: 'none',
+          boxShadow: 'none'
         }}
       />
     </Link>
   );
 };
 
-// Logo inline (non utilisé actuellement)
+// Logo inline (non utilisé)
 const BionicLogo = ({ className = '' }) => {
   return (
     <img 
