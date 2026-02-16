@@ -144,7 +144,7 @@ const MobileAppSection = () => {
                     {/* Map preview */}
                     <div className="bg-[#0d1117] rounded-lg h-40 mb-4 overflow-hidden relative">
                       <img 
-                        src="https://images.unsplash.com/photo-1524661135-423995f22d0b?w=300&h=200&fit=crop"
+                        src="https://customer-assets.emergentagent.com/job_huntiq-fusion-2/artifacts/187hi1a1_image.png"
                         alt="Map preview"
                         className="w-full h-full object-cover opacity-60"
                       />
