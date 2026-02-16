@@ -151,13 +151,14 @@ const Navigation = ({ cartCount, onCartOpen }) => {
                 <ChevronRight className="h-3 w-3 rotate-90 group-hover:rotate-180 transition-transform" />
               </button>
               <div className="absolute top-full left-0 mt-1 min-w-[220px] bg-black/95 backdrop-blur-xl border border-white/10 rounded-md shadow-xl py-1 z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
-                <Link to="/analytics" className="flex items-start gap-3 px-4 py-2 hover:bg-white/5 group/item">
+                {/* DÉSACTIVÉ V5: Analytics déplacé vers Admin - Erreur runtime à corriger */}
+                {/* <Link to="/analytics" className="flex items-start gap-3 px-4 py-2 hover:bg-white/5 group/item">
                   <TrendingUp className="h-4 w-4 mt-0.5 text-gray-400 group-hover/item:text-[#F5A623]" />
                   <div>
                     <div className="text-sm font-medium text-white group-hover/item:text-[#F5A623]">{t('common_analytics')}</div>
                     <div className="text-xs text-gray-500">{t('common_stats_charts')}</div>
                   </div>
-                </Link>
+                </Link> */}
                 <Link to="/forecast" className="flex items-start gap-3 px-4 py-2 hover:bg-white/5 group/item">
                   <Target className="h-4 w-4 mt-0.5 text-gray-400 group-hover/item:text-[#F5A623]" />
                   <div>
