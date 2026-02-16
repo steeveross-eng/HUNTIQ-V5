@@ -1,52 +1,50 @@
 /**
- * BionicLogo - Bilingual logo component
- * Uses the unified Bionic logo that fits both FR/EN
+ * BionicLogo - Composant Logo Global V5-ULTIME-FUSION
+ * 
+ * Positionnement: coin supérieur gauche, espace libre
+ * Dimensions: ~2.5cm x 2.5cm (96px x 96px à 96dpi)
+ * Application: toutes les pages
  */
 
-import React, { useContext } from 'react';
-import LanguageContext, { BRAND_NAMES } from '@/contexts/LanguageContext';
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 const BionicLogo = ({ 
-  size = "default", 
-  variant = "full", // "full", "icon", "text"
-  className = "",
-  forceLanguage = null, // Override language if needed
-  fillContainer = false // Make logo fill available space
+  size = 96,  // ~2.5cm à 96dpi
+  className = '',
+  showOnMobile = true,
+  position = 'fixed' // 'fixed' ou 'absolute'
 }) => {
-  // Get language from context or use default
-  const ctx = useContext(LanguageContext);
-  const language = forceLanguage || ctx?.language || 'fr';
-
-  const brand = BRAND_NAMES[language];
-  
-  const sizeClasses = {
-    small: fillContainer ? "h-full max-h-8" : "h-8",
-    default: fillContainer ? "h-full max-h-12" : "h-12",
-    large: fillContainer ? "h-full max-h-16" : "h-16",
-    xlarge: fillContainer ? "h-full max-h-24" : "h-24"
-  };
-
-  const logoSrc = brand.logo;
-  const altText = brand.full;
-
-  if (variant === "text") {
-    return (
-      <span className={`font-bold text-[#f5a623] ${className}`}>
-        {brand.full}
-      </span>
-    );
-  }
-
   return (
-    <img 
-      src={logoSrc} 
-      alt={altText}
-      className={`${sizeClasses[size] || sizeClasses.default} w-auto object-contain ${fillContainer ? 'max-w-full' : ''} ${className}`}
+    <Link 
+      to="/"
+      className={`
+        ${position === 'fixed' ? 'fixed' : 'absolute'}
+        top-4 left-4
+        z-40
+        transition-all duration-300
+        hover:scale-105
+        ${!showOnMobile ? 'hidden md:block' : ''}
+        ${className}
+      `}
       data-testid="bionic-logo"
-    />
+      aria-label="BIONIC - Retour à l'accueil"
+    >
+      <img 
+        src="/logos/bionic-logo-official.png"
+        alt="BIONIC Chasse / Hunt"
+        width={size}
+        height={size}
+        className="object-contain drop-shadow-lg"
+        style={{
+          width: `${size}px`,
+          height: `${size}px`,
+          minWidth: `${size}px`,
+          minHeight: `${size}px`
+        }}
+      />
+    </Link>
   );
 };
 
-// Export both default and named
-export { BionicLogo };
 export default BionicLogo;
