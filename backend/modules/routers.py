@@ -128,6 +128,15 @@ from modules.rules_engine.router import router as rules_router
 from modules.strategy_master_engine.router import router as strategy_master_router
 
 # ==============================================
+# PHASE P3 - MONÉTISATION ENGINES (5 modules)
+# ==============================================
+from modules.payment_engine.router import router as payment_router
+from modules.freemium_engine.router import router as freemium_router
+from modules.upsell_engine.router import router as upsell_router
+from modules.onboarding_engine.router import router as onboarding_router
+from modules.tutorial_engine.router import router as tutorial_router
+
+# ==============================================
 # V5-ULTIME-FUSION - MODULES IMPORTÉS (V2, V3, BASE)
 # ==============================================
 from modules.backup_cloud_engine.router import router as backup_cloud_router
