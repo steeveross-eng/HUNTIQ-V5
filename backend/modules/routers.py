@@ -202,16 +202,16 @@ CORE_ROUTERS: List[Tuple[APIRouter, dict]] = [
         "description": "User management and authentication"
     }),
     (admin_router, {
-        "name": "admin_engine",
+        "name": "admin_unified_engine",
         "version": "1.0.0",
-        "phase": 3,
-        "description": "Administration and site management"
+        "phase": "V5-UNIFIED",
+        "description": "Administration unifiée (V4 admin_engine + BASE admin_advanced_engine)"
     }),
     (notification_router, {
-        "name": "notification_engine",
+        "name": "notification_unified_engine",
         "version": "1.0.0",
-        "phase": 3,
-        "description": "Multi-channel notification system"
+        "phase": "V5-UNIFIED",
+        "description": "Notifications unifiées (V4 notification_engine + BASE communication_engine)"
     }),
     (referral_router, {
         "name": "referral_engine",
