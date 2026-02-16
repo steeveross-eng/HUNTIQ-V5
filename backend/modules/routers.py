@@ -544,6 +544,40 @@ CORE_ROUTERS: List[Tuple[APIRouter, dict]] = [
         "phase": "P9",
         "description": "Orchestrateur stratégies Plan Maître - intégrations multi-sources"
     }),
+    
+    # ==========================================
+    # PHASE P3 - MONÉTISATION ENGINES (5 modules)
+    # ==========================================
+    (payment_router, {
+        "name": "payment_engine",
+        "version": "1.0.0",
+        "phase": "P3-MONETISATION",
+        "description": "Paiements Stripe - checkout, abonnements, webhooks"
+    }),
+    (freemium_router, {
+        "name": "freemium_engine",
+        "version": "1.0.0",
+        "phase": "P3-MONETISATION",
+        "description": "Gestion quotas, limites et niveaux d'accès freemium"
+    }),
+    (upsell_router, {
+        "name": "upsell_engine",
+        "version": "1.0.0",
+        "phase": "P3-MONETISATION",
+        "description": "Popups premium et déclencheurs comportementaux"
+    }),
+    (onboarding_router, {
+        "name": "onboarding_engine",
+        "version": "1.0.0",
+        "phase": "P3-MONETISATION",
+        "description": "Parcours d'accueil et profilage automatique"
+    }),
+    (tutorial_router, {
+        "name": "tutorial_engine",
+        "version": "1.0.0",
+        "phase": "P3-MONETISATION",
+        "description": "Tutoriels dynamiques et tips contextuels"
+    }),
 ]
 
 
