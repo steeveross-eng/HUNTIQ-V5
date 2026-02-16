@@ -25,7 +25,7 @@ const PartnersSection = () => {
       location: 'Zone 10 - Mauricie',
       rating: 4.9,
       reviews: 156,
-      image: 'https://images.unsplash.com/photo-1510797215324-95aa89f43c33?w=400&h=200&fit=crop',
+      image: 'https://customer-assets.emergentagent.com/job_huntiq-fusion-2/artifacts/1ncu18um_image.png',
       verified: true,
       features: ['Orignal', 'Ours', 'Hébergement']
     },
@@ -35,7 +35,7 @@ const PartnersSection = () => {
       location: 'Zone 14 - Laurentides',
       rating: 4.8,
       reviews: 98,
-      image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=200&fit=crop',
+      image: 'https://customer-assets.emergentagent.com/job_huntiq-fusion-2/artifacts/b9d0w2sg_image.png',
       verified: true,
       features: ['Cerf', 'Dindon', 'Guidage']
     },
@@ -45,7 +45,7 @@ const PartnersSection = () => {
       location: 'Zone 17 - Abitibi',
       rating: 4.7,
       reviews: 72,
-      image: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=400&h=200&fit=crop',
+      image: 'https://customer-assets.emergentagent.com/job_huntiq-fusion-2/artifacts/187hi1a1_image.png',
       verified: true,
       features: ['Orignal', 'Petit gibier', 'Tout inclus']
     }
