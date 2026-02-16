@@ -30,7 +30,7 @@ const CommunitySection = () => {
     {
       id: 3,
       user: { name: 'Jean-Pierre B.', avatar: 'https://i.pravatar.cc/100?img=3', badge: null },
-      image: 'https://images.unsplash.com/photo-1516934024742-b461fba47600?w=400&h=400&fit=crop',
+      image: 'https://customer-assets.emergentagent.com/job_huntiq-fusion-2/artifacts/187hi1a1_image.png',
       caption: 'Setup caméra trail parfait. 3 semaines de repérage.',
       likes: 189,
       comments: 32,
@@ -39,7 +39,7 @@ const CommunitySection = () => {
     {
       id: 4,
       user: { name: 'Marie G.', avatar: 'https://i.pravatar.cc/100?img=9', badge: 'Guide' },
-      image: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=400&fit=crop',
+      image: 'https://customer-assets.emergentagent.com/job_huntiq-fusion-2/artifacts/187hi1a1_image.png',
       caption: 'Lever de soleil sur mon territoire préféré ☀️',
       likes: 567,
       comments: 89,
