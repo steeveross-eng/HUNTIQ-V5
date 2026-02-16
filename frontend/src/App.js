@@ -932,7 +932,7 @@ function App() {
           <BrowserRouter>
             <SEOHead />
             {/* Logo BIONIC Global - Visible sur toutes les pages (desktop) */}
-            <BionicLogoGlobal size={96} />
+            <BionicLogoGlobal />
             <Navigation cartCount={cartCount} onCartOpen={() => setIsCartOpen(true)} />
             <CartSheet 
               isOpen={isCartOpen} 
