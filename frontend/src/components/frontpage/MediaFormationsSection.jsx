@@ -16,7 +16,7 @@ const MediaFormationsSection = () => {
     {
       id: 'video1',
       title: 'Guide complet: Analyse de territoire BIONIC™',
-      thumbnail: 'https://images.unsplash.com/photo-1504851149312-7a075b496cc7?w=600&h=340&fit=crop',
+      thumbnail: 'https://customer-assets.emergentagent.com/job_huntiq-fusion-2/artifacts/187hi1a1_image.png',
       duration: '15:42',
       views: '12.5K',
       date: '2 jours',
@@ -34,7 +34,7 @@ const MediaFormationsSection = () => {
     {
       id: 'video3',
       title: 'Installation de caméras de trail - Pro Tips',
-      thumbnail: 'https://images.unsplash.com/photo-1516934024742-b461fba47600?w=600&h=340&fit=crop',
+      thumbnail: 'https://customer-assets.emergentagent.com/job_huntiq-fusion-2/artifacts/187hi1a1_image.png',
       duration: '18:05',
       views: '6.1K',
       date: '2 semaines',
