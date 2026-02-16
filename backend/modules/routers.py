@@ -120,6 +120,17 @@ from modules.roles_engine.v1 import router as roles_router
 # ==============================================
 from modules.camera_engine.v1 import camera_router
 
+# ==============================================
+# V5-ULTIME-FUSION - MODULES IMPORTÉS (V2, V3, BASE)
+# ==============================================
+from modules.backup_cloud_engine.router import router as backup_cloud_router
+from modules.formations_engine.router import router as formations_router
+from modules.social_engine.router import router as social_router
+from modules.rental_engine.router import router as rental_router
+from modules.communication_engine.router import router as communication_router
+from modules.admin_advanced_engine.router import router as admin_advanced_router
+from modules.partner_engine.router import router as partner_router
+
 
 # List of all available routers with their metadata
 CORE_ROUTERS: List[Tuple[APIRouter, dict]] = [
@@ -460,6 +471,56 @@ CORE_ROUTERS: List[Tuple[APIRouter, dict]] = [
         "phase": "P1-CAM",
         "description": "Camera management, email ingestion, and photo processing with mandatory waypoint"
     }),
+    
+    # ==========================================
+    # V5-ULTIME-FUSION - Modules importés de V2
+    # ==========================================
+    (backup_cloud_router, {
+        "name": "backup_cloud_engine",
+        "version": "1.0.0",
+        "phase": "V5-V2",
+        "description": "Cloud backup (MongoDB Atlas, GCS, ZIP) avec notifications email"
+    }),
+    (formations_router, {
+        "name": "formations_engine",
+        "version": "1.0.0",
+        "phase": "V5-V2",
+        "description": "Formations FédéCP et BIONIC Academy"
+    }),
+    
+    # ==========================================
+    # V5-ULTIME-FUSION - Modules importés de BASE
+    # ==========================================
+    (social_router, {
+        "name": "social_engine",
+        "version": "1.0.0",
+        "phase": "V5-BASE",
+        "description": "Networking, groupes de chasse, chat, parrainage"
+    }),
+    (rental_router, {
+        "name": "rental_engine",
+        "version": "1.0.0",
+        "phase": "V5-BASE",
+        "description": "Location de terres de chasse"
+    }),
+    (communication_router, {
+        "name": "communication_engine",
+        "version": "1.0.0",
+        "phase": "V5-BASE",
+        "description": "Notifications et templates email"
+    }),
+    (admin_advanced_router, {
+        "name": "admin_advanced_engine",
+        "version": "1.0.0",
+        "phase": "V5-BASE",
+        "description": "Brand identity, feature controls, maintenance, site access"
+    }),
+    (partner_router, {
+        "name": "partner_engine",
+        "version": "1.0.0",
+        "phase": "V5-BASE",
+        "description": "Gestion partenaires, offres, calendrier événements"
+    }),
 ]
 
 
@@ -511,7 +572,10 @@ MODULE_STATUS = {
     "phase_6_modules": len([r for r, m in CORE_ROUTERS if m.get("phase") == 6]),
     "phase_7_modules": len([r for r, m in CORE_ROUTERS if m.get("phase") == 7]),
     "phase_8_modules": len([r for r, m in CORE_ROUTERS if m.get("phase") == 8]),
+    "v5_v2_modules": len([r for r, m in CORE_ROUTERS if m.get("phase") == "V5-V2"]),
+    "v5_base_modules": len([r for r, m in CORE_ROUTERS if m.get("phase") == "V5-BASE"]),
     "modules": [meta["name"] for _, meta in CORE_ROUTERS],
     "status": "operational",
-    "architecture_version": "modular_v2.0"
+    "architecture_version": "V5-ULTIME-FUSION",
+    "fusion_sources": ["V4 (ossature)", "V3 (frontpage)", "V2 (backup/formations)", "BASE (social/admin)"]
 }
