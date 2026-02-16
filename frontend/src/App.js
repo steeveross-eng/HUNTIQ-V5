@@ -63,7 +63,8 @@ import {
   Package, Users, Store, Percent, BarChart3, Award, Info, Lock, Clock, AlertTriangle,
   ExternalLink, Trash2, Edit, Plus, Loader2, GraduationCap, BookOpen, Brain,
   Map, Globe, Construction, Power, Mail, Handshake, XCircle, Moon, Sun, Bot,
-  Radar, Share2, Gift, Home, Target, Crosshair, Route as RouteIcon, Briefcase, Cloud
+  Radar, Share2, Gift, Home, Target, Crosshair, Route as RouteIcon, Briefcase, Cloud,
+  Crown
 } from "lucide-react";
 import {
   Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle
