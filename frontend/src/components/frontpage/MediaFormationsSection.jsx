@@ -25,7 +25,7 @@ const MediaFormationsSection = () => {
     {
       id: 'video2',
       title: 'Techniques d\'appel orignal - Saison du rut',
-      thumbnail: 'https://images.unsplash.com/photo-1581971000802-30e846b262ed?w=600&h=340&fit=crop',
+      thumbnail: 'https://customer-assets.emergentagent.com/job_huntiq-fusion-2/artifacts/1ncu18um_image.png',
       duration: '22:18',
       views: '8.3K',
       date: '1 semaine',

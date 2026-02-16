@@ -12,7 +12,7 @@ const CommunitySection = () => {
     {
       id: 1,
       user: { name: 'Marc T.', avatar: 'https://i.pravatar.cc/100?img=1', badge: 'Expert' },
-      image: 'https://images.unsplash.com/photo-1581971000802-30e846b262ed?w=400&h=400&fit=crop',
+      image: 'https://customer-assets.emergentagent.com/job_huntiq-fusion-2/artifacts/1ncu18um_image.png',
       caption: 'Premier orignal de la saison! Zone 17, 850 lbs 🦌',
       likes: 234,
       comments: 45,

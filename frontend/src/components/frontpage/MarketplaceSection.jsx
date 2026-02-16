@@ -40,7 +40,7 @@ const MarketplaceSection = () => {
       brand: 'CallMaster',
       price: 149.99,
       originalPrice: null,
-      image: 'https://images.unsplash.com/photo-1581971000802-30e846b262ed?w=400&h=400&fit=crop',
+      image: 'https://customer-assets.emergentagent.com/job_huntiq-fusion-2/artifacts/1ncu18um_image.png',
       rating: 4.8,
       reviews: 89,
       badge: null,
