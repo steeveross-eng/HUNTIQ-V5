@@ -378,6 +378,10 @@ const AdminPage = ({ onProductsUpdate }) => {
             <TabsTrigger value="identity" className="data-[state=active]:bg-[#f5a623] data-[state=active]:text-black">
               <Palette className="h-4 w-4 mr-2" />{t('admin_identity')}
             </TabsTrigger>
+            {/* V5-ULTIME-FUSION: Analytics déplacé depuis INTELLIGENCE - Module désactivé */}
+            <TabsTrigger value="analytics" disabled className="data-[state=active]:bg-red-500 data-[state=active]:text-white opacity-50 cursor-not-allowed" data-testid="analytics-tab-disabled">
+              <BarChart3 className="h-4 w-4 mr-2" />{t('common_analytics')} (Désactivé)
+            </TabsTrigger>
           </TabsList>
 
           {/* Dashboard Tab */}
