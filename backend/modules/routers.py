@@ -505,18 +505,8 @@ CORE_ROUTERS: List[Tuple[APIRouter, dict]] = [
         "phase": "V5-BASE",
         "description": "Location de terres de chasse"
     }),
-    (communication_router, {
-        "name": "communication_engine",
-        "version": "1.0.0",
-        "phase": "V5-BASE",
-        "description": "Notifications et templates email"
-    }),
-    (admin_advanced_router, {
-        "name": "admin_advanced_engine",
-        "version": "1.0.0",
-        "phase": "V5-BASE",
-        "description": "Brand identity, feature controls, maintenance, site access"
-    }),
+    # V5-ULTIME: communication_engine et admin_advanced_engine fusionnés
+    # dans notification_unified_engine et admin_unified_engine respectivement
     (partner_router, {
         "name": "partner_engine",
         "version": "1.0.0",
