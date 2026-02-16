@@ -59,6 +59,7 @@ const WEATHER_COLORS = {
 };
 
 export const AnalyticsDashboard = () => {
+  const { t } = useLanguage();
   const [loading, setLoading] = useState(true);
   const [timeRange, setTimeRange] = useState('all');
   const [dashboard, setDashboard] = useState(null);
