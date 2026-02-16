@@ -87,6 +87,7 @@ import BackupManager from "@/components/BackupManager";
 import PartnershipAdmin from "@/components/PartnershipAdmin";
 import { SaleModeBadge, AutoCategorizeButton } from "@/components/SharedComponents";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { AnalyticsDashboard } from "@/modules/analytics/components/AnalyticsDashboard";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
