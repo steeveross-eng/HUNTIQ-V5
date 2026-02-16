@@ -252,6 +252,18 @@ const Navigation = ({ cartCount, onCartOpen }) => {
           
           {/* Right Content */}
           <div className="flex items-center gap-2 lg:gap-3">
+            {/* Premium CTA - Hidden on mobile */}
+            <Link to="/pricing" className="hidden lg:block">
+              <Button 
+                size="sm" 
+                className="bg-gradient-to-r from-[#F5A623] to-yellow-500 hover:from-[#F5A623]/90 hover:to-yellow-500/90 text-black font-semibold"
+                data-testid="nav-premium"
+              >
+                <Crown className="h-4 w-4 mr-1" />
+                Premium
+              </Button>
+            </Link>
+            
             {/* Hidden on mobile, visible on desktop */}
             <div className="hidden lg:block">
               <LanguageSwitcher />
