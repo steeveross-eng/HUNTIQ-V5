@@ -4,19 +4,17 @@
  * DIRECTIVES:
  * - PAGE PRINCIPALE: logo 2.2x (211px)
  * - AUTRES PAGES: logo taille normale (96px)
- * - TOUTES PAGES: transparent, sans carré, sans fond
+ * - TOUTES PAGES: transparent (mix-blend-mode: screen pour supprimer le noir)
  * - Position: coin supérieur gauche, sous header
  */
 
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 
-// Logo global fixe - Taille variable selon la page
 export const BionicLogoGlobal = () => {
   const location = useLocation();
   const isHomePage = location.pathname === '/' || location.pathname === '';
   
-  // Taille: 211px sur page principale, 96px ailleurs
   const logoSize = isHomePage ? 211 : 96;
   
   return (
@@ -29,8 +27,7 @@ export const BionicLogoGlobal = () => {
         zIndex: 50,
         width: `${logoSize}px`,
         height: `${logoSize}px`,
-        display: 'block',
-        background: 'transparent'
+        display: 'block'
       }}
       data-testid="bionic-logo-global"
       aria-label="BIONIC - Retour à l'accueil"
@@ -42,14 +39,13 @@ export const BionicLogoGlobal = () => {
           width: `${logoSize}px`,
           height: `${logoSize}px`,
           objectFit: 'contain',
-          mixBlendMode: 'lighten'
+          mixBlendMode: 'screen'
         }}
       />
     </Link>
   );
 };
 
-// Logo inline (non utilisé)
 const BionicLogo = ({ className = '' }) => {
   return (
     <img 
@@ -60,7 +56,7 @@ const BionicLogo = ({ className = '' }) => {
         width: '32px', 
         height: '32px',
         objectFit: 'contain',
-        mixBlendMode: 'lighten'
+        mixBlendMode: 'screen'
       }}
     />
   );
