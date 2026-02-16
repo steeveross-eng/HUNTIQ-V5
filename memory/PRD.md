@@ -162,8 +162,8 @@ Architecture: 100% modulaire, sans perte, sans dérive.
 
 ## URLs
 
-- **Preview**: https://huntiq-fusion-2.preview.emergentagent.com
-- **API Status**: https://huntiq-fusion-2.preview.emergentagent.com/api/modules/status
+- **Preview**: https://huntiq-v5.preview.emergentagent.com
+- **API Status**: https://huntiq-v5.preview.emergentagent.com/api/modules/status
 
 ---
 
