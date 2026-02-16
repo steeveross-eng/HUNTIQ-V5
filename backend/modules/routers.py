@@ -519,6 +519,22 @@ CORE_ROUTERS: List[Tuple[APIRouter, dict]] = [
         "phase": "V5-BASE",
         "description": "Gestion partenaires, offres, calendrier événements"
     }),
+    
+    # ==========================================
+    # PHASE 9 - PLAN MAÎTRE ENGINES
+    # ==========================================
+    (rules_router, {
+        "name": "rules_engine",
+        "version": "1.0.0",
+        "phase": "P9",
+        "description": "Moteur de règles de chasse intelligentes Plan Maître"
+    }),
+    (strategy_master_router, {
+        "name": "strategy_master_engine",
+        "version": "1.0.0",
+        "phase": "P9",
+        "description": "Orchestrateur stratégies Plan Maître - intégrations multi-sources"
+    }),
 ]
 
 
