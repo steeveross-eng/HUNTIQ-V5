@@ -56,8 +56,8 @@ export const UI_MODULES = {
   // UI Plan Maître (Phase 9)
   plan_maitre: {
     path: '/ui/plan_maitre',
-    components: ['PlanMaitreDashboard'],
-    description: 'Module UI pour le Plan Maître (préparation Phase 9)'
+    components: ['PlanMaitreDashboard', 'PlanMaitreTimeline', 'PlanMaitreRules', 'PlanMaitreStrategyView', 'PlanMaitreStats'],
+    description: 'Module UI complet du Plan Maître (Phase 9)'
   }
 };
 
