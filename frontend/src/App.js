@@ -30,7 +30,7 @@ import AdminPage from "@/pages/AdminPage";
 import { AuthProvider, UserMenu, useAuth } from "@/components/GlobalAuth";
 import { OfflineIndicator } from "@/components/OfflineIndicator";
 import { LanguageProvider, useLanguage, LanguageSwitcher } from "@/contexts/LanguageContext";
-import BionicLogo from "@/components/BionicLogo";
+import BionicLogo, { BionicLogoGlobal } from "@/components/BionicLogo";
 import ScrollNavigator from "@/components/ScrollNavigator";
 import BecomePartner from "@/components/BecomePartner";
 import PartnerDashboard from "@/components/PartnerDashboard";
