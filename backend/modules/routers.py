@@ -32,8 +32,9 @@ from modules.strategy_engine.v1 import router as strategy_router
 # BUSINESS ENGINE ROUTERS (Phase 3)
 # ==============================================
 from modules.user_engine.v1 import router as user_router
-from modules.admin_engine.v1 import router as admin_router
-from modules.notification_engine.v1 import router as notification_router
+# V5-ULTIME: Modules unifiés remplacent les anciens
+from modules.admin_unified_engine import router as admin_router
+from modules.notification_unified_engine import router as notification_router
 from modules.referral_engine.v1 import router as referral_router
 from modules.territory_engine.v1 import router as territory_router
 from modules.tracking_engine.v1 import router as tracking_router
