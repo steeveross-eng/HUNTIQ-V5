@@ -42,23 +42,22 @@ import {
   Map,
   Layers,
   Filter,
-  Eye,
-  CircleDot
+  Eye
 } from 'lucide-react';
 
 const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 
 // ============================================
-// SPECIES CONFIG - BIONIC Design System
+// SPECIES CONFIG
 // ============================================
 
 const SPECIES_OPTIONS = [
-  { id: 'orignal', Icon: CircleDot, labelKey: 'animal_moose', label: 'Orignal', color: '#8B4513' },
-  { id: 'chevreuil', Icon: CircleDot, labelKey: 'animal_deer', label: 'Chevreuil', color: '#D2691E' },
-  { id: 'ours', Icon: CircleDot, labelKey: 'animal_bear', label: 'Ours noir', color: '#2F4F4F' },
-  { id: 'caribou', Icon: CircleDot, labelKey: 'animal_caribou', label: 'Caribou', color: '#3b82f6' },
-  { id: 'dindon', Icon: CircleDot, labelKey: 'animal_turkey', label: 'Dindon sauvage', color: '#ef4444' },
-  { id: 'petit_gibier', Icon: CircleDot, labelKey: 'animal_small_game', label: 'Petit gibier', color: '#6b7280' }
+  { id: 'orignal', icon: '🫎', label: 'Orignal' },
+  { id: 'chevreuil', icon: '🦌', label: 'Chevreuil' },
+  { id: 'ours', icon: '🐻', label: 'Ours noir' },
+  { id: 'caribou', icon: '🦌', label: 'Caribou' },
+  { id: 'dindon', icon: '🦃', label: 'Dindon sauvage' },
+  { id: 'petit_gibier', icon: '🐰', label: 'Petit gibier' }
 ];
 
 const MONTHS = [
@@ -168,7 +167,7 @@ export const AIRecommendations = () => {
                 <div>
                   <h4 className="text-white font-semibold">{speciesConfig?.label}</h4>
                   <p className="text-green-400 text-sm">
-                    {seasonInfo.is_best_month ? 'Mois optimal!' : 'Saison disponible'}
+                    {seasonInfo.is_best_month ? '✨ Mois optimal!' : 'Saison disponible'}
                   </p>
                 </div>
               </div>
@@ -559,22 +558,19 @@ export const PotentialPartners = () => {
 // TERRITORY MAP COMPONENT
 // ============================================
 
-// Custom marker icon helper - BIONIC Design System (SVG icons)
+// Custom marker icon helper
 const createMarkerIcon = (color, type) => {
-  // SVG icon paths for different types
-  const svgIcons = {
-    zec: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" width="16" height="16"><path d="M3 17h3l3-3 4 3h5"/><path d="m13 5 7 7-3 3"/></svg>',
-    sepaq: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" width="16" height="16"><circle cx="12" cy="12" r="3"/></svg>',
-    pourvoirie: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" width="16" height="16"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>',
-    club: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" width="16" height="16"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>',
-    outfitter: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" width="16" height="16"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>',
-    private: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" width="16" height="16"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>',
-    anticosti: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" width="16" height="16"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/></svg>',
-    reserve: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" width="16" height="16"><path d="M17 14v7"/><path d="M7 14v7"/><path d="M17 3v7"/><path d="M7 3v7"/><path d="M22 6H2"/><path d="M22 18H2"/></svg>',
-    indigenous: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" width="16" height="16"><path d="M12 3v18"/><path d="m6 6 6-3 6 3"/><path d="m6 18 6 3 6-3"/></svg>'
+  const icons = {
+    zec: '🏕️',
+    sepaq: '🦌',
+    pourvoirie: '🏠',
+    club: '🎯',
+    outfitter: '🦬',
+    private: '🔒',
+    anticosti: '🏝️',
+    reserve: '🌲',
+    indigenous: '🪶'
   };
-  
-  const defaultIcon = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" width="16" height="16"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>';
   
   return L.divIcon({
     className: 'custom-marker',
@@ -588,7 +584,8 @@ const createMarkerIcon = (color, type) => {
       display: flex;
       align-items: center;
       justify-content: center;
-    ">${svgIcons[type] || defaultIcon}</div>`,
+      font-size: 16px;
+    ">${icons[type] || '📍'}</div>`,
     iconSize: [32, 32],
     iconAnchor: [16, 16],
     popupAnchor: [0, -16]
@@ -649,22 +646,22 @@ export const TerritoryMapView = () => {
 
   const TYPES = [
     { value: 'all', label: 'Tous types' },
-    { value: 'zec', label: 'ZEC' },
-    { value: 'sepaq', label: 'Sépaq' },
-    { value: 'pourvoirie', label: 'Pourvoirie' },
-    { value: 'club', label: 'Club' },
-    { value: 'outfitter', label: 'Outfitter' },
-    { value: 'anticosti', label: 'Anticosti' }
+    { value: 'zec', label: '🏕️ ZEC' },
+    { value: 'sepaq', label: '🦌 Sépaq' },
+    { value: 'pourvoirie', label: '🏠 Pourvoirie' },
+    { value: 'club', label: '🎯 Club' },
+    { value: 'outfitter', label: '🦬 Outfitter' },
+    { value: 'anticosti', label: '🏝️ Anticosti' }
   ];
 
   const SPECIES_LIST = [
     { value: 'all', label: 'Toutes espèces' },
-    { value: 'orignal', label: 'Orignal' },
-    { value: 'chevreuil', label: 'Chevreuil' },
-    { value: 'ours', label: 'Ours' },
-    { value: 'caribou', label: 'Caribou' },
-    { value: 'dindon', label: 'Dindon' },
-    { value: 'petit_gibier', label: 'Petit gibier' }
+    { value: 'orignal', label: '🫎 Orignal' },
+    { value: 'chevreuil', label: '🦌 Chevreuil' },
+    { value: 'ours', label: '🐻 Ours' },
+    { value: 'caribou', label: '🦌 Caribou' },
+    { value: 'dindon', label: '🦃 Dindon' },
+    { value: 'petit_gibier', label: '🐰 Petit gibier' }
   ];
 
   const loadGeoJSON = useCallback(async () => {
@@ -909,25 +906,17 @@ export const TerritoryMapView = () => {
                           
                           {props.species && props.species.length > 0 && (
                             <div className="flex flex-wrap gap-1 mt-2">
-                              {props.species.slice(0, 4).map((s, i) => {
-                                const speciesConfig = SPECIES_OPTIONS.find(sp => sp.id === s);
-                                return (
-                                  <CircleDot 
-                                    key={i} 
-                                    className="h-5 w-5" 
-                                    style={{ color: speciesConfig?.color || '#f5a623' }}
-                                    title={speciesConfig?.label || s}
-                                  />
-                                );
-                              })}
+                              {props.species.slice(0, 4).map((s, i) => (
+                                <span key={i} className="text-lg" title={s}>
+                                  {SPECIES_OPTIONS.find(sp => sp.id === s)?.icon || '🎯'}
+                                </span>
+                              ))}
                             </div>
                           )}
                           
                           <div className="flex gap-1 mt-2">
                             {props.is_verified && (
-                              <Badge className="bg-green-100 text-green-800 text-xs flex items-center gap-1">
-                                <CheckCircle className="h-3 w-3" /> Vérifié
-                              </Badge>
+                              <Badge className="bg-green-100 text-green-800 text-xs">✓ Vérifié</Badge>
                             )}
                             {props.is_partner && (
                               <Badge className="bg-purple-100 text-purple-800 text-xs">Partenaire</Badge>

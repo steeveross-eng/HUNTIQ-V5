@@ -84,34 +84,25 @@ import { useNavigate } from 'react-router-dom';
 const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 
 // ============================================
-// GAME SPECIES CONFIG - BIONIC Design System
+// GAME SPECIES ICONS
 // ============================================
 
 const SPECIES_CONFIG = {
-  orignal: { icon: Target, name: 'Orignal', color: 'bg-[var(--bionic-gold-muted)] text-[var(--bionic-gold-primary)]' },
-  chevreuil: { icon: Target, name: 'Chevreuil', color: 'bg-[var(--bionic-gold-muted)] text-[var(--bionic-gold-light)]' },
-  ours: { icon: Target, name: 'Ours', color: 'bg-[var(--bionic-gray-800)] text-[var(--bionic-gray-400)]' },
-  dindon: { icon: Target, name: 'Dindon', color: 'bg-[var(--bionic-red-muted)] text-[var(--bionic-red-primary)]' },
-  petit_gibier: { icon: Target, name: 'Petit gibier', color: 'bg-[var(--bionic-green-muted)] text-[var(--bionic-green-primary)]' },
-  multi_especes: { icon: Sparkles, name: 'Multi-espèces', color: 'bg-[var(--bionic-purple-muted)] text-[var(--bionic-purple-primary)]' }
+  orignal: { icon: '🦌', name: 'Orignal', color: 'bg-amber-500/20 text-amber-400' },
+  chevreuil: { icon: '🦌', name: 'Chevreuil', color: 'bg-orange-500/20 text-orange-400' },
+  ours: { icon: '🐻', name: 'Ours', color: 'bg-stone-500/20 text-stone-400' },
+  dindon: { icon: '🦃', name: 'Dindon', color: 'bg-red-500/20 text-red-400' },
+  petit_gibier: { icon: '🐰', name: 'Petit gibier', color: 'bg-green-500/20 text-green-400' },
+  multi_especes: { icon: '🎯', name: 'Multi-espèces', color: 'bg-purple-500/20 text-purple-400' }
 };
 
 const TERRAIN_ICONS = {
-  foret: { icon: Trees, name: 'Forêt' },
-  mixte: { icon: Mountain, name: 'Mixte' },
-  agricole: { icon: Grid, name: 'Agricole' },
-  montagne: { icon: Mountain, name: 'Montagne' },
-  marecage: { icon: Navigation, name: 'Marécage' },
-  prairie: { icon: Compass, name: 'Prairie' }
-};
-
-// Amenities - BIONIC Design System icons
-const AMENITIES_CONFIG = {
-  blinds: { icon: Tent, name: 'Caches aménagées' },
-  cameras: { icon: Camera, name: 'Caméras de surveillance' },
-  dogs_allowed: { icon: Dog, name: 'Chiens permis' },
-  camping: { icon: Tent, name: 'Camping' },
-  lodge: { icon: Home, name: 'Pavillon' }
+  foret: { icon: <Trees className="h-4 w-4" />, name: 'Forêt' },
+  mixte: { icon: <Mountain className="h-4 w-4" />, name: 'Mixte' },
+  agricole: { icon: <Grid className="h-4 w-4" />, name: 'Agricole' },
+  montagne: { icon: <Mountain className="h-4 w-4" />, name: 'Montagne' },
+  marecage: { icon: <Navigation className="h-4 w-4" />, name: 'Marécage' },
+  prairie: { icon: <Compass className="h-4 w-4" />, name: 'Prairie' }
 };
 
 // ============================================
@@ -508,8 +499,7 @@ const LandsRental = () => {
   };
 
   const getSpeciesIcon = (species) => {
-    const SpeciesIcon = SPECIES_CONFIG[species]?.icon || Target;
-    return SpeciesIcon;
+    return SPECIES_CONFIG[species]?.icon || '🎯';
   };
 
   // ============================================
@@ -917,7 +907,7 @@ const LandsRental = () => {
 // ============================================
 
 const LandCard = ({ listing, onView, formatPrice, viewMode }) => {
-  const speciesIconComponents = listing.game_species?.map(s => SPECIES_CONFIG[s]?.icon || Target);
+  const speciesIcons = listing.game_species?.map(s => SPECIES_CONFIG[s]?.icon || '🎯').join(' ');
 
   if (viewMode === 'list') {
     return (
@@ -926,13 +916,7 @@ const LandCard = ({ listing, onView, formatPrice, viewMode }) => {
           <div className="w-32 h-24 bg-gray-800 rounded-lg flex items-center justify-center text-3xl flex-shrink-0">
             {listing.photos?.[0] ? (
               <img src={listing.photos[0]} alt="" className="w-full h-full object-cover rounded-lg" />
-            ) : (
-              <div className="flex gap-1">
-                {speciesIconComponents?.slice(0, 3).map((IconComp, i) => (
-                  <IconComp key={i} className="h-6 w-6 text-[#f5a623]" />
-                ))}
-              </div>
-            )}
+            ) : speciesIcons}
           </div>
           <div className="flex-1 min-w-0">
             <div className="flex items-start justify-between">
@@ -953,14 +937,10 @@ const LandCard = ({ listing, onView, formatPrice, viewMode }) => {
               </div>
             </div>
             <div className="flex items-center gap-3 mt-2 text-xs text-gray-500">
-              <span className="flex gap-1">
-                {speciesIconComponents?.slice(0, 3).map((IconComp, i) => (
-                  <IconComp key={i} className="h-4 w-4 text-[#f5a623]" />
-                ))}
-              </span>
+              <span className="text-lg">{speciesIcons}</span>
               <span><Eye className="h-3 w-3 inline" /> {listing.views}</span>
-              {listing.has_blinds && <span className="flex items-center gap-1"><Tent className="h-3 w-3" /> Caches</span>}
-              {listing.has_cameras && <span className="flex items-center gap-1"><Camera className="h-3 w-3" /> Caméras</span>}
+              {listing.has_blinds && <span>🏠 Caches</span>}
+              {listing.has_cameras && <span>📷 Caméras</span>}
             </div>
           </div>
         </CardContent>
@@ -975,11 +955,7 @@ const LandCard = ({ listing, onView, formatPrice, viewMode }) => {
         {listing.photos?.[0] ? (
           <img src={listing.photos[0]} alt="" className="w-full h-full object-cover" />
         ) : (
-          <div className="flex gap-2">
-            {speciesIconComponents?.slice(0, 3).map((IconComp, i) => (
-              <IconComp key={i} className="h-10 w-10 text-[#f5a623]" />
-            )) || <Trees className="h-10 w-10 text-green-500" />}
-          </div>
+          <div className="text-5xl">{speciesIcons || '🌲'}</div>
         )}
         
         {/* Badges */}
@@ -1036,9 +1012,9 @@ const LandCard = ({ listing, onView, formatPrice, viewMode }) => {
 
         {/* Amenities */}
         <div className="flex gap-2 mt-3 text-xs text-gray-500">
-          {listing.has_blinds && <span className="flex items-center gap-1"><Tent className="h-3 w-3" /> Caches</span>}
-          {listing.has_cameras && <span className="flex items-center gap-1"><Camera className="h-3 w-3" /> Caméras</span>}
-          {listing.dogs_allowed && <span className="flex items-center gap-1"><Dog className="h-3 w-3" /> Chiens</span>}
+          {listing.has_blinds && <span className="flex items-center gap-1">🏠 Caches</span>}
+          {listing.has_cameras && <span className="flex items-center gap-1">📷 Caméras</span>}
+          {listing.dogs_allowed && <span className="flex items-center gap-1">🐕 Chiens</span>}
         </div>
       </CardContent>
     </Card>
@@ -1587,8 +1563,8 @@ const ListingDetailModal = ({ isOpen, onClose, listing, formatPrice, onRent, onP
           </div>
 
           {/* Disclaimer */}
-          <p className="text-xs text-gray-500 text-center flex items-start justify-center gap-1">
-            <AlertTriangle className="h-3 w-3 flex-shrink-0 mt-0.5" /> La plateforme met en relation propriétaires et chasseurs. Elle n'est pas partie aux ententes 
+          <p className="text-xs text-gray-500 text-center">
+            ⚠️ La plateforme met en relation propriétaires et chasseurs. Elle n'est pas partie aux ententes 
             et n'assume aucune responsabilité.
           </p>
         </div>
@@ -1836,8 +1812,8 @@ const PricingModal = ({ isOpen, onClose, pricing, onPurchase }) => {
                 return (
                   <Card key={key} className={`border-border ${isVip ? 'border-amber-500 bg-amber-500/5' : 'bg-gray-900/50'}`}>
                     {isVip && (
-                      <div className="bg-amber-500 text-black text-xs font-bold text-center py-1 flex items-center justify-center gap-1">
-                        <Star className="h-3 w-3 fill-black" /> POPULAIRE
+                      <div className="bg-amber-500 text-black text-xs font-bold text-center py-1">
+                        ⭐ POPULAIRE
                       </div>
                     )}
                     <CardContent className="p-4 text-center">

@@ -328,7 +328,7 @@ const HuntMarketplace = () => {
     }
     try {
       const response = await axios.post(`${API}/marketplace/listings/${listingId}/favorite?token=${auth.token}`);
-      toast.success(response.data.favorited ? 'Ajouté aux favoris' : 'Retiré des favoris');
+      toast.success(response.data.favorited ? '❤️ Ajouté aux favoris' : 'Retiré des favoris');
     } catch (error) {
       toast.error('Erreur');
     }
@@ -354,7 +354,7 @@ const HuntMarketplace = () => {
 
   const getCategoryIcon = (categoryId) => {
     const cat = categories.find(c => c.id === categoryId);
-    return cat?.icon || '';
+    return cat?.icon || '📦';
   };
 
   const getCategoryName = (categoryId) => {
@@ -824,7 +824,7 @@ const ListingCard = ({ listing, viewMode, onView, onFavorite, getCategoryIcon, g
                 <h3 className="text-white font-semibold truncate">{listing.title}</h3>
                 <div className="flex items-center gap-2 mt-1">
                   <Badge className={`text-[10px] ${typeBadge.color}`}>{typeBadge.name}</Badge>
-                  {listing.is_featured && <Badge className="bg-yellow-500/20 text-yellow-400 text-[10px]"><Star className="h-2 w-2 mr-0.5" /> Vedette</Badge>}
+                  {listing.is_featured && <Badge className="bg-yellow-500/20 text-yellow-400 text-[10px]">⭐ Vedette</Badge>}
                   {listing.seller_is_pro && <Badge className="bg-purple-500/20 text-purple-400 text-[10px]">PRO</Badge>}
                 </div>
               </div>
@@ -858,7 +858,7 @@ const ListingCard = ({ listing, viewMode, onView, onFavorite, getCategoryIcon, g
         {/* Badges */}
         <div className="absolute top-2 left-2 flex flex-wrap gap-1">
           <Badge className={`text-[10px] ${typeBadge.color}`}>{typeBadge.name}</Badge>
-          {listing.is_featured && <Badge className="bg-yellow-500/20 text-yellow-400 text-[10px]"><Star className="h-2 w-2" /></Badge>}
+          {listing.is_featured && <Badge className="bg-yellow-500/20 text-yellow-400 text-[10px]">⭐</Badge>}
         </div>
         {/* Favorite Button */}
         <Button
@@ -1231,9 +1231,7 @@ const ListingDetailModal = ({ isOpen, onClose, listing, onFavorite, auth, getCat
             {listing.photos?.[0] ? (
               <img src={listing.photos[0]} alt={listing.title} className="w-full h-full object-cover" />
             ) : (
-              <div className="w-full h-full flex items-center justify-center">
-                <Package className="h-16 w-16 text-slate-500" />
-              </div>
+              <div className="w-full h-full flex items-center justify-center text-6xl">📦</div>
             )}
           </div>
           
@@ -1242,7 +1240,7 @@ const ListingDetailModal = ({ isOpen, onClose, listing, onFavorite, auth, getCat
             <div>
               <div className="flex items-center gap-2 mb-2">
                 <Badge className={typeBadge.color}>{typeBadge.name}</Badge>
-                {listing.is_featured && <Badge className="bg-yellow-500/20 text-yellow-400"><Star className="h-3 w-3 mr-1" /> En vedette</Badge>}
+                {listing.is_featured && <Badge className="bg-yellow-500/20 text-yellow-400">⭐ En vedette</Badge>}
                 {listing.seller_is_pro && <Badge className="bg-purple-500/20 text-purple-400">PRO</Badge>}
               </div>
               <h2 className="text-2xl font-bold text-white">{listing.title}</h2>
