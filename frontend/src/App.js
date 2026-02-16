@@ -45,7 +45,8 @@ import { ShopPage, ComparePage } from "@/pages";
 import DashboardPage from "@/pages/DashboardPage";
 import BusinessPage from "@/pages/BusinessPage";
 import PlanMaitrePage from "@/pages/PlanMaitrePage";
-import AnalyticsPage from "@/pages/AnalyticsPage";
+// DÉSACTIVÉ V5: Analytics déplacé vers Admin - Import désactivé
+// import AnalyticsPage from "@/pages/AnalyticsPage";
 import MapPage from "@/pages/MapPage";
 import ForecastPage from "@/pages/ForecastPage";
 import AdminGeoPage from "@/pages/AdminGeoPage";
