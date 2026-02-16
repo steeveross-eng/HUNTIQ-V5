@@ -51,6 +51,10 @@ import MapPage from "@/pages/MapPage";
 import ForecastPage from "@/pages/ForecastPage";
 import AdminGeoPage from "@/pages/AdminGeoPage";
 import OnboardingPage from "@/pages/OnboardingPage";
+// V5-ULTIME P3: Pages Monétisation
+import PricingPage from "@/pages/PricingPage";
+import PaymentSuccessPage from "@/pages/PaymentSuccessPage";
+import PaymentCancelPage from "@/pages/PaymentCancelPage";
 import { NotificationProvider } from "@/modules/notifications";
 import GoogleOAuthCallback from "@/components/GoogleOAuthCallback";
 import { 
