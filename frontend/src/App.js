@@ -301,10 +301,10 @@ const Navigation = ({ cartCount, onCartOpen }) => {
             <Link to="/dashboard" onClick={() => setIsOpen(false)} className="flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-sm hover:bg-white/5 text-gray-400 hover:text-white">
               <BarChart3 className="h-4 w-4" /> {t('common_dashboard')}
             </Link>
-            {/* DÉSACTIVÉ V5: Analytics déplacé vers Admin */}
-            {/* <Link to="/analytics" onClick={() => setIsOpen(false)} className="flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-sm hover:bg-white/5 text-gray-400 hover:text-white">
+            {/* V5-ULTIME: Analytics réactivé */}
+            <Link to="/analytics" onClick={() => setIsOpen(false)} className="flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-sm hover:bg-white/5 text-gray-400 hover:text-white">
               <TrendingUp className="h-4 w-4" /> {t('common_analytics')}
-            </Link> */}
+            </Link>
             <Link to="/forecast" onClick={() => setIsOpen(false)} className="flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-sm hover:bg-white/5 text-gray-400 hover:text-white">
               <Target className="h-4 w-4" /> {t('common_forecast')}
             </Link>
