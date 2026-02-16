@@ -45,9 +45,9 @@ export const SPECIES_IMAGES = {
     name_en: 'Black Bear',
     category: 'big_game',
     images: {
-      primary: 'https://images.unsplash.com/photo-1758678283024-ed25413e3714?w=400&h=400&fit=crop&crop=faces',
-      thumbnail: 'https://images.unsplash.com/photo-1758678283024-ed25413e3714?w=64&h=64&fit=crop&crop=faces',
-      full: 'https://images.unsplash.com/photo-1758678283024-ed25413e3714?w=800&h=600&fit=crop'
+      primary: 'https://customer-assets.emergentagent.com/job_huntiq-fusion-2/artifacts/187hi1a1_image.png',
+      thumbnail: 'https://customer-assets.emergentagent.com/job_huntiq-fusion-2/artifacts/187hi1a1_image.png',
+      full: 'https://customer-assets.emergentagent.com/job_huntiq-fusion-2/artifacts/187hi1a1_image.png'
     },
     color: '#2F4F4F',
     colorVar: 'var(--bionic-gray-dark)'
@@ -58,9 +58,9 @@ export const SPECIES_IMAGES = {
     name_en: 'Wild Boar',
     category: 'big_game',
     images: {
-      primary: 'https://images.unsplash.com/photo-1768215119663-c3a4c137aa68?w=400&h=400&fit=crop&crop=faces',
-      thumbnail: 'https://images.unsplash.com/photo-1768215119663-c3a4c137aa68?w=64&h=64&fit=crop&crop=faces',
-      full: 'https://images.unsplash.com/photo-1768215119663-c3a4c137aa68?w=800&h=600&fit=crop'
+      primary: 'https://customer-assets.emergentagent.com/job_huntiq-fusion-2/artifacts/187hi1a1_image.png',
+      thumbnail: 'https://customer-assets.emergentagent.com/job_huntiq-fusion-2/artifacts/187hi1a1_image.png',
+      full: 'https://customer-assets.emergentagent.com/job_huntiq-fusion-2/artifacts/187hi1a1_image.png'
     },
     color: '#5C4033',
     colorVar: 'var(--bionic-brown-dark)'
@@ -71,9 +71,9 @@ export const SPECIES_IMAGES = {
     name_en: 'Wild Boar',
     category: 'big_game',
     images: {
-      primary: 'https://images.unsplash.com/photo-1768215119663-c3a4c137aa68?w=400&h=400&fit=crop&crop=faces',
-      thumbnail: 'https://images.unsplash.com/photo-1768215119663-c3a4c137aa68?w=64&h=64&fit=crop&crop=faces',
-      full: 'https://images.unsplash.com/photo-1768215119663-c3a4c137aa68?w=800&h=600&fit=crop'
+      primary: 'https://customer-assets.emergentagent.com/job_huntiq-fusion-2/artifacts/187hi1a1_image.png',
+      thumbnail: 'https://customer-assets.emergentagent.com/job_huntiq-fusion-2/artifacts/187hi1a1_image.png',
+      full: 'https://customer-assets.emergentagent.com/job_huntiq-fusion-2/artifacts/187hi1a1_image.png'
     },
     color: '#5C4033',
     colorVar: 'var(--bionic-brown-dark)'
@@ -86,9 +86,9 @@ export const SPECIES_IMAGES = {
     name_en: 'Wild Turkey',
     category: 'small_game',
     images: {
-      primary: 'https://images.unsplash.com/photo-1769289950757-5216c6b283bf?w=400&h=400&fit=crop&crop=faces',
-      thumbnail: 'https://images.unsplash.com/photo-1769289950757-5216c6b283bf?w=64&h=64&fit=crop&crop=faces',
-      full: 'https://images.unsplash.com/photo-1769289950757-5216c6b283bf?w=800&h=600&fit=crop'
+      primary: 'https://customer-assets.emergentagent.com/job_huntiq-fusion-2/artifacts/187hi1a1_image.png',
+      thumbnail: 'https://customer-assets.emergentagent.com/job_huntiq-fusion-2/artifacts/187hi1a1_image.png',
+      full: 'https://customer-assets.emergentagent.com/job_huntiq-fusion-2/artifacts/187hi1a1_image.png'
     },
     color: '#8B4513',
     colorVar: 'var(--bionic-brown-primary)'
@@ -99,9 +99,9 @@ export const SPECIES_IMAGES = {
     name_en: 'Snowshoe Hare',
     category: 'small_game',
     images: {
-      primary: 'https://images.unsplash.com/photo-1552486206-a3750df5b0d3?w=400&h=400&fit=crop&crop=faces',
-      thumbnail: 'https://images.unsplash.com/photo-1552486206-a3750df5b0d3?w=64&h=64&fit=crop&crop=faces',
-      full: 'https://images.unsplash.com/photo-1552486206-a3750df5b0d3?w=800&h=600&fit=crop'
+      primary: 'https://customer-assets.emergentagent.com/job_huntiq-fusion-2/artifacts/187hi1a1_image.png',
+      thumbnail: 'https://customer-assets.emergentagent.com/job_huntiq-fusion-2/artifacts/187hi1a1_image.png',
+      full: 'https://customer-assets.emergentagent.com/job_huntiq-fusion-2/artifacts/187hi1a1_image.png'
     },
     color: '#E8E8E8',
     colorVar: 'var(--bionic-gray-light)'
@@ -112,9 +112,9 @@ export const SPECIES_IMAGES = {
     name_en: 'Snowshoe Hare',
     category: 'small_game',
     images: {
-      primary: 'https://images.unsplash.com/photo-1552486206-a3750df5b0d3?w=400&h=400&fit=crop&crop=faces',
-      thumbnail: 'https://images.unsplash.com/photo-1552486206-a3750df5b0d3?w=64&h=64&fit=crop&crop=faces',
-      full: 'https://images.unsplash.com/photo-1552486206-a3750df5b0d3?w=800&h=600&fit=crop'
+      primary: 'https://customer-assets.emergentagent.com/job_huntiq-fusion-2/artifacts/187hi1a1_image.png',
+      thumbnail: 'https://customer-assets.emergentagent.com/job_huntiq-fusion-2/artifacts/187hi1a1_image.png',
+      full: 'https://customer-assets.emergentagent.com/job_huntiq-fusion-2/artifacts/187hi1a1_image.png'
     },
     color: '#E8E8E8',
     colorVar: 'var(--bionic-gray-light)'
@@ -125,9 +125,9 @@ export const SPECIES_IMAGES = {
     name_en: 'Coyote',
     category: 'small_game',
     images: {
-      primary: 'https://images.unsplash.com/photo-1758678282944-a5cc06d23f3e?w=400&h=400&fit=crop&crop=faces',
-      thumbnail: 'https://images.unsplash.com/photo-1758678282944-a5cc06d23f3e?w=64&h=64&fit=crop&crop=faces',
-      full: 'https://images.unsplash.com/photo-1758678282944-a5cc06d23f3e?w=800&h=600&fit=crop'
+      primary: 'https://customer-assets.emergentagent.com/job_huntiq-fusion-2/artifacts/187hi1a1_image.png',
+      thumbnail: 'https://customer-assets.emergentagent.com/job_huntiq-fusion-2/artifacts/187hi1a1_image.png',
+      full: 'https://customer-assets.emergentagent.com/job_huntiq-fusion-2/artifacts/187hi1a1_image.png'
     },
     color: '#A0522D',
     colorVar: 'var(--bionic-brown-medium)'
