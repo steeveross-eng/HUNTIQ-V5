@@ -1,156 +1,222 @@
-# HUNTIQ V5-ULTIME-FUSION - Rapport d'Analyse Espace Administrateur
+# HUNTIQ V5-ULTIME-FUSION - Rapport Exhaustif Espace Administrateur
 
 ## Date: 16 Février 2026
 
 ---
 
-## 1. Modules Admin V4 (Existants)
+## 1. MAPPING COMPLET - MODULES BACKEND
 
-### admin_engine (V4)
-**Préfixe API**: `/api/admin`
-**Fonctionnalités**:
-- Login admin (`POST /login`)
-- Dashboard stats (`GET /dashboard`)
-- Site settings (`GET/PUT /settings`)
-- Maintenance mode (`GET/PUT /maintenance`)
-- Alerts management (`GET/POST/PUT /alerts`)
-- Audit logs (`GET /audit-logs`)
-- Health check (`GET /health`)
+### 1.1 Modules Admin V4
 
-### notification_engine (V4)
-**Préfixe API**: `/api/v1/notifications`
-**Fonctionnalités**:
-- Notifications CRUD
-- Broadcast notifications
-- User preferences
-- Email templates
-- Legal time status
+| Module | Préfixe API | Endpoints |
+|--------|-------------|-----------|
+| **admin_engine** | `/api/v1/admin` | GET /, POST /login, GET /dashboard, GET/PUT /settings, GET/PUT /maintenance, GET /alerts, POST /alerts/generate, PUT /alerts/{id}/read, PUT /alerts/{id}/resolve, GET /audit-logs, GET /health |
+| **notification_engine** | `/api/v1/notifications` | GET /, POST /send, POST /broadcast, GET/PUT /user/{id}, GET /user/{id}/unread-count, PUT /{id}/read, DELETE /{id}, GET/PUT /preferences/{id}, GET /templates, GET /types, GET /channels, GET /legal-time/status, GET /legal-time/upcoming |
+| **referral_engine** | `/api/v1/referral` | GET /, POST /users, GET /users/{id}, GET /users/email/{email}, GET /users/code/{code}, POST /track-click, POST /record-signup, POST /record-purchase, GET /dashboard/{id}, GET /share/{id}, GET /tiers, GET /platforms, POST /partner/apply, PUT /partner/{id}/approve, GET /admin/users |
+| **analytics_engine** | `/api/v1/analytics` | (Module désactivé - à reconstruire) |
 
----
+### 1.2 Modules BASE Importés
 
-## 2. Modules BASE Importés
+| Module | Préfixe API | Endpoints |
+|--------|-------------|-----------|
+| **admin_advanced_engine** | `/api/admin-advanced` | GET/POST /brand, GET/POST /features, GET /features/{id}, GET/POST /maintenance, GET/POST /access |
+| **communication_engine** | `/api/communication` | POST /notifications, GET /notifications/{user_id}, POST /notifications/{user_id}/mark-read, GET/POST /email/templates |
+| **partner_engine** | `/api/partners` | GET/POST /, GET /{id}, GET /offers/all, POST /offers, GET /events/all, POST /events |
+| **social_engine** | `/api/social` | GET /network/stats, GET/POST /groups, GET /groups/{id}, POST /chat/send, GET /chat/{id}, POST /referral/create, GET /referral/{code}, POST /referral/{code}/use |
+| **rental_engine** | `/api/rental` | GET/POST /lands, GET /lands/{id}, POST /book, GET /bookings |
 
-### admin_advanced_engine (BASE)
-**Préfixe API**: `/api/admin-advanced`
-**Fonctionnalités**:
-- Brand identity (`GET/POST /brand`)
-- Feature controls (`GET/POST /features`)
-- Maintenance mode (`GET/POST /maintenance`) ⚠️ DOUBLON
-- Site access (`GET/POST /access`)
+### 1.3 Modules V2 Importés
 
-### communication_engine (BASE)
-**Préfixe API**: `/api/communication`
-**Fonctionnalités**:
-- Notifications (`POST /notifications`) ⚠️ DOUBLON PARTIEL
-- User notifications (`GET /notifications/{user_id}`)
-- Mark read (`POST /notifications/{user_id}/mark-read`)
-- Email templates (`GET/POST /email/templates`) ⚠️ DOUBLON PARTIEL
-
-### partner_engine (BASE)
-**Préfixe API**: `/api/partners`
-**Fonctionnalités**:
-- Partners CRUD
-- Partner offers
-- Partner events/calendar
-**Status**: ✅ PAS DE DOUBLON (nouveau)
+| Module | Préfixe API | Endpoints |
+|--------|-------------|-----------|
+| **backup_cloud_engine** | `/api/backup-cloud` | POST /resend/configure, GET /resend/status, POST /atlas/configure, GET /atlas/status, POST /atlas/sync, POST /zip/create, GET /zip/download/{file}, GET /zip/latest, POST /zip/update, GET /stats, GET /logs |
+| **formations_engine** | `/api/formations` | GET /fedecp, GET /bionic, GET /all, GET /{id} |
 
 ---
 
-## 3. Analyse des Doublons
+## 2. MAPPING COMPLET - ROUTES API
 
-| Fonctionnalité | V4 Module | BASE Module | Conflit |
-|----------------|-----------|-------------|---------|
-| Maintenance Mode | admin_engine | admin_advanced_engine | ⚠️ DOUBLON |
-| Notifications | notification_engine | communication_engine | ⚠️ PARTIEL |
-| Email Templates | notification_engine | communication_engine | ⚠️ PARTIEL |
-| Brand Identity | - | admin_advanced_engine | ✅ NOUVEAU |
-| Feature Controls | plugins_engine | admin_advanced_engine | ⚠️ SIMILAIRE |
-| Site Access | admin_engine (settings) | admin_advanced_engine | ⚠️ SIMILAIRE |
-| Partners | - | partner_engine | ✅ NOUVEAU |
+### 2.1 Routes Admin (V4)
 
----
+| Route | Module | Description |
+|-------|--------|-------------|
+| `/api/v1/admin/*` | admin_engine | Gestion admin principale |
+| `/api/v1/admin/login` | admin_engine | Authentification admin |
+| `/api/v1/admin/maintenance` | admin_engine | Mode maintenance |
+| `/api/v1/admin/settings` | admin_engine | Paramètres site |
+| `/api/v1/notifications/*` | notification_engine | Notifications multi-canal |
+| `/api/v1/referral/*` | referral_engine | Système parrainage |
 
-## 4. Recommandations
+### 2.2 Routes Admin (BASE)
 
-### Doublons à résoudre:
-
-#### 4.1 Maintenance Mode
-- **V4**: `/api/admin/maintenance` (admin_engine)
-- **BASE**: `/api/admin-advanced/maintenance` (admin_advanced_engine)
-- **Action**: Garder V4 comme principal, désactiver BASE ou rediriger
-
-#### 4.2 Notifications
-- **V4**: notification_engine (complet, multi-canal)
-- **BASE**: communication_engine (simplifié)
-- **Action**: Garder V4, utiliser BASE pour emails spécifiques uniquement
-
-#### 4.3 Feature Controls
-- **V4**: plugins_engine (`/api/plugins`)
-- **BASE**: admin_advanced_engine (`/api/admin-advanced/features`)
-- **Action**: Évaluer la fusion, les deux ont des approches différentes
-
-### Modules sans conflit (à conserver):
-
-| Module | Source | Fonctionnalité | Status |
-|--------|--------|----------------|--------|
-| partner_engine | BASE | Partenaires, offres, calendrier | ✅ CONSERVER |
-| rental_engine | BASE | Location de terres | ✅ CONSERVER |
-| social_engine | BASE | Networking, groupes, chat | ✅ CONSERVER |
-| backup_cloud_engine | V2 | Backup cloud | ✅ CONSERVER |
-| formations_engine | V2 | Formations | ✅ CONSERVER |
+| Route | Module | Description |
+|-------|--------|-------------|
+| `/api/admin-advanced/brand` | admin_advanced_engine | Identité visuelle |
+| `/api/admin-advanced/features` | admin_advanced_engine | Contrôle fonctionnalités |
+| `/api/admin-advanced/maintenance` | admin_advanced_engine | Mode maintenance |
+| `/api/admin-advanced/access` | admin_advanced_engine | Contrôle accès site |
+| `/api/communication/*` | communication_engine | Notifications/emails |
+| `/api/partners/*` | partner_engine | Gestion partenaires |
 
 ---
 
-## 5. Composants Frontend Admin
+## 3. MAPPING COMPLET - SERVICES BACKEND
 
-### Composants V4 (existants dans AdminPage):
-- ContentDepot
-- SiteAccessControl
-- MaintenanceControl
-- LandsPricingAdmin
-- AdminHotspotsPanel
-- NetworkingAdmin
-- EmailAdmin
-- FeatureControlsAdmin
-- BrandIdentityAdmin
-- MarketingAIAdmin
-- CategoriesManager
-- PromptManager
-- BackupManager
-- PartnershipAdmin
+### 3.1 Services V4
 
-### Composants BASE importés:
-- BackupManager.jsx ⚠️ DOUBLON POTENTIEL (déjà importé dans V4?)
-- BrandIdentityAdmin.jsx ⚠️ DOUBLON (existe dans V4)
-- EmailAdmin.jsx ⚠️ DOUBLON (existe dans V4)
-- MaintenanceControl.jsx ⚠️ DOUBLON (existe dans V4)
-- SiteAccessControl.jsx ⚠️ DOUBLON (existe dans V4)
+| Service | Fichier | Fonctionnalités |
+|---------|---------|-----------------|
+| AdminService | `admin_engine/v1/service.py` | Dashboard stats, settings, maintenance, alerts, audit |
+| NotificationService | `notification_engine/v1/service.py` | Send, broadcast, preferences, templates |
+| ReferralService | `referral_engine/v1/service.py` | Users, tracking, rewards, tiers |
+| AnalyticsService | `analytics_engine/v1/service.py` | (Désactivé) |
+
+### 3.2 Services BASE
+
+| Service | Fichier | Fonctionnalités |
+|---------|---------|-----------------|
+| (inline) | `admin_advanced_engine/router.py` | Brand, features, maintenance, access |
+| (inline) | `communication_engine/router.py` | Notifications, email templates |
+| (inline) | `partner_engine/router.py` | Partners, offers, events |
+| (inline) | `social_engine/router.py` | Groups, chat, referral |
+| (inline) | `rental_engine/router.py` | Lands, bookings |
 
 ---
 
-## 6. Conclusion
+## 4. MAPPING COMPLET - COMPOSANTS FRONTEND
 
-### Modules SANS conflit (prêts à l'usage):
-- ✅ partner_engine (BASE) - Nouveau
-- ✅ rental_engine (BASE) - Nouveau
-- ✅ social_engine (BASE) - Nouveau
-- ✅ backup_cloud_engine (V2) - Nouveau
-- ✅ formations_engine (V2) - Nouveau
+### 4.1 Composants Admin V4 (utilisés dans AdminPage.jsx)
 
-### Modules avec doublons (à gérer):
-- ⚠️ admin_advanced_engine - Chevauchement avec admin_engine V4
-- ⚠️ communication_engine - Chevauchement avec notification_engine V4
+| Composant | Fichier | Onglet Admin | Description |
+|-----------|---------|--------------|-------------|
+| ContentDepot | `components/ContentDepot.jsx` | content | Gestion contenu |
+| SiteAccessControl | `components/SiteAccessControl.jsx` | access | Contrôle accès |
+| MaintenanceControl | `components/MaintenanceControl.jsx` | access | Mode maintenance |
+| LandsPricingAdmin | `components/LandsPricingAdmin.jsx` | lands | Tarification terres |
+| AdminHotspotsPanel | `components/AdminHotspotsPanel.jsx` | - | Hotspots |
+| NetworkingAdmin | `components/NetworkingAdmin.jsx` | networking | Réseautage |
+| EmailAdmin | `components/EmailAdmin.jsx` | email | Gestion emails |
+| FeatureControlsAdmin | `components/FeatureControlsAdmin.jsx` | controls | Contrôle features |
+| BrandIdentityAdmin | `components/BrandIdentityAdmin.jsx` | identity | Identité visuelle |
+| MarketingAIAdmin | `components/MarketingAIAdmin.jsx` | marketing | Marketing IA |
+| CategoriesManager | `components/CategoriesManager.jsx` | categories | Catégories |
+| PromptManager | `components/PromptManager.jsx` | - | Prompts IA |
+| BackupManager | `components/BackupManager.jsx` | backup | Sauvegardes |
+| PartnershipAdmin | `components/PartnershipAdmin.jsx` | partnership | Partenariats |
 
-### Action recommandée:
-1. Les modules V4 sont plus complets et testés → les garder comme référence
-2. Les modules BASE apportent des fonctionnalités additionnelles (brand, access) → les isoler
-3. Éviter d'activer les endpoints en doublon pour éviter les conflits
+### 4.2 Composants BASE Importés (components/admin/)
+
+| Composant | Fichier | Description |
+|-----------|---------|-------------|
+| BackupManager | `components/admin/BackupManager.jsx` | Sauvegardes |
+| BrandIdentityAdmin | `components/admin/BrandIdentityAdmin.jsx` | Identité visuelle |
+| EmailAdmin | `components/admin/EmailAdmin.jsx` | Gestion emails |
+| MaintenanceControl | `components/admin/MaintenanceControl.jsx` | Mode maintenance |
+| SiteAccessControl | `components/admin/SiteAccessControl.jsx` | Contrôle accès |
+
+### 4.3 Composants Partner BASE (components/partner/)
+
+| Composant | Fichier | Description |
+|-----------|---------|-------------|
+| PartnerCalendar | `components/partner/PartnerCalendar.jsx` | Calendrier partenaires |
+| PartnerOffers | `components/partner/PartnerOffers.jsx` | Offres partenaires |
+
+### 4.4 Composants Social BASE (components/social/)
+
+| Composant | Fichier | Description |
+|-----------|---------|-------------|
+| NotificationCenter | `components/social/NotificationCenter.jsx` | Centre notifications |
+
+### 4.5 Onglets AdminPage.jsx (V4)
+
+| Onglet | Valeur | Composant(s) |
+|--------|--------|--------------|
+| Dashboard | `dashboard` | Stats intégrées |
+| Ventes | `sales` | Stats ventes |
+| Produits | `products` | Gestion produits |
+| Fournisseurs | `suppliers` | SuppliersManager |
+| Clients | `customers` | CustomersManager |
+| Commissions | `commissions` | CommissionsManager |
+| Performance | `performance` | PerformanceManager |
+| Catégories | `categories` | CategoriesManager |
+| Contenu | `content` | ContentDepot |
+| Backup | `backup` | BackupManager |
+| Accès | `access` | SiteAccessControl, MaintenanceControl |
+| Terres | `lands` | LandsPricingAdmin |
+| Networking | `networking` | NetworkingAdmin |
+| Email | `email` | EmailAdmin |
+| Marketing | `marketing` | MarketingAIAdmin |
+| Partenariat | `partnership` | PartnershipAdmin |
+| Contrôles | `controls` | FeatureControlsAdmin |
+| Identité | `identity` | BrandIdentityAdmin |
 
 ---
 
-## 7. Architecture préservée
+## 5. IDENTIFICATION DES DOUBLONS ET CONFLITS
+
+### 5.1 Doublons CONFIRMÉS (fichiers identiques)
+
+| Composant | V4 | BASE | Taille | Status |
+|-----------|----|----- |--------|--------|
+| BackupManager.jsx | `components/` | `components/admin/` | 26705 | **DOUBLON EXACT** |
+| BrandIdentityAdmin.jsx | `components/` | `components/admin/` | 32184 | **DOUBLON EXACT** |
+| EmailAdmin.jsx | `components/` | `components/admin/` | 10413 | **DOUBLON EXACT** |
+| MaintenanceControl.jsx | `components/` | `components/admin/` | 17919/17766 | **QUASI-DOUBLON** |
+| SiteAccessControl.jsx | `components/` | `components/admin/` | 19669/19707 | **QUASI-DOUBLON** |
+
+### 5.2 Conflits de Routes API
+
+| Fonctionnalité | V4 Route | BASE Route | Conflit |
+|----------------|----------|------------|---------|
+| Maintenance Mode | `/api/v1/admin/maintenance` | `/api/admin-advanced/maintenance` | **OUI** |
+| Notifications | `/api/v1/notifications/*` | `/api/communication/notifications/*` | **PARTIEL** |
+| Email Templates | `/api/v1/notifications/templates` | `/api/communication/email/templates` | **OUI** |
+| Feature Controls | `/api/v1/admin/settings` | `/api/admin-advanced/features` | **SIMILAIRE** |
+
+### 5.3 Modules SANS Conflit
+
+| Module | Source | Préfixe API | Status |
+|--------|--------|-------------|--------|
+| partner_engine | BASE | `/api/partners` | **UNIQUE** |
+| rental_engine | BASE | `/api/rental` | **UNIQUE** |
+| social_engine | BASE | `/api/social` | **UNIQUE** |
+| backup_cloud_engine | V2 | `/api/backup-cloud` | **UNIQUE** |
+| formations_engine | V2 | `/api/formations` | **UNIQUE** |
+
+---
+
+## 6. RÉCAPITULATIF
+
+### Composants Frontend en doublon (à nettoyer)
+
+Les fichiers suivants dans `components/admin/` sont des copies exactes des composants V4 dans `components/`:
+- `BackupManager.jsx`
+- `BrandIdentityAdmin.jsx`
+- `EmailAdmin.jsx`
+- `MaintenanceControl.jsx`
+- `SiteAccessControl.jsx`
+
+**Recommandation**: Supprimer le dossier `components/admin/` car les composants V4 sont déjà utilisés dans AdminPage.jsx.
+
+### Routes API en conflit
+
+| Route V4 | Route BASE | Action |
+|----------|------------|--------|
+| `/api/v1/admin/maintenance` | `/api/admin-advanced/maintenance` | Conserver V4 |
+| `/api/v1/notifications/*` | `/api/communication/*` | Conserver V4 |
+
+### Module Analytics
+
+- Backend: `/app/backend/modules/analytics_engine/` (existe, désactivé)
+- Frontend: `/app/frontend/src/modules/analytics/` (existe, désactivé)
+- À intégrer dans l'espace Administrateur après correction de l'erreur runtime
+
+---
+
+## 7. ARCHITECTURE PRÉSERVÉE
 
 ✅ Architecture modulaire V4 respectée
-✅ Aucun fichier V4 écrasé
-✅ Modules BASE isolés avec préfixes différents
+✅ Aucun fichier V4 écrasé par BASE
+✅ Modules BASE isolés avec préfixes API différents
 ✅ Méthode LEGO appliquée
+✅ Doublons identifiés mais non supprimés (action manuelle requise)
