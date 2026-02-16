@@ -14,7 +14,7 @@ const BlogSection = () => {
       id: 1,
       title: 'Guide complet: Préparer votre territoire pour la saison du rut',
       excerpt: 'Découvrez les meilleures stratégies pour maximiser vos chances pendant la période de reproduction du cerf de Virginie.',
-      image: 'https://images.unsplash.com/photo-1484406566174-9da000fda645?w=800&h=400&fit=crop',
+      image: 'https://customer-assets.emergentagent.com/job_huntiq-fusion-2/artifacts/b9d0w2sg_image.png',
       author: 'Jean-Pierre Tremblay',
       date: '28 Nov 2025',
       readTime: '8 min',
