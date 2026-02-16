@@ -140,9 +140,9 @@ export const SPECIES_IMAGES = {
     name_en: 'Mallard Duck',
     category: 'waterfowl',
     images: {
-      primary: 'https://images.unsplash.com/photo-1759485378224-2dd19ccbb920?w=400&h=400&fit=crop&crop=faces',
-      thumbnail: 'https://images.unsplash.com/photo-1759485378224-2dd19ccbb920?w=64&h=64&fit=crop&crop=faces',
-      full: 'https://images.unsplash.com/photo-1759485378224-2dd19ccbb920?w=800&h=600&fit=crop'
+      primary: 'https://customer-assets.emergentagent.com/job_huntiq-fusion-2/artifacts/187hi1a1_image.png',
+      thumbnail: 'https://customer-assets.emergentagent.com/job_huntiq-fusion-2/artifacts/187hi1a1_image.png',
+      full: 'https://customer-assets.emergentagent.com/job_huntiq-fusion-2/artifacts/187hi1a1_image.png'
     },
     color: '#228B22',
     colorVar: 'var(--bionic-green-primary)'
@@ -153,9 +153,9 @@ export const SPECIES_IMAGES = {
     name_en: 'Canada Goose',
     category: 'waterfowl',
     images: {
-      primary: 'https://images.unsplash.com/photo-1764502541767-302fb89b388b?w=400&h=400&fit=crop&crop=faces',
-      thumbnail: 'https://images.unsplash.com/photo-1764502541767-302fb89b388b?w=64&h=64&fit=crop&crop=faces',
-      full: 'https://images.unsplash.com/photo-1764502541767-302fb89b388b?w=800&h=600&fit=crop'
+      primary: 'https://customer-assets.emergentagent.com/job_huntiq-fusion-2/artifacts/187hi1a1_image.png',
+      thumbnail: 'https://customer-assets.emergentagent.com/job_huntiq-fusion-2/artifacts/187hi1a1_image.png',
+      full: 'https://customer-assets.emergentagent.com/job_huntiq-fusion-2/artifacts/187hi1a1_image.png'
     },
     color: '#696969',
     colorVar: 'var(--bionic-gray-medium)'
@@ -181,9 +181,9 @@ export const SPECIES_IMAGES = {
     name_en: 'Black Bear',
     category: 'big_game',
     images: {
-      primary: 'https://images.unsplash.com/photo-1758678283024-ed25413e3714?w=400&h=400&fit=crop&crop=faces',
-      thumbnail: 'https://images.unsplash.com/photo-1758678283024-ed25413e3714?w=64&h=64&fit=crop&crop=faces',
-      full: 'https://images.unsplash.com/photo-1758678283024-ed25413e3714?w=800&h=600&fit=crop'
+      primary: 'https://customer-assets.emergentagent.com/job_huntiq-fusion-2/artifacts/187hi1a1_image.png',
+      thumbnail: 'https://customer-assets.emergentagent.com/job_huntiq-fusion-2/artifacts/187hi1a1_image.png',
+      full: 'https://customer-assets.emergentagent.com/job_huntiq-fusion-2/artifacts/187hi1a1_image.png'
     },
     color: '#2F4F4F',
     colorVar: 'var(--bionic-gray-dark)'
