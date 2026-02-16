@@ -334,7 +334,8 @@ async def create_template(template: EmailTemplate):
     else:
         await db.email_templates.insert_one(template_dict)
     
-    del template_dict["_id"] if "_id" in template_dict else None
+    if "_id" in template_dict:
+        del template_dict["_id"]
     return {"success": True, "template": template_dict}
 
 @router.get("/email/templates/{template_name}")
