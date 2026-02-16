@@ -194,9 +194,9 @@ export const SPECIES_IMAGES = {
     name_en: 'Caribou',
     category: 'big_game',
     images: {
-      primary: 'https://customer-assets.emergentagent.com/job_huntiq-fusion-2/artifacts/1ncu18um_image.png',
-      thumbnail: 'https://customer-assets.emergentagent.com/job_huntiq-fusion-2/artifacts/1ncu18um_image.png',
-      full: 'https://customer-assets.emergentagent.com/job_huntiq-fusion-2/artifacts/1ncu18um_image.png'
+      primary: 'https://customer-assets.emergentagent.com/job_huntiq-fusion-2/artifacts/hrz22aqh_image.png',
+      thumbnail: 'https://customer-assets.emergentagent.com/job_huntiq-fusion-2/artifacts/hrz22aqh_image.png',
+      full: 'https://customer-assets.emergentagent.com/job_huntiq-fusion-2/artifacts/hrz22aqh_image.png'
     },
     color: '#8B7355',
     colorVar: 'var(--bionic-brown-light)'
