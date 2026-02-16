@@ -122,6 +122,12 @@ from modules.roles_engine.v1 import router as roles_router
 from modules.camera_engine.v1 import camera_router
 
 # ==============================================
+# PHASE 9 - PLAN MAÎTRE ENGINES (Strategy Master)
+# ==============================================
+from modules.rules_engine.router import router as rules_router
+from modules.strategy_master_engine.router import router as strategy_master_router
+
+# ==============================================
 # V5-ULTIME-FUSION - MODULES IMPORTÉS (V2, V3, BASE)
 # ==============================================
 from modules.backup_cloud_engine.router import router as backup_cloud_router
