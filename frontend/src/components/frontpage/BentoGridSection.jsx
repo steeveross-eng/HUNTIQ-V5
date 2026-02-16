@@ -30,7 +30,7 @@ const BentoGridSection = () => {
       icon: Radar,
       color: 'from-amber-500/20 to-amber-900/20',
       featured: [
-        { name: 'Orignal', status: 'Rut actif', image: 'https://images.unsplash.com/photo-1581971000802-30e846b262ed?w=100&h=100&fit=crop' },
+        { name: 'Orignal', status: 'Rut actif', image: 'https://customer-assets.emergentagent.com/job_huntiq-fusion-2/artifacts/1ncu18um_image.png' },
         { name: 'Cerf', status: 'Pré-rut', image: 'https://images.unsplash.com/photo-1484406566174-9da000fda645?w=100&h=100&fit=crop' },
       ],
       link: '/analyze',
