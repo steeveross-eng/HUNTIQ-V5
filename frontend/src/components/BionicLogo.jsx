@@ -1,33 +1,35 @@
 /**
  * BionicLogo - Composant Logo Global V5-ULTIME-FUSION
  * 
- * Positionnement: coin supérieur gauche, espace libre
+ * Deux modes d'utilisation:
+ * 1. Logo fixe global (position fixed, coin supérieur gauche)
+ * 2. Logo inline pour header/navigation
+ * 
  * Dimensions: ~2.5cm x 2.5cm (96px x 96px à 96dpi)
- * Application: toutes les pages
  */
 
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const BionicLogo = ({ 
+// Logo fixe global - visible sur toutes les pages
+export const BionicLogoGlobal = ({ 
   size = 96,  // ~2.5cm à 96dpi
-  className = '',
-  showOnMobile = true,
-  position = 'fixed' // 'fixed' ou 'absolute'
+  className = ''
 }) => {
   return (
     <Link 
       to="/"
       className={`
-        ${position === 'fixed' ? 'fixed' : 'absolute'}
-        top-4 left-4
-        z-40
+        fixed
+        top-20 left-4
+        z-30
         transition-all duration-300
         hover:scale-105
-        ${!showOnMobile ? 'hidden md:block' : ''}
+        hover:drop-shadow-[0_0_15px_rgba(245,166,35,0.5)]
+        hidden lg:block
         ${className}
       `}
-      data-testid="bionic-logo"
+      data-testid="bionic-logo-global"
       aria-label="BIONIC - Retour à l'accueil"
     >
       <img 
@@ -35,7 +37,7 @@ const BionicLogo = ({
         alt="BIONIC Chasse / Hunt"
         width={size}
         height={size}
-        className="object-contain drop-shadow-lg"
+        className="object-contain drop-shadow-lg rounded-xl"
         style={{
           width: `${size}px`,
           height: `${size}px`,
@@ -44,6 +46,27 @@ const BionicLogo = ({
         }}
       />
     </Link>
+  );
+};
+
+// Logo inline pour header/navigation
+const BionicLogo = ({ 
+  className = '',
+  size = 'default' // 'default', 'small', 'large'
+}) => {
+  const sizeClasses = {
+    small: 'h-6 w-6',
+    default: 'h-8 w-8',
+    large: 'h-10 w-10'
+  };
+
+  return (
+    <img 
+      src="/logos/bionic-logo-official.png"
+      alt="BIONIC"
+      className={`object-contain ${sizeClasses[size] || sizeClasses.default} ${className}`}
+      data-testid="bionic-logo-inline"
+    />
   );
 };
 
