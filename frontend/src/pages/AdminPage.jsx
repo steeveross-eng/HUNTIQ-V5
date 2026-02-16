@@ -1109,6 +1109,36 @@ const AdminPage = ({ onProductsUpdate }) => {
           <TabsContent value="identity" className="space-y-6">
             <BrandIdentityAdmin />
           </TabsContent>
+          
+          {/* V5-ULTIME-FUSION: Analytics - Module déplacé depuis INTELLIGENCE, désactivé */}
+          <TabsContent value="analytics" className="space-y-6">
+            <Card className="bg-card border-border">
+              <CardHeader>
+                <CardTitle className="text-white flex items-center gap-2">
+                  <BarChart3 className="h-5 w-5 text-red-500" />
+                  Module Analytics - Désactivé
+                </CardTitle>
+                <CardDescription>
+                  Ce module a été déplacé depuis le menu INTELLIGENCE vers l'espace Administrateur.
+                  Il sera activé après correction de l'erreur runtime.
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="bg-red-500/10 border border-red-500/30 rounded-lg p-4">
+                  <p className="text-red-400 text-sm">
+                    <strong>Erreur à corriger:</strong> ReferenceError: t is not defined
+                  </p>
+                  <p className="text-gray-400 text-xs mt-2">
+                    Fichiers concernés:
+                  </p>
+                  <ul className="text-gray-500 text-xs mt-1 list-disc list-inside">
+                    <li>backend/modules/analytics_engine/</li>
+                    <li>frontend/src/modules/analytics/</li>
+                  </ul>
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
         </Tabs>
       </div>
     </main>
