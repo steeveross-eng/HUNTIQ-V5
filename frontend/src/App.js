@@ -969,6 +969,10 @@ function App() {
               <Route path="/become-partner" element={<BecomePartner />} />
               <Route path="/partner/dashboard" element={<PartnerDashboard />} />
               <Route path="/auth/google/callback" element={<GoogleOAuthCallback />} />
+              {/* V5-ULTIME P3: Routes Monétisation */}
+              <Route path="/pricing" element={<PricingPage />} />
+              <Route path="/payment/success" element={<PaymentSuccessPage />} />
+              <Route path="/payment/cancel" element={<PaymentCancelPage />} />
             </Routes>
             <Footer />
             <ScrollNavigator />
