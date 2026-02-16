@@ -128,8 +128,9 @@ from modules.backup_cloud_engine.router import router as backup_cloud_router
 from modules.formations_engine.router import router as formations_router
 from modules.social_engine.router import router as social_router
 from modules.rental_engine.router import router as rental_router
-from modules.communication_engine.router import router as communication_router
-from modules.admin_advanced_engine.router import router as admin_advanced_router
+# V5-ULTIME: communication_engine et admin_advanced_engine fusionnés dans les modules unifiés
+# from modules.communication_engine.router import router as communication_router
+# from modules.admin_advanced_engine.router import router as admin_advanced_router
 from modules.partner_engine.router import router as partner_router
 
 
