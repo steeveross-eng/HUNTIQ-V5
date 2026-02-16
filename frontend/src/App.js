@@ -951,8 +951,8 @@ function App() {
               <Route path="/dashboard" element={<DashboardPage />} />
               <Route path="/business" element={<BusinessPage />} />
               <Route path="/plan-maitre" element={<PlanMaitrePage />} />
-              {/* DÉSACTIVÉ V5: Analytics déplacé vers Admin - Route désactivée pour éviter erreur runtime */}
-              {/* <Route path="/analytics" element={<AnalyticsPage />} /> */}
+              {/* V5-ULTIME: Analytics réactivé */}
+              <Route path="/analytics" element={<AnalyticsPage />} />
               <Route path="/map" element={<MapPage />} />
               <Route path="/forecast" element={<ForecastPage />} />
               <Route path="/trips" element={<TripsPage />} />
