@@ -19,9 +19,9 @@ export const SPECIES_IMAGES = {
     name_en: 'White-tailed Deer',
     category: 'big_game',
     images: {
-      primary: 'https://images.unsplash.com/photo-1763519046025-0c12bb2a16de?w=400&h=400&fit=crop&crop=faces',
-      thumbnail: 'https://images.unsplash.com/photo-1763519046025-0c12bb2a16de?w=64&h=64&fit=crop&crop=faces',
-      full: 'https://images.unsplash.com/photo-1763519046025-0c12bb2a16de?w=800&h=600&fit=crop'
+      primary: 'https://customer-assets.emergentagent.com/job_huntiq-fusion-2/artifacts/b9d0w2sg_image.png',
+      thumbnail: 'https://customer-assets.emergentagent.com/job_huntiq-fusion-2/artifacts/b9d0w2sg_image.png',
+      full: 'https://customer-assets.emergentagent.com/job_huntiq-fusion-2/artifacts/b9d0w2sg_image.png'
     },
     color: '#D2691E',
     colorVar: 'var(--bionic-orange-primary)'
@@ -168,9 +168,9 @@ export const SPECIES_IMAGES = {
     name_en: 'White-tailed Deer',
     category: 'big_game',
     images: {
-      primary: 'https://images.unsplash.com/photo-1763519046025-0c12bb2a16de?w=400&h=400&fit=crop&crop=faces',
-      thumbnail: 'https://images.unsplash.com/photo-1763519046025-0c12bb2a16de?w=64&h=64&fit=crop&crop=faces',
-      full: 'https://images.unsplash.com/photo-1763519046025-0c12bb2a16de?w=800&h=600&fit=crop'
+      primary: 'https://customer-assets.emergentagent.com/job_huntiq-fusion-2/artifacts/b9d0w2sg_image.png',
+      thumbnail: 'https://customer-assets.emergentagent.com/job_huntiq-fusion-2/artifacts/b9d0w2sg_image.png',
+      full: 'https://customer-assets.emergentagent.com/job_huntiq-fusion-2/artifacts/b9d0w2sg_image.png'
     },
     color: '#D2691E',
     colorVar: 'var(--bionic-orange-primary)'
@@ -209,9 +209,9 @@ export const SPECIES_IMAGES = {
     name_en: 'Other',
     category: 'other',
     images: {
-      primary: 'https://images.unsplash.com/photo-1763519046025-0c12bb2a16de?w=400&h=400&fit=crop&crop=faces',
-      thumbnail: 'https://images.unsplash.com/photo-1763519046025-0c12bb2a16de?w=64&h=64&fit=crop&crop=faces',
-      full: 'https://images.unsplash.com/photo-1763519046025-0c12bb2a16de?w=800&h=600&fit=crop'
+      primary: 'https://customer-assets.emergentagent.com/job_huntiq-fusion-2/artifacts/b9d0w2sg_image.png',
+      thumbnail: 'https://customer-assets.emergentagent.com/job_huntiq-fusion-2/artifacts/b9d0w2sg_image.png',
+      full: 'https://customer-assets.emergentagent.com/job_huntiq-fusion-2/artifacts/b9d0w2sg_image.png'
     },
     color: '#808080',
     colorVar: 'var(--bionic-gray-medium)'
