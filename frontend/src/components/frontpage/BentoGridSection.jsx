@@ -31,7 +31,7 @@ const BentoGridSection = () => {
       color: 'from-amber-500/20 to-amber-900/20',
       featured: [
         { name: 'Orignal', status: 'Rut actif', image: 'https://customer-assets.emergentagent.com/job_huntiq-fusion-2/artifacts/1ncu18um_image.png' },
-        { name: 'Cerf', status: 'Pré-rut', image: 'https://images.unsplash.com/photo-1484406566174-9da000fda645?w=100&h=100&fit=crop' },
+        { name: 'Cerf', status: 'Pré-rut', image: 'https://customer-assets.emergentagent.com/job_huntiq-fusion-2/artifacts/b9d0w2sg_image.png' },
       ],
       link: '/analyze',
       size: 'tall'
