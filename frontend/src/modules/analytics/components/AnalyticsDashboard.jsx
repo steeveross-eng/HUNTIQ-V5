@@ -20,6 +20,7 @@ import {
 import { AnalyticsService } from '../AnalyticsService';
 import { ExportService } from '../../../services/ExportService';
 import { toast } from 'sonner';
+import { useLanguage } from '../../../contexts/LanguageContext';
 
 const TIME_RANGES = [
   { value: 'week', label: 'Semaine' },
