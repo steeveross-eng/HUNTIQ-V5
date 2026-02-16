@@ -1,71 +1,54 @@
 /**
  * BionicLogo - Composant Logo Global V5-ULTIME-FUSION
  * 
- * Deux modes d'utilisation:
- * 1. Logo fixe global (position fixed, coin supérieur gauche)
- * 2. Logo inline pour header/navigation
- * 
- * Dimensions: ~2.5cm x 2.5cm (96px x 96px à 96dpi)
+ * DIRECTIVES STRICTES:
+ * - Position: coin supérieur gauche, SOUS le header
+ * - Dimensions: 2.5cm x 2.5cm (96px x 96px)
+ * - Visible sur desktop ET mobile
+ * - Position fixe (reste visible au scroll)
+ * - Aucune animation, aucun hover, aucun effet
+ * - Ne doit pas se superposer à aucun élément UI
  */
 
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-// Logo fixe global - visible sur toutes les pages
-export const BionicLogoGlobal = ({ 
-  size = 96,  // ~2.5cm à 96dpi
-  className = ''
-}) => {
+// Logo global fixe - TOUTES les pages
+export const BionicLogoGlobal = () => {
   return (
     <Link 
       to="/"
-      className={`
-        fixed
-        top-20 left-4
-        z-30
-        transition-all duration-300
-        hover:scale-105
-        hover:drop-shadow-[0_0_15px_rgba(245,166,35,0.5)]
-        hidden lg:block
-        ${className}
-      `}
+      className="fixed z-50"
+      style={{
+        top: '80px',      // Sous le header (header = ~64px + marge)
+        left: '16px',     // Coin gauche
+        width: '96px',    // 2.5cm
+        height: '96px'    // 2.5cm
+      }}
       data-testid="bionic-logo-global"
       aria-label="BIONIC - Retour à l'accueil"
     >
       <img 
         src="/logos/bionic-logo-official.png"
         alt="BIONIC Chasse / Hunt"
-        width={size}
-        height={size}
-        className="object-contain drop-shadow-lg rounded-xl"
         style={{
-          width: `${size}px`,
-          height: `${size}px`,
-          minWidth: `${size}px`,
-          minHeight: `${size}px`
+          width: '96px',
+          height: '96px',
+          objectFit: 'contain'
         }}
       />
     </Link>
   );
 };
 
-// Logo inline pour header/navigation
-const BionicLogo = ({ 
-  className = '',
-  size = 'default' // 'default', 'small', 'large'
-}) => {
-  const sizeClasses = {
-    small: 'h-6 w-6',
-    default: 'h-8 w-8',
-    large: 'h-10 w-10'
-  };
-
+// Logo inline pour header (ancien usage)
+const BionicLogo = ({ className = '' }) => {
   return (
     <img 
       src="/logos/bionic-logo-official.png"
       alt="BIONIC"
-      className={`object-contain ${sizeClasses[size] || sizeClasses.default} ${className}`}
-      data-testid="bionic-logo-inline"
+      className={`object-contain ${className}`}
+      style={{ width: '32px', height: '32px' }}
     />
   );
 };
