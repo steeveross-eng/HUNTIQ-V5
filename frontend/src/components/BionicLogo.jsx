@@ -29,14 +29,8 @@ export const BionicLogoGlobal = () => {
         zIndex: 50,
         width: `${logoSize}px`,
         height: `${logoSize}px`,
-        background: 'none',
-        backgroundColor: 'transparent',
-        border: 'none',
-        padding: 0,
-        margin: 0,
         display: 'block',
-        boxShadow: 'none',
-        outline: 'none'
+        background: 'transparent'
       }}
       data-testid="bionic-logo-global"
       aria-label="BIONIC - Retour à l'accueil"
@@ -48,10 +42,7 @@ export const BionicLogoGlobal = () => {
           width: `${logoSize}px`,
           height: `${logoSize}px`,
           objectFit: 'contain',
-          background: 'none',
-          backgroundColor: 'transparent',
-          border: 'none',
-          boxShadow: 'none'
+          mixBlendMode: 'lighten'
         }}
       />
     </Link>
@@ -69,7 +60,7 @@ const BionicLogo = ({ className = '' }) => {
         width: '32px', 
         height: '32px',
         objectFit: 'contain',
-        background: 'transparent'
+        mixBlendMode: 'lighten'
       }}
     />
   );
