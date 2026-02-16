@@ -101,11 +101,17 @@ Architecture: 100% modulaire, sans perte, sans dérive.
 - ✅ Doublons identifiés: maintenance, notifications, email templates
 - ✅ Modules sans conflit: partner, rental, social, backup, formations
 
-**Action 3 & 4 - Placeholders Analytics Admin**
-- ✅ /frontend/src/modules/analytics_admin/ créé
-- ✅ /backend/modules/analytics_admin_engine/ créé
-- ✅ Documentation placeholder créée
-- ✅ Module non activé
+**Action 3 - Déplacement Analytics vers Admin**
+- ✅ Onglet "Analytics (Désactivé)" ajouté dans AdminPage
+- ✅ TabsContent avec placeholder informatif créé
+- ✅ Module non activé (disabled)
+- ✅ Fichiers existants préservés:
+  - backend/modules/analytics_engine/ (placeholder)
+  - frontend/src/modules/analytics/ (placeholder)
+
+**Action 4 - Nettoyage**
+- ✅ Dossiers analytics_admin et analytics_admin_engine supprimés
+- ✅ Architecture modulaire V4 respectée
 
 ---
 
