@@ -33,7 +33,7 @@ const HeroSection = () => {
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{ 
-            backgroundImage: `url('https://images.unsplash.com/photo-1504851149312-7a075b496cc7?q=85&w=1920&auto=format&fit=crop')`,
+            backgroundImage: `url('https://customer-assets.emergentagent.com/job_huntiq-fusion-2/artifacts/187hi1a1_image.png')`,
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-[#0a0a0a]" />
