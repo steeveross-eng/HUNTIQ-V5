@@ -57,6 +57,8 @@ import PaymentSuccessPage from "@/pages/PaymentSuccessPage";
 import PaymentCancelPage from "@/pages/PaymentCancelPage";
 // V5-ULTIME: Administration Premium
 import AdminPremiumPage from "@/pages/AdminPremiumPage";
+// Marketing Calendar V2
+import MarketingCalendarPage from "@/pages/MarketingCalendarPage";
 import { NotificationProvider } from "@/modules/notifications";
 import GoogleOAuthCallback from "@/components/GoogleOAuthCallback";
 import { 
