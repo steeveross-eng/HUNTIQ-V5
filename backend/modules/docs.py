@@ -266,7 +266,7 @@ Les endpoints admin utilisent l'authentification existante.
         },
         "servers": [
             {
-                "url": "https://premium-dash-8.preview.emergentagent.com",
+                "url": "https://huntiq-admin.preview.emergentagent.com",
                 "description": "Preview Server"
             }
         ],

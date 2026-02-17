@@ -262,7 +262,7 @@ Architecture: 100% modulaire "LEGO", sans perte, sans dérive.
 
 ## URLs
 
-- **Preview**: https://premium-dash-8.preview.emergentagent.com
-- **Pricing**: https://premium-dash-8.preview.emergentagent.com/pricing
-- **Admin Premium**: https://premium-dash-8.preview.emergentagent.com/admin-premium
-- **API Status**: https://premium-dash-8.preview.emergentagent.com/api/modules/status
+- **Preview**: https://huntiq-admin.preview.emergentagent.com
+- **Pricing**: https://huntiq-admin.preview.emergentagent.com/pricing
+- **Admin Premium**: https://huntiq-admin.preview.emergentagent.com/admin-premium
+- **API Status**: https://huntiq-admin.preview.emergentagent.com/api/modules/status
