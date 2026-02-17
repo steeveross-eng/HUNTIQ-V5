@@ -86,15 +86,17 @@ async def admin_engine_info():
     """Information sur le module Admin Engine"""
     return {
         "module": "admin_engine",
-        "version": "1.1.0",
-        "description": "Administration Premium V5-ULTIME - Phase 1 Migration",
+        "version": "1.2.0",
+        "description": "Administration Premium V5-ULTIME - Phase 2 Migration",
         "access": "admin_only",
         "sub_modules": [
-            "ecommerce", "payments", "freemium", "upsell", "onboarding",
+            "ecommerce", "content", "backup", "payments", "freemium", "upsell", "onboarding",
             "tutorials", "rules", "strategy", "users", "logs", "settings"
         ],
         "features": [
             "Gestion E-Commerce (dashboard, sales, products, suppliers, customers, commissions, performance)",
+            "Gestion Contenu (categories, SEO, content depot)",
+            "Gestion Backups (code, prompts, database)",
             "Gestion paiements Stripe",
             "Gestion quotas freemium",
             "Gestion campagnes upsell",
