@@ -515,6 +515,18 @@ export const WaypointMap = ({
                       </Popup>
                     </Marker>
                   )}
+                  
+                  {/* Module d'Interaction Cartographique Universel */}
+                  <MapInteractionLayer
+                    showCoordinates={true}
+                    enableWaypointCreation={!isAddingMode}
+                    showHint={!isAddingMode}
+                    onWaypointCreated={(waypoint) => {
+                      toast.success(`Waypoint "${waypoint.name}" créé !`);
+                      fetchWaypoints();
+                    }}
+                    userId={getDefaultUserId()}
+                  />
                 </MapContainer>
               )}
             </div>
