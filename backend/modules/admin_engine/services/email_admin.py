@@ -284,7 +284,8 @@ Commencez maintenant: {{app_url}}
             }
             
             await db.email_templates.insert_one(template)
-            del template["_id"] if "_id" in template else None
+            if "_id" in template:
+                del template["_id"]
             
             return {
                 "success": True,
