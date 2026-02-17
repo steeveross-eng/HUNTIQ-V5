@@ -665,6 +665,16 @@ CORE_ROUTERS: List[Tuple[APIRouter, dict]] = [
     }),
     
     # ==========================================
+    # MARKETING CALENDAR ENGINE V2 - 60 DAYS PLANNING
+    # ==========================================
+    (marketing_calendar_router, {
+        "name": "marketing_calendar_engine",
+        "version": "2.0.0",
+        "phase": "MARKETING-V2",
+        "description": "Calendrier Marketing 60 jours - Génération IA GPT-5.2, Templates Premium, Animations Lottie"
+    }),
+    
+    # ==========================================
     # WAYPOINT ENGINE V1 - MAP INTERACTION
     # ==========================================
     (waypoint_interaction_router, {
