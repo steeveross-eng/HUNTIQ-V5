@@ -14,6 +14,7 @@ import { Badge } from '@/components/ui/badge';
 import useBionicLayers from '@/hooks/useBionicLayers';
 import useBionicWeather from '@/hooks/useBionicWeather';
 import { BIONIC_LAYERS, getScoresForWaypoint, adaptWaypointData } from '@/core/bionic';
+import { MapInteractionLayer } from '@/modules/map_interaction';
 import L from 'leaflet';
 
 // Fix for default markers
@@ -237,6 +238,14 @@ const MonTerritoireBionic = ({ onNavigateToTerritory }) => {
                     </Popup>
                   </Polygon>
                 ))}
+                
+                {/* Map Interaction Layer - Coordonnées GPS + Waypoints */}
+                <MapInteractionLayer 
+                  showCoordinates={true}
+                  enableWaypointCreation={true}
+                  showHint={true}
+                  onWaypointCreated={(waypoint) => console.log('Waypoint créé:', waypoint)}
+                />
               </MapContainer>
               
               {/* Score Overlay */}
