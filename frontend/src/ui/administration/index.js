@@ -44,3 +44,5 @@ export { AdminKnowledge } from './admin_knowledge';
 export { AdminSEO } from './admin_seo';
 // Marketing Controls (Global ON/OFF)
 export { AdminMarketingControls } from './admin_marketing_controls';
+// Analytics Engine - Phase 7
+export { AdminAnalytics } from './admin_analytics';
