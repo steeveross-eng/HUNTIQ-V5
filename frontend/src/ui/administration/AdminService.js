@@ -217,6 +217,365 @@ export const AdminService = {
       { method: 'PUT' }
     );
     return await response.json();
+  },
+
+  // ============ E-COMMERCE (Phase 1) ============
+  async ecommerceGetDashboard() {
+    const response = await fetch(`${API_BASE}/api/v1/admin/ecommerce/dashboard`);
+    return await response.json();
+  },
+
+  async ecommerceGetOrders(limit = 50, status = null) {
+    const params = new URLSearchParams({ limit });
+    if (status && status !== 'all') params.append('status', status);
+    const response = await fetch(`${API_BASE}/api/v1/admin/ecommerce/orders?${params}`);
+    return await response.json();
+  },
+
+  async ecommerceUpdateOrderStatus(orderId, status) {
+    const response = await fetch(`${API_BASE}/api/v1/admin/ecommerce/orders/${orderId}/status?status=${status}`, { method: 'PUT' });
+    return await response.json();
+  },
+
+  async ecommerceGetProducts(limit = 50, category = null) {
+    const params = new URLSearchParams({ limit });
+    if (category) params.append('category', category);
+    const response = await fetch(`${API_BASE}/api/v1/admin/ecommerce/products?${params}`);
+    return await response.json();
+  },
+
+  async ecommerceGetSuppliers(limit = 50) {
+    const response = await fetch(`${API_BASE}/api/v1/admin/ecommerce/suppliers?limit=${limit}`);
+    return await response.json();
+  },
+
+  async ecommerceGetCustomers(limit = 50) {
+    const response = await fetch(`${API_BASE}/api/v1/admin/ecommerce/customers?limit=${limit}`);
+    return await response.json();
+  },
+
+  async ecommerceGetCommissions(limit = 50) {
+    const response = await fetch(`${API_BASE}/api/v1/admin/ecommerce/commissions?limit=${limit}`);
+    return await response.json();
+  },
+
+  async ecommerceGetPerformance() {
+    const response = await fetch(`${API_BASE}/api/v1/admin/ecommerce/performance`);
+    return await response.json();
+  },
+
+  async ecommerceGetAlerts() {
+    const response = await fetch(`${API_BASE}/api/v1/admin/ecommerce/alerts`);
+    return await response.json();
+  },
+
+  // ============ CONTENT (Phase 2) ============
+  async contentGetCategories() {
+    const response = await fetch(`${API_BASE}/api/v1/admin/content/categories`);
+    return await response.json();
+  },
+
+  async contentCreateCategory(data) {
+    const response = await fetch(`${API_BASE}/api/v1/admin/content/categories`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    return await response.json();
+  },
+
+  async contentUpdateCategory(categoryId, data) {
+    const response = await fetch(`${API_BASE}/api/v1/admin/content/categories/${categoryId}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    return await response.json();
+  },
+
+  async contentDeleteCategory(categoryId) {
+    const response = await fetch(`${API_BASE}/api/v1/admin/content/categories/${categoryId}`, { method: 'DELETE' });
+    return await response.json();
+  },
+
+  async contentGetDepotItems(status = null, limit = 50) {
+    const params = new URLSearchParams({ limit });
+    if (status) params.append('status', status);
+    const response = await fetch(`${API_BASE}/api/v1/admin/content/depot?${params}`);
+    return await response.json();
+  },
+
+  async contentGetSeoAnalytics() {
+    const response = await fetch(`${API_BASE}/api/v1/admin/content/seo-analytics`);
+    return await response.json();
+  },
+
+  // ============ BACKUP (Phase 2) ============
+  async backupGetStats() {
+    const response = await fetch(`${API_BASE}/api/v1/admin/backup/stats`);
+    return await response.json();
+  },
+
+  async backupGetCodeFiles(search = null, limit = 50) {
+    const params = new URLSearchParams({ limit });
+    if (search) params.append('search', search);
+    const response = await fetch(`${API_BASE}/api/v1/admin/backup/code/files?${params}`);
+    return await response.json();
+  },
+
+  async backupGetPromptVersions(promptType = null, limit = 50) {
+    const params = new URLSearchParams({ limit });
+    if (promptType) params.append('prompt_type', promptType);
+    const response = await fetch(`${API_BASE}/api/v1/admin/backup/prompts?${params}`);
+    return await response.json();
+  },
+
+  async backupGetDbBackups(limit = 20) {
+    const response = await fetch(`${API_BASE}/api/v1/admin/backup/database?limit=${limit}`);
+    return await response.json();
+  },
+
+  async backupCreateDbBackup(backupType = 'manual', description = '') {
+    const params = new URLSearchParams({ backup_type: backupType, description });
+    const response = await fetch(`${API_BASE}/api/v1/admin/backup/database?${params}`, { method: 'POST' });
+    return await response.json();
+  },
+
+  // ============ MAINTENANCE (Phase 3) ============
+  async maintenanceGetStatus() {
+    const response = await fetch(`${API_BASE}/api/v1/admin/maintenance/status`);
+    return await response.json();
+  },
+
+  async maintenanceToggle(enabled, message = null, estimatedEnd = null) {
+    const params = new URLSearchParams({ enabled });
+    if (message) params.append('message', message);
+    if (estimatedEnd) params.append('estimated_end', estimatedEnd);
+    const response = await fetch(`${API_BASE}/api/v1/admin/maintenance/toggle?${params}`, { method: 'PUT' });
+    return await response.json();
+  },
+
+  async maintenanceGetAccessRules() {
+    const response = await fetch(`${API_BASE}/api/v1/admin/maintenance/access-rules`);
+    return await response.json();
+  },
+
+  async maintenanceGetAllowedIps() {
+    const response = await fetch(`${API_BASE}/api/v1/admin/maintenance/allowed-ips`);
+    return await response.json();
+  },
+
+  async maintenanceGetLogs(limit = 50) {
+    const response = await fetch(`${API_BASE}/api/v1/admin/maintenance/logs?limit=${limit}`);
+    return await response.json();
+  },
+
+  async maintenanceGetScheduled() {
+    const response = await fetch(`${API_BASE}/api/v1/admin/maintenance/scheduled`);
+    return await response.json();
+  },
+
+  async maintenanceGetSystemStatus() {
+    const response = await fetch(`${API_BASE}/api/v1/admin/maintenance/system-status`);
+    return await response.json();
+  },
+
+  // ============ CONTACTS (Phase 3) ============
+  async contactsGetAll(entityType = null, status = null, search = null, limit = 50) {
+    const params = new URLSearchParams({ limit });
+    if (entityType) params.append('entity_type', entityType);
+    if (status) params.append('status', status);
+    if (search) params.append('search', search);
+    const response = await fetch(`${API_BASE}/api/v1/admin/contacts?${params}`);
+    return await response.json();
+  },
+
+  async contactsGetStats() {
+    const response = await fetch(`${API_BASE}/api/v1/admin/contacts/stats`);
+    return await response.json();
+  },
+
+  async contactsGetTags() {
+    const response = await fetch(`${API_BASE}/api/v1/admin/contacts/tags`);
+    return await response.json();
+  },
+
+  async contactsCreate(data) {
+    const response = await fetch(`${API_BASE}/api/v1/admin/contacts`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    return await response.json();
+  },
+
+  async contactsUpdate(contactId, data) {
+    const response = await fetch(`${API_BASE}/api/v1/admin/contacts/${contactId}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data)
+    });
+    return await response.json();
+  },
+
+  async contactsDelete(contactId) {
+    const response = await fetch(`${API_BASE}/api/v1/admin/contacts/${contactId}`, { method: 'DELETE' });
+    return await response.json();
+  },
+
+  // ============ HOTSPOTS (Phase 4) ============
+  async hotspotsGetStats() {
+    const response = await fetch(`${API_BASE}/api/v1/admin/hotspots/dashboard`);
+    return await response.json();
+  },
+
+  async hotspotsGetListings(status = 'all', limit = 50) {
+    const params = new URLSearchParams({ limit });
+    if (status && status !== 'all') params.append('status', status);
+    const response = await fetch(`${API_BASE}/api/v1/admin/hotspots/listings?${params}`);
+    return await response.json();
+  },
+
+  async hotspotsGetListingDetail(listingId) {
+    const response = await fetch(`${API_BASE}/api/v1/admin/hotspots/listings/${listingId}`);
+    return await response.json();
+  },
+
+  async hotspotsUpdateStatus(listingId, status) {
+    const response = await fetch(`${API_BASE}/api/v1/admin/hotspots/listings/${listingId}/status?new_status=${status}`, { method: 'PUT' });
+    return await response.json();
+  },
+
+  async hotspotsToggleFeatured(listingId, isFeatured) {
+    const response = await fetch(`${API_BASE}/api/v1/admin/hotspots/listings/${listingId}/featured?is_featured=${isFeatured}`, { method: 'PUT' });
+    return await response.json();
+  },
+
+  async hotspotsGetOwners(limit = 50) {
+    const response = await fetch(`${API_BASE}/api/v1/admin/hotspots/owners?limit=${limit}`);
+    return await response.json();
+  },
+
+  async hotspotsGetRenters(tier = 'all', limit = 50) {
+    const params = new URLSearchParams({ limit });
+    if (tier && tier !== 'all') params.append('subscription_tier', tier);
+    const response = await fetch(`${API_BASE}/api/v1/admin/hotspots/renters?${params}`);
+    return await response.json();
+  },
+
+  async hotspotsGetAgreements(status = 'all', limit = 50) {
+    const params = new URLSearchParams({ limit });
+    if (status && status !== 'all') params.append('status', status);
+    const response = await fetch(`${API_BASE}/api/v1/admin/hotspots/agreements?${params}`);
+    return await response.json();
+  },
+
+  async hotspotsGetPricing() {
+    const response = await fetch(`${API_BASE}/api/v1/admin/hotspots/pricing`);
+    return await response.json();
+  },
+
+  async hotspotsUpdatePricing(updates) {
+    const response = await fetch(`${API_BASE}/api/v1/admin/hotspots/pricing`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(updates)
+    });
+    return await response.json();
+  },
+
+  async hotspotsGetRegions() {
+    const response = await fetch(`${API_BASE}/api/v1/admin/hotspots/regions`);
+    return await response.json();
+  },
+
+  async hotspotsGetPurchases(status = 'all', limit = 50) {
+    const params = new URLSearchParams({ limit });
+    if (status && status !== 'all') params.append('status', status);
+    const response = await fetch(`${API_BASE}/api/v1/admin/hotspots/purchases?${params}`);
+    return await response.json();
+  },
+
+  // ============ NETWORKING (Phase 4) ============
+  async networkingGetStats() {
+    const response = await fetch(`${API_BASE}/api/v1/admin/networking/dashboard`);
+    return await response.json();
+  },
+
+  async networkingGetPosts(visibility = null, limit = 50) {
+    const params = new URLSearchParams({ limit });
+    if (visibility) params.append('visibility', visibility);
+    const response = await fetch(`${API_BASE}/api/v1/admin/networking/posts?${params}`);
+    return await response.json();
+  },
+
+  async networkingTogglePostFeatured(postId, isFeatured) {
+    const response = await fetch(`${API_BASE}/api/v1/admin/networking/posts/${postId}/featured?is_featured=${isFeatured}`, { method: 'PUT' });
+    return await response.json();
+  },
+
+  async networkingTogglePostPinned(postId, isPinned) {
+    const response = await fetch(`${API_BASE}/api/v1/admin/networking/posts/${postId}/pinned?is_pinned=${isPinned}`, { method: 'PUT' });
+    return await response.json();
+  },
+
+  async networkingDeletePost(postId) {
+    const response = await fetch(`${API_BASE}/api/v1/admin/networking/posts/${postId}`, { method: 'DELETE' });
+    return await response.json();
+  },
+
+  async networkingGetGroups(privacy = null, limit = 50) {
+    const params = new URLSearchParams({ limit });
+    if (privacy) params.append('privacy', privacy);
+    const response = await fetch(`${API_BASE}/api/v1/admin/networking/groups?${params}`);
+    return await response.json();
+  },
+
+  async networkingToggleGroupActive(groupId, isActive) {
+    const response = await fetch(`${API_BASE}/api/v1/admin/networking/groups/${groupId}/active?is_active=${isActive}`, { method: 'PUT' });
+    return await response.json();
+  },
+
+  async networkingGetLeads(status = null, limit = 50) {
+    const params = new URLSearchParams({ limit });
+    if (status) params.append('status', status);
+    const response = await fetch(`${API_BASE}/api/v1/admin/networking/leads?${params}`);
+    return await response.json();
+  },
+
+  async networkingGetReferrals(status = null, limit = 50) {
+    const params = new URLSearchParams({ limit });
+    if (status) params.append('status', status);
+    const response = await fetch(`${API_BASE}/api/v1/admin/networking/referrals?${params}`);
+    return await response.json();
+  },
+
+  async networkingGetPendingReferrals() {
+    const response = await fetch(`${API_BASE}/api/v1/admin/networking/referrals/pending`);
+    return await response.json();
+  },
+
+  async networkingVerifyReferral(referralId) {
+    const response = await fetch(`${API_BASE}/api/v1/admin/networking/referrals/${referralId}/verify`, { method: 'POST' });
+    return await response.json();
+  },
+
+  async networkingRejectReferral(referralId, reason = '') {
+    const params = new URLSearchParams({ reason });
+    const response = await fetch(`${API_BASE}/api/v1/admin/networking/referrals/${referralId}/reject?${params}`, { method: 'POST' });
+    return await response.json();
+  },
+
+  async networkingGetWallets(limit = 50) {
+    const response = await fetch(`${API_BASE}/api/v1/admin/networking/wallets?limit=${limit}`);
+    return await response.json();
+  },
+
+  async networkingGetReferralCodes(isActive = true, limit = 50) {
+    const params = new URLSearchParams({ limit });
+    if (isActive !== null) params.append('is_active', isActive);
+    const response = await fetch(`${API_BASE}/api/v1/admin/networking/referral-codes?${params}`);
+    return await response.json();
   }
 };
 
