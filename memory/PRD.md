@@ -47,8 +47,8 @@ Architecture: 100% modulaire "LEGO", sans perte, sans dérive.
 - ✅ Pages success/cancel payment
 
 ### ✅ ADMINISTRATION PREMIUM (COMPLÉTÉ - 17 Fév 2026)
-- ✅ `admin_engine` backend avec 13 services modulaires
-- ✅ Frontend `/admin-premium` avec 14 sous-modules UI
+- ✅ `admin_engine` backend avec 21 services modulaires (Phase 6 ajoutée)
+- ✅ Frontend `/admin-premium` avec 22 sous-modules UI (Phase 6 ajoutée)
 - ✅ Dashboard KPIs (Utilisateurs, Revenus, Onboarding, CTR Upsell)
 - ✅ Gestion complète: Paiements, Freemium, Upsell, Onboarding, Tutoriels
 - ✅ Gestion avancée: Rules, Strategy, Users, Logs, Settings
