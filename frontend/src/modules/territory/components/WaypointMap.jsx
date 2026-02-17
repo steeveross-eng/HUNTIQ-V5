@@ -561,9 +561,9 @@ export const WaypointMap = ({
       </div>
 
       {/* Waypoints list */}
-      <div className="lg:col-span-1">
-        <Card className="bg-slate-800 border-slate-700 h-full">
-          <CardHeader className="pb-2">
+      <div className="lg:flex-1 min-h-0">
+        <Card className="bg-slate-800 border-slate-700 h-full flex flex-col">
+          <CardHeader className="pb-2 flex-shrink-0">
             <CardTitle className="text-lg text-white flex items-center justify-between">
               <span className="flex items-center gap-2">
                 <MapPin className="h-5 w-5 text-[#f5a623]" />
@@ -572,8 +572,8 @@ export const WaypointMap = ({
               <Badge className="bg-slate-700">{waypoints.length}</Badge>
             </CardTitle>
           </CardHeader>
-          <CardContent>
-            <div className="space-y-2 max-h-[450px] overflow-y-auto">
+          <CardContent className="flex-1 min-h-0 overflow-hidden">
+            <div className="space-y-2 h-full overflow-y-auto">
               {waypoints.length > 0 ? (
                 waypoints.map(waypoint => {
                   const typeInfo = getTypeInfo(waypoint.type);
