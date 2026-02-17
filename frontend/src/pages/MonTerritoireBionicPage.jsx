@@ -1496,7 +1496,7 @@ const MonTerritoireBionicPage = () => {
             </div>
             
             {/* Carte */}
-            <div className="flex-1 relative">
+            <div className="flex-1 relative overflow-hidden min-w-0">
               {/* Indicateur du mode création de waypoint */}
               {mapClickMode && (
                 <div className="absolute top-4 left-1/2 transform -translate-x-1/2 z-[1000] bg-green-500 text-black px-4 py-2 rounded-full shadow-lg flex items-center gap-2 animate-pulse">
