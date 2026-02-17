@@ -1,8 +1,9 @@
 /**
  * BusinessPage - Business Dashboard wrapper page
- * Version: 1.0.1
+ * Version: 1.0.2
  * Security: Role-based access control (P0 - 11 Feb 2026)
  * Access: business, admin roles only
+ * BIONIC™ Global Container Applied
  */
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -11,6 +12,7 @@ import { ArrowLeft, ShieldAlert, Lock } from 'lucide-react';
 import { BusinessDashboard } from '../modules/business';
 import { useAuth } from '../components/GlobalAuth';
 import { Card, CardHeader, CardTitle, CardContent } from '../components/ui/card';
+import { GlobalContainer } from '../core/layouts';
 
 const BusinessPage = () => {
   const navigate = useNavigate();
@@ -123,8 +125,8 @@ const BusinessPage = () => {
 
   // Access granted - render dashboard
   return (
-    <main className="min-h-screen bg-background pt-20 pb-16">
-      <div className="max-w-7xl mx-auto px-4">
+    <main className="min-h-screen bg-background">
+      <GlobalContainer className="pb-16">
         {/* Back Button */}
         <Button 
           variant="ghost" 
@@ -138,7 +140,7 @@ const BusinessPage = () => {
 
         {/* Business Dashboard */}
         <BusinessDashboard />
-      </div>
+      </GlobalContainer>
     </main>
   );
 };

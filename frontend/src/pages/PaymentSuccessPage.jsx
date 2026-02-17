@@ -3,6 +3,7 @@
  * ============================================
  * 
  * Page de confirmation de paiement.
+ * BIONIC™ Global Container Applied
  */
 
 import React, { useEffect, useState } from 'react';
@@ -11,6 +12,7 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Check, RefreshCw, X, Crown } from 'lucide-react';
 import { PaymentService } from '@/ui/monetisation/payment';
+import { GlobalContainer } from '@/core/layouts';
 
 const PaymentSuccessPage = () => {
   const navigate = useNavigate();
@@ -37,7 +39,8 @@ const PaymentSuccessPage = () => {
   }, [sessionId]);
 
   return (
-    <main className="min-h-screen bg-background pt-20 flex items-center justify-center px-4">
+    <main className="min-h-screen bg-background flex items-center justify-center">
+      <GlobalContainer maxWidth="480px" centerContent fullHeight noTopPadding>
       <Card className="bg-[#1a1a2e] border-white/10 max-w-md w-full">
         <CardContent className="p-8 text-center">
           {status === 'checking' && (
@@ -103,6 +106,7 @@ const PaymentSuccessPage = () => {
           )}
         </CardContent>
       </Card>
+      </GlobalContainer>
     </main>
   );
 };
