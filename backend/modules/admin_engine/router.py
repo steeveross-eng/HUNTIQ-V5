@@ -1447,3 +1447,38 @@ async def get_upload_history(limit: int = Query(50, le=500)):
 async def get_brand_assets():
     """Récupérer tous les assets de la marque"""
     return await BrandingAdminService.get_brand_assets(get_db())
+
+
+# ==============================================
+# MARKETING CONTROLS (Global ON/OFF)
+# ==============================================
+
+@router.get("/marketing-controls")
+async def get_marketing_controls():
+    """Récupérer tous les contrôles marketing"""
+    return await MarketingControlsService.get_all_controls(get_db())
+
+@router.post("/marketing-controls/{control_id}/toggle")
+async def toggle_marketing_control(control_id: str, enabled: bool = Body(...)):
+    """Activer/désactiver un contrôle marketing"""
+    return await MarketingControlsService.toggle_control(get_db(), control_id, enabled)
+
+@router.post("/marketing-controls/bulk-toggle")
+async def bulk_toggle_controls(control_ids: List[str] = Body(...), enabled: bool = Body(...)):
+    """Activer/désactiver plusieurs contrôles en batch"""
+    return await MarketingControlsService.bulk_toggle(get_db(), control_ids, enabled)
+
+@router.get("/marketing-controls/{control_id}")
+async def get_control_status(control_id: str):
+    """Récupérer le statut d'un contrôle spécifique"""
+    return await MarketingControlsService.get_control_status(get_db(), control_id)
+
+@router.post("/marketing-controls/reset")
+async def reset_marketing_controls():
+    """Réinitialiser tous les contrôles aux valeurs par défaut"""
+    return await MarketingControlsService.reset_to_defaults(get_db())
+
+@router.get("/marketing-controls/active/features")
+async def get_active_marketing_features():
+    """Récupérer la liste des fonctionnalités marketing actives"""
+    return await MarketingControlsService.get_active_features(get_db())
