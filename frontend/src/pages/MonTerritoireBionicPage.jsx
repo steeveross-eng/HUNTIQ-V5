@@ -1267,32 +1267,32 @@ const MonTerritoireBionicPage = () => {
             </div>
           </div>
           
-          {/* Sous-onglets */}
-          <div className="mt-3">
+          {/* Sous-onglets - Compact */}
+          <div className="mt-2">
             <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-              <div className="flex items-center gap-3">
-                <TabsList className="bg-gray-900/50 border border-gray-800">
-                  <TabsTrigger value="carte" className="data-[state=active]:bg-[#f5a623]/20 data-[state=active]:text-[#f5a623]">
-                    <Map className="h-4 w-4 mr-2" />
-                    Carte BIONIC™
+              <div className="flex items-center gap-2">
+                <TabsList className="bg-gray-900/50 border border-gray-800 h-8">
+                  <TabsTrigger value="carte" className="data-[state=active]:bg-[#f5a623]/20 data-[state=active]:text-[#f5a623] h-7 text-xs px-2">
+                    <Map className="h-3 w-3 mr-1" />
+                    Carte
                   </TabsTrigger>
-                  <TabsTrigger value="waypoints" className="data-[state=active]:bg-[#f5a623]/20 data-[state=active]:text-[#f5a623]">
-                    <MapPin className="h-4 w-4 mr-2" />
-                    Waypoints actifs
+                  <TabsTrigger value="waypoints" className="data-[state=active]:bg-[#f5a623]/20 data-[state=active]:text-[#f5a623] h-7 text-xs px-2">
+                    <MapPin className="h-3 w-3 mr-1" />
+                    Waypoints
                     {activeWaypoints.length > 0 && (
-                      <Badge className="ml-2 bg-[#f5a623] text-black text-[10px]">{activeWaypoints.length}</Badge>
+                      <Badge className="ml-1 bg-[#f5a623] text-black text-[9px] px-1">{activeWaypoints.length}</Badge>
                     )}
                   </TabsTrigger>
-                  <TabsTrigger value="lieux" className="data-[state=active]:bg-[#f5a623]/20 data-[state=active]:text-[#f5a623]">
-                    <BookMarked className="h-4 w-4 mr-2" />
-                    Lieux enregistrés
+                  <TabsTrigger value="lieux" className="data-[state=active]:bg-[#f5a623]/20 data-[state=active]:text-[#f5a623] h-7 text-xs px-2">
+                    <BookMarked className="h-3 w-3 mr-1" />
+                    Lieux
                     {savedPlaces.length > 0 && (
-                      <Badge className="ml-2 bg-blue-500 text-white text-[10px]">{savedPlaces.length}</Badge>
+                      <Badge className="ml-1 bg-blue-500 text-white text-[9px] px-1">{savedPlaces.length}</Badge>
                     )}
                   </TabsTrigger>
-                  <TabsTrigger value="groupe" className="data-[state=active]:bg-[var(--bionic-gold-primary)]/20 data-[state=active]:text-[var(--bionic-gold-primary)]" data-testid="tab-groupe">
-                    <Users className="h-4 w-4 mr-2" />
-                    {t('groupe_tab_title')}
+                  <TabsTrigger value="groupe" className="data-[state=active]:bg-[var(--bionic-gold-primary)]/20 data-[state=active]:text-[var(--bionic-gold-primary)] h-7 text-xs px-2" data-testid="tab-groupe">
+                    <Users className="h-3 w-3 mr-1" />
+                    Groupe
                   </TabsTrigger>
                 </TabsList>
                 
