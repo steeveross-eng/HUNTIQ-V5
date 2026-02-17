@@ -9,6 +9,7 @@
  * Phase 1: E-Commerce migré
  * Phase 2: Content & Backup migrés
  * Phase 3: Maintenance & Contacts migrés
+ * Phase 4: Hotspots & Networking migrés
  */
 
 import React, { useState } from 'react';
@@ -19,7 +20,7 @@ import {
   Crown, ArrowLeft, LayoutDashboard, CreditCard, Layers, 
   Zap, Target, BookOpen, Settings, BarChart3, Users, 
   FileText, Shield, ShoppingCart, FolderTree, Archive,
-  Wrench, Contact
+  Wrench, Contact, Trees, Network
 } from 'lucide-react';
 
 // Import all admin modules
@@ -39,12 +40,16 @@ import {
   AdminContent,
   AdminBackup,
   AdminMaintenance,
-  AdminContacts
+  AdminContacts,
+  AdminHotspots,
+  AdminNetworking
 } from '@/ui/administration';
 
 const navItems = [
   { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
   { id: 'ecommerce', label: 'E-Commerce', icon: ShoppingCart },
+  { id: 'hotspots', label: 'Terres/Hotspots', icon: Trees },
+  { id: 'networking', label: 'Réseautage', icon: Network },
   { id: 'content', label: 'Contenu', icon: FolderTree },
   { id: 'backup', label: 'Backups', icon: Archive },
   { id: 'maintenance', label: 'Maintenance', icon: Wrench },
