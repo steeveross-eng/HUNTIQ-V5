@@ -1106,10 +1106,10 @@ const MonTerritoireBionicPage = () => {
   }, [scores?.breakdown, currentMapCenter.lat, currentMapCenter.lng]);
 
   return (
-    <div className="min-h-screen bg-black pt-16" data-testid="mon-territoire-bionic-page">
-      {/* Header de la page */}
-      <div className="bg-gradient-to-r from-black via-gray-900 to-black border-b border-[#f5a623]/30">
-        <div className="container mx-auto px-4 py-3">
+    <div className="fixed inset-0 bg-black overflow-hidden flex flex-col" style={{ paddingTop: '64px' }} data-testid="mon-territoire-bionic-page">
+      {/* Header de la page - Compact */}
+      <div className="flex-shrink-0 bg-gradient-to-r from-black via-gray-900 to-black border-b border-[#f5a623]/30">
+        <div className="px-4 py-2">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-4">
               <Button variant="ghost" size="sm" onClick={() => navigate('/')} className="text-gray-400 hover:text-white">
