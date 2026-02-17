@@ -111,6 +111,36 @@ Application HUNTIQ-V5 selon une architecture "LEGO" modulaire très stricte. Le 
 - `AdminContainer` (full-width)
 - `ContentContainer` (960px)
 
+### ✅ Phases 8-9 — Modularisation Frontend (2026-02-17)
+
+**Phase 8 — Extraction Core :**
+- Structure `/core/` créée : `layouts/`, `components/`, `hooks/`, `utils/`
+- 10 composants Core : GlobalContainer, LoadingSpinner, EmptyState, ConfirmDialog, CookieConsent, OfflineIndicator, RefreshButton, BionicLogo, SEOHead, ScrollNavigator, BackButton
+- 4 hooks Core : useToast, useLocalStorage, useDebounce, useMediaQuery (+ variantes)
+- 3 utils Core : formatters (11 fn), validators (9 fn), api (6 fn)
+
+**Phase 9 — Réorganisation Métier :**
+- 42 composants métier migrés vers `/modules/`
+- Modules enrichis : territory, affiliate, marketplace, scoring, notifications, collaborative, tracking, admin, analytics, realestate, products
+- 15+ barrel exports créés
+- Build : 100% succès
+
+**Architecture finale :**
+```
+/frontend/src/
+├── core/              # UI générique (AUCUNE logique métier)
+│   ├── components/    # 10 composants
+│   ├── hooks/         # 4 hooks
+│   ├── layouts/       # 5 layouts
+│   └── utils/         # 3 modules utils
+├── modules/           # Logique métier (44 modules)
+│   ├── territory/components/     # 5 composants
+│   ├── affiliate/components/     # 9 composants
+│   ├── admin/components/         # 14 composants
+│   └── ...
+└── components/        # Composants transversaux (Auth, Pages système)
+```
+
 ---
 
 ## Upcoming Tasks (Roadmap)
