@@ -12,7 +12,7 @@ import requests
 import os
 
 # Backend URL
-BACKEND_URL = os.environ.get("REACT_APP_BACKEND_URL", "https://huntiq-premium.preview.emergentagent.com")
+BACKEND_URL = os.environ.get("REACT_APP_BACKEND_URL", "https://premium-dash-8.preview.emergentagent.com")
 
 
 class TestLegalTimeIntegration:
