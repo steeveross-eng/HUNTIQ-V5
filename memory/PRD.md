@@ -148,6 +148,7 @@ Architecture: 100% modulaire "LEGO", sans perte, sans dérive.
 | Admin Premium (iteration_3) | 100% (13/13) | 100% |
 | Migration Phase 2 (iteration_4) | 100% (20/20) | 100% |
 | Migration Phase 3 (iteration_5) | 100% (30/30) | 100% |
+| Migration Phase 4 (iteration_6) | 100% (23/23) | 100% |
 
 ---
 
@@ -155,9 +156,14 @@ Architecture: 100% modulaire "LEGO", sans perte, sans dérive.
 
 ### Migration /admin → /admin-premium (En cours)
 
-#### Phase 4 — Chasse (À faire)
-- [ ] Hotspots Management
-- [ ] Networking / Social
+#### ✅ Phase 4 — Chasse (COMPLÉTÉ - 17 Fév 2026)
+- ✅ `hotspots_admin.py` - Dashboard, Listings, Pricing, Regions, Owners, Renters, Agreements
+- ✅ `networking_admin.py` - Dashboard, Posts, Groups, Leads, Referrals, Wallets, Referral Codes
+- ✅ Frontend `admin_hotspots/` module (7 onglets: Dashboard, Annonces, Propriétaires, Locataires, Ententes, Tarification, Régions)
+- ✅ Frontend `admin_networking/` module (6 onglets: Dashboard, Publications, Groupes, Leads, Parrainages, Portefeuilles)
+- ✅ 14 nouvelles API `/api/v1/admin/hotspots/*`
+- ✅ 17 nouvelles API `/api/v1/admin/networking/*`
+- ✅ Test complet: 100% backend (23/23), 100% frontend
 
 #### Phase 5 — Communication (À faire)
 - [ ] Email Templates
