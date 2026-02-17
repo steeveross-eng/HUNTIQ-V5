@@ -167,6 +167,26 @@ Application HUNTIQ-V5 selon une architecture "LEGO" modulaire très stricte. Le 
 
 **Tests validés :** Tous les endpoints opérationnels (curl OK)
 
+### ✅ Phase 14 — Marketing Automation Engine (2026-02-17)
+
+**Router API dédié créé:** `/api/v1/marketing/`
+
+**Fonctionnalités implémentées :**
+- ✅ Dashboard avec KPIs (campagnes, posts, engagement, by_platform)
+- ✅ Gestion campagnes (CRUD, statuts, analytics)
+- ✅ Publications multi-plateformes (Facebook, Instagram, Twitter, LinkedIn)
+- ✅ Génération de contenu IA (6 types : promo, educational, seasonal, testimonial, tip, engagement)
+- ✅ Segments d'audience (5 par défaut + custom)
+- ✅ Automations (welcome_series, cart_abandonment, reengagement)
+- ✅ **Triggers comportementaux** connectés au Tracking Engine
+
+**Intégration Tracking Engine :**
+- `POST /api/v1/marketing/triggers` — Créer trigger lié aux événements tracking
+- `POST /api/v1/marketing/triggers/check` — Vérifier et exécuter les triggers pour un user
+- `GET /api/v1/marketing/triggers/executions` — Historique des exécutions
+
+**Tests validés :** Tous les endpoints opérationnels (curl OK)
+
 ---
 
 ## Upcoming Tasks (Roadmap)
