@@ -6,6 +6,7 @@ Point d'entrée API pour l'administration premium.
 Prefix: /api/v1/admin
 
 Sous-routes:
+- /ecommerce/* : Gestion E-Commerce (Phase 1 Migration)
 - /payments/* : Gestion paiements Stripe
 - /freemium/* : Gestion quotas et tiers
 - /upsell/* : Gestion campagnes
@@ -17,10 +18,10 @@ Sous-routes:
 - /logs/* : Logs système
 - /settings/* : Paramètres globaux
 
-Version: 1.0.0
+Version: 1.1.0 - Phase 1 Migration E-Commerce
 """
 
-from fastapi import APIRouter, HTTPException, Depends, Query
+from fastapi import APIRouter, HTTPException, Depends, Query, Body
 from typing import Optional, List, Dict, Any
 from datetime import datetime, timezone, timedelta
 import os
@@ -38,6 +39,8 @@ from .services.strategy_admin import StrategyAdminService
 from .services.users_admin import UsersAdminService
 from .services.logs_admin import LogsAdminService
 from .services.settings_admin import SettingsAdminService
+# Phase 1 Migration - E-Commerce
+from .services.ecommerce_admin import EcommerceAdminService
 
 logger = logging.getLogger(__name__)
 
