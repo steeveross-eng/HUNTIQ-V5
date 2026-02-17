@@ -1346,11 +1346,10 @@ const MonTerritoireBionicPage = () => {
               </div>
             </Tabs>
           </div>
-        </div>
       </div>
       
-      {/* Contenu des onglets */}
-      <div className="h-[calc(100vh-180px)]">
+      {/* Contenu des onglets - Full viewport height */}
+      <div className="flex-1 overflow-hidden">
         {/* Onglet Carte BIONIC */}
         {activeTab === 'carte' && (
           <div className="flex h-full">
