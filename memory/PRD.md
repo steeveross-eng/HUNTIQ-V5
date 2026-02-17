@@ -277,11 +277,25 @@ Application HUNTIQ-V5 selon une architecture "LEGO" modulaire très stricte. Le 
 - A/B testing
 
 ### 🔵 À Faire — Module d'Interaction Cartographique Universel
-**Note:** Cette commande maître a été interrompue pour prioriser l'optimisation ergonomique.
+**Status:** ✅ COMPLÉTÉ (2026-02-17)
 - Backend `waypoint_engine` créé et testé ✅
-- Frontend `MapInteractionLayer` créé ⏳
-- Intégration dans MonTerritoireBionic et MapPage ⏳
-- Fonctionnalités : coordonnées GPS au survol, waypoint au double-clic
+- Frontend `MapInteractionLayer` intégré ✅
+- Coordonnées GPS au survol ✅
+- Waypoint au double-clic avec popup auto-open ✅
+- Tests E2E passés (iteration_12.json)
+
+### ✅ P2 — Moteurs IA / Recommendation Engine (Découverte 2026-02-17)
+**Découverte:** Le module `recommendation_engine` était déjà 100% fonctionnel !
+- Route: `/api/v1/recommendation/` (note: sans 's')
+- Status: operational
+- 6 fonctionnalités actives:
+  - Recommandations personnalisées
+  - Filtrage collaboratif
+  - Filtrage basé sur le contenu
+  - Recommandations contextuelles
+  - Produits similaires
+  - Produits complémentaires
+- Endpoints testés: `/`, `/health`, `/strategies`, `/for-context`, `/personalized/`
 
 ### 🔵 Future — Phases 17-20: AI Engines (6 modules)
 - Weather AI
