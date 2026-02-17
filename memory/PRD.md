@@ -133,7 +133,7 @@ Architecture: 100% modulaire "LEGO", sans perte, sans dérive.
 
 /app/frontend/src/
 ├── ui/
-│   ├── administration/         # ADMIN PREMIUM - 18 modules
+│   ├── administration/         # ADMIN PREMIUM - 20 modules
 │   │   ├── AdminService.js
 │   │   ├── admin_dashboard/
 │   │   ├── admin_payments/
@@ -152,7 +152,9 @@ Architecture: 100% modulaire "LEGO", sans perte, sans dérive.
 │   │   ├── admin_maintenance/   # Phase 3
 │   │   ├── admin_contacts/      # Phase 3
 │   │   ├── admin_hotspots/      # Phase 4
-│   │   └── admin_networking/    # Phase 4
+│   │   ├── admin_networking/    # Phase 4
+│   │   ├── admin_email/         # Phase 5
+│   │   └── admin_marketing/     # Phase 5
 │   ├── monetisation/           # P3
 │   ├── plan_maitre/            # P2
 │   └── ...
