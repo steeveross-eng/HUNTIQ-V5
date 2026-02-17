@@ -576,6 +576,141 @@ export const AdminService = {
     if (isActive !== null) params.append('is_active', isActive);
     const response = await fetch(`${API_BASE}/api/v1/admin/networking/referral-codes?${params}`);
     return await response.json();
+  },
+
+  // ============ EMAIL (Phase 5) ============
+  async emailGetDashboard() {
+    const response = await fetch(`${API_BASE}/api/v1/admin/email/dashboard`);
+    return await response.json();
+  },
+
+  async emailGetTemplates(category = null, isActive = null) {
+    const params = new URLSearchParams();
+    if (category) params.append('category', category);
+    if (isActive !== null) params.append('is_active', isActive);
+    const response = await fetch(`${API_BASE}/api/v1/admin/email/templates?${params}`);
+    return await response.json();
+  },
+
+  async emailGetTemplateDetail(templateId) {
+    const response = await fetch(`${API_BASE}/api/v1/admin/email/templates/${templateId}`);
+    return await response.json();
+  },
+
+  async emailToggleTemplate(templateId, isActive) {
+    const response = await fetch(`${API_BASE}/api/v1/admin/email/templates/${templateId}/toggle?is_active=${isActive}`, { method: 'PUT' });
+    return await response.json();
+  },
+
+  async emailGetVariables() {
+    const response = await fetch(`${API_BASE}/api/v1/admin/email/variables`);
+    return await response.json();
+  },
+
+  async emailGetLogs(status = null, templateId = null, limit = 50) {
+    const params = new URLSearchParams({ limit });
+    if (status) params.append('status', status);
+    if (templateId) params.append('template_id', templateId);
+    const response = await fetch(`${API_BASE}/api/v1/admin/email/logs?${params}`);
+    return await response.json();
+  },
+
+  async emailSendTest(templateId, recipientEmail, testVariables = {}) {
+    const params = new URLSearchParams({ template_id: templateId, recipient_email: recipientEmail });
+    const response = await fetch(`${API_BASE}/api/v1/admin/email/test?${params}`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(testVariables)
+    });
+    return await response.json();
+  },
+
+  async emailGetConfig() {
+    const response = await fetch(`${API_BASE}/api/v1/admin/email/config`);
+    return await response.json();
+  },
+
+  // ============ MARKETING (Phase 5) ============
+  async marketingGetDashboard() {
+    const response = await fetch(`${API_BASE}/api/v1/admin/marketing/dashboard`);
+    return await response.json();
+  },
+
+  async marketingGetCampaigns(status = null, limit = 50) {
+    const params = new URLSearchParams({ limit });
+    if (status && status !== 'all') params.append('status', status);
+    const response = await fetch(`${API_BASE}/api/v1/admin/marketing/campaigns?${params}`);
+    return await response.json();
+  },
+
+  async marketingGetPosts(status = null, platform = null, limit = 50) {
+    const params = new URLSearchParams({ limit });
+    if (status && status !== 'all') params.append('status', status);
+    if (platform && platform !== 'all') params.append('platform', platform);
+    const response = await fetch(`${API_BASE}/api/v1/admin/marketing/posts?${params}`);
+    return await response.json();
+  },
+
+  async marketingGetScheduledPosts(limit = 50) {
+    const response = await fetch(`${API_BASE}/api/v1/admin/marketing/posts/scheduled?limit=${limit}`);
+    return await response.json();
+  },
+
+  async marketingCreatePost(postData) {
+    const response = await fetch(`${API_BASE}/api/v1/admin/marketing/posts`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(postData)
+    });
+    return await response.json();
+  },
+
+  async marketingSchedulePost(postId, scheduledAt) {
+    const response = await fetch(`${API_BASE}/api/v1/admin/marketing/posts/${postId}/schedule?scheduled_at=${scheduledAt}`, { method: 'PUT' });
+    return await response.json();
+  },
+
+  async marketingPublishPost(postId) {
+    const response = await fetch(`${API_BASE}/api/v1/admin/marketing/posts/${postId}/publish`, { method: 'POST' });
+    return await response.json();
+  },
+
+  async marketingDeletePost(postId) {
+    const response = await fetch(`${API_BASE}/api/v1/admin/marketing/posts/${postId}`, { method: 'DELETE' });
+    return await response.json();
+  },
+
+  async marketingGenerateContent(params) {
+    const response = await fetch(`${API_BASE}/api/v1/admin/marketing/generate`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(params)
+    });
+    return await response.json();
+  },
+
+  async marketingGetSegments(limit = 50) {
+    const response = await fetch(`${API_BASE}/api/v1/admin/marketing/segments?limit=${limit}`);
+    return await response.json();
+  },
+
+  async marketingGetAutomations(isActive = null, limit = 50) {
+    const params = new URLSearchParams({ limit });
+    if (isActive !== null) params.append('is_active', isActive);
+    const response = await fetch(`${API_BASE}/api/v1/admin/marketing/automations?${params}`);
+    return await response.json();
+  },
+
+  async marketingToggleAutomation(automationId, isActive) {
+    const response = await fetch(`${API_BASE}/api/v1/admin/marketing/automations/${automationId}/toggle?is_active=${isActive}`, { method: 'PUT' });
+    return await response.json();
+  },
+
+  async marketingGetHistory(platform = null, limit = 50) {
+    const params = new URLSearchParams({ limit });
+    if (platform) params.append('platform', platform);
+    const response = await fetch(`${API_BASE}/api/v1/admin/marketing/history?${params}`);
+    return await response.json();
   }
 };
 
