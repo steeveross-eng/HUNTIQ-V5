@@ -32,3 +32,6 @@ export { AdminContacts } from './admin_contacts';
 // Phase 4 Migration - Hotspots & Networking
 export { AdminHotspots } from './admin_hotspots';
 export { AdminNetworking } from './admin_networking';
+// Phase 5 Migration - Email & Marketing
+export { AdminEmail } from './admin_email';
+export { AdminMarketing } from './admin_marketing';
