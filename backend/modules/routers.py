@@ -583,6 +583,16 @@ CORE_ROUTERS: List[Tuple[APIRouter, dict]] = [
         "phase": "P3-MONETISATION",
         "description": "Tutoriels dynamiques et tips contextuels"
     }),
+    
+    # ==========================================
+    # ADMINISTRATION PREMIUM ENGINE
+    # ==========================================
+    (admin_premium_router, {
+        "name": "admin_engine",
+        "version": "1.0.0",
+        "phase": "ADMIN-PREMIUM",
+        "description": "Administration Premium V5-ULTIME - Gestion complète engines, users, logs, settings"
+    }),
 ]
 
 
