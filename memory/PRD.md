@@ -111,7 +111,35 @@ Application HUNTIQ-V5 selon une architecture "LEGO" modulaire très stricte. Le 
 - `SectionContainer` (espacement vertical)
 - `AdminContainer` (full-width)
 - `ContentContainer` (960px)
-- `MapViewportContainer` (full-viewport pour cartes) ✅ **NOUVEAU**
+- `MapViewportContainer` (full-viewport pour cartes) ✅ **VERROUILLÉ v1.0.0**
+
+### ✅ VALIDATION P0 — Layout Full Viewport Premium (2026-02-17)
+
+**Rapport de conformité: `/app/docs/RAPPORT_CONFORMITE_P0_LAYOUT.md`**
+
+**Tests multi-résolution effectués:**
+| Page | 4K | 1080p | Laptop | Tablet | Mobile |
+|------|:--:|:-----:|:------:|:------:|:------:|
+| /territoire | ✅ | ✅ | ✅ | ✅ | ✅ |
+| /map | ✅ | ✅ | ✅ | ✅ | ✅ |
+| /forecast | ✅ | ✅ | ✅ | ✅ | ✅ |
+| /analyze | ✅ | ✅ | 📄 | 📄 | 📄 |
+
+*📄 = Page de contenu avec scroll intentionnel*
+
+**Conformité architecturale V5:**
+- ✅ Aucune logique cartographique dupliquée
+- ✅ Layout unifié via module unique (`MapViewportContainer`)
+- ✅ FloatingPanels implémentés comme modules autonomes
+- ✅ Aucune règle CSS locale contournant le layout global
+
+**Module verrouillé:** `LayoutCartoV5 v1.0.0`
+- Fichier: `/app/frontend/src/core/layouts/MapViewportContainer.jsx`
+- Toute modification requiert validation sur 5 résolutions
+
+**Module KeyboardShortcuts préparé:**
+- Fichier: `/app/frontend/src/modules/keyboard/KeyboardShortcutsModule.jsx`
+- Status: En attente d'approbation COPILOT MAÎTRE
 
 ### ✅ COMMANDE MAÎTRE — Optimisation Ergonomique Full Viewport (2026-02-17)
 
