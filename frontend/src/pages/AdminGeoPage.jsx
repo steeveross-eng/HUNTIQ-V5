@@ -180,18 +180,26 @@ const AdminGeoPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-slate-900 p-6" data-testid="admin-geo-page">
-      {/* Header */}
-      <div className="mb-6">
-        <h1 className="text-3xl font-bold text-white mb-2 flex items-center gap-2">
-          <Lock className="h-8 w-8 text-[#f5a623]" /> Espace Admin Géospatial
-        </h1>
-        <p className="text-slate-400">
-          Administration des hotspots système • Phase P6.5
-        </p>
-        <p className="text-amber-400 text-sm mt-1 flex items-center gap-1">
-          <AlertTriangle className="h-4 w-4" /> Les hotspots personnels des utilisateurs sont exclus (confidentialité)
-        </p>
+    <div 
+      className="fixed inset-0 bg-slate-900 flex flex-col overflow-hidden" 
+      style={{ paddingTop: '64px' }}
+      data-testid="admin-geo-page"
+    >
+      {/* Header Compact */}
+      <div className="flex-shrink-0 px-4 py-2 border-b border-slate-700/50">
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-lg font-bold text-white flex items-center gap-2">
+              <Lock className="h-5 w-5 text-[#f5a623]" /> Espace Admin Géospatial
+            </h1>
+            <p className="text-slate-400 text-xs">
+              Administration des hotspots système • Phase P6.5
+            </p>
+          </div>
+          <p className="text-amber-400 text-xs flex items-center gap-1">
+            <AlertTriangle className="h-3 w-3" /> Hotspots personnels exclus
+          </p>
+        </div>
       </div>
 
       {/* Quick Stats */}
