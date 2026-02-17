@@ -3,8 +3,8 @@
  * Configuration centralisée des 7 types de cartes premium BIONIC
  */
 
-// Stadia Maps API Key
-const STADIA_API_KEY = process.env.REACT_APP_STADIA_MAPS_API_KEY || '';
+// Stadia Maps API Key - Required for IQHO and terrain layers
+const STADIA_API_KEY = '5272b858-5b8c-4140-8ad2-066343695ca3';
 
 // Types de cartes disponibles
 export const MAP_TYPES = {

@@ -75,8 +75,8 @@ const FALLBACK_CONFIG = {
 /**
  * Fonds de carte de fallback haute résolution
  */
-// Stadia Maps API Key from environment
-const STADIA_API_KEY = process.env.REACT_APP_STADIA_MAPS_API_KEY || '';
+// Stadia Maps API Key - Required for terrain layer
+const STADIA_API_KEY = '5272b858-5b8c-4140-8ad2-066343695ca3';
 
 export const FALLBACK_BASEMAPS = {
   // Topographique haute résolution (OpenTopoMap)
