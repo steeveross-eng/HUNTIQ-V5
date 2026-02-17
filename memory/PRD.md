@@ -97,7 +97,7 @@ Architecture: 100% modulaire "LEGO", sans perte, sans dérive.
 ```
 /app/backend/
 ├── modules/
-│   ├── admin_engine/           # ADMIN PREMIUM - 12 services
+│   ├── admin_engine/           # ADMIN PREMIUM - 14 services
 │   │   ├── router.py
 │   │   └── services/
 │   │       ├── payments_admin.py
@@ -116,7 +116,9 @@ Architecture: 100% modulaire "LEGO", sans perte, sans dérive.
 │   │       ├── maintenance_admin.py    # Phase 3
 │   │       ├── contacts_admin.py       # Phase 3
 │   │       ├── hotspots_admin.py       # Phase 4
-│   │       └── networking_admin.py     # Phase 4
+│   │       ├── networking_admin.py     # Phase 4
+│   │       ├── email_admin.py          # Phase 5
+│   │       └── marketing_admin.py      # Phase 5
 │   ├── payment_engine/         # P3 - Stripe
 │   ├── freemium_engine/        # P3 - Quotas
 │   ├── upsell_engine/          # P3 - Popups
