@@ -988,6 +988,8 @@ function App() {
               <Route path="/pricing" element={<PricingPage />} />
               <Route path="/payment/success" element={<PaymentSuccessPage />} />
               <Route path="/payment/cancel" element={<PaymentCancelPage />} />
+              {/* V5-ULTIME: Administration Premium */}
+              <Route path="/admin-premium" element={<AdminPremiumPage />} />
             </Routes>
             <Footer />
             <ScrollNavigator />
