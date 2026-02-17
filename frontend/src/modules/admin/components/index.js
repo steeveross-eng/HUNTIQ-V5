@@ -26,6 +26,7 @@ export { default as EmailAdmin } from './EmailAdmin';
 // Products & Pricing
 export { default as ProductDiscoveryAdmin } from './ProductDiscoveryAdmin';
 export { default as LandsPricingAdmin } from './LandsPricingAdmin';
+export { default as AutoCategorizeButton } from './AutoCategorizeButton';
 
 // Hotspots
 export { default as AdminHotspotsPanel } from './AdminHotspotsPanel';

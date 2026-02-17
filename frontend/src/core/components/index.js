@@ -28,11 +28,12 @@ export {
   useConfirmDialog 
 } from './ConfirmDialog';
 
+// Navigation
+export { BackButton, PageHeaderWithBack } from './BackButton';
+export { default as ScrollNavigator } from './ScrollNavigator';
+
 // Branding
 export { default as BionicLogo } from './BionicLogo';
 
 // SEO
 export { default as SEOHead } from './SEOHead';
-
-// Navigation
-export { default as ScrollNavigator } from './ScrollNavigator';
