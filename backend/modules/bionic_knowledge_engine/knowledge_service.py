@@ -301,93 +301,22 @@ class KnowledgeService:
     
     @staticmethod
     async def get_habitat_variables(db) -> dict:
-        """Récupérer les variables d'habitat"""
+        """Récupérer les variables d'habitat depuis le fichier JSON"""
         try:
-            # Variables de base
-            base_variables = [
-                {
-                    "id": "temperature",
-                    "name": "Temperature",
-                    "name_fr": "Température",
-                    "category": "climate",
-                    "unit": "°C",
-                    "data_type": "float",
-                    "data_sources": ["open_meteo"],
-                    "update_frequency": "realtime"
-                },
-                {
-                    "id": "wind_speed",
-                    "name": "Wind Speed",
-                    "name_fr": "Vitesse du vent",
-                    "category": "climate",
-                    "unit": "km/h",
-                    "data_type": "float",
-                    "data_sources": ["open_meteo"],
-                    "update_frequency": "realtime"
-                },
-                {
-                    "id": "precipitation",
-                    "name": "Precipitation",
-                    "name_fr": "Précipitation",
-                    "category": "climate",
-                    "unit": "mm",
-                    "data_type": "float",
-                    "data_sources": ["open_meteo"],
-                    "update_frequency": "hourly"
-                },
-                {
-                    "id": "elevation",
-                    "name": "Elevation",
-                    "name_fr": "Élévation",
-                    "category": "terrain",
-                    "unit": "m",
-                    "data_type": "float",
-                    "data_sources": ["open_elevation"],
-                    "update_frequency": "static"
-                },
-                {
-                    "id": "ndvi",
-                    "name": "NDVI",
-                    "name_fr": "Indice de végétation",
-                    "category": "vegetation",
-                    "unit": "index",
-                    "data_type": "float",
-                    "data_sources": ["nasa_modis"],
-                    "update_frequency": "weekly"
-                },
-                {
-                    "id": "canopy_cover",
-                    "name": "Canopy Cover",
-                    "name_fr": "Couvert forestier",
-                    "category": "vegetation",
-                    "unit": "%",
-                    "data_type": "float",
-                    "data_sources": ["satellite"],
-                    "update_frequency": "seasonal"
-                },
-                {
-                    "id": "water_proximity",
-                    "name": "Water Proximity",
-                    "name_fr": "Proximité eau",
-                    "category": "hydrology",
-                    "unit": "m",
-                    "data_type": "float",
-                    "data_sources": ["osm", "hydro_quebec"],
-                    "update_frequency": "static"
-                },
-                {
-                    "id": "road_distance",
-                    "name": "Road Distance",
-                    "name_fr": "Distance route",
-                    "category": "human_impact",
-                    "unit": "m",
-                    "data_type": "float",
-                    "data_sources": ["osm"],
-                    "update_frequency": "static"
-                }
-            ]
+            import json
+            import os
             
-            # Ajouter variables custom
+            # Chemin vers le fichier JSON des variables
+            base_path = os.path.dirname(os.path.abspath(__file__))
+            variables_path = os.path.join(base_path, "data", "habitat_variables.json")
+            
+            base_variables = []
+            if os.path.exists(variables_path):
+                with open(variables_path, "r", encoding="utf-8") as f:
+                    data = json.load(f)
+                    base_variables = data.get("variables", [])
+            
+            # Ajouter variables custom depuis DB
             custom = await db.habitat_variables.find({}, {"_id": 0}).to_list(50)
             
             return {
