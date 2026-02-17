@@ -240,6 +240,78 @@ class SeasonalModelsManager:
                 "mast_failure_penalty": -0.3
             },
             "accuracy_score": 0.82
+        },
+        
+        # ===== WAPITI QUÉBEC =====
+        "elk_quebec": {
+            "id": "elk_quebec",
+            "species_id": "elk",
+            "region": "quebec_south",
+            "year": 2024,
+            "phases": [
+                {
+                    "name": "spring_calving",
+                    "name_fr": "Mise bas printanière",
+                    "start_month": 5, "start_day": 15,
+                    "end_month": 6, "end_day": 30,
+                    "activity_level": 0.6,
+                    "habitat_focus": ["meadow", "forest_edge"],
+                    "behavior": "calving_nursing"
+                },
+                {
+                    "name": "summer_grazing",
+                    "name_fr": "Pâturage estival",
+                    "start_month": 7, "start_day": 1,
+                    "end_month": 8, "end_day": 31,
+                    "activity_level": 0.7,
+                    "habitat_focus": ["meadow", "alpine_meadow", "riparian"],
+                    "behavior": "intensive_grazing"
+                },
+                {
+                    "name": "pre_rut",
+                    "name_fr": "Pré-rut",
+                    "start_month": 9, "start_day": 1,
+                    "end_month": 9, "end_day": 14,
+                    "activity_level": 0.85,
+                    "habitat_focus": ["meadow", "forest_edge"],
+                    "behavior": "sparring_bugling_start"
+                },
+                {
+                    "name": "rut_peak",
+                    "name_fr": "Pic du rut (Bugling)",
+                    "start_month": 9, "start_day": 15,
+                    "end_month": 10, "end_day": 15,
+                    "peak_date": "09-25",
+                    "activity_level": 1.0,
+                    "habitat_focus": ["meadow", "forest_edge", "wallow"],
+                    "behavior": "breeding_bugling"
+                },
+                {
+                    "name": "post_rut",
+                    "name_fr": "Post-rut",
+                    "start_month": 10, "start_day": 16,
+                    "end_month": 11, "end_day": 30,
+                    "activity_level": 0.55,
+                    "habitat_focus": ["mixed_forest", "meadow"],
+                    "behavior": "recovery_feeding"
+                },
+                {
+                    "name": "winter_range",
+                    "name_fr": "Territoire hivernal",
+                    "start_month": 12, "start_day": 1,
+                    "end_month": 5, "end_day": 14,
+                    "activity_level": 0.4,
+                    "habitat_focus": ["mixed_forest", "wind_sheltered"],
+                    "behavior": "energy_conservation"
+                }
+            ],
+            "temperature_sensitivity": 0.55,
+            "photoperiod_sensitivity": 0.9,
+            "regional_adjustments": {
+                "elevation_500m": -2,
+                "latitude_north": -4
+            },
+            "accuracy_score": 0.78
         }
     }
     
