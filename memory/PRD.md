@@ -1,7 +1,7 @@
 # HUNTIQ V5-ULTIME-FUSION - PRD
 
 ## Date de création: 16 Février 2026
-## Dernière mise à jour: 17 Février 2026 - Documentation SEO Complète
+## Dernière mise à jour: 17 Février 2026 - Séquence A→B→C Complète
 
 ---
 
