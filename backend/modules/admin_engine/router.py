@@ -645,3 +645,194 @@ async def create_database_backup(
 async def delete_database_backup(backup_id: str):
     """Supprimer un backup"""
     return await BackupAdminService.delete_db_backup(get_db(), backup_id)
+
+
+
+# ==============================================
+# MAINTENANCE ADMIN (Phase 3 Migration)
+# ==============================================
+
+@router.get("/maintenance/status")
+async def get_maintenance_status():
+    """Récupérer le statut de maintenance actuel"""
+    return await MaintenanceAdminService.get_maintenance_status(get_db())
+
+@router.put("/maintenance/toggle")
+async def toggle_maintenance_mode(
+    enabled: bool,
+    message: str = None,
+    estimated_end: str = None
+):
+    """Activer/Désactiver le mode maintenance"""
+    return await MaintenanceAdminService.toggle_maintenance_mode(get_db(), enabled, message, estimated_end)
+
+@router.put("/maintenance/config")
+async def update_maintenance_config(config_updates: dict = Body(...)):
+    """Mettre à jour la configuration de maintenance"""
+    return await MaintenanceAdminService.update_maintenance_config(get_db(), config_updates)
+
+@router.get("/maintenance/access-rules")
+async def get_access_rules():
+    """Récupérer les règles d'accès"""
+    return await MaintenanceAdminService.get_access_rules(get_db())
+
+@router.post("/maintenance/access-rules")
+async def create_access_rule(rule_data: dict = Body(...)):
+    """Créer une nouvelle règle d'accès"""
+    return await MaintenanceAdminService.create_access_rule(get_db(), rule_data)
+
+@router.put("/maintenance/access-rules/{rule_id}")
+async def update_access_rule(rule_id: str, updates: dict = Body(...)):
+    """Mettre à jour une règle d'accès"""
+    return await MaintenanceAdminService.update_access_rule(get_db(), rule_id, updates)
+
+@router.delete("/maintenance/access-rules/{rule_id}")
+async def delete_access_rule(rule_id: str):
+    """Supprimer une règle d'accès"""
+    return await MaintenanceAdminService.delete_access_rule(get_db(), rule_id)
+
+@router.put("/maintenance/access-rules/{rule_id}/toggle")
+async def toggle_access_rule(rule_id: str, enabled: bool):
+    """Activer/Désactiver une règle d'accès"""
+    return await MaintenanceAdminService.toggle_access_rule(get_db(), rule_id, enabled)
+
+@router.get("/maintenance/allowed-ips")
+async def get_allowed_ips():
+    """Récupérer les IPs autorisées en mode maintenance"""
+    return await MaintenanceAdminService.get_allowed_ips(get_db())
+
+@router.post("/maintenance/allowed-ips")
+async def add_allowed_ip(ip: str, label: str = ""):
+    """Ajouter une IP autorisée"""
+    return await MaintenanceAdminService.add_allowed_ip(get_db(), ip, label)
+
+@router.delete("/maintenance/allowed-ips/{ip}")
+async def remove_allowed_ip(ip: str):
+    """Retirer une IP autorisée"""
+    return await MaintenanceAdminService.remove_allowed_ip(get_db(), ip)
+
+@router.get("/maintenance/logs")
+async def get_maintenance_logs(limit: int = Query(50, le=500)):
+    """Récupérer les logs de maintenance"""
+    return await MaintenanceAdminService.get_maintenance_logs(get_db(), limit)
+
+@router.get("/maintenance/scheduled")
+async def get_scheduled_maintenances():
+    """Récupérer les maintenances planifiées"""
+    return await MaintenanceAdminService.get_scheduled_maintenances(get_db())
+
+@router.post("/maintenance/scheduled")
+async def create_scheduled_maintenance(schedule_data: dict = Body(...)):
+    """Créer une maintenance planifiée"""
+    return await MaintenanceAdminService.create_scheduled_maintenance(get_db(), schedule_data)
+
+@router.delete("/maintenance/scheduled/{schedule_id}")
+async def delete_scheduled_maintenance(schedule_id: str):
+    """Supprimer une maintenance planifiée"""
+    return await MaintenanceAdminService.delete_scheduled_maintenance(get_db(), schedule_id)
+
+@router.get("/maintenance/system-status")
+async def get_system_status():
+    """Récupérer le statut système global"""
+    return await MaintenanceAdminService.get_system_status(get_db())
+
+
+# ==============================================
+# CONTACTS ADMIN (Directory - Source de vérité V5)
+# ==============================================
+
+@router.get("/contacts")
+async def get_contacts(
+    entity_type: Optional[str] = None,
+    status: Optional[str] = None,
+    search: Optional[str] = None,
+    limit: int = Query(50, le=500)
+):
+    """Liste les contacts avec filtres"""
+    return await ContactsAdminService.get_contacts(get_db(), entity_type, status, search, limit)
+
+@router.get("/contacts/stats")
+async def get_contacts_stats():
+    """Statistiques globales des contacts"""
+    return await ContactsAdminService.get_contacts_stats(get_db())
+
+@router.get("/contacts/tags")
+async def get_all_tags():
+    """Récupérer tous les tags utilisés"""
+    return await ContactsAdminService.get_all_tags(get_db())
+
+@router.get("/contacts/{contact_id}")
+async def get_contact_by_id(contact_id: str):
+    """Récupérer un contact par ID"""
+    return await ContactsAdminService.get_contact_by_id(get_db(), contact_id)
+
+@router.post("/contacts")
+async def create_contact(contact_data: dict = Body(...)):
+    """Créer un nouveau contact"""
+    return await ContactsAdminService.create_contact(get_db(), contact_data)
+
+@router.put("/contacts/{contact_id}")
+async def update_contact(contact_id: str, updates: dict = Body(...)):
+    """Mettre à jour un contact"""
+    return await ContactsAdminService.update_contact(get_db(), contact_id, updates)
+
+@router.delete("/contacts/{contact_id}")
+async def delete_contact(contact_id: str):
+    """Supprimer un contact"""
+    return await ContactsAdminService.delete_contact(get_db(), contact_id)
+
+@router.post("/contacts/{contact_id}/tags")
+async def add_tag_to_contact(contact_id: str, tag: str):
+    """Ajouter un tag à un contact"""
+    return await ContactsAdminService.add_tag_to_contact(get_db(), contact_id, tag)
+
+@router.delete("/contacts/{contact_id}/tags/{tag}")
+async def remove_tag_from_contact(contact_id: str, tag: str):
+    """Retirer un tag d'un contact"""
+    return await ContactsAdminService.remove_tag_from_contact(get_db(), contact_id, tag)
+
+@router.put("/contacts/bulk/status")
+async def bulk_update_status(contact_ids: List[str] = Body(...), new_status: str = Body(...)):
+    """Mettre à jour le statut de plusieurs contacts"""
+    return await ContactsAdminService.bulk_update_status(get_db(), contact_ids, new_status)
+
+@router.delete("/contacts/bulk/delete")
+async def bulk_delete_contacts(contact_ids: List[str] = Body(...)):
+    """Supprimer plusieurs contacts"""
+    return await ContactsAdminService.bulk_delete(get_db(), contact_ids)
+
+@router.get("/contacts/export/all")
+async def export_contacts(entity_type: Optional[str] = None):
+    """Exporter les contacts"""
+    return await ContactsAdminService.export_contacts(get_db(), entity_type)
+
+@router.post("/contacts/import")
+async def import_contacts(contacts_data: List[dict] = Body(...)):
+    """Importer des contacts"""
+    return await ContactsAdminService.import_contacts(get_db(), contacts_data)
+
+# Shortcuts pour types spécifiques
+@router.get("/contacts/suppliers")
+async def get_suppliers(limit: int = Query(50, le=500)):
+    """Liste les fournisseurs"""
+    return await ContactsAdminService.get_suppliers(get_db(), limit)
+
+@router.get("/contacts/manufacturers")
+async def get_manufacturers(limit: int = Query(50, le=500)):
+    """Liste les fabricants"""
+    return await ContactsAdminService.get_manufacturers(get_db(), limit)
+
+@router.get("/contacts/partners")
+async def get_partners(limit: int = Query(50, le=500)):
+    """Liste les partenaires"""
+    return await ContactsAdminService.get_partners(get_db(), limit)
+
+@router.get("/contacts/trainers")
+async def get_trainers(limit: int = Query(50, le=500)):
+    """Liste les formateurs"""
+    return await ContactsAdminService.get_trainers(get_db(), limit)
+
+@router.get("/contacts/experts")
+async def get_experts(limit: int = Query(50, le=500)):
+    """Liste les experts"""
+    return await ContactsAdminService.get_experts(get_db(), limit)
