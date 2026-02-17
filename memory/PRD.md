@@ -141,6 +141,32 @@ Application HUNTIQ-V5 selon une architecture "LEGO" modulaire très stricte. Le 
 └── components/        # Composants transversaux (Auth, Pages système)
 ```
 
+### ✅ Phases 10-13 — Tunnel Utilisateur (Validé 2026-02-17)
+
+**Phase 10 — Onboarding :**
+- Backend : `onboarding_engine` ✅
+- Frontend : OnboardingFlow, ProfileSelector, TerritorySelector, ExperienceSelector, ObjectivesSelector ✅
+- 4 étapes : profile → territory → objectives → plan_maitre
+
+**Phase 11 — Tutorial :**
+- Backend : `tutorial_engine` ✅
+- Frontend : TutorialProvider, TutorialOverlay, TutorialStep, TutorialTooltip, TutorialHighlight, TutorialProgress ✅
+- 7 tutoriels : feature, workflow, premium_preview, tip
+
+**Phase 12 — Freemium :**
+- Backend : `freemium_engine` ✅
+- Frontend : FreemiumGate, QuotaIndicator, FreemiumService ✅
+- 3 tiers : free, premium, pro
+- 8 features gérées
+
+**Phase 13 — Payment (Stripe) :**
+- Backend : `payment_engine` ✅
+- Frontend : PaymentDashboard, PricingCard, PaymentService ✅
+- 4 packages : Premium/Pro × Mensuel/Annuel
+- Provider : Stripe avec Apple Pay, Google Pay, Webhooks
+
+**Tests validés :** Tous les endpoints opérationnels (curl OK)
+
 ---
 
 ## Upcoming Tasks (Roadmap)
