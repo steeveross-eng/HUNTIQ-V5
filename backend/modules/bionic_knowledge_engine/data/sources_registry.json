@@ -1,0 +1,97 @@
+{
+  "sources": [
+    {
+      "id": "mffp_quebec",
+      "name": "Ministère des Forêts, de la Faune et des Parcs du Québec",
+      "source_type": "government_report",
+      "reference": "https://mffp.gouv.qc.ca",
+      "authors": ["MFFP"],
+      "reliability_score": 0.95,
+      "peer_reviewed": true,
+      "verified": true,
+      "species_covered": ["moose", "deer", "bear", "caribou", "waterfowl"],
+      "regions_covered": ["quebec_all"],
+      "topics": ["hunting_regulations", "wildlife_management", "habitat_conservation", "population_surveys"]
+    },
+    {
+      "id": "sepaq",
+      "name": "Société des établissements de plein air du Québec",
+      "source_type": "government_report",
+      "reference": "https://www.sepaq.com",
+      "authors": ["SÉPAQ"],
+      "reliability_score": 0.90,
+      "peer_reviewed": false,
+      "verified": true,
+      "species_covered": ["moose", "deer", "bear"],
+      "regions_covered": ["wildlife_reserves", "zecs"],
+      "topics": ["hunting_territories", "harvest_data", "species_observations"]
+    },
+    {
+      "id": "cic_quebec",
+      "name": "Canards Illimités Canada - Québec",
+      "source_type": "scientific_paper",
+      "reference": "https://www.canards.ca",
+      "authors": ["CIC"],
+      "reliability_score": 0.90,
+      "peer_reviewed": true,
+      "verified": true,
+      "species_covered": ["waterfowl"],
+      "regions_covered": ["quebec_all", "wetlands"],
+      "topics": ["wetland_conservation", "waterfowl_populations", "habitat_restoration"]
+    },
+    {
+      "id": "fqf",
+      "name": "Fédération québécoise des chasseurs et pêcheurs",
+      "source_type": "expert_interview",
+      "reference": "https://www.fedecp.com",
+      "authors": ["FQF"],
+      "reliability_score": 0.80,
+      "peer_reviewed": false,
+      "verified": true,
+      "species_covered": ["moose", "deer", "bear", "waterfowl"],
+      "regions_covered": ["quebec_all"],
+      "topics": ["hunting_practices", "wildlife_behavior", "traditional_knowledge", "field_observations"]
+    },
+    {
+      "id": "wildlife_research_ulaval",
+      "name": "Centre d'études nordiques - Université Laval",
+      "source_type": "scientific_paper",
+      "reference": "https://www.cen.ulaval.ca",
+      "authors": ["CEN"],
+      "reliability_score": 0.95,
+      "peer_reviewed": true,
+      "verified": true,
+      "species_covered": ["caribou", "moose", "bear"],
+      "regions_covered": ["quebec_north", "ungava"],
+      "topics": ["caribou_ecology", "climate_change", "habitat_modeling"]
+    },
+    {
+      "id": "wildlife_society_na",
+      "name": "The Wildlife Society - North American Studies",
+      "source_type": "scientific_paper",
+      "reference": "https://wildlife.org",
+      "authors": ["TWS"],
+      "reliability_score": 0.92,
+      "peer_reviewed": true,
+      "verified": true,
+      "species_covered": ["moose", "deer", "bear"],
+      "regions_covered": ["north_america"],
+      "topics": ["population_dynamics", "habitat_selection", "behavior_ecology"]
+    },
+    {
+      "id": "boone_crockett",
+      "name": "Boone and Crockett Club Research",
+      "source_type": "expert_interview",
+      "reference": "https://www.boone-crockett.org",
+      "authors": ["B&C"],
+      "reliability_score": 0.75,
+      "peer_reviewed": false,
+      "verified": false,
+      "species_covered": ["moose", "deer", "bear"],
+      "regions_covered": ["north_america"],
+      "topics": ["trophy_management", "hunting_ethics", "fair_chase"]
+    }
+  ],
+  "version": "1.0.0",
+  "last_updated": "2024-02-17"
+}
