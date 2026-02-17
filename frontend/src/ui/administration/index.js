@@ -40,3 +40,5 @@ export { AdminPartners } from './admin_partners';
 export { AdminBranding } from './admin_branding';
 // BIONIC Knowledge Layer
 export { AdminKnowledge } from './admin_knowledge';
+// BIONIC SEO Engine V5
+export { AdminSEO } from './admin_seo';
