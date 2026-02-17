@@ -148,6 +148,35 @@ const WaypointPopup = ({ position, onConfirm, onCancel, saving }) => {
 };
 
 /**
+ * Pending Waypoint Marker with auto-open popup
+ */
+const PendingWaypointMarker = ({ position, icon, onConfirm, onCancel, saving }) => {
+  const markerRef = useRef(null);
+
+  // Auto-open popup when marker is rendered
+  useEffect(() => {
+    if (markerRef.current) {
+      markerRef.current.openPopup();
+    }
+  }, []);
+
+  return (
+    <Marker
+      ref={markerRef}
+      position={position}
+      icon={icon}
+    >
+      <WaypointPopup
+        position={position}
+        onConfirm={onConfirm}
+        onCancel={onCancel}
+        saving={saving}
+      />
+    </Marker>
+  );
+};
+
+/**
  * Map Event Handler Component
  */
 const MapEventHandler = ({ 
