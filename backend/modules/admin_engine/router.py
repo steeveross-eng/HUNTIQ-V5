@@ -764,6 +764,53 @@ async def get_all_tags():
     """Récupérer tous les tags utilisés"""
     return await ContactsAdminService.get_all_tags(get_db())
 
+# Shortcuts pour types spécifiques - MUST be before {contact_id} route
+@router.get("/contacts/suppliers")
+async def get_suppliers(limit: int = Query(50, le=500)):
+    """Liste les fournisseurs"""
+    return await ContactsAdminService.get_suppliers(get_db(), limit)
+
+@router.get("/contacts/manufacturers")
+async def get_manufacturers(limit: int = Query(50, le=500)):
+    """Liste les fabricants"""
+    return await ContactsAdminService.get_manufacturers(get_db(), limit)
+
+@router.get("/contacts/partners")
+async def get_partners(limit: int = Query(50, le=500)):
+    """Liste les partenaires"""
+    return await ContactsAdminService.get_partners(get_db(), limit)
+
+@router.get("/contacts/trainers")
+async def get_trainers(limit: int = Query(50, le=500)):
+    """Liste les formateurs"""
+    return await ContactsAdminService.get_trainers(get_db(), limit)
+
+@router.get("/contacts/experts")
+async def get_experts(limit: int = Query(50, le=500)):
+    """Liste les experts"""
+    return await ContactsAdminService.get_experts(get_db(), limit)
+
+@router.put("/contacts/bulk/status")
+async def bulk_update_status(contact_ids: List[str] = Body(...), new_status: str = Body(...)):
+    """Mettre à jour le statut de plusieurs contacts"""
+    return await ContactsAdminService.bulk_update_status(get_db(), contact_ids, new_status)
+
+@router.delete("/contacts/bulk/delete")
+async def bulk_delete_contacts(contact_ids: List[str] = Body(...)):
+    """Supprimer plusieurs contacts"""
+    return await ContactsAdminService.bulk_delete(get_db(), contact_ids)
+
+@router.get("/contacts/export/all")
+async def export_contacts(entity_type: Optional[str] = None):
+    """Exporter les contacts"""
+    return await ContactsAdminService.export_contacts(get_db(), entity_type)
+
+@router.post("/contacts/import")
+async def import_contacts(contacts_data: List[dict] = Body(...)):
+    """Importer des contacts"""
+    return await ContactsAdminService.import_contacts(get_db(), contacts_data)
+
+# Generic contact routes - MUST be after specific routes
 @router.get("/contacts/{contact_id}")
 async def get_contact_by_id(contact_id: str):
     """Récupérer un contact par ID"""
@@ -793,49 +840,3 @@ async def add_tag_to_contact(contact_id: str, tag: str):
 async def remove_tag_from_contact(contact_id: str, tag: str):
     """Retirer un tag d'un contact"""
     return await ContactsAdminService.remove_tag_from_contact(get_db(), contact_id, tag)
-
-@router.put("/contacts/bulk/status")
-async def bulk_update_status(contact_ids: List[str] = Body(...), new_status: str = Body(...)):
-    """Mettre à jour le statut de plusieurs contacts"""
-    return await ContactsAdminService.bulk_update_status(get_db(), contact_ids, new_status)
-
-@router.delete("/contacts/bulk/delete")
-async def bulk_delete_contacts(contact_ids: List[str] = Body(...)):
-    """Supprimer plusieurs contacts"""
-    return await ContactsAdminService.bulk_delete(get_db(), contact_ids)
-
-@router.get("/contacts/export/all")
-async def export_contacts(entity_type: Optional[str] = None):
-    """Exporter les contacts"""
-    return await ContactsAdminService.export_contacts(get_db(), entity_type)
-
-@router.post("/contacts/import")
-async def import_contacts(contacts_data: List[dict] = Body(...)):
-    """Importer des contacts"""
-    return await ContactsAdminService.import_contacts(get_db(), contacts_data)
-
-# Shortcuts pour types spécifiques
-@router.get("/contacts/suppliers")
-async def get_suppliers(limit: int = Query(50, le=500)):
-    """Liste les fournisseurs"""
-    return await ContactsAdminService.get_suppliers(get_db(), limit)
-
-@router.get("/contacts/manufacturers")
-async def get_manufacturers(limit: int = Query(50, le=500)):
-    """Liste les fabricants"""
-    return await ContactsAdminService.get_manufacturers(get_db(), limit)
-
-@router.get("/contacts/partners")
-async def get_partners(limit: int = Query(50, le=500)):
-    """Liste les partenaires"""
-    return await ContactsAdminService.get_partners(get_db(), limit)
-
-@router.get("/contacts/trainers")
-async def get_trainers(limit: int = Query(50, le=500)):
-    """Liste les formateurs"""
-    return await ContactsAdminService.get_trainers(get_db(), limit)
-
-@router.get("/contacts/experts")
-async def get_experts(limit: int = Query(50, le=500)):
-    """Liste les experts"""
-    return await ContactsAdminService.get_experts(get_db(), limit)
