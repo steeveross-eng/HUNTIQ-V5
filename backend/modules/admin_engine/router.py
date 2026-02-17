@@ -1069,3 +1069,203 @@ async def get_networking_referral_codes(
 async def toggle_networking_referral_code(code: str, is_active: bool):
     """Activer/désactiver un code de parrainage"""
     return await NetworkingAdminService.toggle_referral_code(get_db(), code, is_active)
+
+
+
+# ==============================================
+# EMAIL ADMIN (Phase 5 Migration - Communication)
+# ==============================================
+
+@router.get("/email/dashboard")
+async def get_email_dashboard():
+    """Dashboard email - statistiques"""
+    return await EmailAdminService.get_dashboard_stats(get_db())
+
+@router.get("/email/templates")
+async def get_email_templates(
+    category: Optional[str] = None,
+    is_active: Optional[bool] = None
+):
+    """Liste des templates email"""
+    return await EmailAdminService.get_templates(get_db(), category, is_active)
+
+@router.get("/email/templates/{template_id}")
+async def get_email_template_detail(template_id: str):
+    """Détail d'un template"""
+    return await EmailAdminService.get_template_detail(get_db(), template_id)
+
+@router.post("/email/templates")
+async def create_email_template(template_data: dict = Body(...)):
+    """Créer un nouveau template"""
+    return await EmailAdminService.create_template(get_db(), template_data)
+
+@router.put("/email/templates/{template_id}")
+async def update_email_template(template_id: str, updates: dict = Body(...)):
+    """Mettre à jour un template"""
+    return await EmailAdminService.update_template(get_db(), template_id, updates)
+
+@router.delete("/email/templates/{template_id}")
+async def delete_email_template(template_id: str):
+    """Supprimer un template"""
+    return await EmailAdminService.delete_template(get_db(), template_id)
+
+@router.put("/email/templates/{template_id}/toggle")
+async def toggle_email_template(template_id: str, is_active: bool):
+    """Activer/désactiver un template"""
+    return await EmailAdminService.toggle_template_active(get_db(), template_id, is_active)
+
+@router.get("/email/variables")
+async def get_email_variables():
+    """Liste des variables disponibles"""
+    return await EmailAdminService.get_variables(get_db())
+
+@router.get("/email/logs")
+async def get_email_logs(
+    status: Optional[str] = None,
+    template_id: Optional[str] = None,
+    limit: int = Query(50, le=500)
+):
+    """Historique des emails envoyés"""
+    return await EmailAdminService.get_email_logs(get_db(), status, template_id, limit)
+
+@router.post("/email/test")
+async def send_test_email(
+    template_id: str,
+    recipient_email: str,
+    test_variables: dict = Body(default={})
+):
+    """Envoyer un email de test"""
+    return await EmailAdminService.send_test_email(get_db(), template_id, recipient_email, test_variables)
+
+@router.get("/email/config")
+async def get_email_config():
+    """Récupérer la configuration email"""
+    return await EmailAdminService.get_config(get_db())
+
+@router.put("/email/config")
+async def update_email_config(updates: dict = Body(...)):
+    """Mettre à jour la configuration email"""
+    return await EmailAdminService.update_config(get_db(), updates)
+
+
+# ==============================================
+# MARKETING ADMIN (Phase 5 Migration - Communication)
+# ==============================================
+
+@router.get("/marketing/dashboard")
+async def get_marketing_dashboard():
+    """Dashboard marketing - statistiques"""
+    return await MarketingAdminService.get_dashboard_stats(get_db())
+
+@router.get("/marketing/campaigns")
+async def get_marketing_campaigns(
+    status: Optional[str] = None,
+    limit: int = Query(50, le=500)
+):
+    """Liste des campagnes marketing"""
+    return await MarketingAdminService.get_campaigns(get_db(), status, limit)
+
+@router.get("/marketing/campaigns/{campaign_id}")
+async def get_marketing_campaign_detail(campaign_id: str):
+    """Détail d'une campagne"""
+    return await MarketingAdminService.get_campaign_detail(get_db(), campaign_id)
+
+@router.post("/marketing/campaigns")
+async def create_marketing_campaign(campaign_data: dict = Body(...)):
+    """Créer une nouvelle campagne"""
+    return await MarketingAdminService.create_campaign(get_db(), campaign_data)
+
+@router.put("/marketing/campaigns/{campaign_id}")
+async def update_marketing_campaign(campaign_id: str, updates: dict = Body(...)):
+    """Mettre à jour une campagne"""
+    return await MarketingAdminService.update_campaign(get_db(), campaign_id, updates)
+
+@router.put("/marketing/campaigns/{campaign_id}/status")
+async def update_marketing_campaign_status(campaign_id: str, status: str):
+    """Changer le statut d'une campagne"""
+    return await MarketingAdminService.update_campaign_status(get_db(), campaign_id, status)
+
+@router.delete("/marketing/campaigns/{campaign_id}")
+async def delete_marketing_campaign(campaign_id: str):
+    """Supprimer une campagne"""
+    return await MarketingAdminService.delete_campaign(get_db(), campaign_id)
+
+@router.get("/marketing/posts")
+async def get_marketing_posts(
+    status: Optional[str] = None,
+    platform: Optional[str] = None,
+    limit: int = Query(50, le=500)
+):
+    """Liste des publications marketing"""
+    return await MarketingAdminService.get_posts(get_db(), status, platform, limit)
+
+@router.get("/marketing/posts/scheduled")
+async def get_marketing_scheduled_posts(limit: int = Query(50, le=500)):
+    """Publications programmées"""
+    return await MarketingAdminService.get_scheduled_posts(get_db(), limit)
+
+@router.post("/marketing/posts")
+async def create_marketing_post(post_data: dict = Body(...)):
+    """Créer une publication"""
+    return await MarketingAdminService.create_post(get_db(), post_data)
+
+@router.put("/marketing/posts/{post_id}/schedule")
+async def schedule_marketing_post(post_id: str, scheduled_at: str):
+    """Programmer une publication"""
+    return await MarketingAdminService.schedule_post(get_db(), post_id, scheduled_at)
+
+@router.post("/marketing/posts/{post_id}/publish")
+async def publish_marketing_post(post_id: str):
+    """Publier immédiatement"""
+    return await MarketingAdminService.publish_post(get_db(), post_id)
+
+@router.delete("/marketing/posts/{post_id}")
+async def delete_marketing_post(post_id: str):
+    """Supprimer une publication"""
+    return await MarketingAdminService.delete_post(get_db(), post_id)
+
+@router.post("/marketing/generate")
+async def generate_marketing_content(params: dict = Body(...)):
+    """Générer du contenu marketing avec IA"""
+    return await MarketingAdminService.generate_content(get_db(), params)
+
+@router.get("/marketing/segments")
+async def get_marketing_segments(limit: int = Query(50, le=500)):
+    """Liste des segments d'audience"""
+    return await MarketingAdminService.get_segments(get_db(), limit)
+
+@router.post("/marketing/segments")
+async def create_marketing_segment(segment_data: dict = Body(...)):
+    """Créer un segment d'audience"""
+    return await MarketingAdminService.create_segment(get_db(), segment_data)
+
+@router.get("/marketing/automations")
+async def get_marketing_automations(
+    is_active: Optional[bool] = None,
+    limit: int = Query(50, le=500)
+):
+    """Liste des automations marketing"""
+    return await MarketingAdminService.get_automations(get_db(), is_active, limit)
+
+@router.put("/marketing/automations/{automation_id}/toggle")
+async def toggle_marketing_automation(automation_id: str, is_active: bool):
+    """Activer/désactiver une automation"""
+    return await MarketingAdminService.toggle_automation(get_db(), automation_id, is_active)
+
+@router.get("/marketing/content-types")
+async def get_marketing_content_types():
+    """Types de contenu disponibles"""
+    return await MarketingAdminService.get_content_types(get_db())
+
+@router.get("/marketing/platforms")
+async def get_marketing_platforms():
+    """Plateformes sociales disponibles"""
+    return await MarketingAdminService.get_platforms(get_db())
+
+@router.get("/marketing/history")
+async def get_marketing_history(
+    platform: Optional[str] = None,
+    limit: int = Query(50, le=500)
+):
+    """Historique des publications"""
+    return await MarketingAdminService.get_publish_history(get_db(), platform, limit)
