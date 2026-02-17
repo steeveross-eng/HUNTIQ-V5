@@ -404,3 +404,97 @@ async def get_feature_toggles():
 async def update_toggle(toggle_id: str, enabled: bool):
     """Modifier un toggle"""
     return await SettingsAdminService.update_toggle(get_db(), toggle_id, enabled)
+
+
+# ==============================================
+# E-COMMERCE ADMIN (Phase 1 Migration)
+# ==============================================
+
+@router.get("/ecommerce/dashboard")
+async def get_ecommerce_dashboard():
+    """Dashboard E-Commerce avec stats globales"""
+    return await EcommerceAdminService.get_dashboard_stats(get_db())
+
+@router.get("/ecommerce/orders")
+async def get_ecommerce_orders(
+    limit: int = Query(50, le=500),
+    status: Optional[str] = None,
+    skip: int = 0
+):
+    """Liste des commandes"""
+    return await EcommerceAdminService.get_orders(get_db(), limit, status, skip)
+
+@router.put("/ecommerce/orders/{order_id}/status")
+async def update_ecommerce_order_status(order_id: str, status: str):
+    """Mettre à jour le statut d'une commande"""
+    return await EcommerceAdminService.update_order_status(get_db(), order_id, status)
+
+@router.get("/ecommerce/products")
+async def get_ecommerce_products(
+    limit: int = Query(50, le=500),
+    category: Optional[str] = None
+):
+    """Liste des produits"""
+    return await EcommerceAdminService.get_products(get_db(), limit, category)
+
+@router.post("/ecommerce/products")
+async def create_ecommerce_product(product_data: dict = Body(...)):
+    """Créer un nouveau produit"""
+    return await EcommerceAdminService.create_product(get_db(), product_data)
+
+@router.put("/ecommerce/products/{product_id}")
+async def update_ecommerce_product(product_id: str, updates: dict = Body(...)):
+    """Mettre à jour un produit"""
+    return await EcommerceAdminService.update_product(get_db(), product_id, updates)
+
+@router.delete("/ecommerce/products/{product_id}")
+async def delete_ecommerce_product(product_id: str):
+    """Supprimer un produit"""
+    return await EcommerceAdminService.delete_product(get_db(), product_id)
+
+@router.get("/ecommerce/suppliers")
+async def get_ecommerce_suppliers(
+    limit: int = Query(50, le=500),
+    partnership_type: Optional[str] = None
+):
+    """Liste des fournisseurs"""
+    return await EcommerceAdminService.get_suppliers(get_db(), limit, partnership_type)
+
+@router.post("/ecommerce/suppliers")
+async def create_ecommerce_supplier(supplier_data: dict = Body(...)):
+    """Créer un nouveau fournisseur"""
+    return await EcommerceAdminService.create_supplier(get_db(), supplier_data)
+
+@router.get("/ecommerce/customers")
+async def get_ecommerce_customers(
+    limit: int = Query(50, le=500),
+    sort_by: str = Query("total_spent")
+):
+    """Liste des clients"""
+    return await EcommerceAdminService.get_customers(get_db(), limit, sort_by)
+
+@router.get("/ecommerce/commissions")
+async def get_ecommerce_commissions(
+    limit: int = Query(50, le=500),
+    status: Optional[str] = None
+):
+    """Liste des commissions"""
+    return await EcommerceAdminService.get_commissions(get_db(), limit, status)
+
+@router.put("/ecommerce/commissions/{commission_id}/status")
+async def update_ecommerce_commission_status(commission_id: str, status: str):
+    """Mettre à jour le statut d'une commission"""
+    return await EcommerceAdminService.update_commission_status(get_db(), commission_id, status)
+
+@router.get("/ecommerce/performance")
+async def get_ecommerce_performance():
+    """Rapport de performance des produits"""
+    return await EcommerceAdminService.get_performance_report(get_db())
+
+@router.get("/ecommerce/alerts")
+async def get_ecommerce_alerts(
+    limit: int = Query(20, le=100),
+    unread_only: bool = False
+):
+    """Liste des alertes admin"""
+    return await EcommerceAdminService.get_alerts(get_db(), limit, unread_only)
