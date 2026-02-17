@@ -202,53 +202,58 @@ const AdminGeoPage = () => {
         </div>
       </div>
 
-      {/* Quick Stats */}
-      <div className="grid grid-cols-2 md:grid-cols-5 gap-4 mb-6">
-        <StatsCard 
-          title="Total Hotspots" 
-          value={hotspots.length} 
-          Icon={Flame}
-          color="red"
-        />
-        <StatsCard 
-          title="Premium" 
-          value={hotspotStats.premium || 0} 
-          Icon={Star}
-          color="amber"
-        />
-        <StatsCard 
-          title="Terre à louer" 
-          value={hotspotStats.land_rental || 0} 
-          Icon={Home}
-          color="emerald"
-        />
-        <StatsCard 
-          title="Environnemental" 
-          value={hotspotStats.environmental || 0} 
-          Icon={Trees}
-          color="blue"
-        />
-        <StatsCard 
-          title="Inactifs" 
-          value={hotspotStats.inactive || 0} 
-          Icon={PauseCircle}
-          color="gray"
-        />
+      {/* Quick Stats - Compact */}
+      <div className="flex-shrink-0 px-4 py-2">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-2">
+          <StatsCard 
+            title="Total Hotspots" 
+            value={hotspots.length} 
+            Icon={Flame}
+            color="red"
+          />
+          <StatsCard 
+            title="Premium" 
+            value={hotspotStats.premium || 0} 
+            Icon={Star}
+            color="amber"
+          />
+          <StatsCard 
+            title="Terre à louer" 
+            value={hotspotStats.land_rental || 0} 
+            Icon={Home}
+            color="emerald"
+          />
+          <StatsCard 
+            title="Environnemental" 
+            value={hotspotStats.environmental || 0} 
+            Icon={Trees}
+            color="blue"
+          />
+          <StatsCard 
+            title="Inactifs" 
+            value={hotspotStats.inactive || 0} 
+            Icon={PauseCircle}
+            color="gray"
+          />
+        </div>
       </div>
 
-      {/* Main Content Tabs */}
-      <Tabs value={activeTab} onValueChange={setActiveTab}>
-        <TabsList className="bg-slate-800 mb-4">
-          <TabsTrigger value="overview" className="data-[state=active]:bg-blue-600">
-            Vue d'ensemble
-          </TabsTrigger>
-          <TabsTrigger value="hotspots" className="data-[state=active]:bg-red-600 flex items-center gap-1">
-            <Flame className="h-4 w-4" /> Hotspots
-          </TabsTrigger>
-          <TabsTrigger value="map" className="data-[state=active]:bg-emerald-600">
-            Carte
-          </TabsTrigger>
-        </TabsList>
+      {/* Main Content Tabs - Full Height */}
+      <div className="flex-1 overflow-hidden px-4 pb-4">
+        <Tabs value={activeTab} onValueChange={setActiveTab} className="h-full flex flex-col">
+          <TabsList className="bg-slate-800 mb-2 flex-shrink-0">
+            <TabsTrigger value="overview" className="data-[state=active]:bg-blue-600">
+              Vue d'ensemble
+            </TabsTrigger>
+            <TabsTrigger value="hotspots" className="data-[state=active]:bg-red-600 flex items-center gap-1">
+              <Flame className="h-4 w-4" /> Hotspots
+            </TabsTrigger>
+            <TabsTrigger value="map" className="data-[state=active]:bg-emerald-600">
+              Carte
+            </TabsTrigger>
+          </TabsList>
+
+          <div className="flex-1 overflow-hidden">
 
         {/* Overview Tab */}
         <TabsContent value="overview">
