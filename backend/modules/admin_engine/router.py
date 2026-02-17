@@ -56,6 +56,8 @@ from .services.marketing_admin import MarketingAdminService
 # Phase 6 Migration - Partners & Branding
 from .services.partners_admin import PartnersAdminService
 from .services.branding_admin import BrandingAdminService
+# Marketing Controls (Global ON/OFF)
+from .services.marketing_controls import MarketingControlsService
 
 logger = logging.getLogger(__name__)
 
