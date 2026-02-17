@@ -3,6 +3,7 @@
  * ==========================================
  * 
  * Point d'entrée du module d'administration premium.
+ * Phase 1 Migration: E-Commerce intégré
  */
 
 export { default as AdminService } from './AdminService';
@@ -17,3 +18,5 @@ export { AdminStrategy } from './admin_strategy';
 export { AdminUsers } from './admin_users';
 export { AdminLogs } from './admin_logs';
 export { AdminSettings } from './admin_settings';
+// Phase 1 Migration - E-Commerce
+export { AdminEcommerce } from './admin_ecommerce';
