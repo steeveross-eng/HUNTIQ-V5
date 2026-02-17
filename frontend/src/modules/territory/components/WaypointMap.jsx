@@ -342,11 +342,11 @@ export const WaypointMap = ({
   };
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-4 gap-4" data-testid="waypoint-map">
+    <div className="flex flex-col lg:flex-row gap-4 h-full" data-testid="waypoint-map">
       {/* Map */}
-      <div className="lg:col-span-3">
-        <Card className="bg-slate-800 border-slate-700 overflow-hidden">
-          <CardHeader className="pb-2">
+      <div className="flex-1 lg:flex-[3] min-h-0">
+        <Card className="bg-slate-800 border-slate-700 overflow-hidden h-full flex flex-col">
+          <CardHeader className="pb-2 flex-shrink-0">
             <div className="flex items-center justify-between flex-wrap gap-2">
               <CardTitle className="text-lg text-white flex items-center gap-2">
                 <Map className="h-5 w-5 text-[#f5a623]" />
