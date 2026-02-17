@@ -460,11 +460,11 @@ export const BASE_MAPS = {
     iconName: 'ruler',
     isDark: false
   },
-  // IQHO - Hydro + Relief + Ombrage (utilise Stamen Terrain)
+  // IQHO - Hydro + Relief + Ombrage (utilise Stamen Terrain avec API Key)
   iqho: {
     id: 'iqho',
     name: 'IQHO',
-    url: 'https://tiles.stadiamaps.com/tiles/stamen_terrain/{z}/{x}/{y}{r}.png',
+    url: `https://tiles.stadiamaps.com/tiles/stamen_terrain/{z}/{x}/{y}{r}.png?api_key=${STADIA_API_KEY}`,
     attribution: '© Stadia Maps | © Stamen Design | © OpenStreetMap',
     iconName: 'droplet',
     isDark: true
