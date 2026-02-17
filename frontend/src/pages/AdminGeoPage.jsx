@@ -494,7 +494,9 @@ const AdminGeoPage = () => {
             </CardContent>
           </Card>
         </TabsContent>
+          </div>
       </Tabs>
+      </div>
     </div>
   );
 };
