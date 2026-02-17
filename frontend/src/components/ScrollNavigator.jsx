@@ -34,14 +34,11 @@ const ScrollNavigator = () => {
   const isFullViewportPage = FULL_VIEWPORT_ROUTES.some(route => 
     location.pathname === route || location.pathname.startsWith(route + '/')
   );
-  
-  // Don't render on full-viewport pages
-  if (isFullViewportPage) {
-    return null;
-  }
 
   // Handle scroll events to show/hide arrows
   const handleScroll = useCallback(() => {
+    if (isFullViewportPage) return;
+    
     const scrollY = window.scrollY;
     const windowHeight = window.innerHeight;
     const documentHeight = document.documentElement.scrollHeight;
@@ -55,9 +52,11 @@ const ScrollNavigator = () => {
     
     // Always show if page is short, hide only at bottom of long pages
     setShowBottomArrow(hasScrollableContent ? !atBottom : true);
-  }, []);
+  }, [isFullViewportPage]);
 
   useEffect(() => {
+    if (isFullViewportPage) return;
+    
     // Throttled scroll handler for performance
     let ticking = false;
     const onScroll = () => {
@@ -74,7 +73,7 @@ const ScrollNavigator = () => {
     handleScroll(); // Initial check
 
     return () => window.removeEventListener('scroll', onScroll);
-  }, [handleScroll]);
+  }, [handleScroll, isFullViewportPage]);
 
   // Smooth scroll to top of page
   const scrollToTop = () => {
@@ -94,6 +93,11 @@ const ScrollNavigator = () => {
       behavior: 'smooth'
     });
   };
+
+  // Don't render on full-viewport pages
+  if (isFullViewportPage) {
+    return null;
+  }
 
   const buttonClasses = `
     fixed left-1/2 -translate-x-1/2
