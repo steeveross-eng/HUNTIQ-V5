@@ -231,10 +231,87 @@
       "species_weights": {
         "moose": 0.6,
         "deer": 0.5,
-        "bear": 0.7
+        "bear": 0.7,
+        "elk": 0.6
+      }
+    },
+    {
+      "id": "edge_density",
+      "name": "Edge Density",
+      "name_fr": "Densité de lisières",
+      "category": "vegetation",
+      "unit": "m/ha",
+      "data_type": "float",
+      "value_range": {"min": 0, "max": 500},
+      "data_sources": ["satellite", "lidar", "forest_inventory"],
+      "update_frequency": "annual",
+      "scoring_method": "species_optimal",
+      "description": "Densité des transitions forêt-ouverture (écotones)",
+      "species_weights": {
+        "moose": 0.85,
+        "deer": 0.9,
+        "bear": 0.6,
+        "elk": 0.95
+      }
+    },
+    {
+      "id": "human_pressure_index",
+      "name": "Human Pressure Index",
+      "name_fr": "Indice de pression humaine",
+      "category": "human_impact",
+      "unit": "index",
+      "data_type": "float",
+      "value_range": {"min": 0, "max": 1},
+      "data_sources": ["statistics_canada", "osm", "strava_heatmap"],
+      "update_frequency": "monthly",
+      "scoring_method": "linear_inverse",
+      "description": "Indice composite de perturbation humaine (routes, sentiers, bâtiments, activité)",
+      "species_weights": {
+        "moose": 0.75,
+        "deer": 0.6,
+        "bear": 0.85,
+        "elk": 0.7
+      }
+    },
+    {
+      "id": "canopy_density",
+      "name": "Canopy Density",
+      "name_fr": "Densité de canopée",
+      "category": "vegetation",
+      "unit": "%",
+      "data_type": "float",
+      "value_range": {"min": 0, "max": 100},
+      "data_sources": ["lidar", "sentinel2"],
+      "update_frequency": "seasonal",
+      "scoring_method": "species_optimal",
+      "description": "Densité de la couverture arborée (différent du couvert forestier)",
+      "species_weights": {
+        "moose": 0.7,
+        "deer": 0.65,
+        "bear": 0.6,
+        "elk": 0.4
+      }
+    },
+    {
+      "id": "slope_aspect",
+      "name": "Slope Aspect",
+      "name_fr": "Exposition de la pente",
+      "category": "terrain",
+      "unit": "cardinal",
+      "data_type": "categorical",
+      "value_range": {"categories": ["N", "NE", "E", "SE", "S", "SW", "W", "NW"]},
+      "data_sources": ["dem_derived", "srtm"],
+      "update_frequency": "static",
+      "scoring_method": "seasonal_cardinal",
+      "description": "Orientation cardinale de la pente (impact thermique saisonnier)",
+      "species_weights": {
+        "moose": 0.5,
+        "deer": 0.6,
+        "bear": 0.4,
+        "elk": 0.55
       }
     }
   ],
-  "version": "1.0.0",
+  "version": "1.1.0",
   "last_updated": "2024-02-17"
 }
