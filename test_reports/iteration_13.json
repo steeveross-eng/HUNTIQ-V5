@@ -1,0 +1,143 @@
+{
+  "summary": "Phase 21 E2E Final Tests for HUNTIQ-V5 Release Candidate - PASSED. Backend: 19/19 tests passed (100%). Frontend: All 5 resolutions pass on /map, /territoire, /forecast pages with 0px overflow. /analyze page has intentional scroll for content-rich pages (as documented). MapInteractionLayer working: GPS coordinates overlay visible on mousemove, waypoint marker created on double-click. One known MEDIUM issue: popup doesn't auto-open after double-click (marker click required).",
+
+  "backend_issues": {
+    "critical": [],
+    "minor": [
+      {
+        "endpoint": "/api/seo/meta/",
+        "issue": "Returns 404 - SEO meta endpoint not implemented",
+        "priority": "LOW"
+      },
+      {
+        "endpoint": "/api/v1/notification/legal-time/status",
+        "issue": "Returns 404 - Legal time notification endpoint not implemented",
+        "priority": "LOW"
+      }
+    ]
+  },
+
+  "frontend_issues": {
+    "ui_bugs": [
+      {
+        "component": "MapInteractionLayer.jsx",
+        "issue": "Waypoint creation popup doesn't auto-open after double-click. Marker is created but popup requires manual click to open. Code has useRef/useEffect for auto-open but not working.",
+        "selector": ".leaflet-popup",
+        "priority": "MEDIUM"
+      }
+    ],
+    "integration_issues": [],
+    "design_issues": []
+  },
+
+  "passed_tests": [
+    "Backend: GET /api/v1/waypoints/ - Module info (200 OK)",
+    "Backend: POST /api/v1/waypoints/create - Creates waypoint successfully",
+    "Backend: GET /api/v1/waypoints - Lists waypoints with filters",
+    "Backend: GET /api/v1/waypoints?user_id=test - Filter by user",
+    "Backend: GET /api/v1/waypoints/bounds - Geographic bounds query",
+    "Backend: GET /api/v1/waypoints/stats - Statistics endpoint",
+    "Backend: GET /api/v1/recommendation/ - Module info (200 OK)",
+    "Backend: GET /api/v1/recommendation/health - Health check",
+    "Backend: GET /api/v1/recommendation/strategies?species=deer - Strategy recommendations",
+    "Backend: GET /api/v1/recommendation/strategies?species=deer&season=rut - With season",
+    "Backend: GET /api/v1/recommendation/for-context?species=deer&season=rut - Contextual recommendations",
+    "Backend: GET /api/v1/recommendation/for-context with weather params",
+    "Backend: GET /api/v1/recommendation/personalized/{user_id} - Personalized recommendations",
+    "Backend: GET /api/health - API health check",
+    "Backend: POST /api/auth/login - Endpoint exists",
+    "Backend: POST /api/auth/register - Endpoint exists",
+    "Backend: GET /api/v1/waypoint-scoring/ - Module info",
+    "Backend: GET /api - API root accessible",
+    "Backend: GET /api/docs - API documentation accessible",
+    "Frontend /map: 4K (3840x2160) - 0px overflow ✅",
+    "Frontend /map: 1080p (1920x1080) - 0px overflow ✅",
+    "Frontend /map: Laptop (1366x768) - 0px overflow ✅",
+    "Frontend /map: Tablet (1024x768) - 0px overflow ✅",
+    "Frontend /map: Mobile (375x667) - 0px overflow ✅",
+    "Frontend /territoire: 4K (3840x2160) - 0px overflow ✅",
+    "Frontend /territoire: 1080p (1920x1080) - 0px overflow ✅",
+    "Frontend /territoire: Laptop (1366x768) - 0px overflow ✅",
+    "Frontend /territoire: Tablet (1024x768) - 0px overflow ✅",
+    "Frontend /territoire: Mobile (375x667) - 0px overflow ✅",
+    "Frontend /forecast: 4K (3840x2160) - 0px overflow ✅",
+    "Frontend /forecast: 1080p (1920x1080) - 0px overflow ✅",
+    "Frontend /forecast: Laptop (1366x768) - 0px overflow ✅",
+    "Frontend /forecast: Tablet (1024x768) - 0px overflow ✅",
+    "Frontend /forecast: Mobile (375x667) - 0px overflow ✅",
+    "Frontend /analyze: Content-rich page with intentional scroll (as documented)",
+    "Frontend: GPS coordinates overlay visible on mousemove (LAT/LNG display)",
+    "Frontend: Interaction hint visible ('Double-cliquez pour créer un waypoint')",
+    "Frontend: Waypoint marker created on double-click",
+    "Frontend: Navigation stability - All 6 pages load < 3s",
+    "Frontend: 'Mes Waypoints' section visible on /map page"
+  ],
+
+  "test_report_links": [
+    "/app/backend/tests/test_e2e_phase21.py",
+    "/app/test_reports/pytest/e2e_phase21_results.xml"
+  ],
+
+  "action_items": [
+    "FIX MEDIUM: MapInteractionLayer.jsx - Popup auto-open not working. The useRef/useEffect pattern is implemented but popup doesn't open. Consider using a setTimeout or checking if the marker ref is properly set before calling openPopup()."
+  ],
+
+  "critical_code_review_comments": [
+    "MapInteractionLayer.jsx lines 153-177: PendingWaypointMarker has useRef and useEffect for auto-open but it's not working. The issue may be timing - the popup might not be ready when openPopup() is called. Consider adding a small delay or using a different approach.",
+    "Console shows 404 errors for /api/seo/meta/ and /api/v1/notification/legal-time/status - these are optional endpoints that could be implemented for better UX but are not critical."
+  ],
+
+  "updated_files": [
+    "/app/backend/tests/test_e2e_phase21.py"
+  ],
+
+  "success_rate": {
+    "backend": "100% (19/19 tests passed)",
+    "frontend": "95% - All layout tests pass, one MEDIUM popup issue"
+  },
+
+  "seed_data_creation": "Test waypoints created during backend testing",
+
+  "retest_needed": false,
+  "should_main_agent_self_test": true,
+
+  "context_for_next_testing_agent": "Phase 21 E2E Final Tests completed. Backend APIs fully functional (Waypoints, Recommendation Engine, Auth). Frontend layout passes all 5 resolutions on map pages. Known issue: MapInteractionLayer popup doesn't auto-open after double-click waypoint creation - marker is created but user must click on it to see the popup form. This is a UX issue, not a blocker. Test URLs: /map, /territoire, /forecast, /analyze. Backend endpoints: /api/v1/waypoints/, /api/v1/recommendation/.",
+
+  "mocked_apis": {
+    "has_mocked_apis": false,
+    "mocked_apis_list": []
+  },
+
+  "resolution_test_results": {
+    "map_page": {
+      "4K": "PASS (0px overflow)",
+      "1080p": "PASS (0px overflow)",
+      "Laptop": "PASS (0px overflow)",
+      "Tablet": "PASS (0px overflow)",
+      "Mobile": "PASS (0px overflow)"
+    },
+    "territoire_page": {
+      "4K": "PASS (0px overflow)",
+      "1080p": "PASS (0px overflow)",
+      "Laptop": "PASS (0px overflow)",
+      "Tablet": "PASS (0px overflow)",
+      "Mobile": "PASS (0px overflow)"
+    },
+    "forecast_page": {
+      "4K": "PASS (0px overflow)",
+      "1080p": "PASS (0px overflow)",
+      "Laptop": "PASS (0px overflow)",
+      "Tablet": "PASS (0px overflow)",
+      "Mobile": "PASS (0px overflow)"
+    },
+    "analyze_page": {
+      "4K": "PASS (0px overflow)",
+      "1080p": "CONTENU (27px - intentional scroll)",
+      "Laptop": "CONTENU (282px - intentional scroll)",
+      "Tablet": "CONTENU (266px - intentional scroll)",
+      "Mobile": "CONTENU (743px - intentional scroll)"
+    }
+  },
+
+  "rca_of_the_issue": "Root cause of popup auto-open issue: In react-leaflet, the Popup component rendered as a child of Marker doesn't auto-open by default. The code attempts to use useRef and useEffect to call openPopup() but the timing may be off - the popup might not be fully rendered when the effect runs. Potential fixes: 1) Add a small setTimeout before calling openPopup(), 2) Use the Popup's 'autoOpen' prop if available, 3) Use a different approach like rendering the popup outside the marker and positioning it manually."
+}
