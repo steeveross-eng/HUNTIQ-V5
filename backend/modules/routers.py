@@ -598,6 +598,16 @@ CORE_ROUTERS: List[Tuple[APIRouter, dict]] = [
         "phase": "ADMIN-PREMIUM",
         "description": "Administration Premium V5-ULTIME - Gestion complète engines, users, logs, settings"
     }),
+    
+    # ==========================================
+    # BIONIC KNOWLEDGE ENGINE (V5 LEGO)
+    # ==========================================
+    (bionic_knowledge_router, {
+        "name": "bionic_knowledge_engine",
+        "version": "1.0.0",
+        "phase": "KNOWLEDGE-V5",
+        "description": "BIONIC Knowledge Layer - Espèces, règles comportementales, modèles saisonniers, validation"
+    }),
 ]
 
 
