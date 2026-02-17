@@ -1350,13 +1350,13 @@ const MonTerritoireBionicPage = () => {
       </div>
       
       {/* Contenu des onglets - Full viewport height */}
-      <div className="flex-1 overflow-hidden">
+      <div className="flex-1 overflow-hidden min-h-0">
         {/* Onglet Carte BIONIC */}
         {activeTab === 'carte' && (
-          <div className="flex h-full">
+          <div className="flex h-full overflow-hidden">
             {/* Panneau Couches - Compact */}
-            <div className={`${showLayersPanel ? 'w-48' : 'w-10'} bg-gray-900/95 border-r border-gray-800 transition-all duration-300 flex flex-col`}>
-              <button onClick={() => setShowLayersPanel(!showLayersPanel)} className="p-2 border-b border-gray-800 flex items-center justify-between hover:bg-gray-800/50">
+            <div className={`${showLayersPanel ? 'w-48' : 'w-10'} bg-gray-900/95 border-r border-gray-800 transition-all duration-300 flex flex-col flex-shrink-0 overflow-hidden`}>
+              <button onClick={() => setShowLayersPanel(!showLayersPanel)} className="p-2 border-b border-gray-800 flex items-center justify-between hover:bg-gray-800/50 flex-shrink-0">
                 <div className="flex items-center gap-2">
                   <Layers className="h-4 w-4 text-[#f5a623]" />
                   {showLayersPanel && <span className="text-white text-sm">Couches</span>}
