@@ -55,6 +55,8 @@ import OnboardingPage from "@/pages/OnboardingPage";
 import PricingPage from "@/pages/PricingPage";
 import PaymentSuccessPage from "@/pages/PaymentSuccessPage";
 import PaymentCancelPage from "@/pages/PaymentCancelPage";
+// V5-ULTIME: Administration Premium
+import AdminPremiumPage from "@/pages/AdminPremiumPage";
 import { NotificationProvider } from "@/modules/notifications";
 import GoogleOAuthCallback from "@/components/GoogleOAuthCallback";
 import { 
