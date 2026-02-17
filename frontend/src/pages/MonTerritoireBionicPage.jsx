@@ -1666,6 +1666,19 @@ const MonTerritoireBionicPage = () => {
                 {privacyMode && (
                   <div className="bionic-private-overlay" />
                 )}
+                
+                {/* Module d'Interaction Cartographique Universel */}
+                <MapInteractionLayer
+                  showCoordinates={true}
+                  enableWaypointCreation={!mapClickMode}
+                  showHint={!mapClickMode}
+                  onWaypointCreated={(waypoint) => {
+                    toast.success(`Waypoint "${waypoint.name}" créé avec succès !`);
+                    // Refresh waypoints list
+                    if (fetchWaypoints) fetchWaypoints();
+                  }}
+                  userId={userData?.email || 'anonymous'}
+                />
               </MapContainer>
               
               {/* Contrôles carte */}
