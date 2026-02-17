@@ -11,10 +11,10 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { 
+import {
   Crown, ArrowLeft, LayoutDashboard, CreditCard, Layers, 
   Zap, Target, BookOpen, Settings, BarChart3, Users, 
-  FileText, Shield
+  FileText, Shield, ShoppingCart
 } from 'lucide-react';
 
 // Import all admin modules
@@ -29,11 +29,13 @@ import {
   AdminStrategy,
   AdminUsers,
   AdminLogs,
-  AdminSettings
+  AdminSettings,
+  AdminEcommerce
 } from '@/ui/administration';
 
 const navItems = [
   { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
+  { id: 'ecommerce', label: 'E-Commerce', icon: ShoppingCart },
   { id: 'payments', label: 'Paiements', icon: CreditCard },
   { id: 'freemium', label: 'Freemium', icon: Layers },
   { id: 'upsell', label: 'Upsell', icon: Zap },
