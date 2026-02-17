@@ -55,6 +55,7 @@ const AdminPremiumPage = () => {
   const renderContent = () => {
     switch (activeSection) {
       case 'dashboard': return <AdminDashboard onNavigate={setActiveSection} />;
+      case 'ecommerce': return <AdminEcommerce />;
       case 'payments': return <AdminPayments />;
       case 'freemium': return <AdminFreemium />;
       case 'upsell': return <AdminUpsell />;
