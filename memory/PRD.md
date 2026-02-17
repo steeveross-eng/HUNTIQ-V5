@@ -1,348 +1,158 @@
-# HUNTIQ V5-ULTIME-FUSION - PRD
+# HUNTIQ-V5 — Product Requirements Document
 
-## Date de création: 16 Février 2026
-## Dernière mise à jour: 17 Février 2026 - Séquence A→B→C Complète
-
----
-
-## Problem Statement Original
-
-Construire la version V5-ULTIME-FUSION de HUNTIQ en fusionnant les modules de:
-- **HUNTIQ-V4** (branche conflict_120226_1312, commit 1072e0f) - Ossature modulaire
-- **HUNTIQ-V3** (branche conflict_050226_1749, commit 200cca5) - Frontpage analytique  
-- **HUNTIQ-V2** (branche conflict_030226_0855, commit 886bc5d) - Backup cloud + formations
-- **HUNTIQ-BASE** (branche main, commit cc8ab6f) - Social, rental, admin avancé, partners
-
-Architecture: 100% modulaire "LEGO", sans perte, sans dérive.
+## Document Version History
+| Date | Version | Changes |
+|------|---------|---------|
+| 2025-12-01 | 1.0.0 | Initial BIONIC Knowledge Layer |
+| 2025-12-10 | 1.1.0 | SEO Engine V5 Integration |
+| 2025-12-15 | 1.2.0 | Marketing Controls Module |
+| 2026-02-17 | 1.3.0 | **Phase 7 Analytics Complete** |
 
 ---
 
-## Directives Exécutives - État Actuel
-
-### ✅ P0 — URGENCE ABSOLUE (COMPLÉTÉ)
-- ✅ Fusionné modules admin/notification en `admin_unified_engine` et `notification_unified_engine`
-- ✅ Créé `server_orchestrator.py` pour architecture modulaire v2.0
-- ✅ Réparé erreur "t is not defined" dans Analytics
-- ✅ Analytics réactivé dans menu et page Admin
-
-### ✅ P1 — MODULARISATION FRONTEND (COMPLÉTÉ)
-- ✅ Structure modulaire stricte créée: `/app/frontend/src/ui`, `/data_layers`, `/components/core`
-- ✅ Placeholders modules UI créés (Scoring, Météo, Stratégie, Territoire)
-- ✅ Live Heading View intégré
-
-### ✅ P2 — PLAN MAÎTRE (COMPLÉTÉ)
-- ✅ `rules_engine` backend avec 12 règles dynamiques
-- ✅ `strategy_master_engine` backend
-- ✅ UI `PlanMaitreDashboard` complète avec Timeline, Rules, Stats
-- ✅ Intégration navigation modulaire
-
-### ✅ P3 — MONÉTISATION (COMPLÉTÉ - 17 Fév 2026)
-- ✅ `payment_engine` - Intégration Stripe (checkout, abonnements, webhooks)
-- ✅ `freemium_engine` - Gestion quotas, tiers (free/premium/pro), limites
-- ✅ `upsell_engine` - Popups intelligents, 7 campagnes, rate limiting
-- ✅ `onboarding_engine` - Parcours 4 étapes, création auto Plan Maître
-- ✅ `tutorial_engine` - 7 tutoriels dynamiques, tips du jour
-- ✅ Frontend `/pricing` avec 3 cartes tarifaires
-- ✅ Navigation Premium bouton
-- ✅ Pages success/cancel payment
-
-### ✅ ADMINISTRATION PREMIUM (COMPLÉTÉ - 17 Fév 2026)
-- ✅ `admin_engine` backend avec 22 services modulaires (Knowledge Layer ajouté)
-- ✅ Frontend `/admin-premium` avec 23 sous-modules UI (Knowledge Layer ajouté)
-- ✅ Dashboard KPIs (Utilisateurs, Revenus, Onboarding, CTR Upsell)
-- ✅ Gestion complète: Paiements, Freemium, Upsell, Onboarding, Tutoriels
-- ✅ Gestion avancée: Rules, Strategy, Users, Logs, Settings
-- ✅ Thème dark premium avec accents or/bronze
-- ✅ Feature toggles (10 toggles système)
-- ✅ Statut clés API (masquées)
-
-### ✅ BIONIC SEO ENGINE V5 (COMPLÉTÉ - 17 Fév 2026)
-- ✅ `seo_engine/` backend complet (Architecture LEGO V5)
-  - `seo_router.py` - 35+ endpoints API sous `/api/v1/bionic/seo/*`
-  - `seo_service.py` - Service principal SEO
-  - `seo_models.py` - Modèles Pydantic (10+ modèles)
-  - `seo_clusters.py` - 9 clusters de base (species, region, season, technique, equipment)
-  - `seo_pages.py` - Templates (pillar, satellite, opportunity)
-  - `seo_jsonld.py` - Générateur JSON-LD (Article, HowTo, FAQPage, LocalBusiness, BreadcrumbList, VideoObject)
-  - `seo_analytics.py` - Analytics SEO (traffic, performance, technical)
-  - `seo_automation.py` - 5 règles d'automatisation, suggestions, alertes
-  - `seo_generation.py` - Content Factory IA
-- ✅ Frontend `admin_seo/` module (7 onglets)
-  - Dashboard, Clusters, Pages, JSON-LD, Analytics, Automation, Content Factory
-- ✅ API `/api/v1/bionic/seo/*` intégrée à l'orchestrateur
-- ✅ Test complet: 100% backend (30/30), 100% frontend
-
-### ✅ BIONIC KNOWLEDGE LAYER (COMPLÉTÉ & ENRICHI - 17 Fév 2026)
-- ✅ `bionic_knowledge_engine/` backend complet (Architecture LEGO V5)
-  - `knowledge_router.py` - 45+ endpoints API
-  - `knowledge_service.py` - Service principal (lecture JSON dynamique)
-  - `knowledge_models.py` - Modèles Pydantic (15+ modèles)
-  - `knowledge_sources.py` - **11 sources** (MFFP, SEPAQ, CIC, FQF, ULaval, TWS, B&C, USGS, FFGG, Louis Gagnon, Guides Nordiques)
-  - `knowledge_rules.py` - 9 règles comportementales base
-  - `knowledge_seasonal_models.py` - **4 modèles saisonniers** (moose, deer, bear, elk)
-  - `knowledge_validation_pipeline.py` - Validation complète
-- ✅ Données JSON enrichies:
-  - `data/species/` - **5 espèces** (moose.json, deer.json, bear.json, **elk.json**, caribou via registry)
-  - `data/habitat_variables.json` - **17 variables** (+ edge_density, human_pressure_index, canopy_density, slope_aspect)
-  - `data/sources_registry.json` - **11 sources** scientifiques et terrain
-- ✅ Frontend `admin_knowledge/` module (7 onglets)
-  - Dashboard, Espèces, Règles, Sources, Saisonnier, Variables, Validation
-- ✅ API `/api/v1/bionic/knowledge/*` intégrée à l'orchestrateur
-
-### ✅ DOCUMENTATION SEO COMPLÈTE (DIRECTIVE #2 PARTIE 2 - 17 Fév 2026)
-- ✅ Document `/app/docs/SEO_PLAN_BIONIC_V5.md` créé
-  - Architecture SEO avec 9 clusters thématiques
-  - Plan de contenu détaillé (9 piliers + 45 satellites = 72,000+ mots)
-  - Stratégie de maillage interne (règles d'or, matrice, ancres)
-  - KPIs et métriques (+300% objectif)
-  - Plan d'action 30/90 jours avec calendrier éditorial
-  - Guide JSON-LD complet (Article, FAQPage, HowTo, BreadcrumbList)
-  - Synthèse exécutive PDF-ready
-
-### ✅ GÉNÉRATION DE CONTENU IA (COMPLÉTÉ - 17 Fév 2026)
-- ✅ Module `seo_content_generator.py` créé avec intégration Emergent LLM Key
-- ✅ Endpoint `/api/v1/bionic/seo/generate/pillar-content` opérationnel
-- ✅ Premier pilier généré : `/app/docs/generated_pillar_orignal.md`
-  - Titre: "Guide Complet de la Chasse à l'Orignal au Québec"
-  - Structure: 10 sections avec FAQ (8 questions)
-  - Données Knowledge Layer intégrées
-  - Sources MFFP/SEPAQ mentionnées
-  - `knowledge_rules.py` - 9 règles comportementales base
-  - `knowledge_seasonal_models.py` - 3 modèles saisonniers (moose, deer, bear)
-  - `knowledge_validation_pipeline.py` - Validation complète
-- ✅ Données JSON structurées:
-  - `data/species/` - moose.json, deer.json, bear.json
-  - `data/habitat_variables.json` - 13 variables
-  - `data/sources_registry.json` - 7 sources
-- ✅ Frontend `admin_knowledge/` module (7 onglets)
-  - Dashboard, Espèces, Règles, Sources, Saisonnier, Variables, Validation
-- ✅ API `/api/v1/bionic/knowledge/*` intégrée à l'orchestrateur
-
-### ✅ MIGRATION /admin → /admin-premium
-
-#### ✅ Phase 1 — E-Commerce (COMPLÉTÉ - 17 Fév 2026)
-- ✅ `ecommerce_admin.py` - Dashboard, Ventes, Produits, Fournisseurs, Clients, Commissions, Performance
-- ✅ Frontend `admin_ecommerce/` module
-- ✅ 14 nouvelles API `/api/v1/admin/ecommerce/*`
-
-#### ✅ Phase 2 — Contenu & Backup (COMPLÉTÉ - 17 Fév 2026)
-- ✅ `content_admin.py` - Categories, Content Depot (SEO), Analytics SEO
-- ✅ `backup_admin.py` - Statistiques, Code versioning, Prompts, Database backups
-- ✅ Frontend `admin_content/` module (3 onglets: Catégories, Content Depot, SEO Analytics)
-- ✅ Frontend `admin_backup/` module (4 onglets: Vue d'ensemble, Code, Prompts, Base de données)
-- ✅ 12 nouvelles API `/api/v1/admin/content/*`
-- ✅ 10 nouvelles API `/api/v1/admin/backup/*`
-- ✅ Test complet: 100% backend (20/20), 100% frontend
-
-#### ✅ Phase 3 — Infrastructure & Contacts (COMPLÉTÉ - 17 Fév 2026)
-- ✅ `maintenance_admin.py` - Mode maintenance, Access control, IPs autorisées, Planification, Logs
-- ✅ `contacts_admin.py` - Source de vérité V5 pour toutes les entités relationnelles
-- ✅ Frontend `admin_maintenance/` module (5 onglets: Statut, Règles d'accès, IPs, Planification, Logs)
-- ✅ Frontend `admin_contacts/` module (filtres par type, CRUD complet, tags, export)
-- ✅ 15 nouvelles API `/api/v1/admin/maintenance/*`
-- ✅ 16 nouvelles API `/api/v1/admin/contacts/*`
-- ✅ Test complet: 100% backend (30/30), 100% frontend
-
-#### ✅ Phase 4 — Chasse (COMPLÉTÉ - 17 Fév 2026)
-- ✅ `hotspots_admin.py` - Dashboard, Listings, Pricing, Regions, Owners, Renters, Agreements
-- ✅ `networking_admin.py` - Dashboard, Posts, Groups, Leads, Referrals, Wallets, Referral Codes
-- ✅ Frontend `admin_hotspots/` module (7 onglets: Dashboard, Annonces, Propriétaires, Locataires, Ententes, Tarification, Régions)
-- ✅ Frontend `admin_networking/` module (6 onglets: Dashboard, Publications, Groupes, Leads, Parrainages, Portefeuilles)
-- ✅ 14 nouvelles API `/api/v1/admin/hotspots/*`
-- ✅ 17 nouvelles API `/api/v1/admin/networking/*`
-- ✅ Test complet: 100% backend (23/23), 100% frontend
+## Original Problem Statement
+Application HUNTIQ-V5 selon une architecture "LEGO" modulaire très stricte. Le projet vise à créer une plateforme de chasse intelligente au Québec avec des fonctionnalités avancées de cartographie, d'analytique, de tracking et de monétisation.
 
 ---
 
-## Architecture Actuelle (60 modules)
-
+## Architecture Overview
 ```
-/app/backend/
-├── modules/
-│   ├── admin_engine/           # ADMIN PREMIUM - 14 services
-│   │   ├── router.py
-│   │   └── services/
-│   │       ├── payments_admin.py
-│   │       ├── freemium_admin.py
-│   │       ├── upsell_admin.py
-│   │       ├── onboarding_admin.py
-│   │       ├── tutorials_admin.py
-│   │       ├── rules_admin.py
-│   │       ├── strategy_admin.py
-│   │       ├── users_admin.py
-│   │       ├── logs_admin.py
-│   │       ├── settings_admin.py
-│   │       ├── ecommerce_admin.py      # Phase 1
-│   │       ├── content_admin.py        # Phase 2
-│   │       ├── backup_admin.py         # Phase 2
-│   │       ├── maintenance_admin.py    # Phase 3
-│   │       ├── contacts_admin.py       # Phase 3
-│   │       ├── hotspots_admin.py       # Phase 4
-│   │       ├── networking_admin.py     # Phase 4
-│   │       ├── email_admin.py          # Phase 5
-│   │       └── marketing_admin.py      # Phase 5
-│   ├── payment_engine/         # P3 - Stripe
-│   ├── freemium_engine/        # P3 - Quotas
-│   ├── upsell_engine/          # P3 - Popups
-│   ├── onboarding_engine/      # P3 - Onboarding
-│   ├── tutorial_engine/        # P3 - Tutoriels
-│   ├── rules_engine/           # P2 - Plan Maître
-│   ├── strategy_master_engine/ # P2
-│   └── ... (52+ autres modules)
-├── routers.py                  # Registre centralisé
-├── server.py                   # Point d'entrée
-└── server_orchestrator.py      # Orchestrateur v2.0
-
-/app/frontend/src/
-├── ui/
-│   ├── administration/         # ADMIN PREMIUM - 20 modules
-│   │   ├── AdminService.js
-│   │   ├── admin_dashboard/
-│   │   ├── admin_payments/
-│   │   ├── admin_freemium/
-│   │   ├── admin_upsell/
-│   │   ├── admin_onboarding/
-│   │   ├── admin_tutorials/
-│   │   ├── admin_rules/
-│   │   ├── admin_strategy/
-│   │   ├── admin_users/
-│   │   ├── admin_logs/
-│   │   ├── admin_settings/
-│   │   ├── admin_ecommerce/     # Phase 1
-│   │   ├── admin_content/       # Phase 2
-│   │   ├── admin_backup/        # Phase 2
-│   │   ├── admin_maintenance/   # Phase 3
-│   │   ├── admin_contacts/      # Phase 3
-│   │   ├── admin_hotspots/      # Phase 4
-│   │   ├── admin_networking/    # Phase 4
-│   │   ├── admin_email/         # Phase 5
-│   │   └── admin_marketing/     # Phase 5
-│   ├── monetisation/           # P3
-│   ├── plan_maitre/            # P2
-│   └── ...
-├── pages/
-│   ├── AdminPremiumPage.jsx    # ADMIN PREMIUM
-│   ├── PricingPage.jsx         # P3
-│   └── ...
-└── App.js
+/app/
+├── backend/
+│   ├── modules/           # ~60+ modules modulaires
+│   │   ├── analytics_engine/        # ✅ COMPLÉTÉ - Hunting trips analytics
+│   │   ├── tracking_engine/v1/      # ✅ COMPLÉTÉ - Events, Funnels, Heatmaps
+│   │   ├── bionic_knowledge_engine/ # ✅ COMPLÉTÉ - Data foundation
+│   │   ├── seo_engine/              # ✅ COMPLÉTÉ - SEO automation
+│   │   └── admin_engine/            # ✅ COMPLÉTÉ - Marketing controls
+│   └── server.py
+├── frontend/
+│   └── src/
+│       ├── pages/
+│       │   └── AdminPremiumPage.jsx # ✅ Vitrine Admin Premium
+│       └── ui/administration/       # ✅ 24+ admin modules
+└── docs/
+    ├── SEO_PLAN_BIONIC_V5.md       # ✅ Strategic SEO plan
+    └── generated_pillar_*.md       # ✅ 9 SEO pillar articles
 ```
 
 ---
 
-## Test Results (17 Fév 2026)
+## Completed Phases
 
-| Test Session | Backend | Frontend |
-|--------------|---------|----------|
-| P3 Monétisation (iteration_2) | 100% (18/18) | 100% |
-| Admin Premium (iteration_3) | 100% (13/13) | 100% |
-| Migration Phase 2 (iteration_4) | 100% (20/20) | 100% |
-| Migration Phase 3 (iteration_5) | 100% (30/30) | 100% |
-| Migration Phase 4 (iteration_6) | 100% (23/23) | 100% |
-| Migration Phase 5 (iteration_7) | 100% (29/29) | 100% |
-| Migration Phase 6 (iteration_8) | 100% (35/35) | 100% |
-| SEO Engine V5 (iteration_9) | 100% (30/30) | 100% |
+### ✅ Phase 1-6: Foundation (Pre-existing)
+- User authentication (JWT + Google OAuth)
+- Territory management
+- Map layers (BIONIC, IQHO, Satellite, etc.)
+- E-Commerce integration
+- 60+ modular engines
 
----
+### ✅ BIONIC Knowledge Layer
+- 5 species (deer, moose, bear, wild_turkey, elk)
+- 17 habitat variables
+- 11 scientific sources
+- Seasonal models
 
-## Prioritized Backlog
+### ✅ SEO Engine V5
+- Backend: `/api/v1/bionic/seo/*`
+- Frontend: `admin_seo` module
+- 9 pillar articles generated (~13,000 words)
+- LLM integration via `emergentintegrations`
 
-### Migration /admin → /admin-premium (En cours)
+### ✅ Marketing Controls Module
+- Backend: `/api/v1/admin/marketing-controls/*`
+- Frontend: `admin_marketing_controls` module
+- Global ON/OFF toggles for campaigns
 
-#### ✅ Phase 4 — Chasse (COMPLÉTÉ - 17 Fév 2026)
-- ✅ `hotspots_admin.py` - Dashboard, Listings, Pricing, Regions, Owners, Renters, Agreements
-- ✅ `networking_admin.py` - Dashboard, Posts, Groups, Leads, Referrals, Wallets, Referral Codes
-- ✅ Frontend `admin_hotspots/` module (7 onglets: Dashboard, Annonces, Propriétaires, Locataires, Ententes, Tarification, Régions)
-- ✅ Frontend `admin_networking/` module (6 onglets: Dashboard, Publications, Groupes, Leads, Parrainages, Portefeuilles)
-- ✅ 14 nouvelles API `/api/v1/admin/hotspots/*`
-- ✅ 17 nouvelles API `/api/v1/admin/networking/*`
-- ✅ Test complet: 100% backend (23/23), 100% frontend
+### ✅ Phase 7 — Analytics (2026-02-17)
+**Partie A — AdminAnalytics dans Vitrine Admin Premium:**
+- Module `admin_analytics` intégré
+- 7 onglets: Dashboard, KPIs, Espèces, Météo, Horaires, Sorties, Admin
+- Filtres temporels: Semaine, Mois, Saison, Année, Tout
+- 51 hunting trips de démo seeded
 
-#### ✅ Phase 5 — Communication (COMPLÉTÉ - 17 Fév 2026)
-- ✅ `email_admin.py` - Dashboard, Templates, Variables, Logs, Test sending, Config
-- ✅ `marketing_admin.py` - Dashboard, Campaigns, Posts, AI Generation, Segments, Automations
-- ✅ Frontend `admin_email/` module (5 onglets: Dashboard, Templates, Variables, Historique, Configuration)
-- ✅ Frontend `admin_marketing/` module (6 onglets: Dashboard, Générer, Campagnes, Programmées, Segments, Automations)
-- ✅ 12 nouvelles API `/api/v1/admin/email/*`
-- ✅ 17 nouvelles API `/api/v1/admin/marketing/*`
-- ✅ Test complet: 100% backend (29/29), 100% frontend
-- **MOCKED**: Envoi d'email (simulé), Génération IA (templates)
+**Partie B — Tracking Engine V1:**
+- Events tracking (page_view, click, scroll, form_submit, etc.)
+- Conversion funnels (création, analyse, drop-off rates)
+- Heatmaps (click aggregation by 10px grid)
+- Session analysis
+- Engagement metrics (bounce rate, pages/session, device/country breakdown)
+- 386+ demo events seeded
 
-#### ✅ Phase 6 — Partenaires & Branding (COMPLÉTÉ - 17 Fév 2026)
-- ✅ `partners_admin.py` - Dashboard, Types (11 catégories), Requests CRUD, Partners CRUD, Email settings
-- ✅ `branding_admin.py` - Dashboard, Config FR/EN, Logos, Colors (7), Document types (7), History
-- ✅ Frontend `admin_partners/` module (4 onglets: Dashboard, Demandes, Partenaires, Paramètres)
-- ✅ Frontend `admin_branding/` module (5 onglets: Dashboard, Logos, Couleurs, Documents, Historique)
-- ✅ 18 nouvelles API `/api/v1/admin/partners/*`
-- ✅ 17 nouvelles API `/api/v1/admin/branding/*`
-- ✅ Test complet: 100% backend (35/35), 100% frontend
-- ✅ Bug fix: MongoDB ObjectId serialization dans `add_custom_logo`
+**API Endpoints:**
+- `GET /api/v1/analytics/dashboard` - Hunting analytics
+- `GET /api/v1/tracking-engine/` - Module info
+- `POST /api/v1/tracking-engine/events` - Track event
+- `POST /api/v1/tracking-engine/funnels` - Create funnel
+- `GET /api/v1/tracking-engine/funnels/{id}/analyze` - Funnel analysis
+- `GET /api/v1/tracking-engine/heatmap` - Heatmap data
+- `GET /api/v1/tracking-engine/engagement` - Engagement metrics
 
-#### Phase 7 — Analytics (À faire)
-- [ ] Advanced Analytics Dashboard
-- [ ] Reporting
-
-#### ✅ Documentation SEO (COMPLÉTÉ - 17 Fév 2026)
-- ✅ Architecture complète du plan SEO
-- ✅ Plan de contenu détaillé (9 piliers, 45 satellites)
-- ✅ Maillage interne (règles, matrice, ancres)
-- ✅ KPIs et métriques (+300% objectif)
-- ✅ Plan 30/90 jours avec calendrier éditorial
-- ✅ Guide JSON-LD complet
-- ✅ Document: `/app/docs/SEO_PLAN_BIONIC_V5.md`
-
-#### Post-Phase 6 — Marketing Controls (À faire)
-- [ ] `admin_marketing_controls/` - Panneau ON/OFF global
-- [ ] Promotions par segment
-- [ ] Activation/désactivation par type d'entité
-
-### P4 — IA + OPTIMISATION (À faire)
-- [ ] Historical Learning Engine
-- [ ] Weather Optimization Engine
-- [ ] Scoring Optimization Engine
-- [ ] Strategy Optimization Engine
-- [ ] Marketing Automation Engine
-- [ ] Tracking Optimization Engine
-
-### P5 — FINALISATION (À faire)
-- [ ] Tests E2E complets
-- [ ] Documentation API
-- [ ] Release Candidate
-- [ ] Go Live
-
-### Nice to Have
-- [ ] `empirical_knowledge_layer`
-- [ ] Résoudre échecs anciens (iteration_1.json)
-- [ ] Décommissionnement `/admin` legacy
+**Test Results:** 100% success (iteration_10.json)
 
 ---
 
-## API Endpoints - Admin Premium
+## Upcoming Tasks (Roadmap)
 
-| Endpoint | Description |
-|----------|-------------|
-| `/api/v1/admin/` | Info module admin |
-| `/api/v1/admin/dashboard` | KPIs globaux |
-| `/api/v1/admin/ecommerce/*` | E-Commerce (Phase 1) |
-| `/api/v1/admin/content/*` | Contenu & SEO (Phase 2) |
-| `/api/v1/admin/backup/*` | Backups (Phase 2) |
-| `/api/v1/admin/maintenance/*` | Infrastructure (Phase 3) |
-| `/api/v1/admin/contacts/*` | Contacts/Directory (Phase 3) |
-| `/api/v1/admin/payments/*` | Gestion paiements Stripe |
-| `/api/v1/admin/freemium/*` | Gestion quotas/tiers |
-| `/api/v1/admin/upsell/*` | Gestion campagnes |
-| `/api/v1/admin/onboarding/*` | Gestion parcours |
-| `/api/v1/admin/tutorials/*` | Gestion tutoriels |
-| `/api/v1/admin/rules/*` | Gestion règles Plan Maître |
-| `/api/v1/admin/strategy/*` | Gestion stratégies |
-| `/api/v1/admin/users/*` | Gestion utilisateurs |
-| `/api/v1/admin/logs/*` | Logs système |
-| `/api/v1/admin/settings/*` | Paramètres & toggles |
+### 🟡 P1 — Phases 8-9: Frontend Modularisation
+- Core component extraction
+- Business logic separation
+- State management optimization
+
+### 🟡 P2 — Phases 10-13: User Tunnel
+- Onboarding flow
+- Tutorial system
+- Freemium gates
+- Payment integration
+
+### 🔵 Future — Phase 14: Marketing Automation Engine
+- Automated campaigns
+- User segmentation
+- A/B testing
+
+### 🔵 Future — Phases 17-20: AI Engines (6 modules)
+- Weather AI
+- Scoring AI
+- Strategy AI
+- Prediction AI
+- Recommendation AI
+- Analysis AI
+
+### 🔵 Future — Phases 21-24: Finalization
+- E2E Testing
+- API Documentation
+- Release Candidate
+- GO LIVE
+
+### 🔵 Backlog — Affiliation Platform
+- Affiliate tracking
+- Commission management
+- Partner dashboard
+- Revenue engine integration
 
 ---
 
-## URLs
+## Technical Stack
+- **Backend:** FastAPI + Python 3.11
+- **Frontend:** React 18 + Tailwind CSS + Shadcn/UI
+- **Database:** MongoDB (via Motor async)
+- **LLM:** OpenAI/Claude/Gemini via `emergentintegrations`
+- **Maps:** Leaflet + Stadia Maps + WMS layers
+- **Payments:** Stripe
 
-- **Preview**: https://huntiq-analytics.preview.emergentagent.com
-- **Pricing**: https://huntiq-analytics.preview.emergentagent.com/pricing
-- **Admin Premium**: https://huntiq-analytics.preview.emergentagent.com/admin-premium
-- **API Status**: https://huntiq-analytics.preview.emergentagent.com/api/modules/status
+---
+
+## Key Integrations
+- MongoDB (MONGO_URL env)
+- Stripe (payment processing)
+- Stadia Maps (REACT_APP_STADIA_MAPS_API_KEY)
+- emergentintegrations (EMERGENT_LLM_KEY)
+
+---
+
+## Files of Reference
+- `/app/backend/modules/analytics_engine/v1/` - Analytics Engine
+- `/app/backend/modules/tracking_engine/v1/` - Tracking Engine
+- `/app/frontend/src/ui/administration/admin_analytics/` - Admin Analytics UI
+- `/app/frontend/src/pages/AdminPremiumPage.jsx` - Admin Premium Page
+- `/app/test_reports/iteration_10.json` - Latest test report
