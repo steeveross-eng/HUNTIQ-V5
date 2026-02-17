@@ -24,7 +24,7 @@ import {
   Zap, Target, BookOpen, Settings, BarChart3, Users, 
   FileText, Shield, ShoppingCart, FolderTree, Archive,
   Wrench, Contact, Trees, Network, Mail, Sparkles,
-  Handshake, Palette, Brain, Search
+  Handshake, Palette, Brain, Search, ToggleLeft
 } from 'lucide-react';
 
 // Import all admin modules
@@ -52,13 +52,15 @@ import {
   AdminPartners,
   AdminBranding,
   AdminKnowledge,
-  AdminSEO
+  AdminSEO,
+  AdminMarketingControls
 } from '@/ui/administration';
 
 const navItems = [
   { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
   { id: 'knowledge', label: 'Knowledge', icon: Brain },
   { id: 'seo', label: 'SEO Engine', icon: Search },
+  { id: 'marketing-controls', label: 'Marketing ON/OFF', icon: ToggleLeft },
   { id: 'ecommerce', label: 'E-Commerce', icon: ShoppingCart },
   { id: 'hotspots', label: 'Terres/Hotspots', icon: Trees },
   { id: 'networking', label: 'Réseautage', icon: Network },
@@ -91,6 +93,7 @@ const AdminPremiumPage = () => {
       case 'dashboard': return <AdminDashboard onNavigate={setActiveSection} />;
       case 'knowledge': return <AdminKnowledge />;
       case 'seo': return <AdminSEO />;
+      case 'marketing-controls': return <AdminMarketingControls />;
       case 'ecommerce': return <AdminEcommerce />;
       case 'hotspots': return <AdminHotspots />;
       case 'networking': return <AdminNetworking />;
