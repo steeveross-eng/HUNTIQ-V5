@@ -12,6 +12,7 @@
  * Phase 4: Hotspots & Networking migrés
  * Phase 5: Email & Marketing migrés
  * Phase 6: Partners & Branding migrés
+ * BIONIC Knowledge Layer: Espèces, règles, modèles saisonniers
  */
 
 import React, { useState } from 'react';
@@ -23,7 +24,7 @@ import {
   Zap, Target, BookOpen, Settings, BarChart3, Users, 
   FileText, Shield, ShoppingCart, FolderTree, Archive,
   Wrench, Contact, Trees, Network, Mail, Sparkles,
-  Handshake, Palette
+  Handshake, Palette, Brain
 } from 'lucide-react';
 
 // Import all admin modules
@@ -49,11 +50,13 @@ import {
   AdminEmail,
   AdminMarketing,
   AdminPartners,
-  AdminBranding
+  AdminBranding,
+  AdminKnowledge
 } from '@/ui/administration';
 
 const navItems = [
   { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
+  { id: 'knowledge', label: 'Knowledge', icon: Brain },
   { id: 'ecommerce', label: 'E-Commerce', icon: ShoppingCart },
   { id: 'hotspots', label: 'Terres/Hotspots', icon: Trees },
   { id: 'networking', label: 'Réseautage', icon: Network },
