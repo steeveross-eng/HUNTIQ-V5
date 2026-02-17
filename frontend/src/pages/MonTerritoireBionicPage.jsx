@@ -1346,6 +1346,7 @@ const MonTerritoireBionicPage = () => {
               </div>
             </Tabs>
           </div>
+        </div>
       </div>
       
       {/* Contenu des onglets - Full viewport height */}
