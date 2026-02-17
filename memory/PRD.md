@@ -172,6 +172,7 @@ Architecture: 100% modulaire "LEGO", sans perte, sans dérive.
 | Migration Phase 2 (iteration_4) | 100% (20/20) | 100% |
 | Migration Phase 3 (iteration_5) | 100% (30/30) | 100% |
 | Migration Phase 4 (iteration_6) | 100% (23/23) | 100% |
+| Migration Phase 5 (iteration_7) | 100% (29/29) | 100% |
 
 ---
 
@@ -188,7 +189,17 @@ Architecture: 100% modulaire "LEGO", sans perte, sans dérive.
 - ✅ 17 nouvelles API `/api/v1/admin/networking/*`
 - ✅ Test complet: 100% backend (23/23), 100% frontend
 
-#### Phase 5 — Communication (À faire)
+#### ✅ Phase 5 — Communication (COMPLÉTÉ - 17 Fév 2026)
+- ✅ `email_admin.py` - Dashboard, Templates, Variables, Logs, Test sending, Config
+- ✅ `marketing_admin.py` - Dashboard, Campaigns, Posts, AI Generation, Segments, Automations
+- ✅ Frontend `admin_email/` module (5 onglets: Dashboard, Templates, Variables, Historique, Configuration)
+- ✅ Frontend `admin_marketing/` module (6 onglets: Dashboard, Générer, Campagnes, Programmées, Segments, Automations)
+- ✅ 12 nouvelles API `/api/v1/admin/email/*`
+- ✅ 17 nouvelles API `/api/v1/admin/marketing/*`
+- ✅ Test complet: 100% backend (29/29), 100% frontend
+- **MOCKED**: Envoi d'email (simulé), Génération IA (templates)
+
+#### Phase 6 — Partenaires & Branding (À faire)
 - [ ] Email Templates
 - [ ] Marketing Campaigns
 
