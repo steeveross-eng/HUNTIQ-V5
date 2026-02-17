@@ -503,3 +503,142 @@ async def get_ecommerce_alerts(
 ):
     """Liste des alertes admin"""
     return await EcommerceAdminService.get_alerts(get_db(), limit, unread_only)
+
+
+# ==============================================
+# CONTENT ADMIN (Phase 2 Migration)
+# ==============================================
+
+@router.get("/content/categories")
+async def get_content_categories():
+    """Liste toutes les catégories"""
+    return await ContentAdminService.get_categories(get_db())
+
+@router.post("/content/categories")
+async def create_content_category(category_data: dict = Body(...)):
+    """Créer une nouvelle catégorie"""
+    return await ContentAdminService.create_category(get_db(), category_data)
+
+@router.put("/content/categories/{category_id}")
+async def update_content_category(category_id: str, updates: dict = Body(...)):
+    """Mettre à jour une catégorie"""
+    return await ContentAdminService.update_category(get_db(), category_id, updates)
+
+@router.delete("/content/categories/{category_id}")
+async def delete_content_category(category_id: str):
+    """Supprimer une catégorie"""
+    return await ContentAdminService.delete_category(get_db(), category_id)
+
+@router.post("/content/categories/init-defaults")
+async def init_default_categories():
+    """Initialiser les catégories par défaut"""
+    return await ContentAdminService.init_default_categories(get_db())
+
+@router.get("/content/depot")
+async def get_content_depot_items(
+    status: Optional[str] = None,
+    limit: int = Query(50, le=500)
+):
+    """Liste les items du Content Depot"""
+    return await ContentAdminService.get_content_items(get_db(), status, limit)
+
+@router.post("/content/depot")
+async def create_content_depot_item(item_data: dict = Body(...)):
+    """Créer un nouvel item de contenu"""
+    return await ContentAdminService.create_content_item(get_db(), item_data)
+
+@router.put("/content/depot/{item_id}")
+async def update_content_depot_item(item_id: str, updates: dict = Body(...)):
+    """Mettre à jour un item de contenu"""
+    return await ContentAdminService.update_content_item(get_db(), item_id, updates)
+
+@router.put("/content/depot/{item_id}/status")
+async def update_content_depot_status(item_id: str, status: str):
+    """Mettre à jour le statut d'un item"""
+    return await ContentAdminService.update_content_status(get_db(), item_id, status)
+
+@router.delete("/content/depot/{item_id}")
+async def delete_content_depot_item(item_id: str):
+    """Supprimer un item de contenu"""
+    return await ContentAdminService.delete_content_item(get_db(), item_id)
+
+@router.get("/content/seo-analytics")
+async def get_seo_analytics():
+    """Statistiques SEO globales"""
+    return await ContentAdminService.get_seo_analytics(get_db())
+
+# ==============================================
+# BACKUP ADMIN (Phase 2 Migration)
+# ==============================================
+
+@router.get("/backup/stats")
+async def get_backup_stats():
+    """Statistiques globales des backups"""
+    return await BackupAdminService.get_backup_stats(get_db())
+
+@router.get("/backup/code/files")
+async def get_backup_code_files(
+    search: Optional[str] = None,
+    limit: int = Query(50, le=500)
+):
+    """Liste les fichiers de code suivis"""
+    return await BackupAdminService.get_code_files(get_db(), search, limit)
+
+@router.get("/backup/code/files/{file_path:path}/versions")
+async def get_backup_file_versions(file_path: str, limit: int = Query(20, le=100)):
+    """Récupérer les versions d'un fichier"""
+    return await BackupAdminService.get_file_versions(get_db(), file_path, limit)
+
+@router.post("/backup/code/files")
+async def create_code_backup(
+    file_path: str,
+    content: str = Body(...),
+    commit_message: str = ""
+):
+    """Créer une nouvelle version d'un fichier"""
+    return await BackupAdminService.create_code_backup(get_db(), file_path, content, commit_message)
+
+@router.get("/backup/code/restore/{file_path:path}/{version}")
+async def restore_code_version(file_path: str, version: int):
+    """Restaurer une version spécifique"""
+    return await BackupAdminService.restore_version(get_db(), file_path, version)
+
+@router.get("/backup/prompts")
+async def get_backup_prompt_versions(
+    prompt_type: Optional[str] = None,
+    limit: int = Query(50, le=500)
+):
+    """Liste les versions de prompts"""
+    return await BackupAdminService.get_prompt_versions(get_db(), prompt_type, limit)
+
+@router.get("/backup/prompts/{version_id}")
+async def get_backup_prompt_version_detail(version_id: str):
+    """Détail d'une version de prompt"""
+    return await BackupAdminService.get_prompt_version_detail(get_db(), version_id)
+
+@router.post("/backup/prompts")
+async def save_prompt_version(
+    prompt_type: str,
+    content: str = Body(...),
+    metadata: dict = Body(default={})
+):
+    """Sauvegarder une nouvelle version de prompt"""
+    return await BackupAdminService.save_prompt_version(get_db(), prompt_type, content, metadata)
+
+@router.get("/backup/database")
+async def get_database_backups(limit: int = Query(20, le=100)):
+    """Liste les backups de base de données"""
+    return await BackupAdminService.get_db_backups(get_db(), limit)
+
+@router.post("/backup/database")
+async def create_database_backup(
+    backup_type: str = "manual",
+    description: str = ""
+):
+    """Créer un backup de base de données"""
+    return await BackupAdminService.create_db_backup(get_db(), backup_type, description)
+
+@router.delete("/backup/database/{backup_id}")
+async def delete_database_backup(backup_id: str):
+    """Supprimer un backup"""
+    return await BackupAdminService.delete_db_backup(get_db(), backup_id)
