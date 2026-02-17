@@ -534,7 +534,7 @@ class TestSEOGeneration:
         
         meta = data["meta_tags"]
         assert "title" in meta
-        assert "description" in meta
+        assert "meta_description" in meta
         
         print(f"✓ Meta tags generated")
     
