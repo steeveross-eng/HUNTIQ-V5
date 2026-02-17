@@ -1003,6 +1003,8 @@ function App() {
               <Route path="/payment/cancel" element={<PaymentCancelPage />} />
               {/* V5-ULTIME: Administration Premium */}
               <Route path="/admin-premium" element={<AdminPremiumPage />} />
+              {/* Marketing Calendar V2 */}
+              <Route path="/marketing-calendar" element={<MarketingCalendarPage />} />
             </Routes>
             <Footer />
             <ScrollNavigator />
