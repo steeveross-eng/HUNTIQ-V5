@@ -203,24 +203,31 @@ Architecture: 100% modulaire "LEGO", sans perte, sans dérive.
 - ✅ Test complet: 100% backend (29/29), 100% frontend
 - **MOCKED**: Envoi d'email (simulé), Génération IA (templates)
 
-#### Phase 6 — Partenaires & Branding (À faire)
-- [ ] Email Templates
-- [ ] Marketing Campaigns
-
-#### Phase 6 — Partenaires & Branding (À faire)
-- [ ] Partners Management
-- [ ] Branding Assets
+#### ✅ Phase 6 — Partenaires & Branding (COMPLÉTÉ - 17 Fév 2026)
+- ✅ `partners_admin.py` - Dashboard, Types (11 catégories), Requests CRUD, Partners CRUD, Email settings
+- ✅ `branding_admin.py` - Dashboard, Config FR/EN, Logos, Colors (7), Document types (7), History
+- ✅ Frontend `admin_partners/` module (4 onglets: Dashboard, Demandes, Partenaires, Paramètres)
+- ✅ Frontend `admin_branding/` module (5 onglets: Dashboard, Logos, Couleurs, Documents, Historique)
+- ✅ 18 nouvelles API `/api/v1/admin/partners/*`
+- ✅ 17 nouvelles API `/api/v1/admin/branding/*`
+- ✅ Test complet: 100% backend (35/35), 100% frontend
+- ✅ Bug fix: MongoDB ObjectId serialization dans `add_custom_logo`
 
 #### Phase 7 — Analytics (À faire)
 - [ ] Advanced Analytics Dashboard
 - [ ] Reporting
+
+#### Post-Phase 6 — Marketing Controls (À faire)
+- [ ] `admin_marketing_controls/` - Panneau ON/OFF global
+- [ ] Promotions par segment
+- [ ] Activation/désactivation par type d'entité
 
 ### P4 — IA + OPTIMISATION (À faire)
 - [ ] Historical Learning Engine
 - [ ] Weather Optimization Engine
 - [ ] Scoring Optimization Engine
 - [ ] Strategy Optimization Engine
-- [ ] Marketing Engine
+- [ ] Marketing Automation Engine
 - [ ] Tracking Optimization Engine
 
 ### P5 — FINALISATION (À faire)
