@@ -137,6 +137,11 @@ from modules.onboarding_engine.router import router as onboarding_router
 from modules.tutorial_engine.router import router as tutorial_router
 
 # ==============================================
+# ADMINISTRATION PREMIUM ENGINE
+# ==============================================
+from modules.admin_engine.router import router as admin_premium_router
+
+# ==============================================
 # V5-ULTIME-FUSION - MODULES IMPORTÉS (V2, V3, BASE)
 # ==============================================
 from modules.backup_cloud_engine.router import router as backup_cloud_router
