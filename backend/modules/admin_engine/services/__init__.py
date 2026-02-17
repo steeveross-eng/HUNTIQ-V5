@@ -17,6 +17,9 @@ from .logs_admin import LogsAdminService
 from .settings_admin import SettingsAdminService
 # Phase 1 Migration - E-Commerce
 from .ecommerce_admin import EcommerceAdminService
+# Phase 2 Migration - Content & Backup
+from .content_admin import ContentAdminService
+from .backup_admin import BackupAdminService
 
 __all__ = [
     'PaymentsAdminService',
@@ -29,5 +32,7 @@ __all__ = [
     'UsersAdminService',
     'LogsAdminService',
     'SettingsAdminService',
-    'EcommerceAdminService'
+    'EcommerceAdminService',
+    'ContentAdminService',
+    'BackupAdminService'
 ]
