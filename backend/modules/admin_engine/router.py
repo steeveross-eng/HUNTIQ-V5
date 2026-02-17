@@ -44,6 +44,9 @@ from .services.ecommerce_admin import EcommerceAdminService
 # Phase 2 Migration - Content & Backup
 from .services.content_admin import ContentAdminService
 from .services.backup_admin import BackupAdminService
+# Phase 3 Migration - Infrastructure + Contacts
+from .services.maintenance_admin import MaintenanceAdminService
+from .services.contacts_admin import ContactsAdminService
 
 logger = logging.getLogger(__name__)
 
