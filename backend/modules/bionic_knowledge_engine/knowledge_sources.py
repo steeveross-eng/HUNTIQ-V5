@@ -33,7 +33,24 @@ class KnowledgeSourcesManager:
         "ai_generated": 0.60
     }
     
-    # Sources officielles de référence (Québec)
+    # Sources officielles de référence - chargées depuis JSON
+    @staticmethod
+    def _load_sources_from_json():
+        """Charger les sources depuis le fichier JSON"""
+        try:
+            base_path = os.path.dirname(os.path.abspath(__file__))
+            sources_path = os.path.join(base_path, "data", "sources_registry.json")
+            
+            if os.path.exists(sources_path):
+                with open(sources_path, "r", encoding="utf-8") as f:
+                    data = json.load(f)
+                    return {s["id"]: s for s in data.get("sources", [])}
+            return {}
+        except Exception as e:
+            logger.error(f"Error loading sources JSON: {e}")
+            return {}
+    
+    # Sources officielles de référence (Québec) - fallback
     OFFICIAL_SOURCES = {
         "mffp_quebec": {
             "id": "mffp_quebec",
@@ -87,8 +104,11 @@ class KnowledgeSourcesManager:
                 query, {"_id": 0}
             ).limit(limit).to_list(limit)
             
-            # Ajouter sources officielles si pas de filtre
-            all_sources = list(KnowledgeSourcesManager.OFFICIAL_SOURCES.values()) + sources
+            # Charger sources depuis JSON (prioritaire) ou fallback sur OFFICIAL_SOURCES
+            json_sources = KnowledgeSourcesManager._load_sources_from_json()
+            official_sources = list(json_sources.values()) if json_sources else list(KnowledgeSourcesManager.OFFICIAL_SOURCES.values())
+            
+            all_sources = official_sources + sources
             
             return {
                 "success": True,
