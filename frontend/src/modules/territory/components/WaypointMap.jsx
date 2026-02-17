@@ -20,6 +20,7 @@ import {
 } from 'lucide-react';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
+import { MapInteractionLayer } from '../../map_interaction';
 
 // Fix Leaflet default icon issue
 delete L.Icon.Default.prototype._getIconUrl;
