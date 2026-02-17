@@ -1111,17 +1111,16 @@ const MonTerritoireBionicPage = () => {
       <div className="flex-shrink-0 bg-gradient-to-r from-black via-gray-900 to-black border-b border-[#f5a623]/30">
         <div className="px-4 py-2">
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <Button variant="ghost" size="sm" onClick={() => navigate('/')} className="text-gray-400 hover:text-white">
-                <ArrowLeft className="h-4 w-4 mr-2" />
-                Retour
+            <div className="flex items-center gap-3">
+              <Button variant="ghost" size="sm" onClick={() => navigate('/')} className="text-gray-400 hover:text-white h-8 px-2">
+                <ArrowLeft className="h-4 w-4" />
               </Button>
-              <div className="h-6 w-px bg-gray-700" />
-              <div className="flex items-center gap-3">
-                <Brain className="h-6 w-6 text-[#f5a623]" />
+              <div className="h-5 w-px bg-gray-700" />
+              <div className="flex items-center gap-2">
+                <Brain className="h-5 w-5 text-[#f5a623]" />
                 <div>
-                  <h1 className="text-lg font-bold text-white">Mon Territoire BIONIC™</h1>
-                  <p className="text-[10px] text-gray-400">Analyse • Waypoints • Lieux</p>
+                  <h1 className="text-sm font-bold text-white leading-tight">Mon Territoire BIONIC™</h1>
+                  <p className="text-[10px] text-gray-400 leading-tight">Analyse • Waypoints • Lieux</p>
                 </div>
               </div>
             </div>
