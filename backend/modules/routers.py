@@ -613,6 +613,16 @@ CORE_ROUTERS: List[Tuple[APIRouter, dict]] = [
         "phase": "KNOWLEDGE-V5",
         "description": "BIONIC Knowledge Layer - Espèces, règles comportementales, modèles saisonniers, validation"
     }),
+    
+    # ==========================================
+    # BIONIC SEO ENGINE (V5 LEGO)
+    # ==========================================
+    (bionic_seo_router, {
+        "name": "seo_engine",
+        "version": "1.0.0",
+        "phase": "SEO-V5",
+        "description": "BIONIC SEO Engine V5 - Clusters, pages, JSON-LD, analytics, automation, génération +300%"
+    }),
 ]
 
 
