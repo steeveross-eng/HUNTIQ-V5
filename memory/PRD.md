@@ -47,14 +47,30 @@ Architecture: 100% modulaire "LEGO", sans perte, sans dérive.
 - ✅ Pages success/cancel payment
 
 ### ✅ ADMINISTRATION PREMIUM (COMPLÉTÉ - 17 Fév 2026)
-- ✅ `admin_engine` backend avec 10 services modulaires
-- ✅ Frontend `/admin-premium` avec 11 sous-modules UI
+- ✅ `admin_engine` backend avec 13 services modulaires
+- ✅ Frontend `/admin-premium` avec 14 sous-modules UI
 - ✅ Dashboard KPIs (Utilisateurs, Revenus, Onboarding, CTR Upsell)
 - ✅ Gestion complète: Paiements, Freemium, Upsell, Onboarding, Tutoriels
 - ✅ Gestion avancée: Rules, Strategy, Users, Logs, Settings
 - ✅ Thème dark premium avec accents or/bronze
 - ✅ Feature toggles (10 toggles système)
 - ✅ Statut clés API (masquées)
+
+### ✅ MIGRATION /admin → /admin-premium
+
+#### ✅ Phase 1 — E-Commerce (COMPLÉTÉ - 17 Fév 2026)
+- ✅ `ecommerce_admin.py` - Dashboard, Ventes, Produits, Fournisseurs, Clients, Commissions, Performance
+- ✅ Frontend `admin_ecommerce/` module
+- ✅ 14 nouvelles API `/api/v1/admin/ecommerce/*`
+
+#### ✅ Phase 2 — Contenu & Backup (COMPLÉTÉ - 17 Fév 2026)
+- ✅ `content_admin.py` - Categories, Content Depot (SEO), Analytics SEO
+- ✅ `backup_admin.py` - Statistiques, Code versioning, Prompts, Database backups
+- ✅ Frontend `admin_content/` module (3 onglets: Catégories, Content Depot, SEO Analytics)
+- ✅ Frontend `admin_backup/` module (4 onglets: Vue d'ensemble, Code, Prompts, Base de données)
+- ✅ 12 nouvelles API `/api/v1/admin/content/*`
+- ✅ 10 nouvelles API `/api/v1/admin/backup/*`
+- ✅ Test complet: 100% backend (20/20), 100% frontend
 
 ---
 
@@ -121,10 +137,33 @@ Architecture: 100% modulaire "LEGO", sans perte, sans dérive.
 |--------------|---------|----------|
 | P3 Monétisation (iteration_2) | 100% (18/18) | 100% |
 | Admin Premium (iteration_3) | 100% (13/13) | 100% |
+| Migration Phase 2 (iteration_4) | 100% (20/20) | 100% |
 
 ---
 
 ## Prioritized Backlog
+
+### Migration /admin → /admin-premium (En cours)
+
+#### Phase 3 — Infrastructure (À faire)
+- [ ] Access Control (gestion permissions)
+- [ ] Maintenance Control (mode maintenance)
+
+#### Phase 4 — Chasse (À faire)
+- [ ] Hotspots Management
+- [ ] Networking / Social
+
+#### Phase 5 — Communication (À faire)
+- [ ] Email Templates
+- [ ] Marketing Campaigns
+
+#### Phase 6 — Partenaires & Branding (À faire)
+- [ ] Partners Management
+- [ ] Branding Assets
+
+#### Phase 7 — Analytics (À faire)
+- [ ] Advanced Analytics Dashboard
+- [ ] Reporting
 
 ### P4 — IA + OPTIMISATION (À faire)
 - [ ] Historical Learning Engine
@@ -143,7 +182,7 @@ Architecture: 100% modulaire "LEGO", sans perte, sans dérive.
 ### Nice to Have
 - [ ] `empirical_knowledge_layer`
 - [ ] Résoudre échecs anciens (iteration_1.json)
-- [ ] Migration complète modules `/modules` → `/ui`
+- [ ] Décommissionnement `/admin` legacy
 
 ---
 
@@ -153,6 +192,9 @@ Architecture: 100% modulaire "LEGO", sans perte, sans dérive.
 |----------|-------------|
 | `/api/v1/admin/` | Info module admin |
 | `/api/v1/admin/dashboard` | KPIs globaux |
+| `/api/v1/admin/ecommerce/*` | E-Commerce (Phase 1) |
+| `/api/v1/admin/content/*` | Contenu & SEO (Phase 2) |
+| `/api/v1/admin/backup/*` | Backups (Phase 2) |
 | `/api/v1/admin/payments/*` | Gestion paiements Stripe |
 | `/api/v1/admin/freemium/*` | Gestion quotas/tiers |
 | `/api/v1/admin/upsell/*` | Gestion campagnes |
