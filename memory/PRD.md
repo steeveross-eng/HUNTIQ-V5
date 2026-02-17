@@ -7,6 +7,7 @@
 | 2025-12-10 | 1.1.0 | SEO Engine V5 Integration |
 | 2025-12-15 | 1.2.0 | Marketing Controls Module |
 | 2026-02-17 | 1.3.0 | **Phase 7 Analytics Complete** |
+| 2026-02-17 | 1.4.0 | **COMMANDE MAÎTRE - Optimisation Ergonomique Full Viewport** |
 
 ---
 
