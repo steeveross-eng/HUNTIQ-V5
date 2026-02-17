@@ -1,18 +1,20 @@
 /**
  * DashboardPage - Core Dashboard wrapper page
+ * BIONIC™ Global Container Applied
  */
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '../components/ui/button';
 import { ArrowLeft } from 'lucide-react';
 import { CoreDashboard } from '../modules/dashboard';
+import { GlobalContainer } from '../core/layouts';
 
 const DashboardPage = () => {
   const navigate = useNavigate();
 
   return (
-    <main className="min-h-screen bg-background pt-20 pb-16">
-      <div className="max-w-7xl mx-auto px-4">
+    <main className="min-h-screen bg-background">
+      <GlobalContainer className="pb-16">
         {/* Back Button */}
         <Button 
           variant="ghost" 
@@ -30,7 +32,7 @@ const DashboardPage = () => {
           species="deer"
           season="rut"
         />
-      </div>
+      </GlobalContainer>
     </main>
   );
 };

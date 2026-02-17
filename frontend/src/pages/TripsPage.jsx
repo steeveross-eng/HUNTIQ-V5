@@ -20,6 +20,7 @@ import CreateTripModal from '@/components/trips/CreateTripModal';
 import ActiveTripPanel from '@/components/trips/ActiveTripPanel';
 import TripStatsDashboard from '@/components/trips/TripStatsDashboard';
 import TripHistory from '@/components/trips/TripHistory';
+import { GlobalContainer } from '@/core/layouts';
 
 const TripsPage = () => {
   const { t } = useLanguage();
@@ -94,8 +95,8 @@ const TripsPage = () => {
   }
 
   return (
-    <div className="min-h-screen bg-slate-900 pt-20 pb-12 px-4" data-testid="trips-page">
-      <div className="max-w-7xl mx-auto">
+    <div className="min-h-screen bg-slate-900" data-testid="trips-page">
+      <GlobalContainer className="pb-12">
         {/* Header */}
         <div className="flex items-center justify-between mb-6">
           <div>
@@ -281,7 +282,7 @@ const TripsPage = () => {
           onClose={() => setShowCreateModal(false)}
           onTripCreated={handleTripCreated}
         />
-      </div>
+      </GlobalContainer>
     </div>
   );
 };

@@ -1,18 +1,20 @@
 /**
  * PlanMaitrePage - Plan Maître Dashboard wrapper page
+ * BIONIC™ Global Container Applied
  */
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '../components/ui/button';
 import { ArrowLeft } from 'lucide-react';
 import { PlanMaitreDashboard } from '../modules/planmaitre';
+import { GlobalContainer } from '../core/layouts';
 
 const PlanMaitrePage = () => {
   const navigate = useNavigate();
 
   return (
-    <main className="min-h-screen bg-background pt-20 pb-16">
-      <div className="max-w-7xl mx-auto px-4">
+    <main className="min-h-screen bg-background">
+      <GlobalContainer className="pb-16">
         {/* Back Button */}
         <Button 
           variant="ghost" 
@@ -28,7 +30,7 @@ const PlanMaitrePage = () => {
         <PlanMaitreDashboard 
           coordinates={{ lat: 46.8139, lng: -71.2082 }}
         />
-      </div>
+      </GlobalContainer>
     </main>
   );
 };
