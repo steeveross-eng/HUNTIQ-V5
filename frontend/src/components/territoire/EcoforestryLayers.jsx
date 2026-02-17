@@ -27,7 +27,7 @@ import React, { useState, useCallback, useMemo, useEffect, useRef } from 'react'
 import { TileLayer, WMSTileLayer, LayersControl, useMap } from 'react-leaflet';
 import L from 'leaflet';
 import { 
-  Layers, TreePine, Mountain, Droplets, Eye, EyeOff, 
+  Layers, TreePine, Mountain, Droplets, Eye, EyeOff,
   MapPin, Info, Settings, ChevronDown, ChevronUp,
   Leaf, Trees, Thermometer, Ruler, AlertTriangle, 
   RefreshCw, Wifi, WifiOff, CheckCircle2, SatelliteDish
