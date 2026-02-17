@@ -168,7 +168,7 @@ Architecture: 100% modulaire "LEGO", sans perte, sans dérive.
 
 ## URLs
 
-- **Preview**: https://apex-huntiq.preview.emergentagent.com
-- **Pricing**: https://apex-huntiq.preview.emergentagent.com/pricing
-- **Admin Premium**: https://apex-huntiq.preview.emergentagent.com/admin-premium
-- **API Status**: https://apex-huntiq.preview.emergentagent.com/api/modules/status
+- **Preview**: https://huntiq-premium.preview.emergentagent.com
+- **Pricing**: https://huntiq-premium.preview.emergentagent.com/pricing
+- **Admin Premium**: https://huntiq-premium.preview.emergentagent.com/admin-premium
+- **API Status**: https://huntiq-premium.preview.emergentagent.com/api/modules/status
