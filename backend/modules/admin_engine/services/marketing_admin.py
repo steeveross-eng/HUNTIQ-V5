@@ -196,7 +196,8 @@ class MarketingAdminService:
             }
             
             await db.marketing_campaigns.insert_one(campaign)
-            del campaign["_id"] if "_id" in campaign else None
+            if "_id" in campaign:
+                del campaign["_id"]
             
             return {
                 "success": True,
