@@ -111,6 +111,46 @@ Application HUNTIQ-V5 selon une architecture "LEGO" modulaire très stricte. Le 
 - `SectionContainer` (espacement vertical)
 - `AdminContainer` (full-width)
 - `ContentContainer` (960px)
+- `MapViewportContainer` (full-viewport pour cartes) ✅ **NOUVEAU**
+
+### ✅ COMMANDE MAÎTRE — Optimisation Ergonomique Full Viewport (2026-02-17)
+
+**Objectif :** Corriger les problèmes d'affichage où la carte n'est pas centrée, où certains éléments débordent de la fenêtre, et créer une ergonomie premium sans scroll.
+
+**Composants créés/modifiés :**
+- `MapViewportContainer.jsx` — Nouveau container full-viewport avec panneaux collapsibles
+- `FloatingPanel.jsx` — Panneau flottant positionné librement
+- `CoordinatesOverlay.jsx` — Affichage des coordonnées GPS en overlay
+
+**Pages optimisées (layout full-viewport) :**
+1. `/map` — Carte Interactive ✅ (overflow: 0px)
+2. `/territoire` — Mon Territoire BIONIC™ ✅ (overflow: 0px)
+3. `/forecast` — Prévisions WQS ✅ (overflow: 0px)
+4. `/analyze` — Analyseur BIONIC™ ✅ (scroll pour contenu abondant)
+5. `/admin-geo` — Admin Géospatial ✅
+
+**Modifications ergonomiques :**
+- `fixed inset-0` avec `paddingTop: 64px` pour le header
+- `flex flex-col` avec `flex-1 overflow-hidden` pour le contenu
+- Headers compacts (tailles réduites, espace optimisé)
+- Panneaux latéraux collapsibles (`flex-shrink-0 overflow-hidden`)
+- Footer masqué sur pages cartographiques
+
+**ScrollNavigator adaptatif :**
+- Auto-masquage sur les routes full-viewport
+- Liste des routes : `/map`, `/territoire`, `/forecast`, `/analyze`, `/admin-geo`, `/admin-premium`
+
+**Fichiers modifiés :**
+- `/app/frontend/src/core/layouts/MapViewportContainer.jsx` (créé)
+- `/app/frontend/src/core/layouts/index.js` (exports ajoutés)
+- `/app/frontend/src/pages/MapPage.jsx` (refactoré)
+- `/app/frontend/src/pages/MonTerritoireBionicPage.jsx` (refactoré)
+- `/app/frontend/src/pages/ForecastPage.jsx` (refactoré)
+- `/app/frontend/src/pages/AnalyticsPage.jsx` (refactoré)
+- `/app/frontend/src/pages/AdminGeoPage.jsx` (refactoré)
+- `/app/frontend/src/components/ScrollNavigator.jsx` (adaptatif)
+- `/app/frontend/src/modules/territory/components/WaypointMap.jsx` (hauteur flexible)
+- `/app/frontend/src/App.js` (Footer conditionnel)
 
 ### ✅ Phases 8-9 — Modularisation Frontend (2026-02-17)
 
