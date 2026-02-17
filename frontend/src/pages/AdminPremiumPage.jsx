@@ -5,6 +5,9 @@
  * Page principale d'administration avec navigation intégrée.
  * Thème: Dark Premium avec accents or/bronze.
  * Accès: Admin uniquement.
+ * 
+ * Phase 1: E-Commerce migré
+ * Phase 2: Content & Backup migrés
  */
 
 import React, { useState } from 'react';
@@ -14,7 +17,7 @@ import { Button } from '@/components/ui/button';
 import {
   Crown, ArrowLeft, LayoutDashboard, CreditCard, Layers, 
   Zap, Target, BookOpen, Settings, BarChart3, Users, 
-  FileText, Shield, ShoppingCart
+  FileText, Shield, ShoppingCart, FolderTree, Archive
 } from 'lucide-react';
 
 // Import all admin modules
@@ -30,12 +33,16 @@ import {
   AdminUsers,
   AdminLogs,
   AdminSettings,
-  AdminEcommerce
+  AdminEcommerce,
+  AdminContent,
+  AdminBackup
 } from '@/ui/administration';
 
 const navItems = [
   { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
   { id: 'ecommerce', label: 'E-Commerce', icon: ShoppingCart },
+  { id: 'content', label: 'Contenu', icon: FolderTree },
+  { id: 'backup', label: 'Backups', icon: Archive },
   { id: 'payments', label: 'Paiements', icon: CreditCard },
   { id: 'freemium', label: 'Freemium', icon: Layers },
   { id: 'upsell', label: 'Upsell', icon: Zap },
@@ -56,6 +63,8 @@ const AdminPremiumPage = () => {
     switch (activeSection) {
       case 'dashboard': return <AdminDashboard onNavigate={setActiveSection} />;
       case 'ecommerce': return <AdminEcommerce />;
+      case 'content': return <AdminContent />;
+      case 'backup': return <AdminBackup />;
       case 'payments': return <AdminPayments />;
       case 'freemium': return <AdminFreemium />;
       case 'upsell': return <AdminUpsell />;

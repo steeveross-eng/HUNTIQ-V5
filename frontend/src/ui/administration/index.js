@@ -4,6 +4,7 @@
  * 
  * Point d'entrée du module d'administration premium.
  * Phase 1 Migration: E-Commerce intégré
+ * Phase 2 Migration: Content & Backup intégrés
  */
 
 export { default as AdminService } from './AdminService';
@@ -20,3 +21,6 @@ export { AdminLogs } from './admin_logs';
 export { AdminSettings } from './admin_settings';
 // Phase 1 Migration - E-Commerce
 export { AdminEcommerce } from './admin_ecommerce';
+// Phase 2 Migration - Content & Backup
+export { AdminContent } from './admin_content';
+export { AdminBackup } from './admin_backup';
