@@ -204,7 +204,6 @@ async def list_campaigns(
     limit: int = Query(50, ge=1, le=200)
 ):
     """Liste les campagnes avec filtres optionnels"""
-    service = get_service()
     db = get_db()
     
     query = {}
