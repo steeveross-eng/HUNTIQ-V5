@@ -35,3 +35,6 @@ export { AdminNetworking } from './admin_networking';
 // Phase 5 Migration - Email & Marketing
 export { AdminEmail } from './admin_email';
 export { AdminMarketing } from './admin_marketing';
+// Phase 6 Migration - Partners & Branding
+export { AdminPartners } from './admin_partners';
+export { AdminBranding } from './admin_branding';
