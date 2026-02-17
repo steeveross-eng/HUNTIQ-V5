@@ -75,6 +75,9 @@ const FALLBACK_CONFIG = {
 /**
  * Fonds de carte de fallback haute résolution
  */
+// Stadia Maps API Key from environment
+const STADIA_API_KEY = process.env.REACT_APP_STADIA_MAPS_API_KEY || '';
+
 export const FALLBACK_BASEMAPS = {
   // Topographique haute résolution (OpenTopoMap)
   topo_hd: {
@@ -98,7 +101,7 @@ export const FALLBACK_BASEMAPS = {
   terrain: {
     id: 'terrain',
     name: 'Terrain Relief',
-    url: 'https://tiles.stadiamaps.com/tiles/stamen_terrain/{z}/{x}/{y}{r}.png?api_key=5272b858-5b8c-4140-8ad2-066343695ca3',
+    url: `https://tiles.stadiamaps.com/tiles/stamen_terrain/{z}/{x}/{y}{r}.png${STADIA_API_KEY ? `?api_key=${STADIA_API_KEY}` : ''}`,
     attribution: '&copy; Stadia Maps, Stamen Design',
     maxZoom: 18,
     priority: 3
