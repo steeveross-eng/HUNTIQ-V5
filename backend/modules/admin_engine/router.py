@@ -843,3 +843,221 @@ async def add_tag_to_contact(contact_id: str, tag: str):
 async def remove_tag_from_contact(contact_id: str, tag: str):
     """Retirer un tag d'un contact"""
     return await ContactsAdminService.remove_tag_from_contact(get_db(), contact_id, tag)
+
+
+# ==============================================
+# HOTSPOTS ADMIN (Phase 4 Migration - Terres)
+# ==============================================
+
+@router.get("/hotspots/dashboard")
+async def get_hotspots_dashboard():
+    """Dashboard des terres/hotspots"""
+    return await HotspotsAdminService.get_dashboard_stats(get_db())
+
+@router.get("/hotspots/listings")
+async def get_hotspots_listings(
+    status: Optional[str] = None,
+    region: Optional[str] = None,
+    is_featured: Optional[bool] = None,
+    limit: int = Query(50, le=500)
+):
+    """Liste des annonces de terres"""
+    return await HotspotsAdminService.get_listings(get_db(), status, region, is_featured, limit)
+
+@router.get("/hotspots/listings/{listing_id}")
+async def get_hotspots_listing_detail(listing_id: str):
+    """Détail d'une annonce"""
+    return await HotspotsAdminService.get_listing_detail(get_db(), listing_id)
+
+@router.put("/hotspots/listings/{listing_id}/status")
+async def update_hotspots_listing_status(listing_id: str, new_status: str):
+    """Mettre à jour le statut d'une annonce"""
+    return await HotspotsAdminService.update_listing_status(get_db(), listing_id, new_status)
+
+@router.put("/hotspots/listings/{listing_id}/featured")
+async def toggle_hotspots_listing_featured(listing_id: str, is_featured: bool):
+    """Mettre en vedette une annonce"""
+    return await HotspotsAdminService.toggle_featured(get_db(), listing_id, is_featured)
+
+@router.delete("/hotspots/listings/{listing_id}")
+async def delete_hotspots_listing(listing_id: str):
+    """Supprimer une annonce"""
+    return await HotspotsAdminService.delete_listing(get_db(), listing_id)
+
+@router.get("/hotspots/owners")
+async def get_hotspots_owners(limit: int = Query(50, le=500)):
+    """Liste des propriétaires"""
+    return await HotspotsAdminService.get_owners(get_db(), limit)
+
+@router.get("/hotspots/owners/{owner_id}")
+async def get_hotspots_owner_detail(owner_id: str):
+    """Détail d'un propriétaire"""
+    return await HotspotsAdminService.get_owner_detail(get_db(), owner_id)
+
+@router.get("/hotspots/renters")
+async def get_hotspots_renters(
+    subscription_tier: Optional[str] = None,
+    limit: int = Query(50, le=500)
+):
+    """Liste des locataires (chasseurs)"""
+    return await HotspotsAdminService.get_renters(get_db(), subscription_tier, limit)
+
+@router.get("/hotspots/agreements")
+async def get_hotspots_agreements(
+    status: Optional[str] = None,
+    limit: int = Query(50, le=500)
+):
+    """Liste des ententes de location"""
+    return await HotspotsAdminService.get_agreements(get_db(), status, limit)
+
+@router.get("/hotspots/agreements/{agreement_id}")
+async def get_hotspots_agreement_detail(agreement_id: str):
+    """Détail d'une entente"""
+    return await HotspotsAdminService.get_agreement_detail(get_db(), agreement_id)
+
+@router.get("/hotspots/pricing")
+async def get_hotspots_pricing():
+    """Récupérer la tarification"""
+    return await HotspotsAdminService.get_pricing(get_db())
+
+@router.put("/hotspots/pricing")
+async def update_hotspots_pricing(updates: dict = Body(...)):
+    """Mettre à jour la tarification"""
+    return await HotspotsAdminService.update_pricing(get_db(), updates)
+
+@router.get("/hotspots/regions")
+async def get_hotspots_regions():
+    """Statistiques par région"""
+    return await HotspotsAdminService.get_regions_stats(get_db())
+
+@router.get("/hotspots/purchases")
+async def get_hotspots_purchases(
+    status: Optional[str] = None,
+    limit: int = Query(50, le=500)
+):
+    """Liste des achats/transactions"""
+    return await HotspotsAdminService.get_purchases(get_db(), status, limit)
+
+
+# ==============================================
+# NETWORKING ADMIN (Phase 4 Migration - Réseau)
+# ==============================================
+
+@router.get("/networking/dashboard")
+async def get_networking_dashboard():
+    """Dashboard du réseau social"""
+    return await NetworkingAdminService.get_dashboard_stats(get_db())
+
+@router.get("/networking/posts")
+async def get_networking_posts(
+    visibility: Optional[str] = None,
+    content_type: Optional[str] = None,
+    is_featured: Optional[bool] = None,
+    limit: int = Query(50, le=500)
+):
+    """Liste des publications"""
+    return await NetworkingAdminService.get_posts(get_db(), visibility, content_type, is_featured, limit)
+
+@router.put("/networking/posts/{post_id}/featured")
+async def toggle_networking_post_featured(post_id: str, is_featured: bool):
+    """Mettre en vedette une publication"""
+    return await NetworkingAdminService.toggle_post_featured(get_db(), post_id, is_featured)
+
+@router.put("/networking/posts/{post_id}/pinned")
+async def toggle_networking_post_pinned(post_id: str, is_pinned: bool):
+    """Épingler une publication"""
+    return await NetworkingAdminService.toggle_post_pinned(get_db(), post_id, is_pinned)
+
+@router.delete("/networking/posts/{post_id}")
+async def delete_networking_post(post_id: str):
+    """Supprimer une publication"""
+    return await NetworkingAdminService.delete_post(get_db(), post_id)
+
+@router.get("/networking/groups")
+async def get_networking_groups(
+    privacy: Optional[str] = None,
+    group_type: Optional[str] = None,
+    limit: int = Query(50, le=500)
+):
+    """Liste des groupes"""
+    return await NetworkingAdminService.get_groups(get_db(), privacy, group_type, limit)
+
+@router.get("/networking/groups/{group_id}")
+async def get_networking_group_detail(group_id: str):
+    """Détail d'un groupe"""
+    return await NetworkingAdminService.get_group_detail(get_db(), group_id)
+
+@router.put("/networking/groups/{group_id}/active")
+async def toggle_networking_group_active(group_id: str, is_active: bool):
+    """Activer/désactiver un groupe"""
+    return await NetworkingAdminService.toggle_group_active(get_db(), group_id, is_active)
+
+@router.delete("/networking/groups/{group_id}")
+async def delete_networking_group(group_id: str):
+    """Supprimer un groupe"""
+    return await NetworkingAdminService.delete_group(get_db(), group_id)
+
+@router.get("/networking/leads")
+async def get_networking_leads(
+    status: Optional[str] = None,
+    source: Optional[str] = None,
+    limit: int = Query(50, le=500)
+):
+    """Liste des leads/prospects"""
+    return await NetworkingAdminService.get_all_leads(get_db(), status, source, limit)
+
+@router.get("/networking/referrals")
+async def get_networking_referrals(
+    status: Optional[str] = None,
+    limit: int = Query(50, le=500)
+):
+    """Liste des parrainages"""
+    return await NetworkingAdminService.get_referrals(get_db(), status, limit)
+
+@router.get("/networking/referrals/pending")
+async def get_networking_pending_referrals():
+    """Parrainages en attente de validation"""
+    return await NetworkingAdminService.get_pending_referrals(get_db())
+
+@router.post("/networking/referrals/{referral_id}/verify")
+async def verify_networking_referral(referral_id: str):
+    """Vérifier et récompenser un parrainage"""
+    return await NetworkingAdminService.verify_referral(get_db(), referral_id)
+
+@router.post("/networking/referrals/{referral_id}/reject")
+async def reject_networking_referral(referral_id: str, reason: str = ""):
+    """Rejeter un parrainage"""
+    return await NetworkingAdminService.reject_referral(get_db(), referral_id, reason)
+
+@router.get("/networking/wallets")
+async def get_networking_wallets(limit: int = Query(50, le=500)):
+    """Liste des portefeuilles"""
+    return await NetworkingAdminService.get_wallets(get_db(), limit)
+
+@router.get("/networking/wallets/{wallet_id}")
+async def get_networking_wallet_detail(wallet_id: str):
+    """Détail d'un portefeuille"""
+    return await NetworkingAdminService.get_wallet_detail(get_db(), wallet_id)
+
+@router.post("/networking/wallets/{user_id}/adjust")
+async def adjust_networking_wallet(
+    user_id: str,
+    amount: float,
+    reason: str,
+    adjustment_type: str = "manual"
+):
+    """Ajuster le solde d'un portefeuille"""
+    return await NetworkingAdminService.adjust_wallet_balance(get_db(), user_id, amount, reason, adjustment_type)
+
+@router.get("/networking/referral-codes")
+async def get_networking_referral_codes(
+    is_active: Optional[bool] = None,
+    limit: int = Query(50, le=500)
+):
+    """Liste des codes de parrainage"""
+    return await NetworkingAdminService.get_referral_codes(get_db(), is_active, limit)
+
+@router.put("/networking/referral-codes/{code}/toggle")
+async def toggle_networking_referral_code(code: str, is_active: bool):
+    """Activer/désactiver un code de parrainage"""
+    return await NetworkingAdminService.toggle_referral_code(get_db(), code, is_active)
