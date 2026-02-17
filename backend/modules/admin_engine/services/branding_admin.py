@@ -197,15 +197,19 @@ class BrandingAdminService:
             
             await db.brand_logos.insert_one(logo)
             
+            # Remove MongoDB _id before returning
+            logo.pop("_id", None)
+            
             # Log dans l'historique
-            await db.brand_upload_history.insert_one({
+            history_entry = {
                 "id": str(uuid.uuid4()),
                 "filename": filename,
                 "language": language,
                 "logo_type": logo_type,
                 "file_size": file_size,
                 "uploaded_at": datetime.now(timezone.utc).isoformat()
-            })
+            }
+            await db.brand_upload_history.insert_one(history_entry)
             
             return {
                 "success": True,
