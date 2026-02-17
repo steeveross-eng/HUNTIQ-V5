@@ -404,6 +404,58 @@ async def enrich_page_with_knowledge(
 
 
 # ==============================================
+# AI CONTENT GENERATION
+# ==============================================
+
+@router.post("/generate/pillar-content")
+async def generate_pillar_content(
+    species_id: str,
+    keyword: str,
+    knowledge_data: dict = Body(...)
+):
+    """Générer le contenu complet d'une page pilier via IA"""
+    from .seo_content_generator import seo_content_generator
+    
+    result = await seo_content_generator.generate_pillar_content(
+        species_id=species_id,
+        keyword=keyword,
+        knowledge_data=knowledge_data,
+        language="fr"
+    )
+    
+    # Si succès, sauvegarder en base
+    if result.get("success"):
+        db = get_db()
+        content_doc = {
+            "type": "pillar_generated",
+            "species_id": species_id,
+            "keyword": keyword,
+            "content": result.get("content"),
+            "metadata": result.get("metadata"),
+            "status": "draft",
+            "created_at": datetime.now(timezone.utc).isoformat()
+        }
+        await db.seo_generated_content.insert_one(content_doc)
+    
+    return result
+
+
+@router.get("/generate/pillar-content/history")
+async def get_generated_content_history(limit: int = Query(20, le=100)):
+    """Historique des contenus générés"""
+    db = get_db()
+    history = await db.seo_generated_content.find(
+        {}, {"_id": 0}
+    ).sort("created_at", -1).limit(limit).to_list(limit)
+    
+    return {
+        "success": True,
+        "total": len(history),
+        "history": history
+    }
+
+
+# ==============================================
 # REPORTS
 # ==============================================
 
