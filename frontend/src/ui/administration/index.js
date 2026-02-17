@@ -42,3 +42,5 @@ export { AdminBranding } from './admin_branding';
 export { AdminKnowledge } from './admin_knowledge';
 // BIONIC SEO Engine V5
 export { AdminSEO } from './admin_seo';
+// Marketing Controls (Global ON/OFF)
+export { AdminMarketingControls } from './admin_marketing_controls';
