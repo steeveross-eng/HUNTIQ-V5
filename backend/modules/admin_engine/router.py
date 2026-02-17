@@ -41,6 +41,9 @@ from .services.logs_admin import LogsAdminService
 from .services.settings_admin import SettingsAdminService
 # Phase 1 Migration - E-Commerce
 from .services.ecommerce_admin import EcommerceAdminService
+# Phase 2 Migration - Content & Backup
+from .services.content_admin import ContentAdminService
+from .services.backup_admin import BackupAdminService
 
 logger = logging.getLogger(__name__)
 
