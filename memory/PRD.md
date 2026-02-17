@@ -90,6 +90,27 @@ Application HUNTIQ-V5 selon une architecture "LEGO" modulaire très stricte. Le 
 
 **Test Results:** 100% success (iteration_10.json)
 
+### ✅ UI/UX — Centrage Global BIONIC™ (2026-02-17)
+**Composant créé:** `/app/frontend/src/core/layouts/GlobalContainer.jsx`
+
+**Pages centrées (max-width: 1440px):**
+- AnalyticsPage, BusinessPage, ComparePage, DashboardPage
+- ForecastPage, NetworkPage, PaymentCancelPage, PaymentSuccessPage
+- PlanMaitrePage, PricingPage, ShopPage, TripsPage
+
+**Exceptions full-width intentionnelles:**
+- AdminPremiumPage (sidebar fixe)
+- MapPage, MonTerritoireBionicPage (cartes)
+- BionicHomePage (landing page avec sections full-width)
+- OnboardingPage (flow modal)
+
+**Variantes disponibles:**
+- `GlobalContainer` (1440px)
+- `PageContainer` (avec titre)
+- `SectionContainer` (espacement vertical)
+- `AdminContainer` (full-width)
+- `ContentContainer` (960px)
+
 ---
 
 ## Upcoming Tasks (Roadmap)
