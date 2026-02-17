@@ -162,6 +162,11 @@ from modules.tracking_engine.v1.router import router as tracking_behavioral_rout
 from modules.marketing_engine.v1.router import router as marketing_automation_router
 
 # ==============================================
+# MARKETING CALENDAR ENGINE V2 - 60 DAYS PLANNING
+# ==============================================
+from modules.marketing_calendar_engine.v2.router import router as marketing_calendar_router
+
+# ==============================================
 # WAYPOINT ENGINE V1 - MAP INTERACTION
 # ==============================================
 from modules.waypoint_engine.v1.router import router as waypoint_interaction_router
