@@ -50,6 +50,9 @@ from .services.contacts_admin import ContactsAdminService
 # Phase 4 Migration - Hotspots & Networking
 from .services.hotspots_admin import HotspotsAdminService
 from .services.networking_admin import NetworkingAdminService
+# Phase 5 Migration - Email & Marketing
+from .services.email_admin import EmailAdminService
+from .services.marketing_admin import MarketingAdminService
 
 logger = logging.getLogger(__name__)
 
