@@ -57,6 +57,15 @@ class KnowledgeService:
             "hunting_season_fr": "Mai-Juin, Septembre",
             "primary_regions": ["quebec_all"]
         },
+        "elk": {
+            "id": "elk",
+            "scientific_name": "Cervus canadensis",
+            "common_name_fr": "Wapiti",
+            "common_name_en": "Elk",
+            "category": "cervidae",
+            "hunting_season_fr": "Octobre",
+            "primary_regions": ["la_verendrye", "quebec_south"]
+        },
         "caribou": {
             "id": "caribou",
             "scientific_name": "Rangifer tarandus",
