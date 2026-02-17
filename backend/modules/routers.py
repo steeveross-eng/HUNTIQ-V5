@@ -152,6 +152,11 @@ from modules.bionic_knowledge_engine.knowledge_router import router as bionic_kn
 from modules.seo_engine.seo_router import router as bionic_seo_router
 
 # ==============================================
+# TRACKING ENGINE V1 - BEHAVIORAL (Events, Funnels, Heatmaps)
+# ==============================================
+from modules.tracking_engine.v1.router import router as tracking_behavioral_router
+
+# ==============================================
 # V5-ULTIME-FUSION - MODULES IMPORTÉS (V2, V3, BASE)
 # ==============================================
 from modules.backup_cloud_engine.router import router as backup_cloud_router
@@ -622,6 +627,16 @@ CORE_ROUTERS: List[Tuple[APIRouter, dict]] = [
         "version": "1.0.0",
         "phase": "SEO-V5",
         "description": "BIONIC SEO Engine V5 - Clusters, pages, JSON-LD, analytics, automation, génération +300%"
+    }),
+    
+    # ==========================================
+    # TRACKING ENGINE V1 - BEHAVIORAL (Phase 7)
+    # ==========================================
+    (tracking_behavioral_router, {
+        "name": "tracking_engine_behavioral",
+        "version": "1.0.0",
+        "phase": "ANALYTICS-V7",
+        "description": "Tracking comportemental - Events, Funnels, Heatmaps, Engagement Metrics"
     }),
 ]
 
