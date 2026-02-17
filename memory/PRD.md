@@ -72,6 +72,15 @@ Architecture: 100% modulaire "LEGO", sans perte, sans dérive.
 - ✅ 10 nouvelles API `/api/v1/admin/backup/*`
 - ✅ Test complet: 100% backend (20/20), 100% frontend
 
+#### ✅ Phase 3 — Infrastructure & Contacts (COMPLÉTÉ - 17 Fév 2026)
+- ✅ `maintenance_admin.py` - Mode maintenance, Access control, IPs autorisées, Planification, Logs
+- ✅ `contacts_admin.py` - Source de vérité V5 pour toutes les entités relationnelles
+- ✅ Frontend `admin_maintenance/` module (5 onglets: Statut, Règles d'accès, IPs, Planification, Logs)
+- ✅ Frontend `admin_contacts/` module (filtres par type, CRUD complet, tags, export)
+- ✅ 15 nouvelles API `/api/v1/admin/maintenance/*`
+- ✅ 16 nouvelles API `/api/v1/admin/contacts/*`
+- ✅ Test complet: 100% backend (30/30), 100% frontend
+
 ---
 
 ## Architecture Actuelle (60 modules)
@@ -138,16 +147,13 @@ Architecture: 100% modulaire "LEGO", sans perte, sans dérive.
 | P3 Monétisation (iteration_2) | 100% (18/18) | 100% |
 | Admin Premium (iteration_3) | 100% (13/13) | 100% |
 | Migration Phase 2 (iteration_4) | 100% (20/20) | 100% |
+| Migration Phase 3 (iteration_5) | 100% (30/30) | 100% |
 
 ---
 
 ## Prioritized Backlog
 
 ### Migration /admin → /admin-premium (En cours)
-
-#### Phase 3 — Infrastructure (À faire)
-- [ ] Access Control (gestion permissions)
-- [ ] Maintenance Control (mode maintenance)
 
 #### Phase 4 — Chasse (À faire)
 - [ ] Hotspots Management
@@ -195,6 +201,8 @@ Architecture: 100% modulaire "LEGO", sans perte, sans dérive.
 | `/api/v1/admin/ecommerce/*` | E-Commerce (Phase 1) |
 | `/api/v1/admin/content/*` | Contenu & SEO (Phase 2) |
 | `/api/v1/admin/backup/*` | Backups (Phase 2) |
+| `/api/v1/admin/maintenance/*` | Infrastructure (Phase 3) |
+| `/api/v1/admin/contacts/*` | Contacts/Directory (Phase 3) |
 | `/api/v1/admin/payments/*` | Gestion paiements Stripe |
 | `/api/v1/admin/freemium/*` | Gestion quotas/tiers |
 | `/api/v1/admin/upsell/*` | Gestion campagnes |
