@@ -711,6 +711,168 @@ export const AdminService = {
     if (platform) params.append('platform', platform);
     const response = await fetch(`${API_BASE}/api/v1/admin/marketing/history?${params}`);
     return await response.json();
+  },
+
+  // ============ PARTNERS (Phase 6) ============
+  async partnersGetDashboard() {
+    const response = await fetch(`${API_BASE}/api/v1/admin/partners/dashboard`);
+    return await response.json();
+  },
+
+  async partnersGetTypes() {
+    const response = await fetch(`${API_BASE}/api/v1/admin/partners/types`);
+    return await response.json();
+  },
+
+  async partnersGetRequests(status = null, partnerType = null, search = null, limit = 50) {
+    const params = new URLSearchParams({ limit });
+    if (status) params.append('status', status);
+    if (partnerType) params.append('partner_type', partnerType);
+    if (search) params.append('search', search);
+    const response = await fetch(`${API_BASE}/api/v1/admin/partners/requests?${params}`);
+    return await response.json();
+  },
+
+  async partnersGetRequestDetail(requestId) {
+    const response = await fetch(`${API_BASE}/api/v1/admin/partners/requests/${requestId}`);
+    return await response.json();
+  },
+
+  async partnersUpdateRequestStatus(requestId, status, adminNotes = null) {
+    const params = new URLSearchParams({ status });
+    if (adminNotes) params.append('admin_notes', adminNotes);
+    const response = await fetch(`${API_BASE}/api/v1/admin/partners/requests/${requestId}/status?${params}`, { method: 'PUT' });
+    return await response.json();
+  },
+
+  async partnersConvertRequest(requestId) {
+    const response = await fetch(`${API_BASE}/api/v1/admin/partners/requests/${requestId}/convert`, { method: 'POST' });
+    return await response.json();
+  },
+
+  async partnersGetList(partnerType = null, isActive = null, search = null, limit = 50) {
+    const params = new URLSearchParams({ limit });
+    if (partnerType) params.append('partner_type', partnerType);
+    if (isActive !== null) params.append('is_active', isActive);
+    if (search) params.append('search', search);
+    const response = await fetch(`${API_BASE}/api/v1/admin/partners/list?${params}`);
+    return await response.json();
+  },
+
+  async partnersGetDetail(partnerId) {
+    const response = await fetch(`${API_BASE}/api/v1/admin/partners/${partnerId}`);
+    return await response.json();
+  },
+
+  async partnersUpdate(partnerId, updates) {
+    const response = await fetch(`${API_BASE}/api/v1/admin/partners/${partnerId}`, {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(updates)
+    });
+    return await response.json();
+  },
+
+  async partnersToggleStatus(partnerId) {
+    const response = await fetch(`${API_BASE}/api/v1/admin/partners/${partnerId}/toggle`, { method: 'PUT' });
+    return await response.json();
+  },
+
+  async partnersVerify(partnerId, verified) {
+    const response = await fetch(`${API_BASE}/api/v1/admin/partners/${partnerId}/verify?verified=${verified}`, { method: 'PUT' });
+    return await response.json();
+  },
+
+  async partnersUpdateCommission(partnerId, rate) {
+    const response = await fetch(`${API_BASE}/api/v1/admin/partners/${partnerId}/commission?rate=${rate}`, { method: 'PUT' });
+    return await response.json();
+  },
+
+  async partnersGetEmailSettings() {
+    const response = await fetch(`${API_BASE}/api/v1/admin/partners/email/settings`);
+    return await response.json();
+  },
+
+  async partnersToggleEmailSetting(settingType) {
+    const response = await fetch(`${API_BASE}/api/v1/admin/partners/email/toggle/${settingType}`, { method: 'PUT' });
+    return await response.json();
+  },
+
+  // ============ BRANDING (Phase 6) ============
+  async brandingGetDashboard() {
+    const response = await fetch(`${API_BASE}/api/v1/admin/branding/dashboard`);
+    return await response.json();
+  },
+
+  async brandingGetConfig() {
+    const response = await fetch(`${API_BASE}/api/v1/admin/branding/config`);
+    return await response.json();
+  },
+
+  async brandingGetLogos() {
+    const response = await fetch(`${API_BASE}/api/v1/admin/branding/logos`);
+    return await response.json();
+  },
+
+  async brandingGetLogoDetail(logoId) {
+    const response = await fetch(`${API_BASE}/api/v1/admin/branding/logos/${logoId}`);
+    return await response.json();
+  },
+
+  async brandingAddLogo(filename, url, language, logoType, fileSize = 0) {
+    const params = new URLSearchParams({ filename, url, language, logo_type: logoType, file_size: fileSize });
+    const response = await fetch(`${API_BASE}/api/v1/admin/branding/logos?${params}`, { method: 'POST' });
+    return await response.json();
+  },
+
+  async brandingDeleteLogo(logoId) {
+    const response = await fetch(`${API_BASE}/api/v1/admin/branding/logos/${logoId}`, { method: 'DELETE' });
+    return await response.json();
+  },
+
+  async brandingGetColors() {
+    const response = await fetch(`${API_BASE}/api/v1/admin/branding/colors`);
+    return await response.json();
+  },
+
+  async brandingUpdateColor(colorKey, hexValue, name = null) {
+    const params = new URLSearchParams({ hex_value: hexValue });
+    if (name) params.append('name', name);
+    const response = await fetch(`${API_BASE}/api/v1/admin/branding/colors/${colorKey}?${params}`, { method: 'PUT' });
+    return await response.json();
+  },
+
+  async brandingResetColors() {
+    const response = await fetch(`${API_BASE}/api/v1/admin/branding/colors/reset`, { method: 'POST' });
+    return await response.json();
+  },
+
+  async brandingGetDocumentTypes() {
+    const response = await fetch(`${API_BASE}/api/v1/admin/branding/document-types`);
+    return await response.json();
+  },
+
+  async brandingLogDocumentGeneration(templateType, language, title = null, recipient = null) {
+    const params = new URLSearchParams({ template_type: templateType, language });
+    if (title) params.append('title', title);
+    if (recipient) params.append('recipient', recipient);
+    const response = await fetch(`${API_BASE}/api/v1/admin/branding/documents/log?${params}`, { method: 'POST' });
+    return await response.json();
+  },
+
+  async brandingGetDocumentHistory(limit = 50) {
+    const response = await fetch(`${API_BASE}/api/v1/admin/branding/documents/history?limit=${limit}`);
+    return await response.json();
+  },
+
+  async brandingGetUploadHistory(limit = 50) {
+    const response = await fetch(`${API_BASE}/api/v1/admin/branding/uploads/history?limit=${limit}`);
+    return await response.json();
+  },
+
+  async brandingGetAssets() {
+    const response = await fetch(`${API_BASE}/api/v1/admin/branding/assets`);
+    return await response.json();
   }
 };
 
