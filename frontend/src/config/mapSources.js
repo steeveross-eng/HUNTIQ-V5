@@ -3,6 +3,9 @@
  * Configuration centralisée des 7 types de cartes premium BIONIC
  */
 
+// Stadia Maps API Key
+const STADIA_API_KEY = process.env.REACT_APP_STADIA_MAPS_API_KEY || '';
+
 // Types de cartes disponibles
 export const MAP_TYPES = {
   BIONIC_PREMIUM: 'bionic-premium',
