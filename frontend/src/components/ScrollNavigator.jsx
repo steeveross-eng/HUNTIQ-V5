@@ -8,14 +8,37 @@
  * - Smooth scroll animation
  * - High visibility design with golden accent
  * - Responsive and cross-browser compatible
+ * - Auto-hides on full-viewport pages (map, territoire, etc.)
  */
 
 import React, { useState, useEffect, useCallback } from 'react';
 import { ChevronUp, ChevronDown } from 'lucide-react';
+import { useLocation } from 'react-router-dom';
+
+// Routes where ScrollNavigator should be hidden (full-viewport pages)
+const FULL_VIEWPORT_ROUTES = [
+  '/map',
+  '/territoire',
+  '/forecast',
+  '/analyze',
+  '/admin-geo',
+  '/admin-premium'
+];
 
 const ScrollNavigator = () => {
   const [showTopArrow, setShowTopArrow] = useState(false);
-  const [showBottomArrow, setShowBottomArrow] = useState(true); // Always show initially
+  const [showBottomArrow, setShowBottomArrow] = useState(true);
+  const location = useLocation();
+  
+  // Check if current route is a full-viewport page
+  const isFullViewportPage = FULL_VIEWPORT_ROUTES.some(route => 
+    location.pathname === route || location.pathname.startsWith(route + '/')
+  );
+  
+  // Don't render on full-viewport pages
+  if (isFullViewportPage) {
+    return null;
+  }
 
   // Handle scroll events to show/hide arrows
   const handleScroll = useCallback(() => {
