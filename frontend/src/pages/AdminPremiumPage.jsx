@@ -8,6 +8,7 @@
  * 
  * Phase 1: E-Commerce migré
  * Phase 2: Content & Backup migrés
+ * Phase 3: Maintenance & Contacts migrés
  */
 
 import React, { useState } from 'react';
@@ -17,7 +18,8 @@ import { Button } from '@/components/ui/button';
 import {
   Crown, ArrowLeft, LayoutDashboard, CreditCard, Layers, 
   Zap, Target, BookOpen, Settings, BarChart3, Users, 
-  FileText, Shield, ShoppingCart, FolderTree, Archive
+  FileText, Shield, ShoppingCart, FolderTree, Archive,
+  Wrench, Contact
 } from 'lucide-react';
 
 // Import all admin modules
@@ -35,7 +37,9 @@ import {
   AdminSettings,
   AdminEcommerce,
   AdminContent,
-  AdminBackup
+  AdminBackup,
+  AdminMaintenance,
+  AdminContacts
 } from '@/ui/administration';
 
 const navItems = [
@@ -43,6 +47,8 @@ const navItems = [
   { id: 'ecommerce', label: 'E-Commerce', icon: ShoppingCart },
   { id: 'content', label: 'Contenu', icon: FolderTree },
   { id: 'backup', label: 'Backups', icon: Archive },
+  { id: 'maintenance', label: 'Maintenance', icon: Wrench },
+  { id: 'contacts', label: 'Contacts', icon: Contact },
   { id: 'payments', label: 'Paiements', icon: CreditCard },
   { id: 'freemium', label: 'Freemium', icon: Layers },
   { id: 'upsell', label: 'Upsell', icon: Zap },
@@ -65,6 +71,8 @@ const AdminPremiumPage = () => {
       case 'ecommerce': return <AdminEcommerce />;
       case 'content': return <AdminContent />;
       case 'backup': return <AdminBackup />;
+      case 'maintenance': return <AdminMaintenance />;
+      case 'contacts': return <AdminContacts />;
       case 'payments': return <AdminPayments />;
       case 'freemium': return <AdminFreemium />;
       case 'upsell': return <AdminUpsell />;
