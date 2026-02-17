@@ -153,11 +153,14 @@ const WaypointPopup = ({ position, onConfirm, onCancel, saving }) => {
 const PendingWaypointMarker = ({ position, icon, onConfirm, onCancel, saving }) => {
   const markerRef = useRef(null);
 
-  // Auto-open popup when marker is rendered
+  // Auto-open popup when marker is rendered (with delay for DOM readiness)
   useEffect(() => {
-    if (markerRef.current) {
-      markerRef.current.openPopup();
-    }
+    const timer = setTimeout(() => {
+      if (markerRef.current) {
+        markerRef.current.openPopup();
+      }
+    }, 100);
+    return () => clearTimeout(timer);
   }, []);
 
   return (
