@@ -89,6 +89,8 @@ const AdminPremiumPage = () => {
       case 'networking': return <AdminNetworking />;
       case 'email': return <AdminEmail />;
       case 'marketing': return <AdminMarketing />;
+      case 'partners': return <AdminPartners />;
+      case 'branding': return <AdminBranding />;
       case 'content': return <AdminContent />;
       case 'backup': return <AdminBackup />;
       case 'maintenance': return <AdminMaintenance />;
