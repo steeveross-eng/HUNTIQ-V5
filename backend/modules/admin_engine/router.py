@@ -53,6 +53,9 @@ from .services.networking_admin import NetworkingAdminService
 # Phase 5 Migration - Email & Marketing
 from .services.email_admin import EmailAdminService
 from .services.marketing_admin import MarketingAdminService
+# Phase 6 Migration - Partners & Branding
+from .services.partners_admin import PartnersAdminService
+from .services.branding_admin import BrandingAdminService
 
 logger = logging.getLogger(__name__)
 
