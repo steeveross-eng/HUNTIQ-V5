@@ -94,11 +94,11 @@ export const FALLBACK_BASEMAPS = {
     maxZoom: 19,
     priority: 2
   },
-  // Terrain Stamen (bon relief)
+  // Terrain Stamen (bon relief) - Stadia Maps avec API Key
   terrain: {
     id: 'terrain',
     name: 'Terrain Relief',
-    url: 'https://tiles.stadiamaps.com/tiles/stamen_terrain/{z}/{x}/{y}{r}.png',
+    url: 'https://tiles.stadiamaps.com/tiles/stamen_terrain/{z}/{x}/{y}{r}.png?api_key=5272b858-5b8c-4140-8ad2-066343695ca3',
     attribution: '&copy; Stadia Maps, Stamen Design',
     maxZoom: 18,
     priority: 3
