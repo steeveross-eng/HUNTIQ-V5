@@ -1675,9 +1675,9 @@ const MonTerritoireBionicPage = () => {
                   onWaypointCreated={(waypoint) => {
                     toast.success(`Waypoint "${waypoint.name}" créé avec succès !`);
                     // Refresh waypoints list
-                    if (fetchWaypoints) fetchWaypoints();
+                    if (syncToBackend) syncToBackend();
                   }}
-                  userId={userData?.email || 'anonymous'}
+                  userId={userId || 'anonymous'}
                 />
               </MapContainer>
               
