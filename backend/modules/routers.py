@@ -142,6 +142,11 @@ from modules.tutorial_engine.router import router as tutorial_router
 from modules.admin_engine.router import router as admin_premium_router
 
 # ==============================================
+# BIONIC KNOWLEDGE ENGINE (V5 LEGO)
+# ==============================================
+from modules.bionic_knowledge_engine.knowledge_router import router as bionic_knowledge_router
+
+# ==============================================
 # V5-ULTIME-FUSION - MODULES IMPORTÉS (V2, V3, BASE)
 # ==============================================
 from modules.backup_cloud_engine.router import router as backup_cloud_router
