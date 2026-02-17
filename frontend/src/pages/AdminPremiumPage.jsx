@@ -11,6 +11,7 @@
  * Phase 3: Maintenance & Contacts migrés
  * Phase 4: Hotspots & Networking migrés
  * Phase 5: Email & Marketing migrés
+ * Phase 6: Partners & Branding migrés
  */
 
 import React, { useState } from 'react';
@@ -21,7 +22,8 @@ import {
   Crown, ArrowLeft, LayoutDashboard, CreditCard, Layers, 
   Zap, Target, BookOpen, Settings, BarChart3, Users, 
   FileText, Shield, ShoppingCart, FolderTree, Archive,
-  Wrench, Contact, Trees, Network, Mail, Sparkles
+  Wrench, Contact, Trees, Network, Mail, Sparkles,
+  Handshake, Palette
 } from 'lucide-react';
 
 // Import all admin modules
@@ -45,7 +47,9 @@ import {
   AdminHotspots,
   AdminNetworking,
   AdminEmail,
-  AdminMarketing
+  AdminMarketing,
+  AdminPartners,
+  AdminBranding
 } from '@/ui/administration';
 
 const navItems = [
@@ -55,6 +59,8 @@ const navItems = [
   { id: 'networking', label: 'Réseautage', icon: Network },
   { id: 'email', label: 'Emails', icon: Mail },
   { id: 'marketing', label: 'Marketing', icon: Sparkles },
+  { id: 'partners', label: 'Partenaires', icon: Handshake },
+  { id: 'branding', label: 'Branding', icon: Palette },
   { id: 'content', label: 'Contenu', icon: FolderTree },
   { id: 'backup', label: 'Backups', icon: Archive },
   { id: 'maintenance', label: 'Maintenance', icon: Wrench },
