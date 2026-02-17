@@ -291,19 +291,15 @@ export const MapInteractionLayer = ({
         <InteractionHint visible={hintVisible && isMouseOnMap} />
       )}
 
-      {/* Pending Waypoint Marker + Popup */}
+      {/* Pending Waypoint Marker + Popup (auto-open) */}
       {pendingWaypoint && (
-        <Marker
+        <PendingWaypointMarker
           position={[pendingWaypoint.lat, pendingWaypoint.lng]}
           icon={waypointIcon}
-        >
-          <WaypointPopup
-            position={[pendingWaypoint.lat, pendingWaypoint.lng]}
-            onConfirm={handleConfirmWaypoint}
-            onCancel={handleCancelWaypoint}
-            saving={saving}
-          />
-        </Marker>
+          onConfirm={handleConfirmWaypoint}
+          onCancel={handleCancelWaypoint}
+          saving={saving}
+        />
       )}
 
       {/* Created Waypoints */}
