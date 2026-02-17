@@ -57,6 +57,7 @@ import {
 } from '@/core/bionic';
 import L from 'leaflet';
 import { toast } from 'sonner';
+import { MapInteractionLayer } from '@/modules/map_interaction';
 
 // Import BIONIC Map Selector
 import BionicMapSelector from '@/components/maps/BionicMapSelector';
