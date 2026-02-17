@@ -1296,16 +1296,17 @@ const MonTerritoireBionicPage = () => {
                   </TabsTrigger>
                 </TabsList>
                 
-                {/* Bouton Enregistrer un Waypoint avec menu déroulant */}
+                {/* Bouton Enregistrer un Waypoint - Compact */}
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
                     <Button
-                      className={`${mapClickMode ? 'bg-green-500 hover:bg-green-600' : 'bg-[#f5a623] hover:bg-[#f5a623]/80'} text-black font-medium`}
+                      size="sm"
+                      className={`${mapClickMode ? 'bg-green-500 hover:bg-green-600' : 'bg-[#f5a623] hover:bg-[#f5a623]/80'} text-black font-medium h-7 text-xs px-2`}
                       data-testid="add-waypoint-quick-btn"
                     >
-                      <Plus className="h-4 w-4 mr-2" />
-                      {mapClickMode ? 'Cliquez sur la carte...' : 'Enregistrer un Waypoint'}
-                      <ChevronDown className="h-4 w-4 ml-2" />
+                      <Plus className="h-3 w-3 mr-1" />
+                      {mapClickMode ? 'Cliquez...' : 'Waypoint'}
+                      <ChevronDown className="h-3 w-3 ml-1" />
                     </Button>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent className="bg-gray-900 border-gray-700">
