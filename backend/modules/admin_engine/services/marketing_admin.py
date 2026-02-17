@@ -527,7 +527,8 @@ class MarketingAdminService:
             }
             
             await db.marketing_segments.insert_one(segment)
-            del segment["_id"] if "_id" in segment else None
+            if "_id" in segment:
+                del segment["_id"]
             
             return {"success": True, "segment": segment}
         except Exception as e:
