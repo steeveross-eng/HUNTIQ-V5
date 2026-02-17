@@ -1,8 +1,15 @@
-"""Admin Engine Module - BUSINESS
+"""
+Admin Engine - V5-ULTIME Administration Premium
+================================================
 
-Provides administration panel.
-Version: v1
+Module d'administration premium pour la gestion complète
+de tous les engines, programmes et configurations.
+
+Version: 1.0.0
+Architecture: Modulaire LEGO
+Access: Admin only
 """
 
-__version__ = "1.0.0"
-__module_type__ = "business"
+from .router import router
+
+__all__ = ['router']
