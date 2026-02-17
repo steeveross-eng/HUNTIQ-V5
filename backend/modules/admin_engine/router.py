@@ -95,12 +95,12 @@ async def admin_engine_info():
     """Information sur le module Admin Engine"""
     return {
         "module": "admin_engine",
-        "version": "1.4.0",
-        "description": "Administration Premium V5-ULTIME - Phase 4 Migration",
+        "version": "1.5.0",
+        "description": "Administration Premium V5-ULTIME - Phase 5 Migration",
         "access": "admin_only",
         "sub_modules": [
             "ecommerce", "content", "backup", "maintenance", "contacts",
-            "hotspots", "networking",
+            "hotspots", "networking", "email", "marketing",
             "payments", "freemium", "upsell", "onboarding",
             "tutorials", "rules", "strategy", "users", "logs", "settings"
         ],
@@ -112,6 +112,8 @@ async def admin_engine_info():
             "Gestion Contacts (fournisseurs, fabricants, partenaires, formateurs, experts)",
             "Gestion Hotspots/Terres (annonces, propriétaires, locataires, ententes, tarification)",
             "Gestion Networking (publications, groupes, leads, parrainages, portefeuilles)",
+            "Gestion Email (templates, variables, tests, historique)",
+            "Gestion Marketing (campagnes, génération IA, publications sociales, segmentation, automations)",
             "Gestion paiements Stripe",
             "Gestion quotas freemium",
             "Gestion campagnes upsell",
