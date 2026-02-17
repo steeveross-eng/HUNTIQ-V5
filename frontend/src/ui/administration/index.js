@@ -38,3 +38,5 @@ export { AdminMarketing } from './admin_marketing';
 // Phase 6 Migration - Partners & Branding
 export { AdminPartners } from './admin_partners';
 export { AdminBranding } from './admin_branding';
+// BIONIC Knowledge Layer
+export { AdminKnowledge } from './admin_knowledge';
