@@ -1,31 +1,59 @@
 /**
  * ForecastPage - Success Forecast & WQS Dashboard
  * Phase P3 - Waypoint Scoring
- * BIONIC™ Global Container Applied
+ * 
+ * OPTIMISATION ERGONOMIQUE - Full Viewport Premium
+ * - Layout optimisé sans scroll inutile
+ * - Panneaux flottants
+ * - Responsive sur toutes résolutions
  */
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useLanguage } from '../contexts/LanguageContext';
 import { SuccessForecast } from '../components/SuccessForecast';
-import { Target } from 'lucide-react';
-import { GlobalContainer } from '../core/layouts';
+import { Target, ArrowLeft } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 const ForecastPage = () => {
   const { t } = useLanguage();
+  const navigate = useNavigate();
   
   return (
-    <div className="min-h-screen bg-slate-900">
-      <GlobalContainer maxWidth="1200px" className="pb-12">
-        <div className="mb-6">
-          <h1 className="text-2xl font-bold text-white flex items-center gap-3">
-            <Target className="h-7 w-7 text-[#f5a623]" />
-            {t('forecast_title')}
-          </h1>
-          <p className="text-slate-400 text-sm mt-1">
-            Waypoint Quality Score (WQS) • Phase P3
-          </p>
+    <div 
+      className="fixed inset-0 bg-slate-900 flex flex-col overflow-hidden"
+      style={{ paddingTop: '64px' }}
+      data-testid="forecast-page"
+    >
+      {/* Header compact */}
+      <div className="flex-shrink-0 bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 border-b border-slate-700/50 px-4 py-2">
+        <div className="flex items-center gap-3">
+          <Button 
+            variant="ghost" 
+            size="sm" 
+            onClick={() => navigate('/')} 
+            className="text-gray-400 hover:text-white h-8 px-2"
+          >
+            <ArrowLeft className="h-4 w-4" />
+          </Button>
+          <div className="h-5 w-px bg-slate-700" />
+          <div className="flex items-center gap-2">
+            <Target className="h-5 w-5 text-[#f5a623]" />
+            <div>
+              <h1 className="text-sm font-bold text-white leading-tight">{t('forecast_title')}</h1>
+              <p className="text-[10px] text-slate-400 leading-tight">
+                Waypoint Quality Score (WQS) • Phase P3
+              </p>
+            </div>
+          </div>
         </div>
-        <SuccessForecast />
-      </GlobalContainer>
+      </div>
+
+      {/* Content area - full remaining height with scroll if needed */}
+      <div className="flex-1 overflow-y-auto">
+        <div className="max-w-6xl mx-auto p-4">
+          <SuccessForecast />
+        </div>
+      </div>
     </div>
   );
 };
