@@ -47,6 +47,9 @@ from .services.backup_admin import BackupAdminService
 # Phase 3 Migration - Infrastructure + Contacts
 from .services.maintenance_admin import MaintenanceAdminService
 from .services.contacts_admin import ContactsAdminService
+# Phase 4 Migration - Hotspots & Networking
+from .services.hotspots_admin import HotspotsAdminService
+from .services.networking_admin import NetworkingAdminService
 
 logger = logging.getLogger(__name__)
 
