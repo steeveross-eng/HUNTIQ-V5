@@ -162,6 +162,11 @@ from modules.tracking_engine.v1.router import router as tracking_behavioral_rout
 from modules.marketing_engine.v1.router import router as marketing_automation_router
 
 # ==============================================
+# WAYPOINT ENGINE V1 - MAP INTERACTION
+# ==============================================
+from modules.waypoint_engine.v1.router import router as waypoint_interaction_router
+
+# ==============================================
 # V5-ULTIME-FUSION - MODULES IMPORTÉS (V2, V3, BASE)
 # ==============================================
 from modules.backup_cloud_engine.router import router as backup_cloud_router
@@ -652,6 +657,16 @@ CORE_ROUTERS: List[Tuple[APIRouter, dict]] = [
         "version": "1.0.0",
         "phase": "MARKETING-V14",
         "description": "Marketing Automation Engine - Campagnes, Posts, Segments, Automations, Triggers comportementaux"
+    }),
+    
+    # ==========================================
+    # WAYPOINT ENGINE V1 - MAP INTERACTION
+    # ==========================================
+    (waypoint_interaction_router, {
+        "name": "waypoint_engine",
+        "version": "1.0.0",
+        "phase": "MAP-INTERACTION",
+        "description": "Waypoint Engine - Création waypoints via interaction carte, GPS tracking"
     }),
 ]
 
