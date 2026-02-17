@@ -344,7 +344,8 @@ class MarketingAdminService:
             }
             
             await db.marketing_posts.insert_one(post)
-            del post["_id"] if "_id" in post else None
+            if "_id" in post:
+                del post["_id"]
             
             return {
                 "success": True,
