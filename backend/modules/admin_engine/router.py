@@ -1274,3 +1274,174 @@ async def get_marketing_history(
 ):
     """Historique des publications"""
     return await MarketingAdminService.get_publish_history(get_db(), platform, limit)
+
+
+# ==============================================
+# PARTNERS ADMIN (Phase 6 Migration - Partenaires)
+# ==============================================
+
+@router.get("/partners/dashboard")
+async def get_partners_dashboard():
+    """Dashboard partenaires - statistiques"""
+    return await PartnersAdminService.get_dashboard_stats(get_db())
+
+@router.get("/partners/types")
+async def get_partner_types():
+    """Liste des types de partenaires"""
+    return await PartnersAdminService.get_partner_types(get_db())
+
+@router.get("/partners/requests")
+async def get_partner_requests(
+    status: Optional[str] = None,
+    partner_type: Optional[str] = None,
+    search: Optional[str] = None,
+    limit: int = Query(50, le=500)
+):
+    """Liste des demandes de partenariat"""
+    return await PartnersAdminService.get_requests(get_db(), status, partner_type, search, limit)
+
+@router.get("/partners/requests/{request_id}")
+async def get_partner_request_detail(request_id: str):
+    """Détail d'une demande"""
+    return await PartnersAdminService.get_request_detail(get_db(), request_id)
+
+@router.put("/partners/requests/{request_id}/status")
+async def update_partner_request_status(request_id: str, status: str, admin_notes: str = None):
+    """Mettre à jour le statut d'une demande"""
+    return await PartnersAdminService.update_request_status(get_db(), request_id, status, admin_notes)
+
+@router.post("/partners/requests/{request_id}/convert")
+async def convert_request_to_partner(request_id: str):
+    """Convertir une demande en partenaire officiel"""
+    return await PartnersAdminService.convert_to_partner(get_db(), request_id)
+
+@router.get("/partners/list")
+async def get_partners_list(
+    partner_type: Optional[str] = None,
+    is_active: Optional[bool] = None,
+    search: Optional[str] = None,
+    limit: int = Query(50, le=500)
+):
+    """Liste des partenaires officiels"""
+    return await PartnersAdminService.get_partners(get_db(), partner_type, is_active, search, limit)
+
+@router.get("/partners/{partner_id}")
+async def get_partner_detail(partner_id: str):
+    """Détail d'un partenaire"""
+    return await PartnersAdminService.get_partner_detail(get_db(), partner_id)
+
+@router.put("/partners/{partner_id}")
+async def update_partner(partner_id: str, updates: dict = Body(...)):
+    """Mettre à jour un partenaire"""
+    return await PartnersAdminService.update_partner(get_db(), partner_id, updates)
+
+@router.put("/partners/{partner_id}/toggle")
+async def toggle_partner_status(partner_id: str):
+    """Activer/désactiver un partenaire"""
+    return await PartnersAdminService.toggle_partner_status(get_db(), partner_id)
+
+@router.put("/partners/{partner_id}/verify")
+async def verify_partner(partner_id: str, verified: bool):
+    """Vérifier/dévérifier un partenaire"""
+    return await PartnersAdminService.verify_partner(get_db(), partner_id, verified)
+
+@router.put("/partners/{partner_id}/commission")
+async def update_partner_commission(partner_id: str, rate: float):
+    """Mettre à jour le taux de commission"""
+    return await PartnersAdminService.update_commission_rate(get_db(), partner_id, rate)
+
+@router.get("/partners/email/settings")
+async def get_partner_email_settings():
+    """Récupérer les paramètres email partenaires"""
+    return await PartnersAdminService.get_email_settings(get_db())
+
+@router.put("/partners/email/toggle/{setting_type}")
+async def toggle_partner_email_setting(setting_type: str):
+    """Activer/désactiver un type d'email partenaire"""
+    return await PartnersAdminService.toggle_email_setting(get_db(), setting_type)
+
+
+# ==============================================
+# BRANDING ADMIN (Phase 6 Migration - Identité visuelle)
+# ==============================================
+
+@router.get("/branding/dashboard")
+async def get_branding_dashboard():
+    """Dashboard branding - statistiques"""
+    return await BrandingAdminService.get_dashboard_stats(get_db())
+
+@router.get("/branding/config")
+async def get_brand_config():
+    """Configuration de la marque"""
+    return await BrandingAdminService.get_brand_config(get_db())
+
+@router.get("/branding/logos")
+async def get_brand_logos():
+    """Liste des logos"""
+    return await BrandingAdminService.get_logos(get_db())
+
+@router.get("/branding/logos/{logo_id}")
+async def get_brand_logo_detail(logo_id: str):
+    """Détail d'un logo"""
+    return await BrandingAdminService.get_logo_detail(get_db(), logo_id)
+
+@router.post("/branding/logos")
+async def add_custom_logo(
+    filename: str,
+    url: str,
+    language: str,
+    logo_type: str,
+    file_size: int = 0
+):
+    """Ajouter un logo personnalisé"""
+    return await BrandingAdminService.add_custom_logo(get_db(), filename, url, language, logo_type, file_size)
+
+@router.delete("/branding/logos/{logo_id}")
+async def delete_brand_logo(logo_id: str):
+    """Supprimer un logo personnalisé"""
+    return await BrandingAdminService.delete_logo(get_db(), logo_id)
+
+@router.get("/branding/colors")
+async def get_brand_colors():
+    """Récupérer les couleurs de la marque"""
+    return await BrandingAdminService.get_colors(get_db())
+
+@router.put("/branding/colors/{color_key}")
+async def update_brand_color(color_key: str, hex_value: str, name: str = None):
+    """Mettre à jour une couleur"""
+    return await BrandingAdminService.update_color(get_db(), color_key, hex_value, name)
+
+@router.post("/branding/colors/reset")
+async def reset_brand_colors():
+    """Réinitialiser les couleurs par défaut"""
+    return await BrandingAdminService.reset_colors(get_db())
+
+@router.get("/branding/document-types")
+async def get_document_types():
+    """Types de documents disponibles"""
+    return await BrandingAdminService.get_document_types(get_db())
+
+@router.post("/branding/documents/log")
+async def log_document_generation(
+    template_type: str,
+    language: str,
+    title: str = None,
+    recipient: str = None
+):
+    """Logger une génération de document"""
+    return await BrandingAdminService.log_document_generation(get_db(), template_type, language, title, recipient)
+
+@router.get("/branding/documents/history")
+async def get_document_history(limit: int = Query(50, le=500)):
+    """Historique des documents générés"""
+    return await BrandingAdminService.get_document_history(get_db(), limit)
+
+@router.get("/branding/uploads/history")
+async def get_upload_history(limit: int = Query(50, le=500)):
+    """Historique des uploads de logos"""
+    return await BrandingAdminService.get_upload_history(get_db(), limit)
+
+@router.get("/branding/assets")
+async def get_brand_assets():
+    """Récupérer tous les assets de la marque"""
+    return await BrandingAdminService.get_brand_assets(get_db())
