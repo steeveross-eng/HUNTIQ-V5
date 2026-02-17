@@ -370,14 +370,25 @@ const Navigation = ({ cartCount, onCartOpen }) => {
   );
 };
 
-// Footer Component
-const Footer = () => (
-  <footer className="bg-black py-8 border-t border-border">
-    <div className="max-w-7xl mx-auto px-4 text-center">
-      <p className="text-gray-400">© 2024 HUNTIQ - Chasse BIONIC™</p>
-    </div>
-  </footer>
-);
+// Footer Component - Hidden on full-viewport pages
+const FULL_VIEWPORT_ROUTES = ['/map', '/territoire', '/forecast', '/analyze', '/admin-geo', '/admin-premium'];
+
+const Footer = () => {
+  const location = useLocation();
+  const isFullViewportPage = FULL_VIEWPORT_ROUTES.some(route => 
+    location.pathname === route || location.pathname.startsWith(route + '/')
+  );
+  
+  if (isFullViewportPage) return null;
+  
+  return (
+    <footer className="bg-black py-8 border-t border-border">
+      <div className="max-w-7xl mx-auto px-4 text-center">
+        <p className="text-gray-400">© 2024 HUNTIQ - Chasse BIONIC™</p>
+      </div>
+    </footer>
+  );
+};
 
 // HeroSection Component
 const HeroSection = () => {
