@@ -1125,38 +1125,35 @@ const MonTerritoireBionicPage = () => {
               </div>
             </div>
             
-            <div className="flex items-center gap-3">
-              {/* Score Global */}
-              <div className="bg-gray-900/80 rounded-lg px-3 py-1.5 border border-gray-700">
-                <div className="flex items-center gap-2">
-                  <span className="text-xl font-bold text-white">{displayScore}</span>
-                  <span className="text-gray-500 text-sm">/100</span>
-                  <Badge className={`${rating.color} text-white text-[10px]`}>{rating.label}</Badge>
+            <div className="flex items-center gap-2">
+              {/* Score Global - Compact */}
+              <div className="bg-gray-900/80 rounded-lg px-2 py-1 border border-gray-700">
+                <div className="flex items-center gap-1.5">
+                  <span className="text-base font-bold text-white">{displayScore}</span>
+                  <span className="text-gray-500 text-xs">/100</span>
+                  <Badge className={`${rating.color} text-white text-[9px] px-1.5 py-0`}>{rating.label}</Badge>
                 </div>
               </div>
               
-              {/* Mode LIVE */}
-              <div className="flex items-center gap-2 bg-gray-900/80 rounded-lg px-3 py-1.5 border border-gray-700">
-                <Zap className={`h-4 w-4 ${liveMode ? 'text-green-400' : 'text-gray-500'}`} />
-                <span className="text-xs text-gray-400">LIVE</span>
-                <Switch checked={liveMode} onCheckedChange={setLiveMode} className="data-[state=checked]:bg-green-500" />
+              {/* Mode LIVE - Compact */}
+              <div className="flex items-center gap-1.5 bg-gray-900/80 rounded-lg px-2 py-1 border border-gray-700">
+                <Zap className={`h-3 w-3 ${liveMode ? 'text-green-400' : 'text-gray-500'}`} />
+                <span className="text-[10px] text-gray-400">LIVE</span>
+                <Switch checked={liveMode} onCheckedChange={setLiveMode} className="data-[state=checked]:bg-green-500 scale-75" />
               </div>
               
-              {/* Statut Sync */}
-              <div className={`flex items-center gap-2 bg-gray-900/80 rounded-lg px-3 py-1.5 border ${isOnline ? 'border-green-700/50' : 'border-red-700/50'}`}>
+              {/* Statut Sync - Compact */}
+              <div className={`flex items-center gap-1.5 bg-gray-900/80 rounded-lg px-2 py-1 border ${isOnline ? 'border-green-700/50' : 'border-red-700/50'}`}>
                 {isOnline ? (
-                  <Wifi className="h-4 w-4 text-green-400" />
+                  <Wifi className="h-3 w-3 text-green-400" />
                 ) : (
-                  <WifiOff className="h-4 w-4 text-red-400" />
+                  <WifiOff className="h-3 w-3 text-red-400" />
                 )}
                 {syncing ? (
-                  <RefreshCw className="h-3 w-3 text-blue-400 animate-spin" />
+                  <RefreshCw className="h-2.5 w-2.5 text-blue-400 animate-spin" />
                 ) : (
-                  <Cloud className={`h-3 w-3 ${isOnline ? 'text-green-400' : 'text-red-400'}`} />
+                  <Cloud className={`h-2.5 w-2.5 ${isOnline ? 'text-green-400' : 'text-red-400'}`} />
                 )}
-                <span className="text-[10px] text-gray-400">
-                  {syncing ? 'Sync...' : isOnline ? 'Sync' : 'Offline'}
-                </span>
               </div>
               
               {/* Notifications */}
