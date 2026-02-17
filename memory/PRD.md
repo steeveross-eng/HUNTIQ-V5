@@ -11,6 +11,7 @@
 | 2026-02-17 | 1.5.0 | **P1 - Module d'Interaction Cartographique** |
 | 2026-02-17 | 1.6.0 | **P2 - Recommendation Engine Validé** |
 | 2026-02-17 | **RC-1.0.0** | **🚀 RELEASE CANDIDATE - Phases 21-24 Complétées** |
+| 2026-02-17 | **2.0.0** | **📅 Marketing Calendar V2 - Calendrier 60 jours + Génération IA GPT-5.2** |
 
 ---
 
