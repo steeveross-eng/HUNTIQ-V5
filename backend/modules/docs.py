@@ -266,7 +266,7 @@ Les endpoints admin utilisent l'authentification existante.
         },
         "servers": [
             {
-                "url": "https://knowledge-seo-hub.preview.emergentagent.com",
+                "url": "https://huntiq-analytics.preview.emergentagent.com",
                 "description": "Preview Server"
             }
         ],

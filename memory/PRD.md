@@ -342,7 +342,7 @@ Architecture: 100% modulaire "LEGO", sans perte, sans dérive.
 
 ## URLs
 
-- **Preview**: https://knowledge-seo-hub.preview.emergentagent.com
-- **Pricing**: https://knowledge-seo-hub.preview.emergentagent.com/pricing
-- **Admin Premium**: https://knowledge-seo-hub.preview.emergentagent.com/admin-premium
-- **API Status**: https://knowledge-seo-hub.preview.emergentagent.com/api/modules/status
+- **Preview**: https://huntiq-analytics.preview.emergentagent.com
+- **Pricing**: https://huntiq-analytics.preview.emergentagent.com/pricing
+- **Admin Premium**: https://huntiq-analytics.preview.emergentagent.com/admin-premium
+- **API Status**: https://huntiq-analytics.preview.emergentagent.com/api/modules/status
