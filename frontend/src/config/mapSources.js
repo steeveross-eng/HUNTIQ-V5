@@ -102,7 +102,7 @@ export const MAP_CONFIGS = {
     isDark: true,
     isPremium: true,
     // Stamen Terrain avec personnalisation (Stadia Maps API)
-    tileUrl: 'https://tiles.stadiamaps.com/tiles/stamen_terrain/{z}/{x}/{y}{r}.png?api_key=5272b858-5b8c-4140-8ad2-066343695ca3',
+    tileUrl: `https://tiles.stadiamaps.com/tiles/stamen_terrain/{z}/{x}/{y}{r}.png${STADIA_API_KEY ? `?api_key=${STADIA_API_KEY}` : ''}`,
     attribution: '© Stadia Maps | © Stamen Design | © OpenStreetMap',
     maxZoom: 18,
     overlayStyle: {
