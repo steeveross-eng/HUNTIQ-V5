@@ -157,6 +157,11 @@ from modules.seo_engine.seo_router import router as bionic_seo_router
 from modules.tracking_engine.v1.router import router as tracking_behavioral_router
 
 # ==============================================
+# MARKETING ENGINE V1 - AUTOMATION (Phase 14)
+# ==============================================
+from modules.marketing_engine.v1.router import router as marketing_automation_router
+
+# ==============================================
 # V5-ULTIME-FUSION - MODULES IMPORTÉS (V2, V3, BASE)
 # ==============================================
 from modules.backup_cloud_engine.router import router as backup_cloud_router
@@ -637,6 +642,16 @@ CORE_ROUTERS: List[Tuple[APIRouter, dict]] = [
         "version": "1.0.0",
         "phase": "ANALYTICS-V7",
         "description": "Tracking comportemental - Events, Funnels, Heatmaps, Engagement Metrics"
+    }),
+    
+    # ==========================================
+    # MARKETING ENGINE V1 - AUTOMATION (Phase 14)
+    # ==========================================
+    (marketing_automation_router, {
+        "name": "marketing_engine",
+        "version": "1.0.0",
+        "phase": "MARKETING-V14",
+        "description": "Marketing Automation Engine - Campagnes, Posts, Segments, Automations, Triggers comportementaux"
     }),
 ]
 
