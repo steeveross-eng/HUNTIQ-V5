@@ -1,10 +1,12 @@
 // ShopPage.jsx - Page Magasin avec filtres avancés
+// BIONIC™ Global Container Applied
 import { useState, useMemo } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import AdvancedFilters from "@/components/filters/AdvancedFilters";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { GlobalContainer } from "@/core/layouts";
 import {
   ShoppingCart,
   ExternalLink,
@@ -217,8 +219,8 @@ const ShopPage = ({ products = [], onAddToCart, onAffiliateClick }) => {
   }, [products, filters]);
 
   return (
-    <main className="pt-20 min-h-screen bg-background">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+    <main className="min-h-screen bg-background">
+      <GlobalContainer className="py-6 sm:py-8 pb-16">
         {/* Header */}
         <div className="mb-6">
           <h1 className="golden-text text-h1 font-bold mb-2">{t('shop_title')}</h1>
@@ -266,7 +268,7 @@ const ShopPage = ({ products = [], onAddToCart, onAffiliateClick }) => {
             </p>
           </div>
         )}
-      </div>
+      </GlobalContainer>
     </main>
   );
 };
