@@ -745,6 +745,20 @@ CORE_ROUTERS: List[Tuple[APIRouter, dict]] = [
     }),
 ]
 
+# ==============================================
+# AFFILIATE SWITCH ENGINE (PHASE 6+)
+# ==============================================
+from modules.affiliate_switch_engine.router import router as affiliate_switch_router
+
+AFFILIATE_ROUTERS = [
+    (affiliate_switch_router, {
+        "name": "affiliate_switch",
+        "version": "1.0.0",
+        "phase": "AFFILIATE-ENGINE",
+        "description": "Affiliate Switch Engine - Gestion des switches d'affiliation avec activation automatique"
+    }),
+]
+
 
 def get_all_routers() -> List[APIRouter]:
     """Get all router instances"""
