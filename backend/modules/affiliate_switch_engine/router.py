@@ -828,7 +828,7 @@ async def get_affiliate_stats():
 
 @router.post("/bulk/import-from-suppliers")
 async def import_affiliates_from_suppliers(
-    categories: Optional[List[str]] = Body(None)
+    categories: Optional[List[str]] = Body(default=None, embed=False)
 ):
     """
     Importer les fournisseurs SEO comme affiliés potentiels.
