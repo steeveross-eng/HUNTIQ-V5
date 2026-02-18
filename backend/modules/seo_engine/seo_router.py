@@ -31,6 +31,15 @@ from .seo_jsonld import SEOJsonLDManager
 from .seo_analytics import SEOAnalyticsManager
 from .seo_automation import SEOAutomationManager
 from .seo_generation import SEOGenerationManager
+from .seo_models import (
+    GenerateOutlineRequest,
+    GenerateMetaTagsRequest,
+    GenerateViralCapsuleRequest,
+    CreateContentWorkflowRequest,
+    EnrichWithKnowledgeRequest,
+    GeneratePillarContentRequest,
+    GenerateFAQRequest
+)
 
 logger = logging.getLogger(__name__)
 
