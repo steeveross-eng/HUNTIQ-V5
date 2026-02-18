@@ -23,6 +23,7 @@
 | 2026-02-18 | **3.5.0** | **📦 AD SPACES ENGINE - 18 espaces publicitaires, 6 catégories, Master Switch, Render Engine** |
 | 2026-02-18 | **3.5.1** | **✅ Tests validés 100% - Backend 19/19, Frontend OK - System locked until GO LIVE signal** |
 | 2026-02-18 | **3.6.0** | **🔴 GLOBAL MASTER SWITCH + MESSAGING ENGINE + MESSAGES BILINGUES** |
+| 2026-02-18 | **3.6.1** | **✅ Synchronisation Marketing ON/OFF avec Global Master Switch** |
 
 ---
 
