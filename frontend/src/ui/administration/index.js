@@ -55,3 +55,6 @@ export { AdminX300 } from './admin_x300';
 
 // Global Master Switch - Gros Bouton Rouge
 export { AdminGlobalSwitch } from './admin_global_switch';
+
+// Messaging Engine V2 - Modes TOUS/UN PAR UN
+export { AdminMessaging } from './admin_messaging';
