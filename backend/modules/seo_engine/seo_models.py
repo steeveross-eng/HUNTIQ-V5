@@ -372,6 +372,59 @@ class SEODashboardStats(BaseModel):
     health_score: float
 
 
+# ============================================
+# REQUEST MODELS FOR API ENDPOINTS
+# ============================================
+
+class GenerateOutlineRequest(BaseModel):
+    """Requête de génération d'outline"""
+    cluster_id: str
+    page_type: str
+    target_keyword: str
+    knowledge_data: Optional[Dict[str, Any]] = None
+
+
+class GenerateMetaTagsRequest(BaseModel):
+    """Requête de génération de meta tags"""
+    title: str
+    keyword: str
+    content_summary: str = ""
+
+
+class GenerateViralCapsuleRequest(BaseModel):
+    """Requête de génération de capsule virale"""
+    topic: str
+    species_id: Optional[str] = None
+    knowledge_data: Optional[Dict[str, Any]] = None
+
+
+class CreateContentWorkflowRequest(BaseModel):
+    """Requête workflow de création de contenu"""
+    cluster_id: str
+    page_type: str
+    target_keyword: str
+    knowledge_data: Optional[Dict[str, Any]] = None
+
+
+class EnrichWithKnowledgeRequest(BaseModel):
+    """Requête d'enrichissement Knowledge Layer"""
+    page_id: str
+    species_id: Optional[str] = None
+    knowledge_api_response: Optional[Dict[str, Any]] = None
+
+
+class GeneratePillarContentRequest(BaseModel):
+    """Requête de génération de contenu pilier"""
+    species_id: str
+    keyword: str
+    knowledge_data: Dict[str, Any]
+
+
+class GenerateFAQRequest(BaseModel):
+    """Requête de génération FAQ JSON-LD"""
+    questions: List[Dict[str, str]]
+
+
 class ContentGenerationRequest(BaseModel):
     """Requête de génération de contenu"""
     cluster_id: str
