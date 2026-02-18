@@ -65,6 +65,7 @@ const navItems = [
   { id: 'knowledge', label: 'Knowledge', icon: Brain },
   { id: 'seo', label: 'SEO Engine', icon: Search },
   { id: 'marketing-controls', label: 'Marketing ON/OFF', icon: ToggleLeft },
+  { id: 'categories', label: 'Catégories', icon: FlaskConical },
   { id: 'ecommerce', label: 'E-Commerce', icon: ShoppingCart },
   { id: 'hotspots', label: 'Terres/Hotspots', icon: Trees },
   { id: 'networking', label: 'Réseautage', icon: Network },
