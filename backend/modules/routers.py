@@ -733,6 +733,16 @@ CORE_ROUTERS: List[Tuple[APIRouter, dict]] = [
         "phase": "X300-STRATEGY",
         "description": "Master Switch X300% - Contrôle ON/OFF global de tous les modules X300%"
     }),
+    
+    # ==========================================
+    # SEO SUPPLIERS DATABASE (LISTE FOURNISSEURS ULTIME)
+    # ==========================================
+    (seo_suppliers_router, {
+        "name": "seo_suppliers",
+        "version": "1.0.0",
+        "phase": "SEO-SUPREME",
+        "description": "LISTE FOURNISSEURS ULTIME - Base de données exhaustive fournisseurs mondiaux par catégorie"
+    }),
 ]
 
 
