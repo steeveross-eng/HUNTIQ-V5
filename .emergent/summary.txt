@@ -1,67 +1,75 @@
 <analysis>**original_problem_statement:**
-L'utilisateur, COPILOT MAÎTRE, a initié une phase PRÉ-GO LIVE après la validation de la STRATÉGIE X300%. Cette phase a inclus une série de commandes majeures, en plus des tâches initiales de tests et de nettoyage :
+L'utilisateur, COPILOT MAÎTRE, a initié une série de directives post-validation de la COMMANDE 4. L'objectif est de préparer la plateforme pour le GO LIVE tout en gardant un contrôle absolu sur l'état du système.
 
-1.  **Tests Utilisateurs Internes & Nettoyage /admin (P0) :** Simuler des parcours utilisateurs, vérifier la captation de données et masquer les modules redondants de l'ancienne page .
-2.  **SEO SUPRÊME (Nouvelle Exigence) :** Créer une base de données exhaustive de fournisseurs (LISTE FOURNISSEURS ULTIME), l'intégrer au moteur SEO BIONIC et créer une interface d'administration pour la gérer.
-3.  **COMMANDE 2 : AFFILIATE SWITCH ENGINE :** Développer un moteur pour gérer l'activation (manuelle/automatique) des affiliés, avec des statuts, un processus de validation, une journalisation et une synchronisation avec tous les autres moteurs (SEO, Marketing, etc.).
-4.  **COMMANDE 3 : AFFILIATE AD AUTOMATION ENGINE :** Créer un système 100% automatisé pour le cycle de vente publicitaire aux affiliés, du déclenchement de l'offre par e-mail à un portail de paiement (fictif pour l'instant) et au déploiement des publicités.
-5.  **COMMANDE 4 : AD SPACES ENGINE :** Créer un système de gestion des espaces publicitaires, incluant la définition des emplacements, la gestion des attributions (slots) et un moteur de rendu, le tout contrôlé par un interrupteur principal.
-6.  **DIRECTIVE IMMÉDIATE :** Suite à l'implémentation de la Commande 3, l'utilisateur a exigé la désactivation immédiate de toutes les publicités et la mise en place d'un Master Switch Publicitaire global en position OFF, plaçant le système en mode PRÉ-PRODUCTION.
+Les exigences majeures de la session étaient :
+1.  **Directive de Verrouillage :** Mettre le système publicitaire en mode PRÉ-PRODUCTION strict en désactivant des affiliés, des opportunités, et en maintenant le Master Switch Publicitaire sur OFF.
+2.  **Création du Global Master Switch (GROS BOUTON ROUGE) :** Implémenter un interrupteur global de haut niveau dans  pour contrôler l'ensemble des modules publicitaires et marketing (, , , , etc.). Cet interrupteur doit avoir un état  et journaliser toutes les actions.
+3.  **Création du Messaging Engine :** Développer un module pour envoyer des communications bilingues (FR/EN) personnalisées aux affiliés, avec une directive SEO permanente pour rendre ce format obligatoire pour toutes les communications futures.
+4.  **Amélioration du Messaging Engine (V2) :** Ajouter une nouvelle fonctionnalité permettant de choisir entre un envoi de masse (TOUS) et un envoi individuel (UN PAR UN), avec un pipeline de validation strict incluant un pré-visuel obligatoire avant tout envoi.
+5.  **Synchronisation des modules :** S'assurer que les contrôles existants (ex: Marketing ON/OFF) sont synchronisés avec et désactivés par le Global Master Switch lorsqu'il est en mode .
+6.  **DIRECTIVE FINALE (en cours) :** Cesser toute autre activité et procéder à une analyse complète et à la documentation détaillée du module SEO existant. Aucune autre action ne doit être entreprise avant la livraison et la validation de ce rapport.
 
 **User's preferred language**: Français
 
 **what currently exists?**
-L'application est une plateforme d'administration et de marketing extrêmement avancée, centrée sur . Les dernières sessions ont ajouté quatre modules majeurs entièrement intégrés :
-1.  **Gestion des Fournisseurs SEO :** Une base de données de 104 fournisseurs a été créée et est gérée via une nouvelle interface dans .
-2.  **Affiliate Switch Engine :** Un système fonctionnel gère 103 affiliés (importés depuis les fournisseurs), leur statut d'activation et leur synchronisation avec les autres modules.
-3.  **Affiliate Ad Automation Engine :** Un pipeline de vente publicitaire automatisé a été créé. Il peut générer des opportunités, simuler un processus de paiement et suivre les revenus.
-4.  **Ad Spaces Engine :** Un catalogue de 18 espaces publicitaires est défini et gérable.
+L'application est une plateforme d'administration et de marketing avancée (). Le système est actuellement en mode **PRÉ-GO LIVE**, avec toutes les fonctionnalités publicitaires intentionnellement désactivées et contrôlées par un **Global Master Switch** (surnommé le GROS BOUTON ROUGE) qui est en position **LOCKED**.
 
-Conformément à une directive de l'utilisateur, un **Master Switch Publicitaire** a été implémenté et est actuellement sur **OFF**. Le système est en mode **PRÉ-PRODUCTION** : aucune publicité n'est active, les campagnes sont en pause et les opportunités sont suspendues.
+Les modules principaux incluent :
+-   **Gestion des Fournisseurs SEO**
+-   **Affiliate Switch Engine** (Gestion des affiliés)
+-   **Affiliate Ad Automation Engine** (Vente de publicité automatisée, mockée)
+-   **Ad Spaces Engine** (Gestion des espaces publicitaires)
+-   **Global Master Switch Engine** (NOUVEAU) : Le contrôle central qui verrouille tous les systèmes publicitaires et marketing.
+-   **Messaging Engine V2** (NOUVEAU) : Un système de messagerie bilingue avancé avec des modes d'envoi (TOUS, UN PAR UN) et un pipeline de pré-visualisation et de validation obligatoire.
+
+Tous les modules sont synchronisés avec le Global Master Switch, respectant son état .
 
 **Last working item**:
-- **Last item agent was working:** Implémentation de la **COMMANDE 4 : AD SPACES ENGINE**. L'agent a créé le module backend, l'interface frontend pour gérer les 18 espaces publicitaires, et a assuré que l'ensemble du système respecte le **Master Switch Publicitaire** qui est en position OFF (mode PRÉ-PRODUCTION), conformément à la directive de l'utilisateur.
-- **Status:** USER VERIFICATION PENDING
-- **Agent Testing Done:** Y (Les tests ont été effectués avec  et ont tous réussi, validant que le système est fonctionnel et en mode PRÉ-PRODUCTION comme demandé. Rapport : ).
-- **Which testing method agent to use?** testing_agent_v3_fork
-- **User Testing Done:** N
+-   **Last item agent was working:** Suite à une directive impérative de l'utilisateur, l'agent a cessé toute implémentation pour se concentrer exclusivement sur l'analyse et la documentation du module SEO existant. L'agent a exploré tous les fichiers du module () et s'apprêtait à rédiger le rapport de documentation détaillé.
+-   **Status:** IN PROGRESS
+-   **Agent Testing Done:** N/A (La tâche est la documentation, pas le développement)
+-   **Which testing method agent to use?** NA
+-   **User Testing Done:** N/A
 
 **All Pending/In progress Issue list**:
 Aucun bogue technique n'est en cours. Les éléments en attente sont des actions ou des données attendues de la part de l'utilisateur.
 
 -   **Issue 1: Données fournisseurs incomplètes (P1)**
-    -   **Description:** L'utilisateur a fourni une liste de fournisseurs tronquée. Il a confirmé qu'il enverrait la liste complète dans une commande séparée. Le système fonctionne actuellement avec 104 fournisseurs.
+    -   **Description:** L'utilisateur a confirmé qu'il enverrait une liste complète de fournisseurs ultérieurement. Le système fonctionne actuellement avec un sous-ensemble de 104 fournisseurs.
     -   **Status:** BLOCKED (en attente de la liste de l'utilisateur).
 -   **Issue 2: Système publicitaire en attente de GO LIVE (P0)**
-    -   **Description:** L'ensemble du système publicitaire est intentionnellement désactivé (mode PRÉ-PRODUCTION) sur ordre de l'utilisateur. Il est en attente du signal (activation du Master Switch) pour passer en production.
+    -   **Description:** L'ensemble du système publicitaire est intentionnellement désactivé () sur ordre de l'utilisateur. Il est en attente du signal GO LIVE pour passer en production.
     -   **Status:** BLOCKED (en attente de la directive de l'utilisateur).
 
 **In progress Task List**:
-Aucune tâche n'est actuellement en cours d'implémentation. La Commande 4 est terminée et en attente de validation par l'utilisateur.
+-   **Task 1: Documentation complète du module SEO (P0 - Bloquant)**
+    -   **Where to resume:** L'agent a terminé l'analyse des fichiers sources du module SEO. La prochaine étape est de synthétiser ces informations et de générer le document de rapport complet comme demandé par l'utilisateur.
+    -   **What will be achieved with this?** Fournir à l'utilisateur un rapport détaillé sur le fonctionnement, les règles, les automatisations et les dépendances du module SEO, ce qui est un prérequis pour toute action future.
+    -   **Status:** IN PROGRESS
+    -   **Should Test frontend/backend/both after fix?** No
+    -   **Blocked on something:** Non
 
 **Upcoming and Future Tasks**
 *   **Upcoming Tasks:**
-    *   **P0 - Activation du Master Switch Publicitaire :** Attendre la directive de l'utilisateur pour activer le système publicitaire.
-    *   **P1 - Intégration de la liste complète des fournisseurs :** Mettre à jour la base de données lorsque l'utilisateur fournira la liste complète.
-    *   **P1 - Intégration Stripe réelle :** Activer la passerelle de paiement Stripe, une fois que l'utilisateur donnera son accord (explicitement reporté à la phase GO LIVE).
-    *   **P2 - Spécification des Exports Marketing :** Préparer la fonctionnalité d'export des assets marketing (campagnes, créas).
+    *   **P0 - Attendre la validation de la documentation SEO :** L'utilisateur doit d'abord réviser et valider le rapport avant toute autre tâche.
+    *   **P0 - Attendre la directive GO LIVE :** Attendre le signal de l'utilisateur pour déverrouiller le Global Master Switch et activer le système.
+    *   **P1 - Intégration de la liste complète des fournisseurs :** Mettre à jour la base de données lorsque l'utilisateur la fournira.
+    *   **P1 - Intégration Stripe réelle :** Activer la passerelle de paiement Stripe (explicitement reporté à la phase GO LIVE).
 *   **Future Tasks (Backlog):**
     *   A/B Testing pour le module Marketing Automation.
     *   Phase 2 Marketing Integrations (API directes avec Meta, TikTok, YouTube).
-    *   GO LIVE : Déploiement final en production.
     *   Plateforme d’Affiliation Ultime.
 
 **Completed work in this session**
-- **Nettoyage de  :** L'ancienne page d'administration a été simplifiée, affichant une bannière de redirection vers  et ne conservant que les modules essentiels.
-- **Module Admin Fournisseurs SEO :** Création d'une API et d'une interface dans  pour visualiser, filtrer et gérer la base de données des 104 fournisseurs.
-- **COMMANDE 2 - Affiliate Switch Engine :** Implémentation complète du module backend et de l'interface frontend pour gérer les affiliés, incluant l'importation depuis la base fournisseurs, la gestion des statuts et les switches ON/OFF.
-- **Validation en lot des affiliés :** Ajout d'un endpoint pour valider et activer en masse les 103 affiliés importés.
-- **COMMANDE 3 - Affiliate Ad Automation Engine :** Création du cycle de vente publicitaire automatisé de bout en bout (déclenchement, opportunité, faux paiement, déploiement) avec son interface de gestion.
-- **COMMANDE 4 - Ad Spaces Engine :** Création d'un système de gestion des 18 espaces publicitaires avec un catalogue et un statut système, le tout contrôlé par un interrupteur principal.
-- **Directive de Désactivation Globale :** Implémentation et exécution d'un Master Switch Publicitaire pour mettre l'ensemble du système publicitaire en mode PRÉ-PRODUCTION (OFF).
+-   **Création du Global Master Switch :** Implémentation d'un interrupteur central (GROS BOUTON ROUGE) dans  pour activer/désactiver/verrouiller tous les systèmes publicitaires et marketing. Le système a été placé en état .
+-   **Création du Messaging Engine V2 :** Développement d'un module de messagerie bilingue (FR/EN) avec des modes d'envoi (TOUS, UN PAR UN), un pipeline de pré-visualisation obligatoire et une journalisation détaillée.
+-   **Ajout de la Règle SEO Permanente :** Une règle a été ajoutée au SEO Engine pour forcer l'utilisation de communications bilingues pour tous les messages générés automatiquement.
+-   **Envoi de messages aux affiliés :** Le nouveau Messaging Engine a été utilisé pour envoyer une communication aux affiliés désignés.
+-   **Synchronisation des Modules :** Le module Marketing ON/OFF a été mis à jour pour être synchronisé avec le Global Master Switch, se désactivant lorsque le système est verrouillé.
+-   **Tests et Validation :** Toutes les nouvelles fonctionnalités ont été validées avec succès via le  (rapports  et ).
 
 **Earlier issues found/mentioned but not fixed**
-Aucun. Tous les problèmes rencontrés durant le développement (erreur de mot de passe, routeur non chargé, erreur de type Pydantic) ont été identifiés et résolus immédiatement par l'agent.
+Aucun.
 
 **Known issue recurrence from previous fork**
 Aucun.
@@ -70,595 +78,73 @@ Aucun.
 
 
 **Key Technical Concepts**
-- **Automatisation Événementielle :** Des actions en chaîne sont déclenchées automatiquement (ex: l'activation d'un affilié crée une opportunité publicitaire).
-- **Feature Flag / Master Switch :** Un interrupteur principal () a été implémenté pour contrôler globalement l'activation de tout le système publicitaire, permettant de basculer entre les modes PRÉ-PRODUCTION et PRODUCTION.
-- **Développement Modulaire (LEGO V5-ULTIME) :** Chaque nouvelle commande a été implémentée comme un module backend et frontend distinct et interconnecté, respectant l'architecture existante.
-- **Dépendances Fictives (Mocking) :** Le processus de paiement est entièrement simulé, permettant de tester le flux complet sans nécessiter d'intégration réelle à ce stade.
+-   **Global Master Switch :** Un interrupteur central avec état (//) qui contrôle et désactive de force tous les modules dépendants (publicité, marketing), assurant un verrouillage complet du système en mode PRÉ-PRODUCTION.
+-   **Bilingual Messaging Engine V2 :** Un module de communication avancé supportant des envois personnalisés en masse ou individuels, avec un pipeline de validation strict incluant une étape de pré-visualisation (preview) obligatoire avant l'envoi.
+-   **Règles SEO Permanentes :** Un mécanisme a été ajouté pour permettre la création de règles globales (ex: toujours communiquer en bilingue) qui sont appliquées à travers tous les modules de communication.
+-   **Contrôles Synchronisés :** Des composants UI (comme les interrupteurs marketing) sont désormais liés à l'état du Global Master Switch et affichent des alertes ou se désactivent lorsque le système est verrouillé.
 
 **key DB schema**
-- **** : (nouvelle collection implicite via le fichier python )
-- **** : {affiliate_id, company_name, status, validation_steps, sync_status}
-- **** : {opportunity_id, affiliate_id, status, base_price, expires_at}
-- **** : {campaign_id, opportunity_id, status, package, placement, price, start_date, end_date}
-- **** : {space_id, category, size, location, status}
-- **** : {is_active, reason, last_updated}
+-   ****: (stocké dans un fichier log) {timestamp, user, action, new_status, reason}
+-   ****: (stocké dans un fichier log) {batch_id, recipient_id, content_final, status, timestamp}
+-   ****: (stocké dans un fichier) {rule_id, description, status, enforcement, applies_to}
+-   *Collections existantes:* , , , , .
 
 **All files of reference**
-- **Fichiers Créés :**
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-- **Fichiers Modifiés (Critiques) :**
-  - : Enregistrement des 4 nouveaux modules.
-  - : Intégration des 4 nouvelles interfaces.
-  - : Masquage des modules redondants.
-  - : Correction du chargement des routeurs.
+-   **Fichiers Créés :**
+    -    (router.py, __init__.py)
+    -    (router.py, __init__.py)
+    -   
+    -   
+-   **Fichiers Modifiés (Critiques) :**
+    -   : Enregistrement des routeurs  et .
+    -   : Ajout de la règle SEO bilingue.
+    -   : Intégration des nouveaux modules  et .
+    -   : Ajout de la logique de synchronisation avec le Global Master Switch.
+    -   : Mise à jour continue.
 
 **key api endpoints**
--  (stats, categories, list)
--  (dashboard, import, toggle, bulk-validate)
--  (dashboard, opportunities, checkout, master-switch)
--  (dashboard, catalog, slots)
+-    (dashboard, set-status)
+-    (dashboard, generate-preview, send-batch, get-logs)
+-    (endpoint interne pour ajouter/gérer les règles)
 
 **Critical Info for New Agent**
-- **Langue :** Communiquer exclusivement en **Français**.
-- **Utilisateur (COPILOT MAÎTRE) :** L'utilisateur est extrêmement directif et fournit des commandes très détaillées. Il est impératif de suivre ses instructions à la lettre, d'exécuter les DIRECTIVES IMMÉDIATES en priorité absolue et d'attendre sa validation explicite.
-- **État du Projet :** Le système est en mode **PRÉ-PRODUCTION**. Le système publicitaire est **intentionnellement désactivé** par un Master Switch sur ordre de l'utilisateur. Ne pas l'activer sans une directive explicite.
-- **Mot de passe Admin :** Le mot de passe pour se connecter à  et  est .
+-   **Langue :** Communiquer exclusivement en **Français**.
+-   **Utilisateur (COPILOT MAÎTRE) :** L'utilisateur est extrêmement directif et s'attend à une exécution littérale de ses COMMANDES et DIRECTIVES. Il n'y a aucune place pour l'interprétation.
+-   **MANDAT ACTUEL (TRÈS IMPORTANT) :** Votre seule et unique tâche est de **finaliser et de livrer la documentation complète du module SEO**. N'effectuez **AUCUNE** autre action (modification, exécution, test) tant que ce rapport n'a pas été livré et validé par l'utilisateur. Toute autre activité est actuellement bloquée.
+-   **État du Projet :** Le système est en mode **PRÉ-GO LIVE** et . Le Global Master Switch est sur **OFF**. Ne l'activez sous aucun prétexte sans une directive explicite GO LIVE de l'utilisateur.
+-   **Mot de passe Admin :**  / 
 
 **documents and test reports created in this job**
-- 
-- 
-- 
-- 
-- 
+-   
+-   
+-    (mis à jour)
 
 **Last 10 User Messages and any pending HUMAN messages**
-- **User (Latest):** Donne la **Commande 4 (Ad Spaces Engine)** et une **Directive Immédiate** pour désactiver toutes les publicités et créer un Master Switch.
-- **Agent:** Complète la Commande 3 (Affiliate Ad Automation), valide les tests, met à jour le PRD et demande s'il faut intégrer Stripe.
-- **User:** Donne la **Commande 3 (Affiliate Ad Automation Engine)** et confirme l'implémentation de la validation en lot.
-- **Agent:** Complète la Commande 2 (Affiliate Switch Engine), valide les tests, met à jour le PRD et demande pour la validation en lot.
-- **User:** Donne la **Commande 2 (Affiliate Switch Engine)** et confirme la création d'un module d'admin pour les fournisseurs.
-- **Agent:** Complète la phase PRE-GO LIVE (nettoyage /admin et SEO Suprême), valide les tests et demande des clarifications.
+1.  **User (LATEST):** Ordre d'arrêter toute activité et de se concentrer **uniquement** sur l'analyse et la documentation complètes du module SEO.
+2.  **Agent:** Accuse réception et commence l'analyse des fichiers du module SEO.
+3.  **User:** Fournit la nouvelle exigence pour le Messaging Engine V2 (modes TOUS/UN PAR UN, pré-visuel obligatoire).
+4.  **Agent:** Finalise la synchronisation du Global Master Switch et attend la suite.
+5.  **User:** Valide la création du GROS BOUTON ROUGE et donne de nouvelles directives : maintenir le verrouillage et synchroniser le bouton Marketing ON/OFF.
+6.  **Agent:** Confirme que tous les tests pour le Global Master Switch et les messages bilingues sont passés avec succès.
+7.  **User:** Valide la COMMANDE 4 et donne une série de directives majeures : mode publicitaire OFF, envoi de messages bilingues, ajout d'une règle SEO permanente et création du Global Master Switch (GROS BOUTON ROUGE).
+8.  **Agent:** Confirme que la Commande 4 (Ad Spaces Engine) est terminée et attend la validation.
 
 **Project Health Check:**
-- **Broken:** Rien. Le système est stable.
-- **Mocked:** Le processus de paiement dans  est entièrement simulé, ce qui est le comportement attendu à ce stade.
+-   **Broken:** Rien. Le système est stable.
+-   **Mocked:** L'envoi d'e-mails (via le Messaging Engine) et le processus de paiement (via l'Affiliate Ad Automation Engine) sont entièrement simulés, ce qui est le comportement attendu à ce stade.
 
 **3rd Party Integrations**
-- **Stripe:** Existant mais non configuré pour des paiements réels. Son activation a été explicitement reportée par l'utilisateur.
-- **GPT-5.2 (via Emergent LLM Key):** Utilisé par des modules précédents, non modifié dans cette session.
+-   **Stripe:** Intégration existante mais non activée pour les paiements réels. Son activation est explicitement reportée à la phase GO LIVE.
+-   **GPT-5.2 (via Emergent LLM Key):** Utilisé par des modules plus anciens, non modifié dans cette session.
 
 **Testing status**
-- **Testing agent used after significant changes:** YES.  a été utilisé avec succès après chaque commande majeure (4 fois au total).
-- **Test files created:** Aucun fichier ============================= test session starts ==============================
-platform linux -- Python 3.11.14, pytest-9.0.2, pluggy-1.6.0
-rootdir: /app
-plugins: anyio-4.12.0
-collected 1621 items / 60 errors
-
-==================================== ERRORS ====================================
-______________ ERROR collecting backend/tests/test_auth_engine.py ______________
-backend/tests/test_auth_engine.py:25: in <module>
-    raise ValueError("REACT_APP_BACKEND_URL environment variable not set")
-E   ValueError: REACT_APP_BACKEND_URL environment variable not set
-___ ERROR collecting sources/HUNTIQ-BASE/backend/tests/test_bionic_engine.py ___
-import file mismatch:
-imported module 'test_bionic_engine' has this __file__ attribute:
-  /app/backend/tests/test_bionic_engine.py
-which is not the same as the test file we want to collect:
-  /app/sources/HUNTIQ-BASE/backend/tests/test_bionic_engine.py
-HINT: remove __pycache__ / .pyc files and/or use a unique basename for your test file modules
-__ ERROR collecting sources/HUNTIQ-BASE/backend/tests/test_geospatial_apis.py __
-import file mismatch:
-imported module 'test_geospatial_apis' has this __file__ attribute:
-  /app/backend/tests/test_geospatial_apis.py
-which is not the same as the test file we want to collect:
-  /app/sources/HUNTIQ-BASE/backend/tests/test_geospatial_apis.py
-HINT: remove __pycache__ / .pyc files and/or use a unique basename for your test file modules
-__ ERROR collecting sources/HUNTIQ-BASE/backend/tests/test_hydrography_api.py __
-import file mismatch:
-imported module 'test_hydrography_api' has this __file__ attribute:
-  /app/backend/tests/test_hydrography_api.py
-which is not the same as the test file we want to collect:
-  /app/sources/HUNTIQ-BASE/backend/tests/test_hydrography_api.py
-HINT: remove __pycache__ / .pyc files and/or use a unique basename for your test file modules
-_ ERROR collecting sources/HUNTIQ-BASE/backend/tests/test_live_tracking_chat.py _
-import file mismatch:
-imported module 'test_live_tracking_chat' has this __file__ attribute:
-  /app/backend/tests/test_live_tracking_chat.py
-which is not the same as the test file we want to collect:
-  /app/sources/HUNTIQ-BASE/backend/tests/test_live_tracking_chat.py
-HINT: remove __pycache__ / .pyc files and/or use a unique basename for your test file modules
-_ ERROR collecting sources/HUNTIQ-BASE/backend/tests/test_permanent_water_exclusion.py _
-import file mismatch:
-imported module 'test_permanent_water_exclusion' has this __file__ attribute:
-  /app/backend/tests/test_permanent_water_exclusion.py
-which is not the same as the test file we want to collect:
-  /app/sources/HUNTIQ-BASE/backend/tests/test_permanent_water_exclusion.py
-HINT: remove __pycache__ / .pyc files and/or use a unique basename for your test file modules
-_ ERROR collecting sources/HUNTIQ-BASE/backend/tests/test_sharing_groups_api.py _
-import file mismatch:
-imported module 'test_sharing_groups_api' has this __file__ attribute:
-  /app/backend/tests/test_sharing_groups_api.py
-which is not the same as the test file we want to collect:
-  /app/sources/HUNTIQ-BASE/backend/tests/test_sharing_groups_api.py
-HINT: remove __pycache__ / .pyc files and/or use a unique basename for your test file modules
-__ ERROR collecting sources/HUNTIQ-BASE/backend/tests/test_sync_and_brand.py ___
-import file mismatch:
-imported module 'test_sync_and_brand' has this __file__ attribute:
-  /app/backend/tests/test_sync_and_brand.py
-which is not the same as the test file we want to collect:
-  /app/sources/HUNTIQ-BASE/backend/tests/test_sync_and_brand.py
-HINT: remove __pycache__ / .pyc files and/or use a unique basename for your test file modules
-_ ERROR collecting sources/HUNTIQ-BASE/backend/tests/test_territory_phase2.py __
-import file mismatch:
-imported module 'test_territory_phase2' has this __file__ attribute:
-  /app/backend/tests/test_territory_phase2.py
-which is not the same as the test file we want to collect:
-  /app/sources/HUNTIQ-BASE/backend/tests/test_territory_phase2.py
-HINT: remove __pycache__ / .pyc files and/or use a unique basename for your test file modules
-_ ERROR collecting sources/HUNTIQ-BASE/backend/tests/test_user_waypoints_api.py _
-import file mismatch:
-imported module 'test_user_waypoints_api' has this __file__ attribute:
-  /app/backend/tests/test_user_waypoints_api.py
-which is not the same as the test file we want to collect:
-  /app/sources/HUNTIQ-BASE/backend/tests/test_user_waypoints_api.py
-HINT: remove __pycache__ / .pyc files and/or use a unique basename for your test file modules
-__ ERROR collecting sources/HUNTIQ-BASE/backend/tests/test_zone_favorites.py ___
-import file mismatch:
-imported module 'test_zone_favorites' has this __file__ attribute:
-  /app/backend/tests/test_zone_favorites.py
-which is not the same as the test file we want to collect:
-  /app/sources/HUNTIQ-BASE/backend/tests/test_zone_favorites.py
-HINT: remove __pycache__ / .pyc files and/or use a unique basename for your test file modules
-____ ERROR collecting sources/HUNTIQ-V2/backend/tests/test_bionic_engine.py ____
-import file mismatch:
-imported module 'test_bionic_engine' has this __file__ attribute:
-  /app/backend/tests/test_bionic_engine.py
-which is not the same as the test file we want to collect:
-  /app/sources/HUNTIQ-V2/backend/tests/test_bionic_engine.py
-HINT: remove __pycache__ / .pyc files and/or use a unique basename for your test file modules
-___ ERROR collecting sources/HUNTIQ-V2/backend/tests/test_geospatial_apis.py ___
-import file mismatch:
-imported module 'test_geospatial_apis' has this __file__ attribute:
-  /app/backend/tests/test_geospatial_apis.py
-which is not the same as the test file we want to collect:
-  /app/sources/HUNTIQ-V2/backend/tests/test_geospatial_apis.py
-HINT: remove __pycache__ / .pyc files and/or use a unique basename for your test file modules
-___ ERROR collecting sources/HUNTIQ-V2/backend/tests/test_hydrography_api.py ___
-import file mismatch:
-imported module 'test_hydrography_api' has this __file__ attribute:
-  /app/backend/tests/test_hydrography_api.py
-which is not the same as the test file we want to collect:
-  /app/sources/HUNTIQ-V2/backend/tests/test_hydrography_api.py
-HINT: remove __pycache__ / .pyc files and/or use a unique basename for your test file modules
-_ ERROR collecting sources/HUNTIQ-V2/backend/tests/test_live_tracking_chat.py __
-import file mismatch:
-imported module 'test_live_tracking_chat' has this __file__ attribute:
-  /app/backend/tests/test_live_tracking_chat.py
-which is not the same as the test file we want to collect:
-  /app/sources/HUNTIQ-V2/backend/tests/test_live_tracking_chat.py
-HINT: remove __pycache__ / .pyc files and/or use a unique basename for your test file modules
-_ ERROR collecting sources/HUNTIQ-V2/backend/tests/test_permanent_water_exclusion.py _
-import file mismatch:
-imported module 'test_permanent_water_exclusion' has this __file__ attribute:
-  /app/backend/tests/test_permanent_water_exclusion.py
-which is not the same as the test file we want to collect:
-  /app/sources/HUNTIQ-V2/backend/tests/test_permanent_water_exclusion.py
-HINT: remove __pycache__ / .pyc files and/or use a unique basename for your test file modules
-_ ERROR collecting sources/HUNTIQ-V2/backend/tests/test_sharing_groups_api.py __
-import file mismatch:
-imported module 'test_sharing_groups_api' has this __file__ attribute:
-  /app/backend/tests/test_sharing_groups_api.py
-which is not the same as the test file we want to collect:
-  /app/sources/HUNTIQ-V2/backend/tests/test_sharing_groups_api.py
-HINT: remove __pycache__ / .pyc files and/or use a unique basename for your test file modules
-___ ERROR collecting sources/HUNTIQ-V2/backend/tests/test_sync_and_brand.py ____
-import file mismatch:
-imported module 'test_sync_and_brand' has this __file__ attribute:
-  /app/backend/tests/test_sync_and_brand.py
-which is not the same as the test file we want to collect:
-  /app/sources/HUNTIQ-V2/backend/tests/test_sync_and_brand.py
-HINT: remove __pycache__ / .pyc files and/or use a unique basename for your test file modules
-__ ERROR collecting sources/HUNTIQ-V2/backend/tests/test_territory_phase2.py ___
-import file mismatch:
-imported module 'test_territory_phase2' has this __file__ attribute:
-  /app/backend/tests/test_territory_phase2.py
-which is not the same as the test file we want to collect:
-  /app/sources/HUNTIQ-V2/backend/tests/test_territory_phase2.py
-HINT: remove __pycache__ / .pyc files and/or use a unique basename for your test file modules
-_ ERROR collecting sources/HUNTIQ-V2/backend/tests/test_user_waypoints_api.py __
-import file mismatch:
-imported module 'test_user_waypoints_api' has this __file__ attribute:
-  /app/backend/tests/test_user_waypoints_api.py
-which is not the same as the test file we want to collect:
-  /app/sources/HUNTIQ-V2/backend/tests/test_user_waypoints_api.py
-HINT: remove __pycache__ / .pyc files and/or use a unique basename for your test file modules
-___ ERROR collecting sources/HUNTIQ-V2/backend/tests/test_zone_favorites.py ____
-import file mismatch:
-imported module 'test_zone_favorites' has this __file__ attribute:
-  /app/backend/tests/test_zone_favorites.py
-which is not the same as the test file we want to collect:
-  /app/sources/HUNTIQ-V2/backend/tests/test_zone_favorites.py
-HINT: remove __pycache__ / .pyc files and/or use a unique basename for your test file modules
-______________ ERROR collecting sources/HUNTIQ-V2/backend_test.py ______________
-import file mismatch:
-imported module 'backend_test' has this __file__ attribute:
-  /app/backend_test.py
-which is not the same as the test file we want to collect:
-  /app/sources/HUNTIQ-V2/backend_test.py
-HINT: remove __pycache__ / .pyc files and/or use a unique basename for your test file modules
-____ ERROR collecting sources/HUNTIQ-V3/backend/tests/test_bionic_engine.py ____
-import file mismatch:
-imported module 'test_bionic_engine' has this __file__ attribute:
-  /app/backend/tests/test_bionic_engine.py
-which is not the same as the test file we want to collect:
-  /app/sources/HUNTIQ-V3/backend/tests/test_bionic_engine.py
-HINT: remove __pycache__ / .pyc files and/or use a unique basename for your test file modules
-___ ERROR collecting sources/HUNTIQ-V3/backend/tests/test_geospatial_apis.py ___
-import file mismatch:
-imported module 'test_geospatial_apis' has this __file__ attribute:
-  /app/backend/tests/test_geospatial_apis.py
-which is not the same as the test file we want to collect:
-  /app/sources/HUNTIQ-V3/backend/tests/test_geospatial_apis.py
-HINT: remove __pycache__ / .pyc files and/or use a unique basename for your test file modules
-___ ERROR collecting sources/HUNTIQ-V3/backend/tests/test_hydrography_api.py ___
-import file mismatch:
-imported module 'test_hydrography_api' has this __file__ attribute:
-  /app/backend/tests/test_hydrography_api.py
-which is not the same as the test file we want to collect:
-  /app/sources/HUNTIQ-V3/backend/tests/test_hydrography_api.py
-HINT: remove __pycache__ / .pyc files and/or use a unique basename for your test file modules
-_ ERROR collecting sources/HUNTIQ-V3/backend/tests/test_live_tracking_chat.py __
-import file mismatch:
-imported module 'test_live_tracking_chat' has this __file__ attribute:
-  /app/backend/tests/test_live_tracking_chat.py
-which is not the same as the test file we want to collect:
-  /app/sources/HUNTIQ-V3/backend/tests/test_live_tracking_chat.py
-HINT: remove __pycache__ / .pyc files and/or use a unique basename for your test file modules
-__ ERROR collecting sources/HUNTIQ-V3/backend/tests/test_nutrition_module.py ___
-ImportError while importing test module '/app/sources/HUNTIQ-V3/backend/tests/test_nutrition_module.py'.
-Hint: make sure your test modules/packages have valid Python names.
-Traceback:
-/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
-    return _bootstrap._gcd_import(name[level:], package, level)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-sources/HUNTIQ-V3/backend/tests/test_nutrition_module.py:7: in <module>
-    from geospatial.controllers.nutrition_controller import (
-E   ModuleNotFoundError: No module named 'geospatial'
-_ ERROR collecting sources/HUNTIQ-V3/backend/tests/test_permanent_water_exclusion.py _
-import file mismatch:
-imported module 'test_permanent_water_exclusion' has this __file__ attribute:
-  /app/backend/tests/test_permanent_water_exclusion.py
-which is not the same as the test file we want to collect:
-  /app/sources/HUNTIQ-V3/backend/tests/test_permanent_water_exclusion.py
-HINT: remove __pycache__ / .pyc files and/or use a unique basename for your test file modules
-_ ERROR collecting sources/HUNTIQ-V3/backend/tests/test_sharing_groups_api.py __
-import file mismatch:
-imported module 'test_sharing_groups_api' has this __file__ attribute:
-  /app/backend/tests/test_sharing_groups_api.py
-which is not the same as the test file we want to collect:
-  /app/sources/HUNTIQ-V3/backend/tests/test_sharing_groups_api.py
-HINT: remove __pycache__ / .pyc files and/or use a unique basename for your test file modules
-___ ERROR collecting sources/HUNTIQ-V3/backend/tests/test_sync_and_brand.py ____
-import file mismatch:
-imported module 'test_sync_and_brand' has this __file__ attribute:
-  /app/backend/tests/test_sync_and_brand.py
-which is not the same as the test file we want to collect:
-  /app/sources/HUNTIQ-V3/backend/tests/test_sync_and_brand.py
-HINT: remove __pycache__ / .pyc files and/or use a unique basename for your test file modules
-__ ERROR collecting sources/HUNTIQ-V3/backend/tests/test_territory_phase2.py ___
-import file mismatch:
-imported module 'test_territory_phase2' has this __file__ attribute:
-  /app/backend/tests/test_territory_phase2.py
-which is not the same as the test file we want to collect:
-  /app/sources/HUNTIQ-V3/backend/tests/test_territory_phase2.py
-HINT: remove __pycache__ / .pyc files and/or use a unique basename for your test file modules
-_ ERROR collecting sources/HUNTIQ-V3/backend/tests/test_user_waypoints_api.py __
-import file mismatch:
-imported module 'test_user_waypoints_api' has this __file__ attribute:
-  /app/backend/tests/test_user_waypoints_api.py
-which is not the same as the test file we want to collect:
-  /app/sources/HUNTIQ-V3/backend/tests/test_user_waypoints_api.py
-HINT: remove __pycache__ / .pyc files and/or use a unique basename for your test file modules
-___ ERROR collecting sources/HUNTIQ-V3/backend/tests/test_zone_favorites.py ____
-import file mismatch:
-imported module 'test_zone_favorites' has this __file__ attribute:
-  /app/backend/tests/test_zone_favorites.py
-which is not the same as the test file we want to collect:
-  /app/sources/HUNTIQ-V3/backend/tests/test_zone_favorites.py
-HINT: remove __pycache__ / .pyc files and/or use a unique basename for your test file modules
-______________ ERROR collecting sources/HUNTIQ-V3/backend_test.py ______________
-import file mismatch:
-imported module 'backend_test' has this __file__ attribute:
-  /app/backend_test.py
-which is not the same as the test file we want to collect:
-  /app/sources/HUNTIQ-V3/backend_test.py
-HINT: remove __pycache__ / .pyc files and/or use a unique basename for your test file modules
-_ ERROR collecting sources/HUNTIQ-V3/bionic/engines/behaviorV3/tests/test_behavior_v3.py _
-ImportError while importing test module '/app/sources/HUNTIQ-V3/bionic/engines/behaviorV3/tests/test_behavior_v3.py'.
-Hint: make sure your test modules/packages have valid Python names.
-Traceback:
-/usr/local/lib/python3.11/importlib/__init__.py:126: in import_module
-    return _bootstrap._gcd_import(name[level:], package, level)
-           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-sources/HUNTIQ-V3/bionic/engines/behaviorV3/tests/test_behavior_v3.py:25: in <module>
-    from v3_models.v3_schemas import (
-E   ModuleNotFoundError: No module named 'v3_models'
-_ ERROR collecting sources/HUNTIQ-V4/backend/tests/test_admin_security_p0_p1.py _
-import file mismatch:
-imported module 'test_admin_security_p0_p1' has this __file__ attribute:
-  /app/backend/tests/test_admin_security_p0_p1.py
-which is not the same as the test file we want to collect:
-  /app/sources/HUNTIQ-V4/backend/tests/test_admin_security_p0_p1.py
-HINT: remove __pycache__ / .pyc files and/or use a unique basename for your test file modules
-_____ ERROR collecting sources/HUNTIQ-V4/backend/tests/test_auth_engine.py _____
-sources/HUNTIQ-V4/backend/tests/test_auth_engine.py:25: in <module>
-    raise ValueError("REACT_APP_BACKEND_URL environment variable not set")
-E   ValueError: REACT_APP_BACKEND_URL environment variable not set
-____ ERROR collecting sources/HUNTIQ-V4/backend/tests/test_bionic_engine.py ____
-import file mismatch:
-imported module 'test_bionic_engine' has this __file__ attribute:
-  /app/backend/tests/test_bionic_engine.py
-which is not the same as the test file we want to collect:
-  /app/sources/HUNTIQ-V4/backend/tests/test_bionic_engine.py
-HINT: remove __pycache__ / .pyc files and/or use a unique basename for your test file modules
-__ ERROR collecting sources/HUNTIQ-V4/backend/tests/test_business_security.py __
-import file mismatch:
-imported module 'test_business_security' has this __file__ attribute:
-  /app/backend/tests/test_business_security.py
-which is not the same as the test file we want to collect:
-  /app/sources/HUNTIQ-V4/backend/tests/test_business_security.py
-HINT: remove __pycache__ / .pyc files and/or use a unique basename for your test file modules
-_ ERROR collecting sources/HUNTIQ-V4/backend/tests/test_camera_engine_phase1.py _
-import file mismatch:
-imported module 'test_camera_engine_phase1' has this __file__ attribute:
-  /app/backend/tests/test_camera_engine_phase1.py
-which is not the same as the test file we want to collect:
-  /app/sources/HUNTIQ-V4/backend/tests/test_camera_engine_phase1.py
-HINT: remove __pycache__ / .pyc files and/or use a unique basename for your test file modules
-_ ERROR collecting sources/HUNTIQ-V4/backend/tests/test_camera_engine_phase2.py _
-import file mismatch:
-imported module 'test_camera_engine_phase2' has this __file__ attribute:
-  /app/backend/tests/test_camera_engine_phase2.py
-which is not the same as the test file we want to collect:
-  /app/sources/HUNTIQ-V4/backend/tests/test_camera_engine_phase2.py
-HINT: remove __pycache__ / .pyc files and/or use a unique basename for your test file modules
-_ ERROR collecting sources/HUNTIQ-V4/backend/tests/test_frontend_backend_integration.py _
-import file mismatch:
-imported module 'test_frontend_backend_integration' has this __file__ attribute:
-  /app/backend/tests/test_frontend_backend_integration.py
-which is not the same as the test file we want to collect:
-  /app/sources/HUNTIQ-V4/backend/tests/test_frontend_backend_integration.py
-HINT: remove __pycache__ / .pyc files and/or use a unique basename for your test file modules
-____ ERROR collecting sources/HUNTIQ-V4/backend/tests/test_geo_engine_v3.py ____
-import file mismatch:
-imported module 'test_geo_engine_v3' has this __file__ attribute:
-  /app/backend/tests/test_geo_engine_v3.py
-which is not the same as the test file we want to collect:
-  /app/sources/HUNTIQ-V4/backend/tests/test_geo_engine_v3.py
-HINT: remove __pycache__ / .pyc files and/or use a unique basename for your test file modules
-___ ERROR collecting sources/HUNTIQ-V4/backend/tests/test_geospatial_apis.py ___
-import file mismatch:
-imported module 'test_geospatial_apis' has this __file__ attribute:
-  /app/backend/tests/test_geospatial_apis.py
-which is not the same as the test file we want to collect:
-  /app/sources/HUNTIQ-V4/backend/tests/test_geospatial_apis.py
-HINT: remove __pycache__ / .pyc files and/or use a unique basename for your test file modules
-_ ERROR collecting sources/HUNTIQ-V4/backend/tests/test_hunting_trip_logger.py _
-import file mismatch:
-imported module 'test_hunting_trip_logger' has this __file__ attribute:
-  /app/backend/tests/test_hunting_trip_logger.py
-which is not the same as the test file we want to collect:
-  /app/sources/HUNTIQ-V4/backend/tests/test_hunting_trip_logger.py
-HINT: remove __pycache__ / .pyc files and/or use a unique basename for your test file modules
-___ ERROR collecting sources/HUNTIQ-V4/backend/tests/test_huntiq_v3_apis.py ____
-import file mismatch:
-imported module 'test_huntiq_v3_apis' has this __file__ attribute:
-  /app/backend/tests/test_huntiq_v3_apis.py
-which is not the same as the test file we want to collect:
-  /app/sources/HUNTIQ-V4/backend/tests/test_huntiq_v3_apis.py
-HINT: remove __pycache__ / .pyc files and/or use a unique basename for your test file modules
-___ ERROR collecting sources/HUNTIQ-V4/backend/tests/test_hydrography_api.py ___
-import file mismatch:
-imported module 'test_hydrography_api' has this __file__ attribute:
-  /app/backend/tests/test_hydrography_api.py
-which is not the same as the test file we want to collect:
-  /app/sources/HUNTIQ-V4/backend/tests/test_hydrography_api.py
-HINT: remove __pycache__ / .pyc files and/or use a unique basename for your test file modules
-__ ERROR collecting sources/HUNTIQ-V4/backend/tests/test_legal_time_engine.py __
-import file mismatch:
-imported module 'test_legal_time_engine' has this __file__ attribute:
-  /app/backend/tests/test_legal_time_engine.py
-which is not the same as the test file we want to collect:
-  /app/sources/HUNTIQ-V4/backend/tests/test_legal_time_engine.py
-HINT: remove __pycache__ / .pyc files and/or use a unique basename for your test file modules
-_ ERROR collecting sources/HUNTIQ-V4/backend/tests/test_legal_time_predictive_apis.py _
-import file mismatch:
-imported module 'test_legal_time_predictive_apis' has this __file__ attribute:
-  /app/backend/tests/test_legal_time_predictive_apis.py
-which is not the same as the test file we want to collect:
-  /app/sources/HUNTIQ-V4/backend/tests/test_legal_time_predictive_apis.py
-HINT: remove __pycache__ / .pyc files and/or use a unique basename for your test file modules
-_ ERROR collecting sources/HUNTIQ-V4/backend/tests/test_live_tracking_chat.py __
-import file mismatch:
-imported module 'test_live_tracking_chat' has this __file__ attribute:
-  /app/backend/tests/test_live_tracking_chat.py
-which is not the same as the test file we want to collect:
-  /app/sources/HUNTIQ-V4/backend/tests/test_live_tracking_chat.py
-HINT: remove __pycache__ / .pyc files and/or use a unique basename for your test file modules
-_____ ERROR collecting sources/HUNTIQ-V4/backend/tests/test_p3_features.py _____
-import file mismatch:
-imported module 'test_p3_features' has this __file__ attribute:
-  /app/backend/tests/test_p3_features.py
-which is not the same as the test file we want to collect:
-  /app/sources/HUNTIQ-V4/backend/tests/test_p3_features.py
-HINT: remove __pycache__ / .pyc files and/or use a unique basename for your test file modules
-___ ERROR collecting sources/HUNTIQ-V4/backend/tests/test_p4_geolocation.py ____
-import file mismatch:
-imported module 'test_p4_geolocation' has this __file__ attribute:
-  /app/backend/tests/test_p4_geolocation.py
-which is not the same as the test file we want to collect:
-  /app/sources/HUNTIQ-V4/backend/tests/test_p4_geolocation.py
-HINT: remove __pycache__ / .pyc files and/or use a unique basename for your test file modules
-_ ERROR collecting sources/HUNTIQ-V4/backend/tests/test_permanent_water_exclusion.py _
-import file mismatch:
-imported module 'test_permanent_water_exclusion' has this __file__ attribute:
-  /app/backend/tests/test_permanent_water_exclusion.py
-which is not the same as the test file we want to collect:
-  /app/sources/HUNTIQ-V4/backend/tests/test_permanent_water_exclusion.py
-HINT: remove __pycache__ / .pyc files and/or use a unique basename for your test file modules
-__ ERROR collecting sources/HUNTIQ-V4/backend/tests/test_predictive_engine.py __
-import file mismatch:
-imported module 'test_predictive_engine' has this __file__ attribute:
-  /app/backend/tests/test_predictive_engine.py
-which is not the same as the test file we want to collect:
-  /app/sources/HUNTIQ-V4/backend/tests/test_predictive_engine.py
-HINT: remove __pycache__ / .pyc files and/or use a unique basename for your test file modules
-_ ERROR collecting sources/HUNTIQ-V4/backend/tests/test_sharing_groups_api.py __
-import file mismatch:
-imported module 'test_sharing_groups_api' has this __file__ attribute:
-  /app/backend/tests/test_sharing_groups_api.py
-which is not the same as the test file we want to collect:
-  /app/sources/HUNTIQ-V4/backend/tests/test_sharing_groups_api.py
-HINT: remove __pycache__ / .pyc files and/or use a unique basename for your test file modules
-___ ERROR collecting sources/HUNTIQ-V4/backend/tests/test_sync_and_brand.py ____
-import file mismatch:
-imported module 'test_sync_and_brand' has this __file__ attribute:
-  /app/backend/tests/test_sync_and_brand.py
-which is not the same as the test file we want to collect:
-  /app/sources/HUNTIQ-V4/backend/tests/test_sync_and_brand.py
-HINT: remove __pycache__ / .pyc files and/or use a unique basename for your test file modules
-__ ERROR collecting sources/HUNTIQ-V4/backend/tests/test_territory_phase2.py ___
-import file mismatch:
-imported module 'test_territory_phase2' has this __file__ attribute:
-  /app/backend/tests/test_territory_phase2.py
-which is not the same as the test file we want to collect:
-  /app/sources/HUNTIQ-V4/backend/tests/test_territory_phase2.py
-HINT: remove __pycache__ / .pyc files and/or use a unique basename for your test file modules
-_ ERROR collecting sources/HUNTIQ-V4/backend/tests/test_unified_waypoints_api.py _
-import file mismatch:
-imported module 'test_unified_waypoints_api' has this __file__ attribute:
-  /app/backend/tests/test_unified_waypoints_api.py
-which is not the same as the test file we want to collect:
-  /app/sources/HUNTIQ-V4/backend/tests/test_unified_waypoints_api.py
-HINT: remove __pycache__ / .pyc files and/or use a unique basename for your test file modules
-_ ERROR collecting sources/HUNTIQ-V4/backend/tests/test_user_waypoints_api.py __
-import file mismatch:
-imported module 'test_user_waypoints_api' has this __file__ attribute:
-  /app/backend/tests/test_user_waypoints_api.py
-which is not the same as the test file we want to collect:
-  /app/sources/HUNTIQ-V4/backend/tests/test_user_waypoints_api.py
-HINT: remove __pycache__ / .pyc files and/or use a unique basename for your test file modules
-___ ERROR collecting sources/HUNTIQ-V4/backend/tests/test_zone_favorites.py ____
-import file mismatch:
-imported module 'test_zone_favorites' has this __file__ attribute:
-  /app/backend/tests/test_zone_favorites.py
-which is not the same as the test file we want to collect:
-  /app/sources/HUNTIQ-V4/backend/tests/test_zone_favorites.py
-HINT: remove __pycache__ / .pyc files and/or use a unique basename for your test file modules
-=============================== warnings summary ===============================
-backend/modules/camera_engine/v1/models.py:90
-  /app/backend/modules/camera_engine/v1/models.py:90: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.12/migration/
-    class Camera(CameraBase):
-
-../root/.venv/lib/python3.11/site-packages/pydantic/_internal/_generate_schema.py:319
-../root/.venv/lib/python3.11/site-packages/pydantic/_internal/_generate_schema.py:319
-../root/.venv/lib/python3.11/site-packages/pydantic/_internal/_generate_schema.py:319
-../root/.venv/lib/python3.11/site-packages/pydantic/_internal/_generate_schema.py:319
-../root/.venv/lib/python3.11/site-packages/pydantic/_internal/_generate_schema.py:319
-  /root/.venv/lib/python3.11/site-packages/pydantic/_internal/_generate_schema.py:319: PydanticDeprecatedSince20: `json_encoders` is deprecated. See https://docs.pydantic.dev/2.12/concepts/serialization/#custom-serializers for alternatives. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.12/migration/
-    warnings.warn(
-
-backend/modules/camera_engine/v1/models.py:153
-  /app/backend/modules/camera_engine/v1/models.py:153: PydanticDeprecatedSince20: Support for class-based `config` is deprecated, use ConfigDict instead. Deprecated in Pydantic V2.0 to be removed in V3.0. See Pydantic V2 Migration Guide at https://errors.pydantic.dev/2.12/migration/
-    class CameraEvent(CameraEventBase):
-
-../root/.venv/lib/python3.11/site-packages/starlette/formparsers.py:12
-  /root/.venv/lib/python3.11/site-packages/starlette/formparsers.py:12: PendingDeprecationWarning: Please use `import python_multipart` instead.
-    import multipart
-
--- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
-=========================== short test summary info ============================
-ERROR backend/tests/test_auth_engine.py - ValueError: REACT_APP_BACKEND_URL e...
-ERROR sources/HUNTIQ-BASE/backend/tests/test_bionic_engine.py
-ERROR sources/HUNTIQ-BASE/backend/tests/test_geospatial_apis.py
-ERROR sources/HUNTIQ-BASE/backend/tests/test_hydrography_api.py
-ERROR sources/HUNTIQ-BASE/backend/tests/test_live_tracking_chat.py
-ERROR sources/HUNTIQ-BASE/backend/tests/test_permanent_water_exclusion.py
-ERROR sources/HUNTIQ-BASE/backend/tests/test_sharing_groups_api.py
-ERROR sources/HUNTIQ-BASE/backend/tests/test_sync_and_brand.py
-ERROR sources/HUNTIQ-BASE/backend/tests/test_territory_phase2.py
-ERROR sources/HUNTIQ-BASE/backend/tests/test_user_waypoints_api.py
-ERROR sources/HUNTIQ-BASE/backend/tests/test_zone_favorites.py
-ERROR sources/HUNTIQ-V2/backend/tests/test_bionic_engine.py
-ERROR sources/HUNTIQ-V2/backend/tests/test_geospatial_apis.py
-ERROR sources/HUNTIQ-V2/backend/tests/test_hydrography_api.py
-ERROR sources/HUNTIQ-V2/backend/tests/test_live_tracking_chat.py
-ERROR sources/HUNTIQ-V2/backend/tests/test_permanent_water_exclusion.py
-ERROR sources/HUNTIQ-V2/backend/tests/test_sharing_groups_api.py
-ERROR sources/HUNTIQ-V2/backend/tests/test_sync_and_brand.py
-ERROR sources/HUNTIQ-V2/backend/tests/test_territory_phase2.py
-ERROR sources/HUNTIQ-V2/backend/tests/test_user_waypoints_api.py
-ERROR sources/HUNTIQ-V2/backend/tests/test_zone_favorites.py
-ERROR sources/HUNTIQ-V2/backend_test.py
-ERROR sources/HUNTIQ-V3/backend/tests/test_bionic_engine.py
-ERROR sources/HUNTIQ-V3/backend/tests/test_geospatial_apis.py
-ERROR sources/HUNTIQ-V3/backend/tests/test_hydrography_api.py
-ERROR sources/HUNTIQ-V3/backend/tests/test_live_tracking_chat.py
-ERROR sources/HUNTIQ-V3/backend/tests/test_nutrition_module.py
-ERROR sources/HUNTIQ-V3/backend/tests/test_permanent_water_exclusion.py
-ERROR sources/HUNTIQ-V3/backend/tests/test_sharing_groups_api.py
-ERROR sources/HUNTIQ-V3/backend/tests/test_sync_and_brand.py
-ERROR sources/HUNTIQ-V3/backend/tests/test_territory_phase2.py
-ERROR sources/HUNTIQ-V3/backend/tests/test_user_waypoints_api.py
-ERROR sources/HUNTIQ-V3/backend/tests/test_zone_favorites.py
-ERROR sources/HUNTIQ-V3/backend_test.py
-ERROR sources/HUNTIQ-V3/bionic/engines/behaviorV3/tests/test_behavior_v3.py
-ERROR sources/HUNTIQ-V4/backend/tests/test_admin_security_p0_p1.py
-ERROR sources/HUNTIQ-V4/backend/tests/test_auth_engine.py - ValueError: REACT...
-ERROR sources/HUNTIQ-V4/backend/tests/test_bionic_engine.py
-ERROR sources/HUNTIQ-V4/backend/tests/test_business_security.py
-ERROR sources/HUNTIQ-V4/backend/tests/test_camera_engine_phase1.py
-ERROR sources/HUNTIQ-V4/backend/tests/test_camera_engine_phase2.py
-ERROR sources/HUNTIQ-V4/backend/tests/test_frontend_backend_integration.py
-ERROR sources/HUNTIQ-V4/backend/tests/test_geo_engine_v3.py
-ERROR sources/HUNTIQ-V4/backend/tests/test_geospatial_apis.py
-ERROR sources/HUNTIQ-V4/backend/tests/test_hunting_trip_logger.py
-ERROR sources/HUNTIQ-V4/backend/tests/test_huntiq_v3_apis.py
-ERROR sources/HUNTIQ-V4/backend/tests/test_hydrography_api.py
-ERROR sources/HUNTIQ-V4/backend/tests/test_legal_time_engine.py
-ERROR sources/HUNTIQ-V4/backend/tests/test_legal_time_predictive_apis.py
-ERROR sources/HUNTIQ-V4/backend/tests/test_live_tracking_chat.py
-ERROR sources/HUNTIQ-V4/backend/tests/test_p3_features.py
-ERROR sources/HUNTIQ-V4/backend/tests/test_p4_geolocation.py
-ERROR sources/HUNTIQ-V4/backend/tests/test_permanent_water_exclusion.py
-ERROR sources/HUNTIQ-V4/backend/tests/test_predictive_engine.py
-ERROR sources/HUNTIQ-V4/backend/tests/test_sharing_groups_api.py
-ERROR sources/HUNTIQ-V4/backend/tests/test_sync_and_brand.py
-ERROR sources/HUNTIQ-V4/backend/tests/test_territory_phase2.py
-ERROR sources/HUNTIQ-V4/backend/tests/test_unified_waypoints_api.py
-ERROR sources/HUNTIQ-V4/backend/tests/test_user_waypoints_api.py
-ERROR sources/HUNTIQ-V4/backend/tests/test_zone_favorites.py
-!!!!!!!!!!!!!!!!!!! Interrupted: 60 errors during collection !!!!!!!!!!!!!!!!!!!
-======================== 8 warnings, 60 errors in 1.56s ========================, mais 4 rapports de test JSON ont été générés :
-  - 
-  - 
-  - 
-  - 
-- **Known regressions:** Aucune.
+-   **Testing agent used after significant changes:** YES.  a été utilisé avec succès pour valider le Global Master Switch et le Messaging Engine V2.
+-   **Test files created:** Aucun. Les tests ont été effectués via des appels API et des validations logiques par le testing agent. Rapports générés : , .
+-   **Known regressions:** Aucune.
 
 **Credentials to test flow:**
-- **Username:** 
-- **Password:** 
+-   **Username:** 
+-   **Password:** 
 
 **What agent forgot to execute**
-Rien. L'agent a suivi méticuleusement toutes les commandes et directives complexes de l'utilisateur, y compris les changements de priorité et les exigences immédiates.</analysis>
+Rien. L'agent suit la directive actuelle et impérative de l'utilisateur, qui est de se concentrer uniquement sur la documentation du module SEO.</analysis>

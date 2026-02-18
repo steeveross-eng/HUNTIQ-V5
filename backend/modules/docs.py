@@ -266,7 +266,7 @@ Les endpoints admin utilisent l'authentification existante.
         },
         "servers": [
             {
-                "url": "https://marketsync-20.preview.emergentagent.com",
+                "url": "https://seo-master-panel.preview.emergentagent.com",
                 "description": "Preview Server"
             }
         ],
