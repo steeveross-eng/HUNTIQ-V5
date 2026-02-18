@@ -21,7 +21,7 @@ import uuid
 
 logger = logging.getLogger(__name__)
 
-router = APIRouter(prefix="/contact-engine", tags=["Contact Engine X300%"])
+router = APIRouter(prefix="/api/v1/contact-engine", tags=["Contact Engine X300%"])
 
 # Database connection
 MONGO_URL = os.environ.get('MONGO_URL', 'mongodb://localhost:27017')
