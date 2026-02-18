@@ -24,7 +24,8 @@ import {
   Zap, Target, BookOpen, Settings, BarChart3, Users, 
   FileText, Shield, ShoppingCart, FolderTree, Archive,
   Wrench, Contact, Trees, Network, Mail, Sparkles,
-  Handshake, Palette, Brain, Search, ToggleLeft, Activity
+  Handshake, Palette, Brain, Search, ToggleLeft, Activity,
+  FlaskConical
 } from 'lucide-react';
 
 // Import all admin modules
