@@ -798,6 +798,26 @@ CORE_ROUTERS: List[Tuple[APIRouter, dict]] = [
         "phase": "AD-SPACES",
         "description": "Ad Spaces Engine - Gestion des emplacements publicitaires BIONIC"
     }),
+    
+    # ==========================================
+    # MESSAGING ENGINE (Communications Bilingues Premium)
+    # ==========================================
+    (messaging_router, {
+        "name": "messaging_engine",
+        "version": "1.0.0",
+        "phase": "MESSAGING",
+        "description": "Messaging Engine - Communications bilingues Premium (FR/EN)"
+    }),
+    
+    # ==========================================
+    # GLOBAL MASTER SWITCH (Gros Bouton Rouge)
+    # ==========================================
+    (global_master_switch_router, {
+        "name": "global_master_switch",
+        "version": "1.0.0",
+        "phase": "GLOBAL-SWITCH",
+        "description": "🔴 Global Master Switch - Contrôle global du système publicitaire"
+    }),
 ]
 
 
