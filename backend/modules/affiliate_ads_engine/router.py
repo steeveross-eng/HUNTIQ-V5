@@ -1160,4 +1160,298 @@ async def trigger_on_affiliate_activated(
     return result
 
 
+# ============================================
+# MASTER AD SWITCH (GLOBAL ON/OFF)
+# ============================================
+
+@router.get("/master-switch")
+async def get_ad_master_switch():
+    """
+    Obtenir l'état du Master Switch Publicitaire.
+    """
+    db = get_db()
+    
+    switch = await db.ad_master_switch.find_one({"switch_id": "global"})
+    
+    if not switch:
+        # Initialize if not exists
+        switch = {
+            "switch_id": "global",
+            "is_active": False,  # OFF by default (pré-production)
+            "auto_deploy_enabled": False,
+            "reason": "Mode pré-production - En attente du signal GO LIVE",
+            "updated_at": datetime.now(timezone.utc).isoformat(),
+            "updated_by": "system_init"
+        }
+        await db.ad_master_switch.insert_one(switch)
+    
+    switch.pop("_id", None)
+    
+    return {
+        "success": True,
+        "master_switch": switch
+    }
+
+
+@router.post("/master-switch/toggle")
+async def toggle_ad_master_switch(
+    is_active: bool = Body(..., embed=True),
+    reason: Optional[str] = Body(None, embed=True),
+    admin_user: str = Body("admin", embed=True)
+):
+    """
+    Activer/Désactiver le Master Switch Publicitaire.
+    Contrôle global de toutes les publicités.
+    """
+    db = get_db()
+    
+    updates = {
+        "is_active": is_active,
+        "auto_deploy_enabled": is_active,
+        "reason": reason or ("Activation manuelle" if is_active else "Désactivation manuelle"),
+        "updated_at": datetime.now(timezone.utc).isoformat(),
+        "updated_by": admin_user
+    }
+    
+    await db.ad_master_switch.update_one(
+        {"switch_id": "global"},
+        {"$set": updates},
+        upsert=True
+    )
+    
+    # Log action
+    await _log_ad_action(db, "MASTER_SWITCH", "toggle", admin_user, {
+        "new_state": is_active,
+        "reason": reason
+    })
+    
+    # If turning OFF, pause all active campaigns
+    if not is_active:
+        await db.ad_opportunities.update_many(
+            {"status": "active"},
+            {"$set": {"status": "paused", "paused_at": datetime.now(timezone.utc).isoformat()}}
+        )
+        await db.deployed_ads.update_many(
+            {"is_active": True},
+            {"$set": {"is_active": False, "paused_at": datetime.now(timezone.utc).isoformat()}}
+        )
+    
+    return {
+        "success": True,
+        "is_active": is_active,
+        "message": f"Master Switch Publicitaire {'ACTIVÉ' if is_active else 'DÉSACTIVÉ'}"
+    }
+
+
+@router.post("/system/deactivate-all")
+async def deactivate_all_ads(
+    reason: str = Body("Désactivation globale pré-production", embed=True),
+    admin_user: str = Body("admin", embed=True)
+):
+    """
+    DÉSACTIVATION GLOBALE DE TOUTES LES PUBLICITÉS.
+    Mode pré-production.
+    """
+    db = get_db()
+    
+    now = datetime.now(timezone.utc).isoformat()
+    
+    # 1. Turn OFF master switch
+    await db.ad_master_switch.update_one(
+        {"switch_id": "global"},
+        {
+            "$set": {
+                "is_active": False,
+                "auto_deploy_enabled": False,
+                "reason": reason,
+                "updated_at": now,
+                "updated_by": admin_user
+            }
+        },
+        upsert=True
+    )
+    
+    # 2. Pause all ACTIVE opportunities
+    active_result = await db.ad_opportunities.update_many(
+        {"status": "active"},
+        {
+            "$set": {
+                "status": "paused",
+                "paused_at": now,
+                "pause_reason": reason
+            }
+        }
+    )
+    
+    # 3. Suspend all PENDING/CHECKOUT opportunities
+    pending_result = await db.ad_opportunities.update_many(
+        {"status": {"$in": ["pending", "email_sent", "checkout_started", "payment_pending"]}},
+        {
+            "$set": {
+                "status": "suspended",
+                "suspended_at": now,
+                "suspend_reason": reason
+            }
+        }
+    )
+    
+    # 4. Deactivate all deployed ads
+    deployed_result = await db.deployed_ads.update_many(
+        {"is_active": True},
+        {
+            "$set": {
+                "is_active": False,
+                "deactivated_at": now,
+                "deactivation_reason": reason
+            }
+        }
+    )
+    
+    # 5. Log action
+    await _log_ad_action(db, "SYSTEM", "global_deactivation", admin_user, {
+        "reason": reason,
+        "active_paused": active_result.modified_count,
+        "pending_suspended": pending_result.modified_count,
+        "ads_deactivated": deployed_result.modified_count
+    })
+    
+    return {
+        "success": True,
+        "deactivation_report": {
+            "master_switch": "OFF",
+            "active_campaigns_paused": active_result.modified_count,
+            "pending_opportunities_suspended": pending_result.modified_count,
+            "deployed_ads_deactivated": deployed_result.modified_count,
+            "reason": reason,
+            "executed_at": now,
+            "executed_by": admin_user
+        },
+        "message": "🔒 DÉSACTIVATION GLOBALE EFFECTUÉE - Mode pré-production activé"
+    }
+
+
+@router.post("/system/reactivate-all")
+async def reactivate_all_ads(
+    admin_user: str = Body("admin", embed=True)
+):
+    """
+    RÉACTIVATION GLOBALE DES PUBLICITÉS.
+    Signal GO LIVE.
+    """
+    db = get_db()
+    
+    now = datetime.now(timezone.utc).isoformat()
+    
+    # 1. Turn ON master switch
+    await db.ad_master_switch.update_one(
+        {"switch_id": "global"},
+        {
+            "$set": {
+                "is_active": True,
+                "auto_deploy_enabled": True,
+                "reason": "Signal GO LIVE - Réactivation globale",
+                "updated_at": now,
+                "updated_by": admin_user
+            }
+        },
+        upsert=True
+    )
+    
+    # 2. Reactivate PAUSED opportunities
+    paused_result = await db.ad_opportunities.update_many(
+        {"status": "paused"},
+        {
+            "$set": {
+                "status": "active",
+                "reactivated_at": now
+            },
+            "$unset": {"paused_at": "", "pause_reason": ""}
+        }
+    )
+    
+    # 3. Resume SUSPENDED opportunities to pending
+    suspended_result = await db.ad_opportunities.update_many(
+        {"status": "suspended"},
+        {
+            "$set": {
+                "status": "pending",
+                "resumed_at": now
+            },
+            "$unset": {"suspended_at": "", "suspend_reason": ""}
+        }
+    )
+    
+    # 4. Reactivate deployed ads
+    deployed_result = await db.deployed_ads.update_many(
+        {"deactivation_reason": {"$exists": True}},
+        {
+            "$set": {
+                "is_active": True,
+                "reactivated_at": now
+            },
+            "$unset": {"deactivated_at": "", "deactivation_reason": ""}
+        }
+    )
+    
+    # 5. Log action
+    await _log_ad_action(db, "SYSTEM", "global_reactivation", admin_user, {
+        "paused_reactivated": paused_result.modified_count,
+        "suspended_resumed": suspended_result.modified_count,
+        "ads_reactivated": deployed_result.modified_count
+    })
+    
+    return {
+        "success": True,
+        "reactivation_report": {
+            "master_switch": "ON",
+            "campaigns_reactivated": paused_result.modified_count,
+            "opportunities_resumed": suspended_result.modified_count,
+            "ads_reactivated": deployed_result.modified_count,
+            "executed_at": now,
+            "executed_by": admin_user
+        },
+        "message": "🚀 RÉACTIVATION GLOBALE EFFECTUÉE - GO LIVE!"
+    }
+
+
+@router.get("/system/status")
+async def get_ad_system_status():
+    """
+    Statut complet du système publicitaire.
+    """
+    db = get_db()
+    
+    # Master switch
+    switch = await db.ad_master_switch.find_one({"switch_id": "global"})
+    
+    # Count by status
+    status_counts = {}
+    for status in ["pending", "email_sent", "checkout_started", "payment_pending", "paid", "active", "paused", "suspended", "expired", "cancelled"]:
+        count = await db.ad_opportunities.count_documents({"status": status})
+        if count > 0:
+            status_counts[status] = count
+    
+    # Deployed ads
+    active_ads = await db.deployed_ads.count_documents({"is_active": True})
+    inactive_ads = await db.deployed_ads.count_documents({"is_active": False})
+    
+    return {
+        "success": True,
+        "system_status": {
+            "master_switch": {
+                "is_active": switch.get("is_active", False) if switch else False,
+                "auto_deploy_enabled": switch.get("auto_deploy_enabled", False) if switch else False,
+                "reason": switch.get("reason") if switch else "Non initialisé",
+                "last_updated": switch.get("updated_at") if switch else None
+            },
+            "opportunities_by_status": status_counts,
+            "deployed_ads": {
+                "active": active_ads,
+                "inactive": inactive_ads
+            },
+            "mode": "PRÉ-PRODUCTION" if not (switch and switch.get("is_active")) else "PRODUCTION"
+        }
+    }
+
+
 logger.info("Affiliate Ad Automation Engine initialized - LEGO V5-ULTIME Module")
