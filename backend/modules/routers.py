@@ -162,6 +162,11 @@ from modules.seo_engine.seo_suppliers_router import router as seo_suppliers_rout
 from modules.affiliate_switch_engine.router import router as affiliate_switch_router
 
 # ==============================================
+# AFFILIATE AD AUTOMATION ENGINE (COMMANDE 3)
+# ==============================================
+from modules.affiliate_ads_engine.router import router as affiliate_ads_router
+
+# ==============================================
 # TRACKING ENGINE V1 - BEHAVIORAL (Events, Funnels, Heatmaps)
 # ==============================================
 from modules.tracking_engine.v1.router import router as tracking_behavioral_router
