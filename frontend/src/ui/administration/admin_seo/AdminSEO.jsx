@@ -54,6 +54,22 @@ const AdminSEO = () => {
     loadData();
   }, [activeTab]);
 
+  // Fonction pour charger la documentation SEO interne
+  const loadDocumentation = async () => {
+    setLoadingDoc(true);
+    try {
+      const res = await fetch(`${API_BASE}/api/v1/bionic/seo/documentation`);
+      const data = await res.json();
+      if (data.success) {
+        setDocumentation(data.documentation);
+        setShowDocumentation(true);
+      }
+    } catch (error) {
+      console.error('Error loading documentation:', error);
+    }
+    setLoadingDoc(false);
+  };
+
   const loadData = async () => {
     setLoading(true);
     try {
