@@ -797,11 +797,6 @@ def register_routers(app):
     for router, meta in CORE_ROUTERS:
         app.include_router(router)
         print(f"✓ Registered module: {meta['name']} v{meta['version']} (Phase {meta.get('phase', '?')})")
-    
-    # Register Affiliate Switch Engine
-    for router, meta in AFFILIATE_ROUTERS:
-        app.include_router(router)
-        print(f"✓ Registered module: {meta['name']} v{meta['version']} (Phase {meta.get('phase', '?')})")
 
 
 # Module status endpoint data
