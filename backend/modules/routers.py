@@ -698,6 +698,36 @@ CORE_ROUTERS: List[Tuple[APIRouter, dict]] = [
         "phase": "MAP-INTERACTION",
         "description": "Waypoint Engine - Création waypoints via interaction carte, GPS tracking"
     }),
+    
+    # ==========================================
+    # X300% STRATEGY - CONTACT ENGINE
+    # ==========================================
+    (contact_engine_router, {
+        "name": "contact_engine",
+        "version": "1.0.0",
+        "phase": "X300-STRATEGY",
+        "description": "Contact Engine X300% - Captation visiteurs, ads tracking, social tracking, shadow profiles"
+    }),
+    
+    # ==========================================
+    # X300% STRATEGY - TRIGGER ENGINE
+    # ==========================================
+    (trigger_engine_router, {
+        "name": "trigger_engine",
+        "version": "1.0.0",
+        "phase": "X300-STRATEGY",
+        "description": "Marketing Trigger Engine X300% - Triggers automatiques, séquences, promotions"
+    }),
+    
+    # ==========================================
+    # X300% STRATEGY - MASTER SWITCH
+    # ==========================================
+    (master_switch_router, {
+        "name": "master_switch",
+        "version": "1.0.0",
+        "phase": "X300-STRATEGY",
+        "description": "Master Switch X300% - Contrôle ON/OFF global de tous les modules X300%"
+    }),
 ]
 
 
