@@ -172,6 +172,21 @@ from modules.marketing_calendar_engine.v2.router import router as marketing_cale
 from modules.waypoint_engine.v1.router import router as waypoint_interaction_router
 
 # ==============================================
+# X300% STRATEGY - CONTACT ENGINE
+# ==============================================
+from modules.contact_engine.router import router as contact_engine_router
+
+# ==============================================
+# X300% STRATEGY - TRIGGER ENGINE
+# ==============================================
+from modules.trigger_engine.router import router as trigger_engine_router
+
+# ==============================================
+# X300% STRATEGY - MASTER SWITCH
+# ==============================================
+from modules.master_switch.router import router as master_switch_router
+
+# ==============================================
 # V5-ULTIME-FUSION - MODULES IMPORTÉS (V2, V3, BASE)
 # ==============================================
 from modules.backup_cloud_engine.router import router as backup_cloud_router
