@@ -17,6 +17,8 @@
 | 2026-02-18 | **3.1.0** | **🚀 PRÉ-GO LIVE - Nettoyage /admin + SEO SUPRÊME FOURNISSEURS (104 fournisseurs, 13 catégories)** |
 | 2026-02-18 | **3.2.0** | **⚙️ AFFILIATE SWITCH ENGINE - 103 affiliés, switches ON/OFF, validation 4 étapes, sync multi-engines** |
 | 2026-02-18 | **3.2.1** | **✅ Tests validés 100% - Backend 18/18, Frontend OK - Module AdminSuppliers + AdminAffiliateSwitch** |
+| 2026-02-18 | **3.3.0** | **📢 AFFILIATE AD AUTOMATION ENGINE - Cycle de vente publicitaire 100% automatisé** |
+| 2026-02-18 | **3.3.1** | **✅ Tests validés 100% - Backend 24/24, Frontend OK - 5 opportunités, 249$ revenus, 102 affiliés actifs** |
 
 ---
 
