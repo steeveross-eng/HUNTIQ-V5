@@ -62,6 +62,7 @@ import {
 
 const navItems = [
   { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
+  { id: 'x300', label: 'X300% Strategy', icon: Power, highlight: true },
   { id: 'analytics', label: 'Analytics', icon: Activity },
   { id: 'knowledge', label: 'Knowledge', icon: Brain },
   { id: 'seo', label: 'SEO Engine', icon: Search },
