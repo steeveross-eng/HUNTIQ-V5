@@ -64,6 +64,20 @@ Application HUNTIQ-V5 selon une architecture "LEGO" modulaire très stricte. Le 
 - Frontend: `admin_seo` module
 - 9 pillar articles generated (~13,000 words)
 - LLM integration via `emergentintegrations`
+- **📄 Documentation complète générée:** `/app/docs/SEO_ENGINE_DOCUMENTATION_V5.md`
+
+### ✅ Documentation SEO Engine V5 (Décembre 2025)
+**Documentation exhaustive générée incluant:**
+- 41 endpoints API documentés
+- 9 clusters SEO de base (espèces, régions, saisons, techniques, équipement)
+- 7 templates de pages (pillar, satellite, opportunity)
+- 6 types de schémas JSON-LD
+- 5 règles d'automatisation par défaut
+- Logique métier détaillée (workflows, scoring, health score)
+- 12 collections MongoDB documentées
+- Intégrations: MongoDB, Emergent LLM Key (GPT-4o), Knowledge Layer (préparé)
+- KPIs et indicateurs de performance
+- **Fichier:** `/app/docs/SEO_ENGINE_DOCUMENTATION_V5.md`
 
 ### ✅ Marketing Controls Module
 - Backend: `/api/v1/admin/marketing-controls/*`
