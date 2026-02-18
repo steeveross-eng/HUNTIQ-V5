@@ -24,6 +24,7 @@
 | 2026-02-18 | **3.5.1** | **✅ Tests validés 100% - Backend 19/19, Frontend OK - System locked until GO LIVE signal** |
 | 2026-02-18 | **3.6.0** | **🔴 GLOBAL MASTER SWITCH + MESSAGING ENGINE + MESSAGES BILINGUES** |
 | 2026-02-18 | **3.6.1** | **✅ Synchronisation Marketing ON/OFF avec Global Master Switch** |
+| 2026-02-18 | **3.7.0** | **📧 MESSAGING ENGINE V2 - Modes TOUS/UN PAR UN + Pipeline 7 étapes + Pré-visuel obligatoire** |
 
 ---
 
