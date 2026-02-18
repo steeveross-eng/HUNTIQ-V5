@@ -629,6 +629,43 @@ async def _sync_with_engines(db, affiliate_id: str):
         sync_results["marketing_engine"] = False
         logger.error(f"Marketing Engine sync failed: {e}")
     
+    # 6. Ad Automation Engine - Create ad opportunity
+    try:
+        # Check if affiliate has email for ad offer
+        if affiliate.get("email") or affiliate.get("website"):
+            opportunity_data = {
+                "opportunity_id": str(uuid.uuid4()),
+                "affiliate_id": affiliate_id,
+                "company_name": affiliate.get("company_name"),
+                "email": affiliate.get("email"),
+                "category": affiliate.get("category"),
+                "status": "pending",
+                "checkout_token": str(uuid.uuid4()),
+                "email_sent": False,
+                "created_at": datetime.now(timezone.utc).isoformat(),
+                "updated_at": datetime.now(timezone.utc).isoformat(),
+                "expires_at": (datetime.now(timezone.utc) + timedelta(days=30)).isoformat()
+            }
+            opportunity_data["checkout_url"] = f"/affiliate-ads/checkout/{opportunity_data['checkout_token']}"
+            
+            # Check if opportunity already exists
+            existing_opp = await db.ad_opportunities.find_one({
+                "affiliate_id": affiliate_id,
+                "status": {"$nin": ["expired", "cancelled"]}
+            })
+            
+            if not existing_opp:
+                await db.ad_opportunities.insert_one(opportunity_data)
+                sync_results["ad_automation"] = True
+                logger.info(f"Ad opportunity created for affiliate: {affiliate_id}")
+            else:
+                sync_results["ad_automation"] = "already_exists"
+        else:
+            sync_results["ad_automation"] = "no_contact_info"
+    except Exception as e:
+        sync_results["ad_automation"] = False
+        logger.error(f"Ad Automation Engine sync failed: {e}")
+    
     # Update sync status
     await db.affiliate_switches.update_one(
         {"affiliate_id": affiliate_id},
