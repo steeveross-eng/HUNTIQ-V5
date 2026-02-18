@@ -52,3 +52,6 @@ export { AdminCategories } from './admin_categories';
 
 // X300% Strategy - Phase 5
 export { AdminX300 } from './admin_x300';
+
+// Global Master Switch - Gros Bouton Rouge
+export { AdminGlobalSwitch } from './admin_global_switch';
