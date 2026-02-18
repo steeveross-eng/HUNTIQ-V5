@@ -45,6 +45,9 @@ const AdminSEO = () => {
   const [automation, setAutomation] = useState({ rules: [], suggestions: [], alerts: [] });
   const [templates, setTemplates] = useState(null);
   const [filters, setFilters] = useState({ cluster: 'all', pageType: 'all', status: 'all' });
+  const [showDocumentation, setShowDocumentation] = useState(false);
+  const [documentation, setDocumentation] = useState(null);
+  const [loadingDoc, setLoadingDoc] = useState(false);
 
   useEffect(() => {
     loadData();
