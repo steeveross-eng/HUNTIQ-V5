@@ -110,6 +110,7 @@ const AdminPremiumPage = () => {
   const renderContent = () => {
     switch (activeSection) {
       case 'dashboard': return <AdminDashboard onNavigate={setActiveSection} />;
+      case 'global-switch': return <AdminGlobalSwitch />;
       case 'x300': return <AdminX300 />;
       case 'affiliate-switch': return <AdminAffiliateSwitch />;
       case 'affiliate-ads': return <AdminAffiliateAds />;
