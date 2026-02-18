@@ -69,6 +69,7 @@ const navItems = [
   { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
   { id: 'x300', label: 'X300% Strategy', icon: Power, highlight: true },
   { id: 'affiliate-switch', label: 'Affiliate Switch', icon: UserCheck, highlight: true },
+  { id: 'affiliate-ads', label: 'Affiliate Ads', icon: Megaphone, highlight: true },
   { id: 'suppliers', label: 'Fournisseurs SEO', icon: Store },
   { id: 'analytics', label: 'Analytics', icon: Activity },
   { id: 'knowledge', label: 'Knowledge', icon: Brain },
