@@ -29,7 +29,8 @@ import {
   TrendingUp, Target, Globe, Link2, Calendar, Bell,
   ChevronRight, AlertTriangle, CheckCircle, Clock,
   Sparkles, BookOpen, MapPin, Settings, Filter,
-  ArrowUp, ArrowDown, Minus, Star, Play, Lightbulb
+  ArrowUp, ArrowDown, Minus, Star, Play, Lightbulb,
+  FileDown, X, ExternalLink
 } from 'lucide-react';
 
 const API_BASE = process.env.REACT_APP_BACKEND_URL || '';
