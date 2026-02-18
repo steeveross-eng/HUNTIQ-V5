@@ -98,6 +98,7 @@ const AdminPremiumPage = () => {
   const renderContent = () => {
     switch (activeSection) {
       case 'dashboard': return <AdminDashboard onNavigate={setActiveSection} />;
+      case 'x300': return <AdminX300 />;
       case 'analytics': return <AdminAnalytics />;
       case 'knowledge': return <AdminKnowledge />;
       case 'seo': return <AdminSEO />;
