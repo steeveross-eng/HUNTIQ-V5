@@ -152,6 +152,11 @@ from modules.bionic_knowledge_engine.knowledge_router import router as bionic_kn
 from modules.seo_engine.seo_router import router as bionic_seo_router
 
 # ==============================================
+# SEO SUPPLIERS DATABASE (LISTE FOURNISSEURS ULTIME)
+# ==============================================
+from modules.seo_engine.seo_suppliers_router import router as seo_suppliers_router
+
+# ==============================================
 # TRACKING ENGINE V1 - BEHAVIORAL (Events, Funnels, Heatmaps)
 # ==============================================
 from modules.tracking_engine.v1.router import router as tracking_behavioral_router
