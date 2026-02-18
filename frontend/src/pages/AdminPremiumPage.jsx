@@ -60,6 +60,10 @@ import {
   AdminX300
 } from '@/ui/administration';
 
+// Import new modules - Phase 6+
+import { AdminSuppliers } from '@/ui/administration/admin_suppliers';
+import { AdminAffiliateSwitch } from '@/ui/administration/admin_affiliate_switch';
+
 const navItems = [
   { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
   { id: 'x300', label: 'X300% Strategy', icon: Power, highlight: true },
