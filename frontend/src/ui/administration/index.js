@@ -49,3 +49,6 @@ export { AdminAnalytics } from './admin_analytics';
 
 // Categories Manager - Phase 4 Migration
 export { AdminCategories } from './admin_categories';
+
+// X300% Strategy - Phase 5
+export { AdminX300 } from './admin_x300';
