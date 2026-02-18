@@ -819,6 +819,64 @@ const AdminSEO = () => {
 
   return (
     <div data-testid="admin-seo-module" className="space-y-6">
+      {/* Modal Documentation SEO */}
+      {showDocumentation && documentation && (
+        <div className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4">
+          <div className="bg-[#0f0f1a] border border-[#F5A623]/30 rounded-xl w-full max-w-5xl max-h-[90vh] flex flex-col">
+            {/* Header du modal */}
+            <div className="flex items-center justify-between p-4 border-b border-[#F5A623]/20">
+              <div className="flex items-center gap-3">
+                <BookOpen className="h-6 w-6 text-[#F5A623]" />
+                <div>
+                  <h3 className="text-xl font-bold text-white">{documentation.title}</h3>
+                  <p className="text-gray-400 text-sm">Version {documentation.version} • {documentation.last_updated}</p>
+                </div>
+              </div>
+              <Button 
+                variant="ghost" 
+                size="sm" 
+                onClick={() => setShowDocumentation(false)}
+                className="text-gray-400 hover:text-white"
+              >
+                <X className="h-5 w-5" />
+              </Button>
+            </div>
+            
+            {/* Sommaire */}
+            <div className="p-4 border-b border-[#F5A623]/10 bg-[#1a1a2e]/50">
+              <p className="text-[#F5A623] text-sm font-medium mb-2">Sommaire ({documentation.sections?.length} sections)</p>
+              <div className="flex flex-wrap gap-2">
+                {documentation.sections?.map((section, idx) => (
+                  <Badge key={idx} variant="outline" className="text-gray-400 border-gray-600 text-xs">
+                    {idx + 1}. {section}
+                  </Badge>
+                ))}
+              </div>
+            </div>
+            
+            {/* Contenu de la documentation */}
+            <div className="flex-1 overflow-y-auto p-6">
+              <div className="prose prose-invert max-w-none">
+                <pre className="whitespace-pre-wrap text-gray-300 text-sm font-mono bg-[#1a1a2e] p-4 rounded-lg overflow-x-auto">
+                  {documentation.content}
+                </pre>
+              </div>
+            </div>
+            
+            {/* Footer du modal */}
+            <div className="p-4 border-t border-[#F5A623]/20 flex justify-end gap-3">
+              <Button 
+                variant="outline" 
+                className="border-gray-600 text-gray-400"
+                onClick={() => setShowDocumentation(false)}
+              >
+                Fermer
+              </Button>
+            </div>
+          </div>
+        </div>
+      )}
+
       {/* Header */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
@@ -828,10 +886,26 @@ const AdminSEO = () => {
             <p className="text-gray-400 text-sm">Plan SEO BIONIC +300%</p>
           </div>
         </div>
-        <Badge className="bg-[#F5A623]/20 text-[#F5A623] border border-[#F5A623]/30 px-4 py-2">
-          <Globe className="h-4 w-4 mr-2 inline" />
-          LEGO V5 Isolé
-        </Badge>
+        <div className="flex items-center gap-3">
+          {/* Bouton Documentation SEO Interne */}
+          <Button
+            data-testid="seo-documentation-btn"
+            onClick={loadDocumentation}
+            disabled={loadingDoc}
+            className="bg-[#1a1a2e] hover:bg-[#2a2a4e] text-[#F5A623] border border-[#F5A623]/30"
+          >
+            {loadingDoc ? (
+              <RefreshCw className="h-4 w-4 mr-2 animate-spin" />
+            ) : (
+              <BookOpen className="h-4 w-4 mr-2" />
+            )}
+            Documentation SEO interne
+          </Button>
+          <Badge className="bg-[#F5A623]/20 text-[#F5A623] border border-[#F5A623]/30 px-4 py-2">
+            <Globe className="h-4 w-4 mr-2 inline" />
+            LEGO V5 Isolé
+          </Badge>
+        </div>
       </div>
 
       {/* Tabs */}
