@@ -69,6 +69,7 @@ import { AdminGlobalSwitch } from '@/ui/administration/admin_global_switch';
 
 const navItems = [
   { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
+  { id: 'global-switch', label: '🔴 Master Switch', icon: Power, highlight: true },
   { id: 'x300', label: 'X300% Strategy', icon: Power, highlight: true },
   { id: 'affiliate-switch', label: 'Affiliate Switch', icon: UserCheck, highlight: true },
   { id: 'affiliate-ads', label: 'Affiliate Ads', icon: Megaphone, highlight: true },
