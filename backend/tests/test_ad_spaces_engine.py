@@ -216,10 +216,15 @@ class TestAdRenderEngine:
         print(f"✓ Render page homepage: {len(data['ads'])} ads (PRE-PRODUCTION)")
     
     def test_render_invalid_space(self):
-        """GET /api/v1/ad-spaces/render/invalid_space - 404"""
+        """GET /api/v1/ad-spaces/render/invalid_space - Returns render=false in PRE-PRODUCTION"""
         response = requests.get(f"{BASE_URL}/api/v1/ad-spaces/render/invalid_space")
-        assert response.status_code == 404
-        print("✓ Render invalid space returns 404")
+        # In PRE-PRODUCTION mode, master switch check happens first, so returns 200 with render=false
+        # In PRODUCTION mode, this would return 404 for invalid space
+        assert response.status_code == 200
+        data = response.json()
+        assert data["render"] == False
+        assert data["reason"] == "System in pre-production mode"
+        print("✓ Render invalid space: returns render=false in PRE-PRODUCTION mode")
 
 
 class TestMasterSwitch:
