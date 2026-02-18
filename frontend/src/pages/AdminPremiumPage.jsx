@@ -56,7 +56,8 @@ import {
   AdminSEO,
   AdminMarketingControls,
   AdminAnalytics,
-  AdminCategories
+  AdminCategories,
+  AdminX300
 } from '@/ui/administration';
 
 const navItems = [
