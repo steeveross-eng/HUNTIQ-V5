@@ -287,12 +287,14 @@ class TestAdSystemStatus:
         data = response.json()
         assert data["success"] == True
         
-        # Mode should be PRÉ-PRODUCTION or PRE_PRODUCTION
-        mode = data.get("mode", "")
+        # Mode is nested inside system_status
+        system_status = data.get("system_status", {})
+        mode = system_status.get("mode", "")
         assert "PRE" in mode.upper() or "PRÉ" in mode, f"Expected PRÉ-PRODUCTION mode, got: {mode}"
         
+        master_switch = system_status.get("master_switch", {})
         print(f"✓ System Mode: {mode}")
-        print(f"✓ Is Active: {data.get('is_active', False)}")
+        print(f"✓ Is Active: {master_switch.get('is_active', False)}")
     
     def test_ad_master_switch_status(self):
         """GET /api/v1/affiliate-ads/master-switch should return switch status"""
