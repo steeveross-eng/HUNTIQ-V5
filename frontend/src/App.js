@@ -379,7 +379,6 @@ const Navigation = ({ cartCount, onCartOpen }) => {
             <Link to="/admin-premium" onClick={() => setIsOpen(false)} className="flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-sm hover:bg-white/5 text-[#F5A623]">
               <Crown className="h-4 w-4" /> Admin Premium (Ultime)
             </Link>
-            </Link>
             
             {/* Language Switcher on mobile */}
             <div className="px-3 py-2">
