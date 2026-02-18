@@ -743,14 +743,10 @@ CORE_ROUTERS: List[Tuple[APIRouter, dict]] = [
         "phase": "SEO-SUPREME",
         "description": "LISTE FOURNISSEURS ULTIME - Base de données exhaustive fournisseurs mondiaux par catégorie"
     }),
-]
-
-# ==============================================
-# AFFILIATE SWITCH ENGINE (PHASE 6+)
-# ==============================================
-from modules.affiliate_switch_engine.router import router as affiliate_switch_router
-
-AFFILIATE_ROUTERS = [
+    
+    # ==========================================
+    # AFFILIATE SWITCH ENGINE (PHASE 6+)
+    # ==========================================
     (affiliate_switch_router, {
         "name": "affiliate_switch",
         "version": "1.0.0",
