@@ -574,7 +574,7 @@
       "frontend_port": 3000,
       "backend_port": 8001,
       "database": "MongoDB",
-      "preview_url": "https://seo-explorer-3.preview.emergentagent.com"
+      "preview_url": "https://admin-dashboard-911.preview.emergentagent.com"
     }
   },
 

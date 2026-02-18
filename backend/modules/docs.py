@@ -266,7 +266,7 @@ Les endpoints admin utilisent l'authentification existante.
         },
         "servers": [
             {
-                "url": "https://seo-explorer-3.preview.emergentagent.com",
+                "url": "https://admin-dashboard-911.preview.emergentagent.com",
                 "description": "Preview Server"
             }
         ],
