@@ -778,6 +778,16 @@ CORE_ROUTERS: List[Tuple[APIRouter, dict]] = [
         "phase": "AD-AUTOMATION",
         "description": "Affiliate Ad Automation Engine - Cycle de vente publicitaire 100% automatisé"
     }),
+    
+    # ==========================================
+    # AD SPACES ENGINE (COMMANDE 4)
+    # ==========================================
+    (ad_spaces_router, {
+        "name": "ad_spaces",
+        "version": "1.0.0",
+        "phase": "AD-SPACES",
+        "description": "Ad Spaces Engine - Gestion des emplacements publicitaires BIONIC"
+    }),
 ]
 
 
