@@ -71,6 +71,7 @@ const navItems = [
   { id: 'x300', label: 'X300% Strategy', icon: Power, highlight: true },
   { id: 'affiliate-switch', label: 'Affiliate Switch', icon: UserCheck, highlight: true },
   { id: 'affiliate-ads', label: 'Affiliate Ads', icon: Megaphone, highlight: true },
+  { id: 'ad-spaces', label: 'Ad Spaces', icon: LayoutGrid, highlight: true },
   { id: 'suppliers', label: 'Fournisseurs SEO', icon: Store },
   { id: 'analytics', label: 'Analytics', icon: Activity },
   { id: 'knowledge', label: 'Knowledge', icon: Brain },
