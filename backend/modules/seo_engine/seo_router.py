@@ -343,27 +343,20 @@ async def mark_alert_read(alert_id: str):
 # ==============================================
 
 @router.post("/generate/outline")
-async def generate_page_outline(
-    cluster_id: str,
-    page_type: str,
-    target_keyword: str,
-    knowledge_data: Optional[dict] = Body(default=None)
-):
+async def generate_page_outline(request: GenerateOutlineRequest):
     """Générer un outline de page"""
     return await SEOGenerationManager.generate_page_outline(
-        cluster_id, page_type, target_keyword, knowledge_data
+        request.cluster_id, request.page_type, request.target_keyword, request.knowledge_data
     )
 
 @router.post("/generate/meta-tags")
-async def generate_meta_tags(
-    title: str,
-    keyword: str,
-    content_summary: str = ""
-):
+async def generate_meta_tags(request: GenerateMetaTagsRequest):
     """Générer des meta tags optimisés"""
     return {
         "success": True,
-        "meta_tags": SEOGenerationManager.generate_meta_tags(title, keyword, content_summary)
+        "meta_tags": SEOGenerationManager.generate_meta_tags(
+            request.title, request.keyword, request.content_summary
+        )
     }
 
 @router.post("/generate/seo-score")
@@ -375,13 +368,11 @@ async def calculate_seo_score(page_data: dict = Body(...)):
     }
 
 @router.post("/generate/viral-capsule")
-async def generate_viral_capsule(
-    topic: str,
-    species_id: Optional[str] = None,
-    knowledge_data: Optional[dict] = Body(default=None)
-):
+async def generate_viral_capsule(request: GenerateViralCapsuleRequest):
     """Générer une capsule virale"""
-    return SEOGenerationManager.generate_viral_capsule(topic, species_id, knowledge_data)
+    return SEOGenerationManager.generate_viral_capsule(
+        request.topic, request.species_id, request.knowledge_data
+    )
 
 
 # ==============================================
@@ -389,26 +380,18 @@ async def generate_viral_capsule(
 # ==============================================
 
 @router.post("/workflow/create-content")
-async def create_content_workflow(
-    cluster_id: str,
-    page_type: str,
-    target_keyword: str,
-    knowledge_data: Optional[dict] = Body(default=None)
-):
+async def create_content_workflow(request: CreateContentWorkflowRequest):
     """Workflow complet de création de contenu"""
     return await SEOService.create_content_workflow(
-        get_db(), cluster_id, page_type, target_keyword, knowledge_data
+        get_db(), request.cluster_id, request.page_type, 
+        request.target_keyword, request.knowledge_data
     )
 
 @router.post("/workflow/enrich-with-knowledge")
-async def enrich_page_with_knowledge(
-    page_id: str,
-    species_id: Optional[str] = None,
-    knowledge_api_response: Optional[dict] = Body(default=None)
-):
+async def enrich_page_with_knowledge(request: EnrichWithKnowledgeRequest):
     """Enrichir une page avec le Knowledge Layer"""
     return await SEOService.enrich_with_knowledge(
-        get_db(), page_id, species_id, knowledge_api_response
+        get_db(), request.page_id, request.species_id, request.knowledge_api_response
     )
 
 
@@ -417,11 +400,7 @@ async def enrich_page_with_knowledge(
 # ==============================================
 
 @router.post("/generate/pillar-content")
-async def generate_pillar_content(
-    species_id: str,
-    keyword: str,
-    knowledge_data: dict = Body(...)
-):
+async def generate_pillar_content(request: GeneratePillarContentRequest):
     """Générer le contenu complet d'une page pilier via IA"""
     from .seo_content_generator import seo_content_generator
     
