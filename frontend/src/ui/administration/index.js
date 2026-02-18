@@ -46,3 +46,6 @@ export { AdminSEO } from './admin_seo';
 export { AdminMarketingControls } from './admin_marketing_controls';
 // Analytics Engine - Phase 7
 export { AdminAnalytics } from './admin_analytics';
+
+// Categories Manager - Phase 4 Migration
+export { AdminCategories } from './admin_categories';
