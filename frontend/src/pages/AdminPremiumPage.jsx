@@ -65,6 +65,7 @@ import { AdminSuppliers } from '@/ui/administration/admin_suppliers';
 import { AdminAffiliateSwitch } from '@/ui/administration/admin_affiliate_switch';
 import { AdminAffiliateAds } from '@/ui/administration/admin_affiliate_ads';
 import { AdminAdSpaces } from '@/ui/administration/admin_ad_spaces';
+import { AdminGlobalSwitch } from '@/ui/administration/admin_global_switch';
 
 const navItems = [
   { id: 'dashboard', label: 'Dashboard', icon: LayoutDashboard },
