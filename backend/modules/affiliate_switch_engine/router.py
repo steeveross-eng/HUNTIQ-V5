@@ -916,4 +916,161 @@ async def import_affiliates_from_suppliers(
     }
 
 
+# ============================================
+# BULK VALIDATION
+# ============================================
+
+@router.post("/bulk/validate")
+async def bulk_validate_affiliates(
+    validation_config: Dict[str, Any] = Body(...)
+):
+    """
+    Validation automatique en lot des affiliés.
+    
+    Args:
+        validation_config: {
+            "affiliate_ids": [...] ou null pour tous les pending,
+            "steps": ["identity", "category", "duplication", "compliance"],
+            "auto_activate": true/false,
+            "validator": "admin"
+        }
+    """
+    db = get_db()
+    
+    affiliate_ids = validation_config.get("affiliate_ids")
+    steps_to_validate = validation_config.get("steps", ["identity", "category", "duplication", "compliance"])
+    auto_activate = validation_config.get("auto_activate", False)
+    validator = validation_config.get("validator", "bulk_validation_system")
+    
+    # Get affiliates to validate
+    if affiliate_ids:
+        query = {"affiliate_id": {"$in": affiliate_ids}}
+    else:
+        query = {"status": "pending"}
+    
+    affiliates = await db.affiliate_switches.find(query).to_list(1000)
+    
+    validated_count = 0
+    activated_count = 0
+    errors = []
+    
+    step_field_map = {
+        "identity": "identity_verified",
+        "category": "category_verified", 
+        "duplication": "duplication_checked",
+        "compliance": "compliance_passed"
+    }
+    
+    for affiliate in affiliates:
+        try:
+            affiliate_id = affiliate["affiliate_id"]
+            updates = {"updated_at": datetime.now(timezone.utc).isoformat()}
+            
+            # Apply validation steps
+            for step in steps_to_validate:
+                if step in step_field_map:
+                    updates[f"validation.{step_field_map[step]}"] = True
+            
+            # Check if all validated
+            current_validation = affiliate.get("validation", {})
+            new_validation = {**current_validation}
+            for step in steps_to_validate:
+                if step in step_field_map:
+                    new_validation[step_field_map[step]] = True
+            
+            all_validated = all([
+                new_validation.get("identity_verified", False),
+                new_validation.get("category_verified", False),
+                new_validation.get("duplication_checked", False),
+                new_validation.get("compliance_passed", False)
+            ])
+            
+            updates["validation.all_validated"] = all_validated
+            
+            # Auto-activate if requested and all validated
+            if auto_activate and all_validated:
+                updates["switch_active"] = True
+                updates["status"] = "active"
+                updates["activated_at"] = datetime.now(timezone.utc).isoformat()
+                activated_count += 1
+            
+            await db.affiliate_switches.update_one(
+                {"affiliate_id": affiliate_id},
+                {"$set": updates}
+            )
+            
+            # Log validation
+            await _log_action(db, affiliate_id, "bulk_validation", validator, {
+                "steps_validated": steps_to_validate,
+                "all_validated": all_validated,
+                "auto_activated": auto_activate and all_validated
+            })
+            
+            validated_count += 1
+            
+        except Exception as e:
+            errors.append({"affiliate_id": affiliate.get("affiliate_id"), "error": str(e)})
+    
+    return {
+        "success": True,
+        "validated_count": validated_count,
+        "activated_count": activated_count,
+        "errors": errors,
+        "steps_applied": steps_to_validate,
+        "message": f"{validated_count} affiliés validés, {activated_count} activés automatiquement"
+    }
+
+
+@router.post("/bulk/activate")
+async def bulk_activate_affiliates(
+    config: Dict[str, Any] = Body(...)
+):
+    """
+    Activation en lot des affiliés validés.
+    """
+    db = get_db()
+    
+    affiliate_ids = config.get("affiliate_ids")
+    activator = config.get("activator", "bulk_activation_system")
+    
+    # Get fully validated affiliates
+    query = {"validation.all_validated": True, "switch_active": False}
+    if affiliate_ids:
+        query["affiliate_id"] = {"$in": affiliate_ids}
+    
+    affiliates = await db.affiliate_switches.find(query).to_list(500)
+    
+    activated_count = 0
+    
+    for affiliate in affiliates:
+        affiliate_id = affiliate["affiliate_id"]
+        
+        await db.affiliate_switches.update_one(
+            {"affiliate_id": affiliate_id},
+            {
+                "$set": {
+                    "switch_active": True,
+                    "status": "active",
+                    "activated_at": datetime.now(timezone.utc).isoformat(),
+                    "updated_at": datetime.now(timezone.utc).isoformat()
+                }
+            }
+        )
+        
+        # Sync with engines
+        await _sync_with_engines(db, affiliate_id)
+        await _activate_seo_satellite(db, affiliate_id)
+        
+        # Log activation
+        await _log_action(db, affiliate_id, "bulk_activated", activator, {})
+        
+        activated_count += 1
+    
+    return {
+        "success": True,
+        "activated_count": activated_count,
+        "message": f"{activated_count} affiliés activés"
+    }
+
+
 logger.info("Affiliate Switch Engine initialized - LEGO V5-ULTIME Module")
