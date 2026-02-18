@@ -157,6 +157,11 @@ from modules.seo_engine.seo_router import router as bionic_seo_router
 from modules.seo_engine.seo_suppliers_router import router as seo_suppliers_router
 
 # ==============================================
+# AFFILIATE SWITCH ENGINE (PHASE 6+)
+# ==============================================
+from modules.affiliate_switch_engine.router import router as affiliate_switch_router
+
+# ==============================================
 # TRACKING ENGINE V1 - BEHAVIORAL (Events, Funnels, Heatmaps)
 # ==============================================
 from modules.tracking_engine.v1.router import router as tracking_behavioral_router
