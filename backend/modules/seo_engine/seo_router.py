@@ -405,9 +405,9 @@ async def generate_pillar_content(request: GeneratePillarContentRequest):
     from .seo_content_generator import seo_content_generator
     
     result = await seo_content_generator.generate_pillar_content(
-        species_id=species_id,
-        keyword=keyword,
-        knowledge_data=knowledge_data,
+        species_id=request.species_id,
+        keyword=request.keyword,
+        knowledge_data=request.knowledge_data,
         language="fr"
     )
     
@@ -416,8 +416,8 @@ async def generate_pillar_content(request: GeneratePillarContentRequest):
         db = get_db()
         content_doc = {
             "type": "pillar_generated",
-            "species_id": species_id,
-            "keyword": keyword,
+            "species_id": request.species_id,
+            "keyword": request.keyword,
             "content": result.get("content"),
             "metadata": result.get("metadata"),
             "status": "draft",
