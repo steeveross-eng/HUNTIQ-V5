@@ -322,7 +322,31 @@ const AdminPage = ({ onProductsUpdate }) => {
           </div>
         </div>
 
-        {/* Tabs */}
+        {/* PRÉ-GO LIVE: Bannière de migration vers Admin Premium */}
+        <Card className="bg-gradient-to-r from-[#f5a623]/20 to-purple-500/20 border-[#f5a623]/50 mb-6">
+          <CardContent className="p-4 flex items-center justify-between">
+            <div className="flex items-center gap-3">
+              <div className="w-12 h-12 rounded-full bg-[#f5a623]/20 flex items-center justify-center">
+                <Sparkles className="h-6 w-6 text-[#f5a623]" />
+              </div>
+              <div>
+                <h3 className="text-white font-semibold">Interface Admin Premium disponible !</h3>
+                <p className="text-gray-400 text-sm">
+                  Accédez au nouveau tableau de bord unifié avec toutes les fonctionnalités X300%
+                </p>
+              </div>
+            </div>
+            <Button 
+              className="btn-golden text-black font-semibold" 
+              onClick={() => navigate('/admin-premium')}
+            >
+              <Sparkles className="h-4 w-4 mr-2" />
+              Accéder à Admin Premium
+            </Button>
+          </CardContent>
+        </Card>
+
+        {/* Tabs - Modules essentiels seulement (PRÉ-GO LIVE: Modules redondants masqués) */}
         <Tabs value={activeTab} onValueChange={setActiveTab} className="space-y-6">
           <TabsList className="bg-card border border-border flex-wrap h-auto p-1">
             <TabsTrigger value="dashboard" className="data-[state=active]:bg-[#f5a623] data-[state=active]:text-black">
@@ -346,43 +370,20 @@ const AdminPage = ({ onProductsUpdate }) => {
             <TabsTrigger value="performance" className="data-[state=active]:bg-[#f5a623] data-[state=active]:text-black">
               <Award className="h-4 w-4 mr-2" />{t('admin_performance')}
             </TabsTrigger>
-            <TabsTrigger value="categories" className="data-[state=active]:bg-[#f5a623] data-[state=active]:text-black">
-              <FlaskConical className="h-4 w-4 mr-2" />{t('admin_categories')}
-            </TabsTrigger>
-            <TabsTrigger value="content" className="data-[state=active]:bg-[#f5a623] data-[state=active]:text-black">
-              <FolderOpen className="h-4 w-4 mr-2" />{t('admin_content')}
-            </TabsTrigger>
-            <TabsTrigger value="backup" className="data-[state=active]:bg-[#f5a623] data-[state=active]:text-black" data-testid="backup-tab">
-              <FolderOpen className="h-4 w-4 mr-2" />{t('admin_backup')}
-            </TabsTrigger>
-            <TabsTrigger value="access" className="data-[state=active]:bg-[#f5a623] data-[state=active]:text-black">
-              <Globe className="h-4 w-4 mr-2" />{t('admin_access')}
-            </TabsTrigger>
-            <TabsTrigger value="lands" className="data-[state=active]:bg-[#f5a623] data-[state=active]:text-black">
-              <Trees className="h-4 w-4 mr-2" />{t('admin_hotspots')}
-            </TabsTrigger>
-            <TabsTrigger value="networking" className="data-[state=active]:bg-[#f5a623] data-[state=active]:text-black">
-              <Users className="h-4 w-4 mr-2" />{t('admin_networking')}
-            </TabsTrigger>
-            <TabsTrigger value="email" className="data-[state=active]:bg-[#f5a623] data-[state=active]:text-black">
-              <Mail className="h-4 w-4 mr-2" />{t('admin_email')}
-            </TabsTrigger>
-            <TabsTrigger value="marketing" className="data-[state=active]:bg-purple-500 data-[state=active]:text-white">
-              <Sparkles className="h-4 w-4 mr-2" />{t('admin_marketing')}
-            </TabsTrigger>
-            <TabsTrigger value="partnership" className="data-[state=active]:bg-green-500 data-[state=active]:text-white">
-              <Handshake className="h-4 w-4 mr-2" />{t('admin_partnership')}
-            </TabsTrigger>
-            <TabsTrigger value="controls" className="data-[state=active]:bg-[#f5a623] data-[state=active]:text-black">
-              <Power className="h-4 w-4 mr-2" />{t('admin_controls')}
-            </TabsTrigger>
-            <TabsTrigger value="identity" className="data-[state=active]:bg-[#f5a623] data-[state=active]:text-black">
-              <Palette className="h-4 w-4 mr-2" />{t('admin_identity')}
-            </TabsTrigger>
-            {/* V5-ULTIME-FUSION: Analytics activé */}
-            <TabsTrigger value="analytics" className="data-[state=active]:bg-blue-500 data-[state=active]:text-white" data-testid="analytics-tab">
-              <BarChart3 className="h-4 w-4 mr-2" />{t('common_analytics')}
-            </TabsTrigger>
+            {/* PRÉ-GO LIVE: Modules redondants masqués - Disponibles dans /admin-premium 
+            <TabsTrigger value="categories">Catégories</TabsTrigger>
+            <TabsTrigger value="content">Contenu</TabsTrigger>
+            <TabsTrigger value="backup">Backup</TabsTrigger>
+            <TabsTrigger value="access">Accès</TabsTrigger>
+            <TabsTrigger value="lands">Terres</TabsTrigger>
+            <TabsTrigger value="networking">Réseautage</TabsTrigger>
+            <TabsTrigger value="email">Emails</TabsTrigger>
+            <TabsTrigger value="marketing">Marketing</TabsTrigger>
+            <TabsTrigger value="partnership">Partenaires</TabsTrigger>
+            <TabsTrigger value="controls">Contrôles</TabsTrigger>
+            <TabsTrigger value="identity">Identité</TabsTrigger>
+            <TabsTrigger value="analytics">Analytics</TabsTrigger>
+            */}
           </TabsList>
 
           {/* Dashboard Tab */}
