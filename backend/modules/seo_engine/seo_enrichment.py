@@ -233,7 +233,7 @@ class SEOEnrichment:
                     return True
             
             return False
-        except:
+        except Exception:
             return False
     
     def _has_ecommerce_subdomain(self, url: str) -> bool:
@@ -253,7 +253,7 @@ class SEOEnrichment:
                     return True
             
             return False
-        except:
+        except Exception:
             return False
     
     def _determine_market_scope(
@@ -291,7 +291,7 @@ class SEOEnrichment:
             for tld, market in self.TLD_MARKET_MAPPING.items():
                 if netloc.endswith(tld):
                     return market
-        except:
+        except Exception:
             pass
         
         # Priorité 3: Mots-clés dans le nom ou les infos

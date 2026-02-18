@@ -132,11 +132,11 @@ class SEODatabase:
         """
         errors = []
         
-        for field in self.URL_FIELDS:
-            if field in document and document[field]:
-                is_valid, error = self._validate_url_format(document[field])
+        for url_field in self.URL_FIELDS:
+            if url_field in document and document[url_field]:
+                is_valid, error = self._validate_url_format(document[url_field])
                 if not is_valid:
-                    errors.append(f"{field}: {error}")
+                    errors.append(f"{url_field}: {error}")
                 else:
                     self._stats['urls_validated'] += 1
         
@@ -157,11 +157,11 @@ class SEODatabase:
         """
         normalized = document.copy()
         
-        for field in self.URL_FIELDS:
-            if field in normalized and normalized[field]:
-                result = seo_normalizer.normalize_url(normalized[field])
+        for url_field in self.URL_FIELDS:
+            if url_field in normalized and normalized[url_field]:
+                result = seo_normalizer.normalize_url(normalized[url_field])
                 if result.normalized_url and not result.url_invalid:
-                    normalized[field] = result.normalized_url
+                    normalized[url_field] = result.normalized_url
         
         # Ajouter le flag de normalisation
         normalized['url_normalized'] = True
@@ -316,7 +316,7 @@ class SEODatabase:
                     batch_result.inserted_ids = [str(id) for id in insert_result.inserted_ids]
                     self._stats['total_insertions'] += batch_result.total_inserted
                     
-            except PyMongoError as e:
+            except PyMongoError:
                 # En cas d'erreur, certains documents peuvent avoir été insérés
                 pass
         
