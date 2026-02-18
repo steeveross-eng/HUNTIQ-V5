@@ -14,7 +14,7 @@ Architecture LEGO V5-ULTIME - Module isolé.
 
 from fastapi import APIRouter, Body, Query, HTTPException
 from typing import Optional, List, Dict, Any
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 from motor.motor_asyncio import AsyncIOMotorClient
 from enum import Enum
 import os
