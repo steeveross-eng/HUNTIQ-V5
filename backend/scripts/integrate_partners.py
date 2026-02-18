@@ -314,7 +314,7 @@ class PartnersIntegration:
             documents.append(doc)
         
         # Insérer en utilisant le module de base de données
-        result = await insert_batch(
+        result = await seo_db.insert_batch(
             collection_name=collection_name,
             documents=documents,
             auto_normalize=True,
