@@ -172,6 +172,16 @@ from modules.affiliate_ads_engine.router import router as affiliate_ads_router
 from modules.ad_spaces_engine.router import router as ad_spaces_router
 
 # ==============================================
+# MESSAGING ENGINE (Communications Bilingues Premium)
+# ==============================================
+from modules.messaging_engine.router import router as messaging_router
+
+# ==============================================
+# GLOBAL MASTER SWITCH (Gros Bouton Rouge)
+# ==============================================
+from modules.global_master_switch.router import router as global_master_switch_router
+
+# ==============================================
 # TRACKING ENGINE V1 - BEHAVIORAL (Events, Funnels, Heatmaps)
 # ==============================================
 from modules.tracking_engine.v1.router import router as tracking_behavioral_router
