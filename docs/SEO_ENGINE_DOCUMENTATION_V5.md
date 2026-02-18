@@ -1,12 +1,10 @@
-# DOCUMENTATION COMPLÈTE - MODULE SEO ENGINE V5-ULTIME
-## HUNTIQ / BIONIC - Plateforme de Chasse Intelligente
+# DOCUMENTATION COMPLÈTE - SEO ENGINE V5-ULTIME
+## BIONIC - Module SEO Premium
 
----
-
-**Version:** 1.0.0  
-**Architecture:** LEGO V5 - Module Isolé  
-**Date de documentation:** Décembre 2025  
-**Statut:** Module ACTIF (non verrouillé)
+**Date de génération :** Décembre 2025  
+**Version :** 1.0.0  
+**Architecture :** LEGO V5 (Module Isolé)  
+**Auteur :** BIONIC System  
 
 ---
 
@@ -14,7 +12,7 @@
 
 1. [Vue d'Ensemble](#1-vue-densemble)
 2. [Architecture et Structure des Fichiers](#2-architecture-et-structure-des-fichiers)
-3. [Endpoints API Complets](#3-endpoints-api-complets)
+3. [Endpoints API Complets (41)](#3-endpoints-api-complets-41)
 4. [Fonctionnalités Actives](#4-fonctionnalités-actives)
 5. [Logique Métier Détaillée](#5-logique-métier-détaillée)
 6. [Automatisations en Place](#6-automatisations-en-place)
@@ -24,7 +22,8 @@
 10. [Indicateurs de Performance (KPIs)](#10-indicateurs-de-performance-kpis)
 11. [Paramètres et Configurations](#11-paramètres-et-configurations)
 12. [Schémas de Données (MongoDB)](#12-schémas-de-données-mongodb)
-13. [Annexes Techniques](#13-annexes-techniques)
+13. [Base de Données Fournisseurs](#13-base-de-données-fournisseurs)
+14. [Annexes Techniques](#14-annexes-techniques)
 
 ---
 
@@ -32,157 +31,191 @@
 
 ### 1.1 Description du Module
 
-Le **SEO Engine** est un module premium de la plateforme HUNTIQ/BIONIC dédié à l'optimisation du référencement naturel. Il implémente une stratégie SEO complète basée sur :
+Le **SEO Engine V5-ULTIME** est le module central de gestion du référencement naturel de la plateforme BIONIC. Il implémente une architecture de contenu basée sur des **clusters thématiques** avec une stratégie visant une augmentation de **+300% du trafic organique**.
 
-- **Architecture de clusters thématiques** (espèces, régions, saisons, techniques, équipement)
-- **Hiérarchie de pages** (Piliers → Satellites → Opportunités)
-- **Données structurées JSON-LD** pour les Rich Snippets
-- **Intégration avec le Knowledge Layer** pour enrichir le contenu avec des données comportementales du gibier
-- **Génération de contenu assistée par IA** (GPT-4o via Emergent LLM Key)
+### 1.2 Objectifs Stratégiques
 
-### 1.2 Objectif Stratégique
+| Objectif | Description | Métrique Cible |
+|----------|-------------|----------------|
+| Position moyenne | Apparaître dans le top 10 Google | < 10.0 |
+| CTR | Taux de clic sur les résultats | > 5.0% |
+| Score SEO | Qualité technique des pages | > 80/100 |
+| Indexation | Taux de pages indexées | > 95% |
+| Conversion | Visiteurs → Actions | > 2.0% |
 
-> **Cible : +300% de trafic organique** via une stratégie de contenu premium.
+### 1.3 Principes Architecturaux
 
-### 1.3 Prefix API
+- **Module Isolé** : Aucun import croisé avec d'autres modules
+- **Architecture LEGO V5** : Composants indépendants et testables
+- **Intégration Knowledge Layer** : Enrichissement des contenus avec données comportementales
+- **Bilingue** : Support FR/EN natif (règle permanente)
+
+### 1.4 Composants Principaux
 
 ```
-/api/v1/bionic/seo
+seo_router.py         → Routes API (41 endpoints)
+seo_service.py        → Orchestration des services
+seo_clusters.py       → Gestion des clusters SEO
+seo_pages.py          → Gestion des pages (piliers, satellites, opportunités)
+seo_jsonld.py         → Schémas JSON-LD structurés
+seo_analytics.py      → Analytics et KPIs
+seo_automation.py     → Règles d'automatisation
+seo_generation.py     → Génération de structures de contenu
+seo_content_generator.py → Génération IA via LLM
+seo_suppliers_router.py  → Base de données fournisseurs (104 entrées)
 ```
 
 ---
 
 ## 2. ARCHITECTURE ET STRUCTURE DES FICHIERS
 
-### 2.1 Arborescence du Module
+### 2.1 Arborescence Complète
 
 ```
 /app/backend/modules/seo_engine/
-├── __init__.py                 # Exports du module
-├── seo_router.py               # Routes API FastAPI (41 endpoints)
-├── seo_service.py              # Service orchestrateur principal
-├── seo_models.py               # Modèles Pydantic (15 modèles)
-├── seo_clusters.py             # Gestion des clusters SEO (9 clusters de base)
-├── seo_pages.py                # Gestion des pages (6 templates)
-├── seo_jsonld.py               # Schémas JSON-LD (6 types)
-├── seo_analytics.py            # Analytics et KPIs
-├── seo_automation.py           # Règles d'automatisation (5 règles)
-├── seo_generation.py           # Génération de structure de contenu
-├── seo_content_generator.py    # Génération de contenu via LLM
-└── data/                       # Répertoires de stockage (vides)
-    ├── clusters/
-    ├── jsonld/
-    └── pages/
+├── __init__.py                 # Exports publics du module
+├── seo_router.py               # Routes API principales (prefix: /api/v1/bionic/seo)
+├── seo_suppliers_router.py     # Routes fournisseurs (prefix: /api/v1/bionic/seo/suppliers)
+├── seo_service.py              # Service orchestrateur
+├── seo_models.py               # Modèles Pydantic (13 enums, 18 modèles)
+├── seo_clusters.py             # Gestionnaire de clusters (9 clusters de base)
+├── seo_pages.py                # Gestionnaire de pages (6 templates)
+├── seo_jsonld.py               # Schémas JSON-LD (9 types supportés)
+├── seo_analytics.py            # Analytics et métriques
+├── seo_automation.py           # Règles d'automatisation (5 règles par défaut)
+├── seo_generation.py           # Génération de structures
+├── seo_content_generator.py    # Génération IA (Emergent LLM Key)
+└── data/
+    ├── clusters/               # (Réservé pour données clusters)
+    ├── jsonld/                 # (Réservé pour templates JSON-LD)
+    ├── pages/                  # (Réservé pour templates pages)
+    └── suppliers/
+        ├── __init__.py
+        └── suppliers_database.py   # Base de 104 fournisseurs (13 catégories)
 ```
 
-### 2.2 Composants et Responsabilités
+### 2.2 Exports Publics (`__init__.py`)
 
-| Fichier | Classe Principale | Responsabilité |
-|---------|------------------|----------------|
-| `seo_router.py` | - | Définition des 41 endpoints API |
-| `seo_service.py` | `SEOService` | Orchestration des composants |
-| `seo_models.py` | Multiples | Définition des structures de données |
-| `seo_clusters.py` | `SEOClustersManager` | CRUD et gestion des clusters |
-| `seo_pages.py` | `SEOPagesManager` | CRUD pages, templates, maillage interne |
-| `seo_jsonld.py` | `SEOJsonLDManager` | Génération et validation JSON-LD |
-| `seo_analytics.py` | `SEOAnalyticsManager` | Métriques, KPIs, reporting |
-| `seo_automation.py` | `SEOAutomationManager` | Règles automatiques, alertes, calendrier |
-| `seo_generation.py` | `SEOGenerationManager` | Outlines, meta tags, scoring |
-| `seo_content_generator.py` | `SEOContentGenerator` | Génération IA via Emergent LLM |
+```python
+__all__ = [
+    "router",           # APIRouter FastAPI
+    "SEOService",       # Service principal
+    "SEOCluster",       # Modèle cluster
+    "SEOPage",          # Modèle page
+    "SEOJsonLD",        # Modèle JSON-LD
+    "SEOCampaign",      # Modèle campagne
+    "SEOAnalytics"      # Modèle analytics
+]
+
+__version__ = "1.0.0"
+__module__ = "seo_engine"
+```
 
 ---
 
-## 3. ENDPOINTS API COMPLETS
+## 3. ENDPOINTS API COMPLETS (41)
 
-### 3.1 Module Info
+### 3.1 Routes Principales (`/api/v1/bionic/seo`)
+
+#### Module Info
 | Méthode | Endpoint | Description |
 |---------|----------|-------------|
-| GET | `/` | Information sur le SEO Engine |
+| GET | `/` | Information sur le module SEO |
+| GET | `/dashboard` | Dashboard complet SEO |
+| GET | `/documentation` | Documentation interne du module |
 
-### 3.2 Dashboard
+#### Clusters (8 endpoints)
 | Méthode | Endpoint | Description |
 |---------|----------|-------------|
-| GET | `/dashboard` | Dashboard complet du SEO Engine |
+| GET | `/clusters` | Liste des clusters (filtres: type, active) |
+| GET | `/clusters/stats` | Statistiques des clusters |
+| GET | `/clusters/hierarchy` | Hiérarchie complète |
+| GET | `/clusters/{cluster_id}` | Détail d'un cluster |
+| POST | `/clusters` | Créer un cluster |
+| PUT | `/clusters/{cluster_id}` | Modifier un cluster |
+| DELETE | `/clusters/{cluster_id}` | Supprimer un cluster |
 
-### 3.3 Clusters (8 endpoints)
-| Méthode | Endpoint | Description | Paramètres |
-|---------|----------|-------------|------------|
-| GET | `/clusters` | Liste des clusters SEO | `cluster_type`, `is_active`, `limit` |
-| GET | `/clusters/stats` | Statistiques des clusters | - |
-| GET | `/clusters/hierarchy` | Hiérarchie des clusters | - |
-| GET | `/clusters/{cluster_id}` | Détail d'un cluster | `cluster_id` |
-| POST | `/clusters` | Créer un cluster | `cluster_data` (body) |
-| PUT | `/clusters/{cluster_id}` | Mettre à jour un cluster | `cluster_id`, `updates` (body) |
-| DELETE | `/clusters/{cluster_id}` | Supprimer un cluster | `cluster_id` |
+#### Pages (10 endpoints)
+| Méthode | Endpoint | Description |
+|---------|----------|-------------|
+| GET | `/pages` | Liste des pages (filtres: cluster, type, status) |
+| GET | `/pages/stats` | Statistiques des pages |
+| GET | `/pages/templates` | Templates disponibles |
+| GET | `/pages/{page_id}` | Détail d'une page |
+| POST | `/pages` | Créer une page |
+| PUT | `/pages/{page_id}` | Modifier une page |
+| POST | `/pages/{page_id}/publish` | Publier une page |
+| DELETE | `/pages/{page_id}` | Supprimer une page |
+| GET | `/pages/{page_id}/internal-links` | Suggestions de liens internes |
+| GET | `/pages/{page_id}/optimize` | Recommandations d'optimisation |
 
-### 3.4 Pages (10 endpoints)
-| Méthode | Endpoint | Description | Paramètres |
-|---------|----------|-------------|------------|
-| GET | `/pages` | Liste des pages SEO | `cluster_id`, `page_type`, `status`, `limit` |
-| GET | `/pages/stats` | Statistiques des pages | - |
-| GET | `/pages/templates` | Templates de pages disponibles | - |
-| GET | `/pages/{page_id}` | Détail d'une page | `page_id` |
-| POST | `/pages` | Créer une page | `page_data` (body) |
-| PUT | `/pages/{page_id}` | Mettre à jour une page | `page_id`, `updates` (body) |
-| POST | `/pages/{page_id}/publish` | Publier une page | `page_id` |
-| DELETE | `/pages/{page_id}` | Supprimer une page | `page_id` |
-| GET | `/pages/{page_id}/internal-links` | Suggestions de liens internes | `page_id` |
-| GET | `/pages/{page_id}/optimize` | Recommandations d'optimisation | `page_id` |
+#### JSON-LD (8 endpoints)
+| Méthode | Endpoint | Description |
+|---------|----------|-------------|
+| GET | `/jsonld` | Liste des schémas |
+| GET | `/jsonld/stats` | Statistiques des schémas |
+| POST | `/jsonld/generate/article` | Générer schéma Article |
+| POST | `/jsonld/generate/howto` | Générer schéma HowTo |
+| POST | `/jsonld/generate/faq` | Générer schéma FAQPage |
+| POST | `/jsonld/generate/breadcrumb` | Générer schéma Breadcrumb |
+| POST | `/jsonld/save` | Sauvegarder un schéma |
+| POST | `/jsonld/validate` | Valider un schéma |
 
-### 3.5 JSON-LD (8 endpoints)
-| Méthode | Endpoint | Description | Paramètres |
-|---------|----------|-------------|------------|
-| GET | `/jsonld` | Liste des schémas JSON-LD | `page_id`, `schema_type`, `limit` |
-| GET | `/jsonld/stats` | Statistiques des schémas | - |
-| POST | `/jsonld/generate/article` | Générer un schéma Article | `page_data` (body) |
-| POST | `/jsonld/generate/howto` | Générer un schéma HowTo | `page_data`, `steps` (body) |
-| POST | `/jsonld/generate/faq` | Générer un schéma FAQPage | `questions` (body) |
-| POST | `/jsonld/generate/breadcrumb` | Générer un schéma BreadcrumbList | `breadcrumbs` (body) |
-| POST | `/jsonld/save` | Sauvegarder un schéma | `page_id`, `schema_type`, `schema_data` |
-| POST | `/jsonld/validate` | Valider un schéma JSON-LD | `schema_data` (body) |
+#### Analytics (6 endpoints)
+| Méthode | Endpoint | Description |
+|---------|----------|-------------|
+| GET | `/analytics/dashboard` | Dashboard analytics |
+| GET | `/analytics/top-pages` | Pages les plus performantes |
+| GET | `/analytics/top-clusters` | Clusters les plus performants |
+| GET | `/analytics/traffic-trend` | Tendance du trafic |
+| GET | `/analytics/opportunities` | Opportunités d'optimisation |
+| GET | `/analytics/report` | Rapport SEO complet |
 
-### 3.6 Analytics (6 endpoints)
-| Méthode | Endpoint | Description | Paramètres |
-|---------|----------|-------------|------------|
-| GET | `/analytics/dashboard` | Dashboard analytics SEO | - |
-| GET | `/analytics/top-pages` | Pages les plus performantes | `metric`, `limit` |
-| GET | `/analytics/top-clusters` | Clusters les plus performants | `limit` |
-| GET | `/analytics/traffic-trend` | Tendance du trafic | `days` |
-| GET | `/analytics/opportunities` | Opportunités d'optimisation | - |
-| GET | `/analytics/report` | Rapport SEO | `period` |
+#### Automation (6 endpoints)
+| Méthode | Endpoint | Description |
+|---------|----------|-------------|
+| GET | `/automation/rules` | Règles d'automatisation |
+| PUT | `/automation/rules/{rule_id}/toggle` | Activer/désactiver règle |
+| GET | `/automation/suggestions` | Suggestions de contenu |
+| GET | `/automation/calendar` | Calendrier de contenu |
+| GET | `/automation/tasks` | Tâches planifiées |
+| POST | `/automation/tasks` | Planifier une tâche |
+| GET | `/automation/alerts` | Alertes SEO |
+| PUT | `/automation/alerts/{alert_id}/read` | Marquer alerte comme lue |
 
-### 3.7 Automation (8 endpoints)
-| Méthode | Endpoint | Description | Paramètres |
-|---------|----------|-------------|------------|
-| GET | `/automation/rules` | Règles d'automatisation | - |
-| PUT | `/automation/rules/{rule_id}/toggle` | Activer/désactiver une règle | `rule_id`, `is_active` |
-| GET | `/automation/suggestions` | Suggestions de contenu | - |
-| GET | `/automation/calendar` | Calendrier de contenu | - |
-| GET | `/automation/tasks` | Tâches planifiées | `status` |
-| POST | `/automation/tasks` | Planifier une tâche | `task_data` (body) |
-| GET | `/automation/alerts` | Alertes SEO | `is_read`, `limit` |
-| PUT | `/automation/alerts/{alert_id}/read` | Marquer une alerte comme lue | `alert_id` |
+#### Generation (5 endpoints)
+| Méthode | Endpoint | Description |
+|---------|----------|-------------|
+| POST | `/generate/outline` | Générer outline de page |
+| POST | `/generate/meta-tags` | Générer meta tags |
+| POST | `/generate/seo-score` | Calculer score SEO |
+| POST | `/generate/viral-capsule` | Générer capsule virale |
+| POST | `/generate/pillar-content` | Générer contenu pilier (IA) |
+| GET | `/generate/pillar-content/history` | Historique des contenus générés |
 
-### 3.8 Génération de Contenu (6 endpoints)
-| Méthode | Endpoint | Description | Paramètres |
-|---------|----------|-------------|------------|
-| POST | `/generate/outline` | Générer un outline de page | `cluster_id`, `page_type`, `target_keyword`, `knowledge_data` |
-| POST | `/generate/meta-tags` | Générer des meta tags optimisés | `title`, `keyword`, `content_summary` |
-| POST | `/generate/seo-score` | Calculer le score SEO | `page_data` (body) |
-| POST | `/generate/viral-capsule` | Générer une capsule virale | `topic`, `species_id`, `knowledge_data` |
-| POST | `/generate/pillar-content` | Générer le contenu d'une page pilier via IA | `species_id`, `keyword`, `knowledge_data` |
-| GET | `/generate/pillar-content/history` | Historique des contenus générés | `limit` |
+#### Workflow (2 endpoints)
+| Méthode | Endpoint | Description |
+|---------|----------|-------------|
+| POST | `/workflow/create-content` | Workflow création de contenu |
+| POST | `/workflow/enrich-with-knowledge` | Enrichir avec Knowledge Layer |
 
-### 3.9 Workflow (2 endpoints)
-| Méthode | Endpoint | Description | Paramètres |
-|---------|----------|-------------|------------|
-| POST | `/workflow/create-content` | Workflow complet de création de contenu | `cluster_id`, `page_type`, `target_keyword`, `knowledge_data` |
-| POST | `/workflow/enrich-with-knowledge` | Enrichir une page avec le Knowledge Layer | `page_id`, `species_id`, `knowledge_api_response` |
-
-### 3.10 Reports (1 endpoint)
+#### Reports (1 endpoint)
 | Méthode | Endpoint | Description |
 |---------|----------|-------------|
 | GET | `/reports/full` | Rapport SEO complet |
+
+### 3.2 Routes Fournisseurs (`/api/v1/bionic/seo/suppliers`)
+
+| Méthode | Endpoint | Description |
+|---------|----------|-------------|
+| GET | `/` | Liste tous les fournisseurs (pagination, filtres) |
+| GET | `/categories` | Liste des catégories |
+| GET | `/by-category/{category}` | Fournisseurs par catégorie |
+| GET | `/search?q=` | Recherche par nom |
+| GET | `/by-country/{country}` | Fournisseurs par pays |
+| GET | `/stats` | Statistiques de la base |
+| GET | `/export` | Export JSON ou CSV |
+| GET | `/seo-pages` | Structure pages SEO pour chaque fournisseur |
 
 ---
 
@@ -190,234 +223,163 @@ Le **SEO Engine** est un module premium de la plateforme HUNTIQ/BIONIC dédié �
 
 ### 4.1 Gestion des Clusters SEO
 
-#### 4.1.1 Clusters de Base (9 pré-configurés)
+**9 Clusters de Base Pré-configurés :**
 
-| ID Cluster | Nom | Type | Mot-clé Principal | Volume Recherche |
-|------------|-----|------|-------------------|-----------------|
-| `cluster_moose` | Chasse à l'Orignal | species | "chasse orignal québec" | 12,100 |
-| `cluster_deer` | Chasse au Cerf de Virginie | species | "chasse chevreuil québec" | 9,900 |
-| `cluster_bear` | Chasse à l'Ours Noir | species | "chasse ours noir québec" | 6,600 |
-| `cluster_laurentides` | Chasse dans les Laurentides | region | "chasse laurentides" | 3,300 |
-| `cluster_abitibi` | Chasse en Abitibi | region | "chasse abitibi" | 2,700 |
-| `cluster_rut_season` | Chasse pendant le Rut | season | "chasse pendant le rut" | 8,100 |
-| `cluster_calling` | Techniques d'Appel | technique | "techniques appel chasse" | 4,400 |
-| `cluster_scouting` | Repérage et Pistage | technique | "conseils repérage chasse" | 2,900 |
-| `cluster_equipment` | Équipement de Chasse | equipment | "liste équipement chasse" | 5,400 |
+| ID | Nom FR | Type | Espèces/Régions |
+|----|--------|------|-----------------|
+| `cluster_moose` | Chasse à l'Orignal | species | moose |
+| `cluster_deer` | Chasse au Cerf de Virginie | species | deer |
+| `cluster_bear` | Chasse à l'Ours Noir | species | bear |
+| `cluster_laurentides` | Chasse dans les Laurentides | region | laurentides |
+| `cluster_abitibi` | Chasse en Abitibi | region | abitibi |
+| `cluster_rut_season` | Chasse pendant le Rut | season | rut |
+| `cluster_calling` | Techniques d'Appel | technique | moose, deer |
+| `cluster_scouting` | Repérage et Pistage | technique | moose, deer, bear |
+| `cluster_equipment` | Équipement de Chasse | equipment | - |
 
-#### 4.1.2 Attributs d'un Cluster
-
-- **Identifiant unique** (`id`)
-- **Noms bilingues** (`name`, `name_fr`)
-- **Type de cluster** (species, region, season, technique, equipment, territory, behavior, weather)
-- **Mot-clé principal** avec métriques (volume, difficulté, CPC, intention)
-- **Mots-clés secondaires** (liste)
-- **Mots-clés longue traîne** (liste)
-- **Pages associées** (pillar_page_id, satellite_page_ids, opportunity_page_ids)
-- **Hiérarchie** (parent_cluster_id, sub_cluster_ids)
-- **Liens Knowledge Layer** (species_ids, region_ids, season_tags)
-- **Métriques** (total_pages, total_traffic, avg_position)
+**Types de Clusters Supportés :**
+- `species` : Par espèce de gibier
+- `region` : Par région géographique
+- `season` : Par saison de chasse
+- `technique` : Par technique de chasse
+- `equipment` : Par type d'équipement
+- `territory` : Par territoire
+- `behavior` : Comportemental
+- `weather` : Météorologique
 
 ### 4.2 Gestion des Pages SEO
 
-#### 4.2.1 Types de Pages
+**6 Templates de Pages :**
 
-| Type | Description | Objectif | Word Count Cible |
-|------|-------------|----------|-----------------|
-| **pillar** | Page pilier (guide complet) | Autorité thématique | 2,000-3,500+ |
-| **satellite** | Page satellite (sous-sujet) | Support du pilier | 800-1,200 |
-| **opportunity** | Page opportunité (longue traîne) | Capture trafic niché | 400-700 |
-| **viral** | Capsule virale | Partage social | Variable |
-| **interactive** | Guide interactif | Engagement | Variable |
-| **tool** | Outil/widget | Conversion | Variable |
-| **landing** | Landing page | Acquisition | Variable |
+| Type | Template | Mots Cibles | Temps Lecture |
+|------|----------|-------------|---------------|
+| Pillar | `tpl_species_guide` | 3400 | 15 min |
+| Pillar | `tpl_region_guide` | 2600 | 12 min |
+| Pillar | `tpl_technique_guide` | 2000 | 10 min |
+| Satellite | `tpl_species_behavior` | 1000 | 5 min |
+| Satellite | `tpl_seasonal_tips` | 1100 | 5 min |
+| Opportunity | `tpl_specific_question` | 650 | 3 min |
+| Opportunity | `tpl_location_specific` | 700 | 3 min |
 
-#### 4.2.2 Templates de Pages Disponibles
-
-**Templates Piliers (3):**
-- `tpl_species_guide` - Guide Complet Chasse par Espèce (3,400 mots)
-- `tpl_region_guide` - Guide Chasse par Région (2,600 mots)
-- `tpl_technique_guide` - Guide Technique de Chasse (2,000 mots)
-
-**Templates Satellites (2):**
-- `tpl_species_behavior` - Article Comportement Espèce (1,000 mots)
-- `tpl_seasonal_tips` - Conseils Chasse Saisonniers (1,100 mots)
-
-**Templates Opportunités (2):**
-- `tpl_specific_question` - Réponse Question Spécifique (650 mots)
-- `tpl_location_specific` - Guide Lieu Spécifique (700 mots)
-
-#### 4.2.3 Structure d'une Page
-
-```
-- Métadonnées: id, cluster_id, page_type, status, slug, url_path
-- Titres: title, title_fr, h1, h2_list
-- SEO: meta_description, primary_keyword, secondary_keywords, keyword_density, seo_score
-- Maillage: internal_links_out, internal_links_in
-- JSON-LD: jsonld_types, jsonld_data
-- Ciblage: target_audience, target_regions, target_seasons, target_species
-- Knowledge Layer: knowledge_rules_applied, knowledge_data_used
-- Performance: impressions, clicks, ctr, avg_position, conversions
-- Métadonnées: author, created_at, updated_at, published_at, scheduled_at
-```
+**Statuts de Page :**
+- `draft` : Brouillon
+- `review` : En révision
+- `published` : Publié
+- `scheduled` : Planifié
+- `archived` : Archivé
 
 ### 4.3 Schémas JSON-LD
 
-#### 4.3.1 Types Supportés
+**9 Types de Schémas Supportés :**
 
-| Type | Usage | Recommandé Pour |
-|------|-------|-----------------|
-| `Article` | Articles et guides | Toutes les pages de contenu |
-| `HowTo` | Tutoriels étape par étape | Guides techniques |
-| `FAQPage` | Questions/réponses | Pages avec FAQ |
-| `LocalBusiness` | Pourvoiries, ZECs | Pages régionales |
-| `BreadcrumbList` | Fil d'Ariane | Toutes les pages |
-| `VideoObject` | Vidéos intégrées | Pages avec média vidéo |
+| Type | Usage | Auto-généré |
+|------|-------|-------------|
+| `Article` | Contenu éditorial | Oui |
+| `HowTo` | Guides étape par étape | Oui |
+| `FAQPage` | Questions/Réponses | Oui |
+| `LocalBusiness` | Pourvoiries, ZECs | Oui |
+| `Product` | Produits affiliés | Manuel |
+| `Event` | Événements | Manuel |
+| `Organization` | Info entreprise | Pré-configuré |
+| `BreadcrumbList` | Fil d'Ariane | Oui |
+| `VideoObject` | Vidéos | Manuel |
 
-#### 4.3.2 Génération Automatique
-
-Le système génère automatiquement les schémas JSON-LD basés sur :
-- Le type de page
-- Les données structurées (titre, description, date, etc.)
-- Les étapes pour HowTo
-- Les questions/réponses pour FAQ
-
-#### 4.3.3 Validation des Schémas
-
-Validation automatique incluant :
-- Présence de `@context` et `@type`
-- Champs requis selon le type de schéma
-- Avertissements et erreurs reportés
+**Schéma Organisation BIONIC (pré-configuré) :**
+```json
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "BIONIC - Chasse Bionic",
+  "url": "https://chassebionic.com",
+  "description": "Plateforme intelligente de chasse au Québec"
+}
+```
 
 ### 4.4 Génération de Contenu IA
 
-#### 4.4.1 Intégration LLM
+**Capacités de Génération :**
+- Génération de pages piliers complètes (3500+ mots)
+- Intégration données Knowledge Layer (comportement, habitat, rut)
+- Structure automatique avec H2/H3
+- Génération FAQ (8 questions)
+- Optimisation SEO automatique
+- Support multilingue (FR prioritaire)
 
-- **Provider:** OpenAI via Emergent LLM Key
-- **Modèle:** GPT-4o
-- **Bibliothèque:** `emergentintegrations.llm.chat`
-
-#### 4.4.2 Génération de Pages Piliers
-
-Le générateur IA crée du contenu complet incluant :
-- Structure optimisée (10 sections)
-- Intégration des données Knowledge Layer
-- Minimum 3,500 mots
-- FAQ avec 8 questions
-- Optimisation mot-clé naturelle
-
-#### 4.4.3 Structure du Prompt IA
-
-Le prompt inclut automatiquement :
-- Données comportementales de l'espèce (température, activité, habitat, alimentation)
-- Information sur le rut
-- Phase saisonnière actuelle
-- Structure SEO requise
-- Consignes de tonalité et style
-
-### 4.5 Maillage Interne Intelligent
-
-#### 4.5.1 Calcul Automatique des Liens
-
-Le système suggère des liens internes basés sur :
-- Appartenance au même cluster
-- Espèces cibles communes
-- Régions cibles communes
-- Type de contenu (contextuel, navigation, lié, CTA)
-
-#### 4.5.2 Priorités de Liens
-
-| Priorité | Critère |
-|----------|---------|
-| 3 (haute) | Même cluster |
-| 2 (moyenne) | Même espèce/région |
-| 1 (basse) | Contenu connexe |
+**Modèle IA Utilisé :**
+- Provider : OpenAI (via Emergent Universal Key)
+- Modèle : `gpt-4o`
+- Fallback : Structure template sans contenu IA
 
 ---
 
 ## 5. LOGIQUE MÉTIER DÉTAILLÉE
 
-### 5.1 Workflow de Création de Contenu
+### 5.1 Calcul du Score SEO
 
-```
-1. SEOService.create_content_workflow()
-   ├── 2. SEOGenerationManager.generate_page_outline()
-   │   ├── Génération structure selon type (pillar/satellite/opportunity)
-   │   ├── Suggestions de liens internes
-   │   └── Recommandations JSON-LD
-   ├── 3. SEOPagesManager.create_page()
-   │   └── Création page en statut "draft"
-   └── 4. SEOGenerationManager.calculate_seo_score()
-       └── Score initial de la page
-```
+Le score SEO est calculé sur **100 points** avec les critères suivants :
 
-### 5.2 Enrichissement Knowledge Layer
+| Critère | Points | Conditions |
+|---------|--------|------------|
+| Titre | 15 | Présent, 30-60 caractères, contient mot-clé |
+| Meta Description | 10 | Présente, 120-160 caractères |
+| Mot-clé dans Titre | 10 | Mot-clé principal présent |
+| H1 | 10 | Présent, contient mot-clé |
+| Sous-titres H2 | 5 | Minimum 3 H2 |
+| Longueur Contenu | 15 | Selon type (pillar: 2000+, satellite: 800+) |
+| Liens Internes | 10 | Minimum 2 liens sortants |
+| JSON-LD | 10 | Au moins 1 schéma |
+| Images | 10 | (À implémenter) |
 
-```
-1. SEOService.enrich_with_knowledge()
-   ├── Récupération page existante
-   ├── Extraction données Knowledge Layer
-   │   ├── Données espèce (species)
-   │   ├── Règles applicables (applied_rules)
-   │   └── Phase saisonnière (seasonal_phase)
-   └── Mise à jour page avec données enrichies
-```
+**Grades :**
+- A : 90-100
+- B : 80-89
+- C : 70-79
+- D : 60-69
+- F : < 60
 
-### 5.3 Optimisation de Page
+### 5.2 Score de Santé Global
 
-```
-1. SEOService.optimize_page()
-   ├── Calcul score SEO actuel
-   ├── Suggestions liens internes
-   ├── Recommandations JSON-LD
-   └── Checklist d'optimisation
-       ├── Titre optimisé
-       ├── Meta description
-       ├── Liens internes (≥3)
-       ├── Schémas JSON-LD
-       └── Word count (≥800)
-```
-
-### 5.4 Score SEO - Algorithme de Calcul
+Le score de santé est calculé à partir de :
 
 ```python
-Score initial: 100 points
+score = 100.0
 
-Déductions:
-- Titre manquant: -15
-- Titre < 30 caractères: -5
-- Titre > 60 caractères: -5
-- Meta description manquante: -10
-- Meta description trop courte/longue: -5
-- Mot-clé absent du titre: -10
-- H1 manquant: -10
-- H1 sans mot-clé: -5
-- < 3 H2: -5
-- Word count insuffisant: -15
-- Word count marginal: -5
-- < 2 liens internes: -10
-- Pas de JSON-LD: -10
+# Pénalités Position (cible < 10)
+if avg_position > 20: score -= 30
+elif avg_position > 10: score -= 15
 
-Grades:
-A: ≥90 | B: ≥80 | C: ≥70 | D: ≥60 | F: <60
+# Pénalités CTR (cible > 5%)
+if avg_ctr < 3: score -= 20
+elif avg_ctr < 5: score -= 10
+
+# Pénalités Score SEO (cible > 80)
+if avg_seo_score < 60: score -= 25
+elif avg_seo_score < 80: score -= 10
+
+# Pénalités Taux Publication
+if published_rate < 50: score -= 15
+elif published_rate < 80: score -= 5
 ```
 
-### 5.5 Health Score Global
+### 5.3 Workflow de Création de Contenu
 
-```python
-Score initial: 100 points
+1. **Génération Outline** : Structure de page basée sur cluster et mot-clé
+2. **Création Draft** : Page créée en statut `draft`
+3. **Calcul Score SEO** : Score initial calculé
+4. **Suggestions Liens Internes** : Recommandations automatiques
+5. **Génération JSON-LD** : Schémas recommandés
+6. **Publication** : Passage en statut `published`
 
-Pénalités:
-- Position moyenne > 20: -30
-- Position moyenne > 10: -15
-- CTR < 3%: -20
-- CTR < 5%: -10
-- Score SEO moyen < 60: -25
-- Score SEO moyen < 80: -10
-- Taux publication < 50%: -15
-- Taux publication < 80%: -5
+### 5.4 Maillage Interne Automatique
 
-Résultat: max(0, min(100, score))
-```
+**Algorithme de Suggestions :**
+1. Rechercher pages du même cluster
+2. Rechercher pages avec mêmes espèces cibles
+3. Rechercher pages avec mêmes régions cibles
+4. Prioriser par type de lien :
+   - `pillar` (lien vers page pilier) - Priorité haute
+   - `contextual` (même cluster) - Priorité moyenne
+   - `related` (espèces/régions communes) - Priorité normale
 
 ---
 
@@ -425,260 +387,246 @@ Résultat: max(0, min(100, score))
 
 ### 6.1 Règles d'Automatisation par Défaut
 
-| ID | Nom | Déclencheur | Action | Configuration |
-|----|-----|-------------|--------|---------------|
-| `auto_internal_linking` | Maillage interne automatique | `page_created` | `suggest_links` | max: 5, min_relevance: 0.6 |
-| `seo_score_alert` | Alerte score SEO | `page_updated` | `alert` | seuil: 60, type: warning |
-| `publish_reminder` | Rappel de publication | `scheduled` | `notify` | délai: 7 jours, fréquence: daily |
-| `seasonal_content` | Contenu saisonnier | `scheduled` | `suggest_content` | avance: 4 semaines |
-| `keyword_tracking` | Suivi positions | `scheduled` | `track` | fréquence: weekly, alerte chute: 5 |
+| ID | Nom | Trigger | Action | Config |
+|----|-----|---------|--------|--------|
+| `auto_internal_linking` | Maillage interne automatique | page_created | suggest_links | max: 5, score min: 0.6 |
+| `seo_score_alert` | Alerte score SEO | page_updated | alert | seuil: 60, type: warning |
+| `publish_reminder` | Rappel de publication | scheduled | notify | jours: 7, fréquence: daily |
+| `seasonal_content` | Générateur contenu saisonnier | scheduled | suggest_content | avance: 4 semaines |
+| `keyword_tracking` | Suivi positions mots-clés | scheduled | track | fréquence: weekly, alerte si -5 |
 
-### 6.2 Suggestions de Contenu Saisonnières
+### 6.2 Suggestions Saisonnières
 
-Le système génère automatiquement des suggestions basées sur le mois en cours :
+**Septembre (Pré-rut Orignal) :**
+- Guide complet du pré-rut de l'orignal
+- Techniques d'appel de la femelle orignal
 
-| Mois | Suggestions |
-|------|-------------|
-| Septembre | Guide pré-rut orignal, Techniques d'appel femelle |
-| Octobre | Stratégies pic du rut orignal |
-| Novembre | Chasse au cerf pendant le rut |
+**Octobre (Pic du Rut) :**
+- Stratégies pour le pic du rut de l'orignal
+
+**Novembre (Rut Cerf) :**
+- Chasse au cerf pendant le rut - Guide complet
 
 ### 6.3 Système d'Alertes
 
-#### Types d'Alertes
-- Score SEO inférieur au seuil
-- Pages en brouillon depuis trop longtemps
-- Chute de position significative
-
-#### Propriétés d'une Alerte
-```
-- id: Identifiant unique
-- type: Type d'alerte
-- message: Message descriptif
-- page_id: Page concernée (optionnel)
-- priority: low | medium | high
-- is_read: État de lecture
-- created_at: Date de création
-```
-
-### 6.4 Calendrier de Contenu
-
-Le calendrier organise automatiquement :
-- Pages planifiées pour publication
-- Tâches SEO programmées
-- Vue par date avec regroupement pages/tâches
+**Types d'Alertes :**
+- `low_ctr` : CTR faible malgré bonnes impressions
+- `low_seo_score` : Score SEO inférieur au seuil
+- `page_2_ranking` : Page en position 11-20 (proche page 1)
+- `publish_reminder` : Page en draft depuis trop longtemps
 
 ---
 
 ## 7. RÈGLES SEO EXISTANTES
 
-### 7.1 Règles de Titres
+### 7.1 Règle Bilingue Permanente
 
-| Règle | Critère | Impact Score |
-|-------|---------|--------------|
-| Présence | Titre requis | -15 si absent |
-| Longueur min | ≥ 30 caractères | -5 si non respecté |
-| Longueur max | ≤ 60 caractères | -5 si dépassé |
-| Mot-clé | Présence du mot-clé principal | -10 si absent |
+**ID :** `bilingual_communication_rule`
 
-### 7.2 Règles de Meta Description
+**Description :** Toute communication générée automatiquement DOIT inclure les versions française ET anglaise.
 
-| Règle | Critère | Impact Score |
-|-------|---------|--------------|
-| Présence | Meta description requise | -10 si absente |
-| Longueur min | ≥ 120 caractères | -5 si non respecté |
-| Longueur max | ≤ 160 caractères | -5 si dépassé |
+**Application :**
+- Messages aux affiliés
+- Notifications système
+- Contenu généré par IA
+- Templates emails
 
-### 7.3 Règles de Contenu
+**Format Obligatoire :**
+```
+🇫🇷 FRANÇAIS
+[Contenu en français]
 
-| Règle | Type Page | Word Count Min | Impact Score |
-|-------|-----------|----------------|--------------|
-| Pillar | pillar | 2,000 | -15 si insuffisant |
-| Satellite | satellite | 800 | -15 si insuffisant |
-| Opportunity | opportunity | 400 | -15 si insuffisant |
+🇬🇧 ENGLISH  
+[Contenu en anglais]
+```
 
-### 7.4 Règles de Structure
+### 7.2 Règles de Scoring
 
-| Règle | Critère | Impact Score |
-|-------|---------|--------------|
-| H1 | Présence obligatoire | -10 si absent |
-| H1 + keyword | Mot-clé dans H1 | -5 si absent |
-| H2 | Minimum 3 sous-titres | -5 si insuffisant |
+| Règle | Description | Pénalité |
+|-------|-------------|----------|
+| `title_length` | Titre entre 30-60 caractères | -5 à -15 pts |
+| `meta_description_length` | Meta 120-160 caractères | -5 à -10 pts |
+| `keyword_in_title` | Mot-clé dans le titre | -10 pts |
+| `keyword_in_h1` | Mot-clé dans le H1 | -5 pts |
+| `min_h2_count` | Minimum 3 sous-titres H2 | -5 pts |
+| `min_word_count` | Selon type de page | -15 pts |
+| `internal_links` | Minimum 2 liens internes | -10 pts |
+| `jsonld_present` | Au moins 1 schéma JSON-LD | -10 pts |
 
-### 7.5 Règles de Maillage
+### 7.3 Règles de Validation JSON-LD
 
-| Règle | Critère | Impact Score |
-|-------|---------|--------------|
-| Liens sortants | Minimum 2 liens internes | -10 si insuffisant |
-| Recommandation | Minimum 3 liens suggérés | Recommandation |
-
-### 7.6 Règles JSON-LD
-
-| Règle | Critère | Impact Score |
-|-------|---------|--------------|
-| Présence | Au moins 1 schéma | -10 si absent |
-| @context | "https://schema.org" | Erreur validation |
-| @type | Type valide requis | Erreur validation |
+**Critères de Validation :**
+- `@context` doit être `https://schema.org`
+- `@type` obligatoire
+- Champs requis selon le type :
+  - Article : headline, author, publisher, datePublished
+  - HowTo : au moins 1 step
+  - FAQPage : au moins 1 mainEntity
 
 ---
 
 ## 8. DÉPENDANCES INTERNES
 
-### 8.1 Dépendances Intra-Module
+### 8.1 Dépendances Python
+
+```python
+# Core
+from fastapi import APIRouter, HTTPException, Query, Body
+from typing import Optional, List, Dict, Any
+from datetime import datetime, timezone, timedelta
+from pydantic import BaseModel, Field
+from enum import Enum
+
+# Database
+from motor.motor_asyncio import AsyncIOMotorClient
+
+# Environment
+import os
+from dotenv import load_dotenv
+
+# Utilities
+import logging
+import uuid
+import json
+import re
+
+# LLM (optionnel)
+from emergentintegrations.llm.chat import LlmChat, UserMessage
+```
+
+### 8.2 Dépendances Inter-Composants
 
 ```
 seo_router.py
-├── seo_service.py (SEOService)
-├── seo_clusters.py (SEOClustersManager)
-├── seo_pages.py (SEOPagesManager)
-├── seo_jsonld.py (SEOJsonLDManager)
-├── seo_analytics.py (SEOAnalyticsManager)
-├── seo_automation.py (SEOAutomationManager)
-├── seo_generation.py (SEOGenerationManager)
-└── seo_content_generator.py (SEOContentGenerator)
+    ├── seo_service.py (orchestration)
+    ├── seo_clusters.py (clusters)
+    ├── seo_pages.py (pages)
+    ├── seo_jsonld.py (schémas)
+    ├── seo_analytics.py (métriques)
+    ├── seo_automation.py (règles)
+    ├── seo_generation.py (structures)
+    └── seo_content_generator.py (IA)
 
-seo_service.py
-├── seo_clusters.py
-├── seo_pages.py
-├── seo_jsonld.py
-├── seo_analytics.py
-├── seo_automation.py
-└── seo_generation.py
+seo_suppliers_router.py
+    └── data/suppliers/suppliers_database.py
 ```
 
-### 8.2 Dépendances Externes (Projet)
+### 8.3 Dépendances Externes
 
-| Dépendance | Usage | Fichier Source |
-|------------|-------|----------------|
-| Motor (AsyncIOMotorClient) | Connexion MongoDB | `seo_router.py` |
-| FastAPI (APIRouter) | Définition des routes | `seo_router.py` |
-| Pydantic (BaseModel) | Validation des données | `seo_models.py` |
-| emergentintegrations | Génération IA | `seo_content_generator.py` |
-
-### 8.3 Intégration Knowledge Layer
-
-Le SEO Engine est conçu pour s'intégrer avec le **Knowledge Layer** de BIONIC :
-
-```
-SEO Engine → Knowledge Layer
-├── Données comportementales (species_info)
-├── Phases saisonnières (seasonal_phase)
-├── Règles applicables (applied_rules)
-└── Sources alimentaires, habitats, etc.
-```
-
-**Note:** L'intégration est préparée dans le code mais dépend de l'API Knowledge Layer externe.
+| Service | Usage | Obligatoire |
+|---------|-------|-------------|
+| MongoDB | Stockage données | Oui |
+| Emergent LLM Key | Génération contenu IA | Non (fallback disponible) |
+| Knowledge Layer | Enrichissement données | Non (optionnel) |
 
 ---
 
 ## 9. INTÉGRATIONS ACTUELLES
 
-### 9.1 Base de Données MongoDB
+### 9.1 MongoDB
 
-#### Collections Utilisées
+**Collections Utilisées :**
 
-| Collection | Description |
-|------------|-------------|
-| `seo_clusters` | Clusters SEO personnalisés |
+| Collection | Usage |
+|------------|-------|
+| `seo_clusters` | Clusters SEO custom |
 | `seo_pages` | Pages SEO |
 | `seo_jsonld` | Schémas JSON-LD |
 | `seo_alerts` | Alertes SEO |
 | `seo_scheduled_tasks` | Tâches planifiées |
-| `seo_automation_rules` | Règles d'automatisation personnalisées |
-| `seo_generated_content` | Historique des contenus générés par IA |
+| `seo_automation_rules` | Règles custom |
+| `seo_generated_content` | Historique contenus IA |
 
-#### Configuration Connexion
-
+**Configuration :**
 ```python
 MONGO_URL = os.environ.get('MONGO_URL', 'mongodb://localhost:27017')
 DB_NAME = os.environ.get('DB_NAME', 'bionic_db')
 ```
 
-### 9.2 Emergent LLM Key (IA)
+### 9.2 Knowledge Layer (BIONIC)
 
-#### Configuration
+**Points d'Intégration :**
+- Données comportementales par espèce
+- Phases saisonnières
+- Règles de chasse applicables
+- Préférences d'habitat
+- Sources alimentaires
 
+**Utilisation :**
+- Enrichissement pages piliers
+- Suggestions de contenu saisonnier
+- Optimisation timing publication
+
+### 9.3 Emergent LLM Integration
+
+**Configuration :**
 ```python
-API_KEY = os.environ.get("EMERGENT_LLM_KEY")
-MODEL_PROVIDER = "openai"
-MODEL_NAME = "gpt-4o"
+api_key = os.environ.get("EMERGENT_LLM_KEY")
+model_provider = "openai"
+model_name = "gpt-4o"
 ```
 
-#### Usage
-
-- Génération de pages piliers complètes
-- Intégration automatique des données Knowledge Layer
-- Fallback en cas d'indisponibilité (structure template uniquement)
-
-### 9.3 Intégrations Préparées (Non Actives)
-
-| Intégration | Statut | Description |
-|-------------|--------|-------------|
-| Google Search Console | **Préparé** | Import de métriques réelles (impressions, clicks, positions) |
-| Knowledge Layer API | **Préparé** | Enrichissement contenu avec données comportementales |
-| MFFP Quebec | **Référencé** | Source de données réglementaires |
+**Fonctionnalités :**
+- Génération pages piliers complètes
+- Optimisation automatique SEO
+- Intégration données Knowledge Layer dans le contenu
 
 ---
 
 ## 10. INDICATEURS DE PERFORMANCE (KPIs)
 
-### 10.1 KPIs Cibles Configurés
+### 10.1 KPIs Cibles
 
-| Indicateur | Valeur Cible | Unité |
-|------------|--------------|-------|
-| Position moyenne | < 10 | Rang Google |
-| CTR | > 5% | Pourcentage |
-| Score SEO | > 80 | Points (0-100) |
-| Taux d'indexation | > 95% | Pourcentage |
-| Taux de conversion | > 2% | Pourcentage |
+| KPI | Cible | Description |
+|-----|-------|-------------|
+| `avg_position` | < 10.0 | Position moyenne dans les SERP |
+| `ctr` | > 5.0% | Taux de clic |
+| `seo_score` | > 80/100 | Score SEO technique |
+| `indexed_rate` | > 95% | Taux d'indexation |
+| `conversion_rate` | > 2.0% | Taux de conversion |
 
-### 10.2 Métriques Dashboard
+### 10.2 Métriques Trackées par Page
 
-#### Vue d'Ensemble (Overview)
-- Total impressions
-- Total clicks
-- CTR moyen
-- Position moyenne
-- Total conversions
+| Métrique | Type | Description |
+|----------|------|-------------|
+| `impressions` | int | Nombre d'affichages SERP |
+| `clicks` | int | Nombre de clics |
+| `ctr` | float | Taux de clic (%) |
+| `avg_position` | float | Position moyenne |
+| `conversions` | int | Nombre de conversions |
+| `seo_score` | float | Score SEO (0-100) |
+| `word_count` | int | Nombre de mots |
+| `reading_time_min` | int | Temps de lecture (min) |
 
-#### Clusters
-- Total clusters (base + custom)
-- Clusters actifs
-- Répartition par type
+### 10.3 Métriques Agrégées (Dashboard)
 
-#### Pages
-- Total pages
-- Pages publiées
-- Pages en brouillon
-- Répartition par type
-
-#### Schémas JSON-LD
-- Total schémas
-- Schémas valides
-- Répartition par type
-
-### 10.3 Opportunités d'Optimisation Détectées
-
-Le système identifie automatiquement :
-
-| Type | Critère | Priorité | Gain Potentiel |
-|------|---------|----------|----------------|
-| `low_ctr` | CTR < 3% avec > 100 impressions | High | +50% clicks |
-| `low_seo_score` | Score < 60 (pages publiées) | Medium | Meilleur classement |
-| `page_2_ranking` | Position 11-20 | High | +200% trafic |
-
-### 10.4 Reporting
-
-#### Types de Rapports
-- `full` : Rapport SEO complet
-
-#### Contenu du Rapport
-1. Executive Summary (métriques clés)
-2. Performance Analysis (analyse détaillée)
-3. Top Performing Pages (top 5)
-4. Top Performing Clusters (top 3)
-5. Action Items (opportunités prioritaires)
-6. Recommendations (4 recommandations automatiques)
+```json
+{
+  "clusters": {
+    "total": 9,
+    "active": 9
+  },
+  "pages": {
+    "total": 0,
+    "published": 0,
+    "draft": 0
+  },
+  "traffic": {
+    "total_clicks": 0,
+    "total_impressions": 0,
+    "avg_ctr": 0
+  },
+  "performance": {
+    "avg_position": 0,
+    "avg_seo_score": 0,
+    "total_conversions": 0
+  },
+  "technical": {
+    "schemas_count": 0,
+    "health_score": 100
+  }
+}
+```
 
 ---
 
@@ -686,181 +634,130 @@ Le système identifie automatiquement :
 
 ### 11.1 Variables d'Environnement
 
-| Variable | Usage | Fichier |
-|----------|-------|---------|
-| `MONGO_URL` | URL MongoDB | `seo_router.py` |
-| `DB_NAME` | Nom de la base | `seo_router.py` |
-| `EMERGENT_LLM_KEY` | Clé API LLM | `seo_content_generator.py` |
+| Variable | Description | Défaut |
+|----------|-------------|--------|
+| `MONGO_URL` | URL connexion MongoDB | `mongodb://localhost:27017` |
+| `DB_NAME` | Nom de la base | `bionic_db` |
+| `EMERGENT_LLM_KEY` | Clé API LLM | (requis pour génération IA) |
 
-### 11.2 Limites par Défaut
+### 11.2 Limites et Quotas
 
 | Paramètre | Valeur | Endpoint |
 |-----------|--------|----------|
-| Limit pages | 100 (max 500) | `/pages` |
-| Limit clusters | 100 (max 500) | `/clusters` |
-| Limit schemas | 100 (max 500) | `/jsonld` |
-| Limit alerts | 50 (max 200) | `/automation/alerts` |
-| Limit top pages | 10 (max 50) | `/analytics/top-pages` |
-| Limit top clusters | 10 (max 50) | `/analytics/top-clusters` |
-| Traffic trend days | 30 (max 90) | `/analytics/traffic-trend` |
+| `max_clusters_per_request` | 500 | `/clusters` |
+| `max_pages_per_request` | 500 | `/pages` |
+| `max_schemas_per_request` | 500 | `/jsonld` |
+| `max_alerts` | 200 | `/automation/alerts` |
+| `max_suggestions` | 5 | Auto internal linking |
+| `min_relevance_score` | 0.6 | Suggestions liens |
+| `seo_score_threshold` | 60 | Alertes |
+| `days_threshold_draft` | 7 | Rappel publication |
+| `seasonal_lead_time` | 4 semaines | Suggestions contenu |
 
-### 11.3 Configuration JSON-LD Organisation
+### 11.3 Configuration Templates Pages
 
-```json
-{
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "BIONIC - Chasse Bionic",
-  "alternateName": "Bionic Hunt",
-  "url": "https://chassebionic.com",
-  "logo": "https://chassebionic.com/logo.png",
-  "sameAs": [
-    "https://facebook.com/chassebionic",
-    "https://instagram.com/chassebionic",
-    "https://youtube.com/chassebionic"
-  ]
-}
-```
-
-### 11.4 Configuration Génération IA
-
-```python
-SEOContentGenerator:
-  api_key: EMERGENT_LLM_KEY
-  model_provider: "openai"
-  model_name: "gpt-4o"
-  
-Règles de génération:
-  - Français québécois naturel
-  - Structure H2/H3 claire
-  - Minimum 3500 mots (piliers)
-  - 8 questions FAQ
-  - Références MFFP, SEPAQ
-```
+| Template | Word Count Min | Liens Internes Cibles | JSON-LD |
+|----------|----------------|----------------------|---------|
+| Pillar Species | 3400 | 8 | Article, HowTo, FAQPage |
+| Pillar Region | 2600 | 6 | Article, LocalBusiness |
+| Pillar Technique | 2000 | 5 | Article, HowTo |
+| Satellite Behavior | 1000 | 3 | Article |
+| Satellite Seasonal | 1100 | 4 | Article, HowTo |
+| Opportunity Question | 650 | 2 | Article, FAQPage |
+| Opportunity Location | 700 | 3 | Article, LocalBusiness |
 
 ---
 
-## 12. SCHÉMAS DE DONNÉES (MONGODB)
+## 12. SCHÉMAS DE DONNÉES (MongoDB)
 
-### 12.1 Collection `seo_pages`
+### 12.1 Collection `seo_clusters`
 
 ```javascript
 {
-  id: String,                    // "page_xxxxxxxx"
-  cluster_id: String,            // Référence cluster
-  page_type: String,             // pillar|satellite|opportunity|viral|interactive|tool|landing
-  status: String,                // draft|review|published|scheduled|archived
-  
-  // URL et Titres
-  slug: String,
-  url_path: String,
-  title: String,
-  title_fr: String,
-  meta_description: String,
-  meta_description_fr: String,
-  
-  // Contenu
-  content_format: String,        // article|guide|checklist|infographic|video|quiz|calculator|map
-  h1: String,
-  h2_list: [String],
-  word_count: Number,
-  reading_time_min: Number,
-  
-  // SEO
-  primary_keyword: String,
-  secondary_keywords: [String],
-  keyword_density: Number,
-  seo_score: Number,             // 0-100
-  
-  // Maillage
-  internal_links_out: [{
-    target_page_id: String,
-    anchor_text: String,
-    anchor_text_fr: String,
-    context: String,
-    link_type: String,           // contextual|navigation|related|cta
-    priority: Number
-  }],
-  internal_links_in: [String],   // Page IDs
-  
-  // JSON-LD
-  jsonld_types: [String],        // Article|HowTo|FAQPage|etc.
-  jsonld_data: Object,
-  
-  // Ciblage
-  target_audience: String,       // beginner|intermediate|expert|guide|landowner|all
-  target_regions: [String],
-  target_seasons: [String],
-  target_species: [String],
-  
-  // Knowledge Layer
-  knowledge_rules_applied: [String],
-  knowledge_data_used: Object,
-  
-  // Performance
-  impressions: Number,
-  clicks: Number,
-  ctr: Number,
-  avg_position: Number,
-  conversions: Number,
-  
-  // Métadonnées
-  author: String,
-  created_at: ISODate,
-  updated_at: ISODate,
-  published_at: ISODate,
-  scheduled_at: ISODate
+  "id": "string",                    // Ex: "cluster_custom_123"
+  "name": "string",                  // Nom EN
+  "name_fr": "string",               // Nom FR
+  "cluster_type": "string",          // species|region|season|technique|equipment
+  "description": "string",           // Description EN
+  "description_fr": "string",        // Description FR
+  "primary_keyword": {
+    "keyword": "string",
+    "keyword_fr": "string",
+    "search_volume": "int",
+    "difficulty": "float (0-1)",
+    "intent": "string",              // informational|transactional|navigational
+    "priority": "int (1-5)",
+    "is_primary": "boolean"
+  },
+  "secondary_keywords": [/* même structure */],
+  "long_tail_keywords": ["string"],
+  "pillar_page_id": "string|null",
+  "satellite_page_ids": ["string"],
+  "opportunity_page_ids": ["string"],
+  "parent_cluster_id": "string|null",
+  "sub_cluster_ids": ["string"],
+  "species_ids": ["string"],
+  "region_ids": ["string"],
+  "season_tags": ["string"],
+  "total_pages": "int",
+  "total_traffic": "int",
+  "avg_position": "float",
+  "created_at": "datetime ISO",
+  "updated_at": "datetime ISO",
+  "is_active": "boolean"
 }
 ```
 
-### 12.2 Collection `seo_clusters`
+### 12.2 Collection `seo_pages`
 
 ```javascript
 {
-  id: String,                    // "cluster_xxxxxxxx"
-  name: String,
-  name_fr: String,
-  cluster_type: String,          // species|region|season|technique|equipment|territory|behavior|weather
-  description: String,
-  description_fr: String,
-  
-  // Mots-clés
-  primary_keyword: {
-    keyword: String,
-    keyword_fr: String,
-    search_volume: Number,
-    difficulty: Number,          // 0-1
-    cpc: Number,
-    intent: String,              // informational|transactional|navigational
-    priority: Number,            // 1-5
-    is_primary: Boolean
-  },
-  secondary_keywords: [Object],
-  long_tail_keywords: [String],
-  
-  // Pages
-  pillar_page_id: String,
-  satellite_page_ids: [String],
-  opportunity_page_ids: [String],
-  
-  // Hiérarchie
-  parent_cluster_id: String,
-  sub_cluster_ids: [String],
-  
-  // Métriques
-  total_pages: Number,
-  total_traffic: Number,
-  avg_position: Number,
-  
-  // Knowledge Layer
-  species_ids: [String],
-  region_ids: [String],
-  season_tags: [String],
-  
-  // Métadonnées
-  created_at: ISODate,
-  updated_at: ISODate,
-  is_active: Boolean
+  "id": "string",                    // Ex: "page_abc12345"
+  "cluster_id": "string",
+  "page_type": "string",             // pillar|satellite|opportunity|viral|interactive|tool
+  "status": "string",                // draft|review|published|scheduled|archived
+  "slug": "string",
+  "url_path": "string",
+  "title": "string",
+  "title_fr": "string",
+  "meta_description": "string",
+  "meta_description_fr": "string",
+  "content_format": "string",        // article|guide|checklist|infographic|video|quiz|calculator|map|comparison
+  "h1": "string",
+  "h2_list": ["string"],
+  "word_count": "int",
+  "reading_time_min": "int",
+  "primary_keyword": "string",
+  "secondary_keywords": ["string"],
+  "keyword_density": "float",
+  "seo_score": "float (0-100)",
+  "internal_links_out": [{
+    "target_page_id": "string",
+    "anchor_text": "string",
+    "anchor_text_fr": "string",
+    "context": "string",
+    "link_type": "string",           // contextual|navigation|related|cta
+    "priority": "int"
+  }],
+  "internal_links_in": ["string"],   // Page IDs
+  "jsonld_types": ["string"],        // Article|HowTo|FAQPage|etc
+  "jsonld_data": "object",
+  "target_audience": "string",       // beginner|intermediate|expert|guide|landowner|all
+  "target_regions": ["string"],
+  "target_seasons": ["string"],
+  "target_species": ["string"],
+  "knowledge_rules_applied": ["string"],
+  "knowledge_data_used": "object",
+  "impressions": "int",
+  "clicks": "int",
+  "ctr": "float",
+  "avg_position": "float",
+  "conversions": "int",
+  "author": "string",
+  "created_at": "datetime ISO",
+  "updated_at": "datetime ISO",
+  "published_at": "datetime ISO|null",
+  "scheduled_at": "datetime ISO|null"
 }
 ```
 
@@ -868,13 +765,13 @@ Règles de génération:
 
 ```javascript
 {
-  id: String,                    // "jsonld_xxxxxxxx"
-  page_id: String,
-  schema_type: String,           // Article|HowTo|FAQPage|LocalBusiness|BreadcrumbList|VideoObject
-  schema_data: Object,           // Schéma JSON-LD complet
-  is_valid: Boolean,
-  validation_errors: [String],
-  created_at: ISODate
+  "id": "string",
+  "page_id": "string",
+  "schema_type": "string",           // Article|HowTo|FAQPage|LocalBusiness|etc
+  "schema_data": "object",           // Schéma JSON-LD complet
+  "is_valid": "boolean",
+  "validation_errors": ["string"],
+  "created_at": "datetime ISO"
 }
 ```
 
@@ -882,13 +779,13 @@ Règles de génération:
 
 ```javascript
 {
-  id: String,                    // "alert_xxxxxxxx"
-  type: String,                  // Type d'alerte
-  message: String,
-  page_id: String,               // Optionnel
-  priority: String,              // low|medium|high
-  is_read: Boolean,
-  created_at: ISODate
+  "id": "string",
+  "type": "string",                  // low_ctr|low_seo_score|page_2_ranking|etc
+  "message": "string",
+  "page_id": "string|null",
+  "priority": "string",              // low|medium|high
+  "is_read": "boolean",
+  "created_at": "datetime ISO"
 }
 ```
 
@@ -896,16 +793,16 @@ Règles de génération:
 
 ```javascript
 {
-  id: String,                    // "task_xxxxxxxx"
-  type: String,                  // content_creation|optimization|etc.
-  title: String,
-  description: String,
-  scheduled_at: ISODate,
-  target_page_id: String,
-  target_cluster_id: String,
-  priority: String,              // low|medium|high
-  status: String,                // pending|completed|cancelled
-  created_at: ISODate
+  "id": "string",
+  "type": "string",                  // content_creation|optimization|etc
+  "title": "string",
+  "description": "string",
+  "scheduled_at": "datetime ISO",
+  "target_page_id": "string|null",
+  "target_cluster_id": "string|null",
+  "priority": "string",              // low|medium|high
+  "status": "string",                // pending|completed|cancelled
+  "created_at": "datetime ISO"
 }
 ```
 
@@ -913,114 +810,239 @@ Règles de génération:
 
 ```javascript
 {
-  type: String,                  // "pillar_generated"
-  species_id: String,
-  keyword: String,
-  content: {
-    title_fr: String,
-    content_html: String,
-    content_markdown: String,
-    word_count: Number,
-    h2_list: [String],
-    faq_items: [{
-      question: String,
-      answer: String
-    }],
-    meta_description_fr: String,
-    primary_keyword: String,
-    reading_time_min: Number
+  "type": "string",                  // pillar_generated
+  "species_id": "string",
+  "keyword": "string",
+  "content": {
+    "title_fr": "string",
+    "content_html": "string",
+    "content_markdown": "string",
+    "word_count": "int",
+    "h2_list": ["string"],
+    "faq_items": [{"question": "string", "answer": "string"}],
+    "meta_description_fr": "string",
+    "primary_keyword": "string",
+    "reading_time_min": "int"
   },
-  metadata: {
-    species_id: String,
-    keyword: String,
-    model_used: String,
-    generated_at: ISODate,
-    word_count: Number
+  "metadata": {
+    "species_id": "string",
+    "keyword": "string",
+    "model_used": "string",
+    "generated_at": "datetime ISO",
+    "word_count": "int"
   },
-  status: String,                // draft|published
-  created_at: ISODate
+  "status": "string",                // draft|published
+  "created_at": "datetime ISO"
 }
 ```
 
 ---
 
-## 13. ANNEXES TECHNIQUES
+## 13. BASE DE DONNÉES FOURNISSEURS
 
-### 13.1 Codes d'État des Pages
+### 13.1 Vue d'Ensemble
+
+| Métrique | Valeur |
+|----------|--------|
+| **Total Fournisseurs** | 104 |
+| **Catégories** | 13 |
+| **Pays Représentés** | 7 (USA, Canada, Allemagne, Autriche, Italie, International) |
+| **Priorité High** | ~45% |
+| **Priorité Medium** | ~45% |
+| **Priorité Low** | ~10% |
+
+### 13.2 Catégories Disponibles
+
+| Catégorie | Code | Nombre | Description |
+|-----------|------|--------|-------------|
+| Caméras de Chasse | `cameras` | 13 | Trail cameras, cellulaires, sécurité |
+| Arcs & Arbalètes | `arcs_arbaletes` | 12 | Compound, recurve, crossbows |
+| Treestands & Saddles | `treestands` | 9 | Stands, plateformes, saddle hunting |
+| Urines & Attractants | `urines_attractants` | 9 | Scents, urines, attractifs |
+| Vêtements Techniques | `vetements` | 10 | Camo, couches, outdoor apparel |
+| Optiques | `optiques` | 7 | Lunettes, binoculaires, rangefinders |
+| Bottes | `bottes` | 7 | Hunting boots, rubber boots |
+| Backpacks | `backpacks` | 6 | Packs de chasse, frames |
+| Couteaux | `knives` | 7 | Fixed blade, folding, processing |
+| Boats/Kayaks/Motors | `boats_kayaks` | 7 | Kayaks, canoes, trolling motors |
+| Électronique | `electronics` | 6 | GPS, thermal, ozone generators |
+| Coolers | `coolers` | 6 | Glacières premium et budget |
+| Processing | `processing` | 6 | Grinders, smokers, dehydrators |
+
+### 13.3 Structure Fournisseur
+
+```javascript
+{
+  "company": "string",           // Nom de l'entreprise
+  "country": "string",           // Pays d'origine
+  "official_url": "string",      // URL officielle
+  "free_shipping": "string",     // Oui|Non|Parfois|N/A
+  "type": "string",              // manufacturer|retailer|software
+  "specialty": ["string"],       // Spécialités (3-4 max)
+  "seo_priority": "string"       // high|medium|low
+}
+```
+
+### 13.4 Fournisseurs Priorité Haute (Exemples)
+
+| Catégorie | Fournisseur | Pays | Spécialités |
+|-----------|-------------|------|-------------|
+| cameras | Spypoint | Canada | Cellular trail cameras, Solar |
+| cameras | Bushnell | USA | Trail cameras, Optics |
+| arcs_arbaletes | Mathews | USA | Premium compound bows |
+| arcs_arbaletes | Ravin | USA | Helicoil crossbows |
+| treestands | Tethrd | USA | Saddle hunting |
+| urines_attractants | Code Blue | USA | Deer scents, Estrus |
+| vetements | Sitka Gear | USA | Premium hunting systems |
+| optiques | Vortex | USA | VIP warranty, riflescopes |
+| bottes | LaCrosse | USA | Alphaburly Pro |
+| backpacks | Mystery Ranch | USA | Military grade packs |
+| electronics | Garmin | USA | GPS, Dog tracking |
+| coolers | YETI | USA | Premium coolers |
+| processing | LEM Products | USA | Meat grinders |
+
+---
+
+## 14. ANNEXES TECHNIQUES
+
+### 14.1 Enums Disponibles (seo_models.py)
+
+**ClusterType :**
+```python
+SPECIES, REGION, SEASON, TECHNIQUE, EQUIPMENT, TERRITORY, BEHAVIOR, WEATHER
+```
+
+**PageType :**
+```python
+PILLAR, SATELLITE, OPPORTUNITY, VIRAL, INTERACTIVE, TOOL, LANDING
+```
+
+**PageStatus :**
+```python
+DRAFT, REVIEW, PUBLISHED, SCHEDULED, ARCHIVED
+```
+
+**ContentFormat :**
+```python
+ARTICLE, GUIDE, CHECKLIST, INFOGRAPHIC, VIDEO, PODCAST, QUIZ, CALCULATOR, MAP, COMPARISON
+```
+
+**JsonLDType :**
+```python
+ARTICLE, HOWTO, FAQ, LOCAL_BUSINESS, PRODUCT, EVENT, ORGANIZATION, BREADCRUMB, VIDEO
+```
+
+**TargetAudience :**
+```python
+BEGINNER, INTERMEDIATE, EXPERT, GUIDE, LANDOWNER, ALL
+```
+
+### 14.2 Modèles Pydantic Disponibles
+
+| Modèle | Description |
+|--------|-------------|
+| `SEOKeyword` | Mot-clé avec métriques |
+| `SEOCluster` | Cluster thématique complet |
+| `InternalLink` | Lien interne avec contexte |
+| `SEOPage` | Page SEO complète |
+| `SEOJsonLD` | Schéma structuré |
+| `ViralCapsule` | Capsule virale |
+| `InteractiveWidget` | Widget interactif |
+| `SEOCampaign` | Campagne SEO |
+| `SEOAnalytics` | Analytics agrégées |
+| `SEODashboardStats` | Stats dashboard |
+
+### 14.3 Request Models API
+
+| Modèle | Endpoint |
+|--------|----------|
+| `GenerateOutlineRequest` | `/generate/outline` |
+| `GenerateMetaTagsRequest` | `/generate/meta-tags` |
+| `GenerateViralCapsuleRequest` | `/generate/viral-capsule` |
+| `CreateContentWorkflowRequest` | `/workflow/create-content` |
+| `EnrichWithKnowledgeRequest` | `/workflow/enrich-with-knowledge` |
+| `GeneratePillarContentRequest` | `/generate/pillar-content` |
+| `GenerateFAQRequest` | `/jsonld/generate/faq` |
+| `ContentGenerationRequest` | (usage interne) |
+
+### 14.4 Exemple Complet - Workflow Création Page Pilier
+
+```python
+# 1. Appel API génération outline
+POST /api/v1/bionic/seo/generate/outline
+{
+  "cluster_id": "cluster_moose",
+  "page_type": "pillar",
+  "target_keyword": "chasse orignal québec",
+  "knowledge_data": {
+    "species": {...},
+    "seasonal": {...}
+  }
+}
+
+# 2. Création page draft
+POST /api/v1/bionic/seo/pages
+{
+  "cluster_id": "cluster_moose",
+  "page_type": "pillar",
+  "slug": "guide-complet-chasse-orignal-quebec",
+  "title_fr": "Guide Complet: Chasse à l'Orignal au Québec",
+  ...
+}
+
+# 3. Génération contenu IA
+POST /api/v1/bionic/seo/generate/pillar-content
+{
+  "species_id": "moose",
+  "keyword": "chasse orignal québec",
+  "knowledge_data": {...}
+}
+
+# 4. Optimisation et validation
+GET /api/v1/bionic/seo/pages/{page_id}/optimize
+
+# 5. Publication
+POST /api/v1/bionic/seo/pages/{page_id}/publish
+```
+
+### 14.5 Codes de Réponse API
 
 | Code | Signification |
 |------|---------------|
-| `draft` | Brouillon - En cours de rédaction |
-| `review` | En révision - Prêt pour validation |
-| `published` | Publié - En ligne |
-| `scheduled` | Planifié - Publication programmée |
-| `archived` | Archivé - Retiré de la publication |
+| 200 | Succès |
+| 400 | Requête invalide |
+| 404 | Ressource non trouvée |
+| 500 | Erreur serveur |
 
-### 13.2 Types de Clusters
-
-| Type | Description | Exemple |
-|------|-------------|---------|
-| `species` | Par espèce de gibier | Orignal, Cerf, Ours |
-| `region` | Par région géographique | Laurentides, Abitibi |
-| `season` | Par saison de chasse | Rut, Pré-rut |
-| `technique` | Par technique de chasse | Appel, Repérage |
-| `equipment` | Par équipement | Armes, Optiques |
-| `territory` | Par type de territoire | ZEC, Pourvoirie |
-| `behavior` | Par comportement animal | Migration, Alimentation |
-| `weather` | Par conditions météo | Neige, Pluie |
-
-### 13.3 Grades SEO
-
-| Grade | Score Min | Interprétation |
-|-------|-----------|----------------|
-| A | 90 | Excellent - Optimisation complète |
-| B | 80 | Bon - Quelques améliorations possibles |
-| C | 70 | Moyen - Optimisation nécessaire |
-| D | 60 | Faible - Travail significatif requis |
-| F | <60 | Critique - Refonte nécessaire |
-
-### 13.4 Formats de Contenu
-
-| Format | Usage |
-|--------|-------|
-| `article` | Articles standards |
-| `guide` | Guides complets |
-| `checklist` | Listes de vérification |
-| `infographic` | Infographies |
-| `video` | Contenu vidéo |
-| `podcast` | Contenu audio |
-| `quiz` | Quiz interactifs |
-| `calculator` | Calculateurs |
-| `map` | Cartes interactives |
-| `comparison` | Tableaux comparatifs |
-
-### 13.5 Intentions de Recherche
-
-| Intention | Description | Exemple |
-|-----------|-------------|---------|
-| `informational` | Recherche d'information | "comment chasser l'orignal" |
-| `transactional` | Intention d'achat | "acheter carabine chasse" |
-| `navigational` | Navigation vers un site | "zec laurentides" |
+**Format Réponse Standard :**
+```json
+{
+  "success": true|false,
+  "data": {...},
+  "error": "string (si échec)"
+}
+```
 
 ---
 
-## CONCLUSION
+## RÉSUMÉ EXÉCUTIF
 
-Le **SEO Engine V5-ULTIME** est un module complet et mature offrant :
+Le **SEO Engine V5-ULTIME** est un module complet et autonome offrant :
 
-✅ **41 endpoints API** couvrant tous les aspects du SEO  
-✅ **9 clusters de base** pré-configurés pour le marché de la chasse au Québec  
-✅ **7 templates de pages** pour différents types de contenu  
-✅ **6 types de schémas JSON-LD** pour les données structurées  
-✅ **5 règles d'automatisation** par défaut  
-✅ **Génération de contenu IA** via GPT-4o  
-✅ **Intégration préparée** avec le Knowledge Layer  
-✅ **Analytics et reporting** complets  
+- **41 endpoints API** pour une gestion complète du SEO
+- **9 clusters de base** pré-configurés pour la chasse au Québec
+- **6 templates de pages** (piliers, satellites, opportunités)
+- **9 types de schémas JSON-LD** pour le référencement structuré
+- **5 règles d'automatisation** par défaut
+- **104 fournisseurs** répertoriés dans 13 catégories
+- **Génération IA** via Emergent LLM Key (GPT-4o)
+- **Intégration Knowledge Layer** pour enrichissement contextuel
+- **Support bilingue FR/EN** natif (règle permanente)
 
-**Statut actuel:** Module ACTIF, prêt pour utilisation et extension.
+Le module est conçu pour atteindre une **augmentation de +300% du trafic organique** grâce à une stratégie de clusters thématiques et une optimisation continue.
 
 ---
 
-*Document généré le : Décembre 2025*  
-*Version du module : 1.0.0*  
-*Architecture : LEGO V5 - Isolé*
+**Document généré par BIONIC SEO Engine V5-ULTIME**  
+**Version :** 1.0.0  
+**Dernière mise à jour :** Décembre 2025
