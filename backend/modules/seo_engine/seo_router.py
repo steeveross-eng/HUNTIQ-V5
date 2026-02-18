@@ -465,4 +465,60 @@ async def get_full_seo_report():
     return await SEOService.generate_seo_report(get_db(), "full")
 
 
+# ==============================================
+# DOCUMENTATION INTERNE
+# ==============================================
+
+@router.get("/documentation")
+async def get_seo_documentation():
+    """
+    Récupérer la documentation interne du module SEO.
+    Retourne le contenu du fichier SEO_ENGINE_DOCUMENTATION_V5.md
+    """
+    import os
+    
+    doc_path = "/app/docs/SEO_ENGINE_DOCUMENTATION_V5.md"
+    
+    if not os.path.exists(doc_path):
+        return {
+            "success": False,
+            "error": "Documentation non trouvée"
+        }
+    
+    try:
+        with open(doc_path, "r", encoding="utf-8") as f:
+            content = f.read()
+        
+        return {
+            "success": True,
+            "documentation": {
+                "title": "SEO Engine V5-ULTIME - Documentation Complète",
+                "version": "1.0.0",
+                "last_updated": "Décembre 2025",
+                "content": content,
+                "sections": [
+                    "Vue d'Ensemble",
+                    "Architecture et Structure des Fichiers",
+                    "Endpoints API Complets (41)",
+                    "Fonctionnalités Actives",
+                    "Logique Métier Détaillée",
+                    "Automatisations en Place",
+                    "Règles SEO Existantes",
+                    "Dépendances Internes",
+                    "Intégrations Actuelles",
+                    "Indicateurs de Performance (KPIs)",
+                    "Paramètres et Configurations",
+                    "Schémas de Données (MongoDB)",
+                    "Annexes Techniques"
+                ]
+            }
+        }
+    except Exception as e:
+        logger.error(f"Error reading documentation: {e}")
+        return {
+            "success": False,
+            "error": str(e)
+        }
+
+
 logger.info("BIONIC SEO Router initialized - V5 LEGO Module")
