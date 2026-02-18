@@ -73,15 +73,20 @@ class TestMessagingTemplates:
         assert data["success"] == True
         assert data["count"] >= 2
         
-        # Check templates have required variables
+        # Check templates have required structure
         for template in data["templates"]:
             assert "variables" in template
             assert "company_name" in template["variables"]
             assert "contact_name" in template["variables"]
-            assert "category" in template["variables"]
-            assert "country" in template["variables"]
+            # Note: category/country are in affiliate templates, notification templates have different vars
             assert "fr" in template["languages"]
             assert "en" in template["languages"]
+        
+        # Verify affiliate templates have category/country
+        affiliate_templates = [t for t in data["templates"] if "affiliate" in t["id"]]
+        for template in affiliate_templates:
+            assert "category" in template["variables"]
+            assert "country" in template["variables"]
         
         print(f"✅ Templates: {data['count']} templates with bilingual support")
     
