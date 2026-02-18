@@ -167,6 +167,11 @@ from modules.affiliate_switch_engine.router import router as affiliate_switch_ro
 from modules.affiliate_ads_engine.router import router as affiliate_ads_router
 
 # ==============================================
+# AD SPACES ENGINE (COMMANDE 4)
+# ==============================================
+from modules.ad_spaces_engine.router import router as ad_spaces_router
+
+# ==============================================
 # TRACKING ENGINE V1 - BEHAVIORAL (Events, Funnels, Heatmaps)
 # ==============================================
 from modules.tracking_engine.v1.router import router as tracking_behavioral_router
