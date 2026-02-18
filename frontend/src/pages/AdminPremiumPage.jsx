@@ -54,7 +54,8 @@ import {
   AdminKnowledge,
   AdminSEO,
   AdminMarketingControls,
-  AdminAnalytics
+  AdminAnalytics,
+  AdminCategories
 } from '@/ui/administration';
 
 const navItems = [
