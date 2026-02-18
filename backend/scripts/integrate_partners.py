@@ -20,6 +20,12 @@ from collections import defaultdict
 from fuzzywuzzy import fuzz
 import re
 import sys
+import os
+
+# Charger les variables d'environnement
+from dotenv import load_dotenv
+load_dotenv('/app/backend/.env')
+
 sys.path.insert(0, '/app/backend')
 
 from modules.seo_engine.seo_normalization import seo_normalizer, normalize_url
