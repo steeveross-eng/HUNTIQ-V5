@@ -351,7 +351,7 @@ async def create_share_link(owner_id: str, request: ShareLinkRequest):
         await share_links_collection.insert_one(link_doc)
         
         # Construire l'URL du lien
-        base_url = os.environ.get('REACT_APP_BACKEND_URL', 'https://admin-dashboard-911.preview.emergentagent.com')
+        base_url = os.environ.get('REACT_APP_BACKEND_URL', 'https://marketsync-20.preview.emergentagent.com')
         share_url = f"{base_url}/share/{link_id}"
         
         return {
