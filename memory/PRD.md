@@ -359,6 +359,17 @@ Application HUNTIQ-V5 selon une architecture "LEGO" modulaire très stricte. Le 
 ## Files of Reference
 - `/app/backend/modules/analytics_engine/v1/` - Analytics Engine
 - `/app/backend/modules/tracking_engine/v1/` - Tracking Engine
+- `/app/backend/modules/seo_engine/` - SEO Engine V5-ULTIME
 - `/app/frontend/src/ui/administration/admin_analytics/` - Admin Analytics UI
 - `/app/frontend/src/pages/AdminPremiumPage.jsx` - Admin Premium Page
+- `/app/docs/SEO_ENGINE_DOCUMENTATION_V5.md` - Documentation SEO complète
 - `/app/test_reports/iteration_10.json` - Latest test report
+
+---
+
+## Documentation Générée
+| Document | Description | Date |
+|----------|-------------|------|
+| `/app/docs/SEO_ENGINE_DOCUMENTATION_V5.md` | Documentation exhaustive du module SEO (41 endpoints, 9 clusters, 7 templates, 6 JSON-LD, 5 automatisations) | Décembre 2025 |
+| `/app/docs/API_DOCUMENTATION.md` | Documentation API complète | Février 2026 |
+| `/app/docs/RELEASE_CANDIDATE_RC1.md` | Rapport Release Candidate | Février 2026 |
