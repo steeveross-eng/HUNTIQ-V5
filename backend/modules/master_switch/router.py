@@ -21,7 +21,7 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-router = APIRouter(prefix="/master-switch", tags=["Master Switch X300%"])
+router = APIRouter(prefix="/api/v1/master-switch", tags=["Master Switch X300%"])
 
 MONGO_URL = os.environ.get('MONGO_URL', 'mongodb://localhost:27017')
 DB_NAME = os.environ.get('DB_NAME', 'bionic_db')
