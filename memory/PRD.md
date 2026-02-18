@@ -19,6 +19,9 @@
 | 2026-02-18 | **3.2.1** | **✅ Tests validés 100% - Backend 18/18, Frontend OK - Module AdminSuppliers + AdminAffiliateSwitch** |
 | 2026-02-18 | **3.3.0** | **📢 AFFILIATE AD AUTOMATION ENGINE - Cycle de vente publicitaire 100% automatisé** |
 | 2026-02-18 | **3.3.1** | **✅ Tests validés 100% - Backend 24/24, Frontend OK - 5 opportunités, 249$ revenus, 102 affiliés actifs** |
+| 2026-02-18 | **3.4.0** | **🔒 DÉSACTIVATION GLOBALE - Mode PRÉ-PRODUCTION activé par directive COPILOT MAÎTRE** |
+| 2026-02-18 | **3.5.0** | **📦 AD SPACES ENGINE - 18 espaces publicitaires, 6 catégories, Master Switch, Render Engine** |
+| 2026-02-18 | **3.5.1** | **✅ Tests validés 100% - Backend 19/19, Frontend OK - System locked until GO LIVE signal** |
 
 ---
 
