@@ -273,12 +273,28 @@ const Navigation = ({ cartCount, onCartOpen }) => {
               <LanguageSwitcher />
             </div>
             
-            {/* Admin Link - Hidden on mobile */}
-            <Link to="/admin" className="hidden lg:block">
+            {/* Admin Dropdown - Hidden on mobile */}
+            <div className="hidden lg:block relative group">
               <Button variant="ghost" size="sm" className="text-gray-400 hover:text-[#F5A623] hover:bg-white/5" data-testid="admin-link">
                 <Lock className="h-4 w-4" />
               </Button>
-            </Link>
+              <div className="absolute top-full right-0 mt-1 min-w-[200px] bg-black/95 backdrop-blur-xl border border-white/10 rounded-md shadow-xl py-1 z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
+                <Link to="/admin" className="flex items-center gap-3 px-4 py-2 hover:bg-white/5 group/item">
+                  <Shield className="h-4 w-4 text-gray-400 group-hover/item:text-[#F5A623]" />
+                  <div>
+                    <div className="text-sm font-medium text-white group-hover/item:text-[#F5A623]">Administration</div>
+                    <div className="text-xs text-gray-500">Gestion classique</div>
+                  </div>
+                </Link>
+                <Link to="/admin-premium" className="flex items-center gap-3 px-4 py-2 hover:bg-white/5 group/item">
+                  <Crown className="h-4 w-4 text-[#F5A623] group-hover/item:text-[#F5A623]" />
+                  <div>
+                    <div className="text-sm font-medium text-[#F5A623]">Admin Premium</div>
+                    <div className="text-xs text-gray-500">Tableau Ultime V5</div>
+                  </div>
+                </Link>
+              </div>
+            </div>
             
             {/* User Menu - Compact on mobile */}
             <div className="hidden lg:block">
