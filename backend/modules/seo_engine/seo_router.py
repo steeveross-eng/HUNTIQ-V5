@@ -235,9 +235,9 @@ async def generate_howto_schema(page_data: dict = Body(...), steps: List[dict] =
     return {"success": True, "schema": SEOJsonLDManager.generate_howto_schema(page_data, steps)}
 
 @router.post("/jsonld/generate/faq")
-async def generate_faq_schema(questions: List[dict] = Body(...)):
+async def generate_faq_schema(request: GenerateFAQRequest):
     """Générer un schéma FAQPage"""
-    return {"success": True, "schema": SEOJsonLDManager.generate_faq_schema(questions)}
+    return {"success": True, "schema": SEOJsonLDManager.generate_faq_schema(request.questions)}
 
 @router.post("/jsonld/generate/breadcrumb")
 async def generate_breadcrumb_schema(breadcrumbs: List[dict] = Body(...)):
