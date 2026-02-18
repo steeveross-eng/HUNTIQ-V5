@@ -25,7 +25,7 @@ import {
   FileText, Shield, ShoppingCart, FolderTree, Archive,
   Wrench, Contact, Trees, Network, Mail, Sparkles,
   Handshake, Palette, Brain, Search, ToggleLeft, Activity,
-  FlaskConical, Power, Store, UserCheck, Megaphone
+  FlaskConical, Power, Store, UserCheck, Megaphone, LayoutGrid
 } from 'lucide-react';
 
 // Import all admin modules
