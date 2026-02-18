@@ -15,7 +15,8 @@
 | 2025-12 | **2.1.0** | **📄 Documentation SEO Engine V5 - Analyse complète et documentation exhaustive** |
 | 2025-12 | **3.0.0** | **⚡ STRATÉGIE X300% - Contact Engine, Trigger Engine, Master Switch, AdminX300** |
 | 2026-02-18 | **3.1.0** | **🚀 PRÉ-GO LIVE - Nettoyage /admin + SEO SUPRÊME FOURNISSEURS (104 fournisseurs, 13 catégories)** |
-| 2026-02-18 | **3.1.1** | **✅ Tests validés 100% - Backend 20/20, Frontend OK - Prêt pour intégration BIONIC** |
+| 2026-02-18 | **3.2.0** | **⚙️ AFFILIATE SWITCH ENGINE - 103 affiliés, switches ON/OFF, validation 4 étapes, sync multi-engines** |
+| 2026-02-18 | **3.2.1** | **✅ Tests validés 100% - Backend 18/18, Frontend OK - Module AdminSuppliers + AdminAffiliateSwitch** |
 
 ---
 
