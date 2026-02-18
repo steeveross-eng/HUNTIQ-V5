@@ -100,6 +100,7 @@ const AdminPremiumPage = () => {
       case 'knowledge': return <AdminKnowledge />;
       case 'seo': return <AdminSEO />;
       case 'marketing-controls': return <AdminMarketingControls />;
+      case 'categories': return <AdminCategories />;
       case 'ecommerce': return <AdminEcommerce />;
       case 'hotspots': return <AdminHotspots />;
       case 'networking': return <AdminNetworking />;
