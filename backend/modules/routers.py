@@ -763,6 +763,16 @@ CORE_ROUTERS: List[Tuple[APIRouter, dict]] = [
         "phase": "AFFILIATE-ENGINE",
         "description": "Affiliate Switch Engine - Gestion des switches d'affiliation avec activation automatique"
     }),
+    
+    # ==========================================
+    # AFFILIATE AD AUTOMATION ENGINE (COMMANDE 3)
+    # ==========================================
+    (affiliate_ads_router, {
+        "name": "affiliate_ads",
+        "version": "1.0.0",
+        "phase": "AD-AUTOMATION",
+        "description": "Affiliate Ad Automation Engine - Cycle de vente publicitaire 100% automatisé"
+    }),
 ]
 
 
