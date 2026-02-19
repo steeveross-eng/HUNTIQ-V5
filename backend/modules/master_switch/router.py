@@ -356,4 +356,157 @@ async def get_switch_logs(limit: int = 50):
     }
 
 
-logger.info("Master Switch X300% initialized - LEGO V5 Module")
+# ═══════════════════════════════════════════════════════════════════════════════
+# GESTION DES MODES SYSTÈME
+# ═══════════════════════════════════════════════════════════════════════════════
+
+@router.get("/mode")
+async def get_system_mode():
+    """
+    Récupère le mode système actuel.
+    """
+    db = get_db()
+    
+    mode_doc = await db.master_switches.find_one({"_type": "system_mode"})
+    
+    if not mode_doc:
+        # Initialize with STAGING mode (validation COPILOT MAÎTRE)
+        mode_doc = {
+            "_type": "system_mode",
+            "current_mode": "STAGING",
+            "internal_only": True,
+            "external_flows": False,
+            "external_locks": EXTERNAL_LOCKS,
+            "activated_at": datetime.now(timezone.utc).isoformat(),
+            "activated_by": "COPILOT_MAITRE_STEEVE",
+            "validation_signature": "2026-02-19_AUDIT_VALIDATED"
+        }
+        await db.master_switches.insert_one(mode_doc)
+    
+    mode_info = SYSTEM_MODES.get(mode_doc.get("current_mode", "LOCKED"), SYSTEM_MODES["LOCKED"])
+    
+    return {
+        "success": True,
+        "current_mode": mode_doc.get("current_mode", "LOCKED"),
+        "mode_info": mode_info,
+        "internal_only": mode_doc.get("internal_only", True),
+        "external_flows": mode_doc.get("external_flows", False),
+        "external_locks": mode_doc.get("external_locks", EXTERNAL_LOCKS),
+        "activated_at": mode_doc.get("activated_at"),
+        "activated_by": mode_doc.get("activated_by")
+    }
+
+
+@router.post("/mode/set")
+async def set_system_mode(mode: str = Body(..., embed=True), authorized_by: str = Body(..., embed=True)):
+    """
+    Change le mode système.
+    REQUIERT autorisation COPILOT MAÎTRE.
+    """
+    db = get_db()
+    
+    if mode not in SYSTEM_MODES:
+        return {"success": False, "error": f"Mode invalide. Modes disponibles: {list(SYSTEM_MODES.keys())}"}
+    
+    mode_info = SYSTEM_MODES[mode]
+    
+    update_data = {
+        "_type": "system_mode",
+        "current_mode": mode,
+        "internal_only": mode_info["internal_only"],
+        "external_flows": mode_info["external_flows"],
+        "external_locks": EXTERNAL_LOCKS,  # Toujours verrouillés sauf PRODUCTION explicite
+        "activated_at": datetime.now(timezone.utc).isoformat(),
+        "activated_by": authorized_by
+    }
+    
+    await db.master_switches.update_one(
+        {"_type": "system_mode"},
+        {"$set": update_data},
+        upsert=True
+    )
+    
+    # Log the mode change
+    log_entry = {
+        "action": "mode_change",
+        "new_mode": mode,
+        "authorized_by": authorized_by,
+        "timestamp": datetime.now(timezone.utc).isoformat()
+    }
+    await db.master_switch_logs.insert_one(log_entry)
+    
+    return {
+        "success": True,
+        "mode": mode,
+        "mode_info": mode_info,
+        "internal_only": mode_info["internal_only"],
+        "external_flows": mode_info["external_flows"],
+        "message": f"Mode système changé vers {mode} par {authorized_by}"
+    }
+
+
+@router.get("/external-locks")
+async def get_external_locks():
+    """
+    Récupère l'état des verrouillages externes.
+    """
+    db = get_db()
+    
+    mode_doc = await db.master_switches.find_one({"_type": "system_mode"})
+    
+    locks = mode_doc.get("external_locks", EXTERNAL_LOCKS) if mode_doc else EXTERNAL_LOCKS
+    
+    all_locked = all(lock.get("is_locked", True) for lock in locks.values())
+    
+    return {
+        "success": True,
+        "external_locks": locks,
+        "all_locked": all_locked,
+        "security_status": "RENFORCÉ" if all_locked else "PARTIELLEMENT_ACTIF"
+    }
+
+
+@router.get("/full-status")
+async def get_full_system_status():
+    """
+    Retourne le statut complet du système (mode + switches + locks).
+    """
+    db = get_db()
+    
+    # Mode
+    mode_doc = await db.master_switches.find_one({"_type": "system_mode"})
+    current_mode = mode_doc.get("current_mode", "LOCKED") if mode_doc else "LOCKED"
+    mode_info = SYSTEM_MODES.get(current_mode, SYSTEM_MODES["LOCKED"])
+    
+    # Switches
+    switches_doc = await db.master_switches.find_one({"_type": "switches"})
+    switches = switches_doc.get("switches", DEFAULT_SWITCHES) if switches_doc else DEFAULT_SWITCHES
+    
+    # External Locks
+    external_locks = mode_doc.get("external_locks", EXTERNAL_LOCKS) if mode_doc else EXTERNAL_LOCKS
+    
+    active_switches = sum(1 for s in switches.values() if s.get("is_active", True))
+    all_locked = all(lock.get("is_locked", True) for lock in external_locks.values())
+    
+    return {
+        "success": True,
+        "system": {
+            "mode": current_mode,
+            "mode_info": mode_info,
+            "internal_only": mode_info["internal_only"],
+            "external_flows": mode_info["external_flows"]
+        },
+        "switches": {
+            "total": len(switches),
+            "active": active_switches,
+            "global_state": switches.get("global", {}).get("is_active", True)
+        },
+        "security": {
+            "external_locks_status": "ALL_LOCKED" if all_locked else "PARTIALLY_ACTIVE",
+            "external_locks": external_locks
+        },
+        "bionic_engine_status": "ACTIVE" if switches.get("bionic_engine", {}).get("is_active", True) else "INACTIVE"
+    }
+
+
+logger.info("Master Switch X300% initialized - LEGO V5 Module - MODE STAGING ACTIVÉ")
