@@ -211,7 +211,9 @@ class ChasseurJumeauService:
             score += 15  # Même province
         
         # Expérience similaire (20 points max)
-        user_tools = len(user_context.get('tools_used', []))
+        # Use safe_list to prevent TypeError on corrupted 'tools_used' field
+        tools_used = safe_list(user_context, 'tools_used')
+        user_tools = len(tools_used)
         profile_exp = profile.get('experience_years', 0)
         if user_tools < 3 and profile_exp < 5:
             score += 20  # Débutants
