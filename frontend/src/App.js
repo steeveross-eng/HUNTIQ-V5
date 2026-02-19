@@ -210,16 +210,18 @@ const Navigation = ({ cartCount, onCartOpen }) => {
                     <div className="text-xs text-gray-500">{t('common_bionic_analysis')}</div>
                   </div>
                 </Link>
-                <div className="border-t border-white/5 my-1"></div>
-                <Link to="/permis-chasse" className="flex items-start gap-3 px-4 py-2 hover:bg-white/5 group/item" data-testid="nav-permis-chasse">
-                  <Shield className="h-4 w-4 mt-0.5 text-gray-400 group-hover/item:text-[#F5A623]" />
-                  <div>
-                    <div className="text-sm font-medium text-white group-hover/item:text-[#F5A623]">Permis de chasse</div>
-                    <div className="text-xs text-gray-500">Acheter mon permis en ligne</div>
-                  </div>
-                </Link>
               </div>
             </div>
+            
+            {/* Permis de chasse - Module Stratégique Indépendant */}
+            <Link 
+              to="/permis-chasse" 
+              className={`flex items-center gap-2 px-3 py-2 text-sm font-medium uppercase tracking-wider rounded-sm transition-all duration-200 hover:bg-white/5 ${isActive('/permis-chasse') ? 'text-[#F5A623] bg-[#F5A623]/10' : 'text-gray-400 hover:text-white'}`}
+              data-testid="nav-permis-chasse"
+            >
+              <Shield className="h-4 w-4" />
+              Permis
+            </Link>
             
             {/* Sorties */}
             <Link 
