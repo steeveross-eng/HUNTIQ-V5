@@ -587,7 +587,7 @@ const DynamicReferralWidget = () => {
           {/* Logo in button */}
           <img 
             src={LOGOS.mini} 
-            alt="" 
+            alt="Logo SCENT SCIENCE" 
             className="h-6 w-6 rounded-full object-contain bg-white/20 p-0.5"
           />
           
@@ -711,7 +711,7 @@ const DynamicReferralWidget = () => {
         >
           <DialogHeader>
             <DialogTitle className="flex items-center gap-2">
-              <img src={LOGOS.mini} alt="" className="h-6 w-6" />
+              <img src={LOGOS.mini} alt="Logo SCENT SCIENCE" className="h-6 w-6" />
               Mon Programme de Parrainage
             </DialogTitle>
           </DialogHeader>
