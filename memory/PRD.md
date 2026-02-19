@@ -29,6 +29,7 @@
 | 2026-02-18 | **4.0.0** | **🚀 PRÉPARATION GO LIVE ULTIME - 6 Phases complétées, 4 nouveaux modules, 32 clusters ULTIMES** |
 | 2026-02-18 | **4.1.0** | **📊 DIRECTIVE NORMALISATION URLs (www. ENFORCÉ) - 4 modules créés: seo_normalization, seo_enrichment, seo_database, seo_reporting** |
 | 2026-02-18 | **4.2.0** | **🗄️ INTÉGRATION PARTENAIRES SEO BIONIC - 714 partenaires (1898 bruts → déduplication → normalisation → enrichissement → insertion BDD)** |
+| 2026-02-19 | **4.3.0** | **🎫 MODULE PERMIS DE CHASSE - Dropdown dynamique Pays→Province/État + Redirection portails officiels (13 CA + 50 USA)** |
 
 ---
 
