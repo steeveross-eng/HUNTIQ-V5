@@ -11,16 +11,22 @@ Module de détection automatique du contexte utilisateur:
 - Type de permis consulté
 - Mode Saison (dates, quotas)
 ═══════════════════════════════════════════════════════════════════════════════
-Version: 1.0.0
+Version: 1.1.0
 Date: 2026-02-19
+Changelog:
+- v1.1.0: Added __post_init__ validation to prevent TypeError on corrupted data
 """
 
 import os
+import logging
 from datetime import datetime, timezone
 from typing import Optional, Dict, Any, List
 from dataclasses import dataclass, field, asdict
 from motor.motor_asyncio import AsyncIOMotorClient
 from pydantic import BaseModel
+
+# Logger for type correction logging
+logger = logging.getLogger(__name__)
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
