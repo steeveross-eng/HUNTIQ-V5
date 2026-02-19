@@ -326,16 +326,27 @@ class UserContextService:
             return "hiver"
     
     def _check_profile_complete(self, context: UserContext) -> bool:
-        """Vérifie si le profil est suffisamment complet"""
+        """
+        Vérifie si le profil est suffisamment complet.
+        
+        Note: The __post_init__ validation in UserContext ensures pages_visited
+        and tools_used are always lists, so len() is now safe to call.
+        """
         score = 0
         
         if context.gibier_principal:
             score += 30
         if context.region or (context.gps_lat and context.gps_lng):
             score += 30
-        if len(context.pages_visited) >= 5:
+        
+        # Safe len() calls - validated in __post_init__
+        # Additional isinstance check for extra safety
+        pages_count = len(context.pages_visited) if isinstance(context.pages_visited, list) else 0
+        tools_count = len(context.tools_used) if isinstance(context.tools_used, list) else 0
+        
+        if pages_count >= 5:
             score += 20
-        if len(context.tools_used) >= 2:
+        if tools_count >= 2:
             score += 20
         
         return score >= 60
