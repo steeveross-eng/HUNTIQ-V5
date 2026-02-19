@@ -8,8 +8,14 @@ Contrôle global ON/OFF pour:
 - Triggers (Marketing Trigger Engine)
 - Scoring (Lead Scoring)
 - SEO Engine
+- BIONIC Engine (Next Step Engine)
 
 Architecture LEGO V5 - Module isolé.
+
+MODES:
+- LOCKED: Système verrouillé (PRÉ-GO LIVE)
+- STAGING: Développement interne uniquement (INTERNAL_ONLY)
+- PRODUCTION: Système actif avec flux externes
 """
 
 from fastapi import APIRouter, Body
@@ -36,6 +42,62 @@ def get_db():
         _db = _client[DB_NAME]
     return _db
 
+
+# ═══════════════════════════════════════════════════════════════════════════════
+# SYSTÈME DE MODES
+# ═══════════════════════════════════════════════════════════════════════════════
+
+SYSTEM_MODES = {
+    "LOCKED": {
+        "name": "Verrouillé",
+        "description": "PRÉ-GO LIVE - Aucune activation",
+        "internal_only": True,
+        "external_flows": False,
+        "icon": "🔒"
+    },
+    "STAGING": {
+        "name": "Staging",
+        "description": "Développement interne uniquement",
+        "internal_only": True,
+        "external_flows": False,
+        "icon": "🔧"
+    },
+    "PRODUCTION": {
+        "name": "Production",
+        "description": "Système actif avec flux externes",
+        "internal_only": False,
+        "external_flows": True,
+        "icon": "🚀"
+    }
+}
+
+# VERROUILLAGES EXTERNES (SÉCURITÉ RENFORCÉE)
+EXTERNAL_LOCKS = {
+    "social_networks": {
+        "name": "Réseaux Sociaux",
+        "description": "Envoi automatique vers réseaux sociaux",
+        "is_locked": True,
+        "icon": "📱"
+    },
+    "partners_platforms": {
+        "name": "Partenaires & Plateformes Pub",
+        "description": "Envoi automatique vers partenaires/plateformes",
+        "is_locked": True,
+        "icon": "🤝"
+    },
+    "external_webhooks": {
+        "name": "Webhooks Externes",
+        "description": "Webhooks vers services tiers",
+        "is_locked": True,
+        "icon": "🔗"
+    },
+    "marketing_flows": {
+        "name": "Flux Marketing Externes",
+        "description": "Déclenchement de flux marketing externes",
+        "is_locked": True,
+        "icon": "📢"
+    }
+}
 
 # Default switch states
 DEFAULT_SWITCHES = {
@@ -86,6 +148,12 @@ DEFAULT_SWITCHES = {
         "description": "Gestion du consentement utilisateur",
         "is_active": True,
         "icon": "🛡️"
+    },
+    "bionic_engine": {
+        "name": "BIONIC Engine",
+        "description": "Next Step Engine, Setup Builder, Chasseur Jumeau, Scores",
+        "is_active": True,
+        "icon": "🎯"
     }
 }
 
