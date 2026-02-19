@@ -228,6 +228,11 @@ from modules.rental_engine.router import router as rental_router
 # from modules.admin_advanced_engine.router import router as admin_advanced_router
 from modules.partner_engine.router import router as partner_router
 
+# ==============================================
+# BIONIC NEXT STEP ENGINE (PHASE NSE)
+# ==============================================
+from routes.bionic_engine_router import router as bionic_engine_router
+
 
 # List of all available routers with their metadata
 CORE_ROUTERS: List[Tuple[APIRouter, dict]] = [
