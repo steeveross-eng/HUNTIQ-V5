@@ -1,0 +1,209 @@
+{
+  "report_id": "L2_DIFFERENTIAL_ANALYSIS_V5_ULTIME",
+  "generated_at": "2026-02-20T00:15:00Z",
+  "version": "V5_ULTIME",
+  "classification": "INTERNAL - STAGING MODE STRICT",
+  "status": "SIMULATION_ANALYSIS - NO_EXECUTION",
+
+  "differential_header": {
+    "purpose": "Analyse différentielle complète pré/post L2 simulé",
+    "type": "SIMULATED_COMPARISON",
+    "execution_status": "BLOCKED"
+  },
+
+  "baseline_state": {
+    "timestamp": "2026-02-19T21:00:00Z",
+    "lighthouse_scores": {
+      "performance": 47.0,
+      "accessibility": 80.8,
+      "best_practices": 96.0,
+      "seo": 92.0,
+      "global": 79.0
+    },
+    "bundle_metrics": {
+      "initial_js_estimated": "~1.2MB minified",
+      "initial_css_estimated": "~150KB",
+      "total_images_size": "~4.8MB",
+      "fonts_loaded": "12 weights (~400KB)"
+    },
+    "core_web_vitals": {
+      "LCP": "3.9s",
+      "TBT": "760ms",
+      "FCP": "0.6s",
+      "CLS": "unknown"
+    },
+    "code_metrics": {
+      "total_js_lines": 160565,
+      "lazy_loaded_components": 13,
+      "images_with_lazy": 1,
+      "images_without_lazy": 71,
+      "buttons_without_aria": "~30 estimated"
+    }
+  },
+
+  "projected_post_l2_state": {
+    "scenario": "C - Équilibre V5",
+    "lighthouse_scores": {
+      "performance": {"before": 47.0, "after": 88, "delta": "+41", "delta_percent": "+87%"},
+      "accessibility": {"before": 80.8, "after": 98, "delta": "+17.2", "delta_percent": "+21%"},
+      "best_practices": {"before": 96.0, "after": 99, "delta": "+3", "delta_percent": "+3%"},
+      "seo": {"before": 92.0, "after": 99, "delta": "+7", "delta_percent": "+8%"},
+      "global": {"before": 79.0, "after": 96, "delta": "+17", "delta_percent": "+22%"}
+    },
+    "bundle_metrics": {
+      "initial_js_estimated": {"before": "~1.2MB", "after": "~400KB", "delta": "-800KB", "delta_percent": "-67%"},
+      "initial_css_estimated": {"before": "~150KB", "after": "~20KB critical + 130KB async", "delta": "Restructured"},
+      "total_images_size": {"before": "~4.8MB", "after": "~500KB", "delta": "-4.3MB", "delta_percent": "-90%"},
+      "fonts_loaded": {"before": "12 weights", "after": "6 weights", "delta": "-6 weights", "delta_percent": "-50%"}
+    },
+    "core_web_vitals": {
+      "LCP": {"before": "3.9s", "after": "2.0s", "delta": "-1.9s", "delta_percent": "-49%"},
+      "TBT": {"before": "760ms", "after": "180ms", "delta": "-580ms", "delta_percent": "-76%"},
+      "FCP": {"before": "0.6s", "after": "0.5s", "delta": "-0.1s", "delta_percent": "-17%"},
+      "CLS": {"before": "unknown", "after": "<0.1", "delta": "Optimized"}
+    },
+    "code_metrics": {
+      "lazy_loaded_components": {"before": 13, "after": 18, "delta": "+5"},
+      "images_with_lazy": {"before": 1, "after": 72, "delta": "+71"},
+      "images_without_lazy": {"before": 71, "after": 0, "delta": "-71"},
+      "buttons_without_aria": {"before": "~30", "after": 0, "delta": "-30"}
+    }
+  },
+
+  "differential_by_category": {
+    "performance_differential": {
+      "major_improvements": [
+        {"item": "Image compression", "impact": "+15 points", "confidence": "HIGH"},
+        {"item": "Lazy loading components", "impact": "+12 points", "confidence": "MEDIUM"},
+        {"item": "Font optimization", "impact": "+5 points", "confidence": "HIGH"},
+        {"item": "Script defer", "impact": "+3 points", "confidence": "HIGH"},
+        {"item": "Preconnect/preload", "impact": "+6 points", "confidence": "HIGH"}
+      ],
+      "total_improvement": "+41 points",
+      "regression_risk": "LOW"
+    },
+    "accessibility_differential": {
+      "major_improvements": [
+        {"item": "aria-label buttons", "impact": "+8 points", "confidence": "HIGH"},
+        {"item": "Color contrast fixes", "impact": "+5 points", "confidence": "MEDIUM"},
+        {"item": "Heading hierarchy", "impact": "+3 points", "confidence": "HIGH"},
+        {"item": "Image alt (already done)", "impact": "0 (completed)", "confidence": "HIGH"}
+      ],
+      "total_improvement": "+17.2 points",
+      "regression_risk": "NONE"
+    },
+    "seo_differential": {
+      "major_improvements": [
+        {"item": "JSON-LD structured data", "impact": "+4 points", "confidence": "HIGH"},
+        {"item": "Meta descriptions", "impact": "+2 points", "confidence": "HIGH"},
+        {"item": "Canonical URLs", "impact": "+1 point", "confidence": "HIGH"}
+      ],
+      "total_improvement": "+7 points",
+      "regression_risk": "NONE"
+    },
+    "best_practices_differential": {
+      "major_improvements": [
+        {"item": "Console errors fixed", "impact": "+2 points", "confidence": "MEDIUM"},
+        {"item": "HTTPS/security (already compliant)", "impact": "0", "confidence": "HIGH"}
+      ],
+      "total_improvement": "+3 points",
+      "regression_risk": "LOW"
+    }
+  },
+
+  "file_differential": {
+    "files_to_modify": {
+      "html": 1,
+      "jsx": 25,
+      "css": 3,
+      "assets": 4,
+      "config": 0
+    },
+    "files_to_create": {
+      "components": 0,
+      "skeletons": "2-3 (optional)",
+      "scripts": 0
+    },
+    "files_to_delete": 0,
+    "total_lines_changed_estimated": "~500 lines"
+  },
+
+  "dependency_differential": {
+    "npm_packages": {
+      "added": 0,
+      "removed": 0,
+      "updated": 0
+    },
+    "external_resources": {
+      "google_fonts": "URL modified (weights reduced)",
+      "cdns": "No change"
+    },
+    "build_dependencies": {
+      "added": "0 (critters optional)",
+      "configuration_changes": "Minimal"
+    }
+  },
+
+  "risk_differential": {
+    "pre_l2_risks": {
+      "poor_performance": "HIGH (47 score)",
+      "accessibility_issues": "MEDIUM (80.8 score)",
+      "seo_gaps": "LOW (92 score)"
+    },
+    "post_l2_risks": {
+      "poor_performance": "LOW (88 projected)",
+      "accessibility_issues": "VERY LOW (98 projected)",
+      "seo_gaps": "VERY LOW (99 projected)",
+      "new_risks_introduced": [
+        {"risk": "Lazy loading complexity", "severity": "LOW", "mitigated": true},
+        {"risk": "Cache invalidation", "severity": "LOW", "mitigated": true}
+      ]
+    }
+  },
+
+  "user_experience_differential": {
+    "page_load_time": {
+      "before": "~4s perceived",
+      "after": "~2s perceived",
+      "improvement": "50% faster"
+    },
+    "time_to_interactive": {
+      "before": "~5s",
+      "after": "~2.5s",
+      "improvement": "50% faster"
+    },
+    "accessibility_experience": {
+      "before": "Partial screen reader support",
+      "after": "Full screen reader support",
+      "improvement": "WCAG AA compliant"
+    }
+  },
+
+  "business_impact_differential": {
+    "seo_visibility": {
+      "before": "Good (92)",
+      "after": "Excellent (99)",
+      "impact": "Improved search rankings"
+    },
+    "user_retention": {
+      "before": "Affected by slow load",
+      "after": "Optimized experience",
+      "impact": "Reduced bounce rate expected"
+    },
+    "conversion_potential": {
+      "before": "Limited by performance",
+      "after": "Unblocked",
+      "impact": "Higher conversion potential"
+    }
+  },
+
+  "summary": {
+    "total_score_improvement": "+17 points (79 → 96)",
+    "total_performance_improvement": "+41 points",
+    "total_accessibility_improvement": "+17.2 points",
+    "total_seo_improvement": "+7 points",
+    "risk_level": "LOW",
+    "confidence": "HIGH",
+    "execution_status": "BLOCKED_PENDING_APPROVAL"
+  }
+}
