@@ -10,15 +10,24 @@ Calcul du score de préparation basé sur:
 - Hotspots (si achetés)
 - Capsules consultées
 ═══════════════════════════════════════════════════════════════════════════════
-Version: 1.0.0
+Version: 1.1.0
 Date: 2026-02-19
+Changelog:
+- v1.1.0: Added safe_list() to prevent TypeError on corrupted MongoDB data
 """
 
 import os
+import logging
 from datetime import datetime, timezone
 from typing import Optional, Dict, Any, List
 from dataclasses import dataclass, field, asdict
 from motor.motor_asyncio import AsyncIOMotorClient
+
+# Import safe_list for type-safe data access
+from utils.safe_get import safe_list
+
+# Logger for type correction logging
+logger = logging.getLogger(__name__)
 
 
 @dataclass
