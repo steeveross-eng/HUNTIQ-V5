@@ -574,7 +574,7 @@
       "frontend_port": 3000,
       "backend_port": 8001,
       "database": "MongoDB",
-      "preview_url": "https://partnerforge.preview.emergentagent.com"
+      "preview_url": "https://permis-chasse-ui.preview.emergentagent.com"
     }
   },
 

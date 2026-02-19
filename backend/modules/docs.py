@@ -266,7 +266,7 @@ Les endpoints admin utilisent l'authentification existante.
         },
         "servers": [
             {
-                "url": "https://partnerforge.preview.emergentagent.com",
+                "url": "https://permis-chasse-ui.preview.emergentagent.com",
                 "description": "Preview Server"
             }
         ],
