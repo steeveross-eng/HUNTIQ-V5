@@ -194,7 +194,11 @@ class ScorePreparationService:
         cart_items = await db.cart_items.find({"user_id": user_id, "item_type": "gear"}, {"_id": 0}).to_list(100)
         purchases = await db.purchases.find({"user_id": user_id}, {"_id": 0}).to_list(100)
         
-        gear_count = len(cart_items) + len([p for p in purchases if p.get('item_type') == 'gear'])
+        # Safely handle cart_items and purchases as lists
+        cart_items_list = cart_items if isinstance(cart_items, list) else []
+        purchases_list = purchases if isinstance(purchases, list) else []
+        
+        gear_count = len(cart_items_list) + len([p for p in purchases_list if isinstance(p, dict) and p.get('item_type') == 'gear'])
         
         if gear_count >= 5:
             breakdown.gear_score = 15
@@ -218,9 +222,10 @@ class ScorePreparationService:
         
         # 5. FORMATION (max 10)
         formations = await db.cart_items.find({"user_id": user_id, "item_type": "formation"}, {"_id": 0}).to_list(100)
-        formations_purchased = len([p for p in purchases if p.get('item_type') == 'formation'])
+        formations_list = formations if isinstance(formations, list) else []
+        formations_purchased = len([p for p in purchases_list if isinstance(p, dict) and p.get('item_type') == 'formation'])
         
-        total_formations = len(formations) + formations_purchased
+        total_formations = len(formations_list) + formations_purchased
         
         if total_formations >= 2:
             breakdown.formation_score = 10
@@ -243,9 +248,10 @@ class ScorePreparationService:
         
         # 6. HOTSPOTS (max 10)
         hotspots = await db.cart_items.find({"user_id": user_id, "item_type": "hotspot"}, {"_id": 0}).to_list(100)
-        hotspots_purchased = len([p for p in purchases if p.get('item_type') == 'hotspot'])
+        hotspots_list = hotspots if isinstance(hotspots, list) else []
+        hotspots_purchased = len([p for p in purchases_list if isinstance(p, dict) and p.get('item_type') == 'hotspot'])
         
-        total_hotspots = len(hotspots) + hotspots_purchased
+        total_hotspots = len(hotspots_list) + hotspots_purchased
         
         if total_hotspots >= 3:
             breakdown.hotspots_score = 10
@@ -268,7 +274,9 @@ class ScorePreparationService:
         
         # 7. CAPSULES (max 10)
         if context:
-            capsules_viewed = len([p for p in context.get('pages_visited', []) if 'capsule' in p or 'formation' in p])
+            # Use safe_list to prevent TypeError on corrupted 'pages_visited' field
+            pages_visited = safe_list(context, 'pages_visited')
+            capsules_viewed = len([p for p in pages_visited if isinstance(p, str) and ('capsule' in p or 'formation' in p)])
             
             if capsules_viewed >= 5:
                 breakdown.capsules_score = 10
