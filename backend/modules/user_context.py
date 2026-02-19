@@ -80,6 +80,40 @@ class UserContext:
     # Flags
     needs_gibier_popup: bool = True
     has_complete_profile: bool = False
+    
+    def __post_init__(self):
+        """
+        Runtime validation to prevent TypeError on corrupted MongoDB data.
+        Ensures all list fields are actually lists, not integers or other types.
+        """
+        # Validate and correct list fields
+        list_fields = [
+            'gibiers_secondaires', 'pages_visited', 'tools_used',
+            'pourvoiries_consulted', 'setups_consulted', 'permis_consulted'
+        ]
+        
+        for field_name in list_fields:
+            value = getattr(self, field_name)
+            if not isinstance(value, list):
+                logger.warning(
+                    f"BIONIC TypeError Prevention: UserContext.{field_name} has type "
+                    f"{type(value).__name__}, expected list. Resetting to empty list. "
+                    f"user_id={self.user_id}"
+                )
+                setattr(self, field_name, [])
+        
+        # Validate and correct dict fields
+        dict_fields = ['season_dates', 'quotas']
+        
+        for field_name in dict_fields:
+            value = getattr(self, field_name)
+            if not isinstance(value, dict):
+                logger.warning(
+                    f"BIONIC TypeError Prevention: UserContext.{field_name} has type "
+                    f"{type(value).__name__}, expected dict. Resetting to empty dict. "
+                    f"user_id={self.user_id}"
+                )
+                setattr(self, field_name, {})
 
 
 # ═══════════════════════════════════════════════════════════════════════════════
