@@ -136,29 +136,30 @@ class HunterScoreService:
             breakdown.saison_score = 3   # Hors saison
         
         # 5. Score Outils utilisés (max 15)
-        tools_used = context.get('tools_used', [])
+        # Using safe_list() to prevent TypeError on corrupted data
+        tools_used = safe_list(context, 'tools_used')
         breakdown.tools_score = min(15, len(tools_used) * 3)
         if len(tools_used) < 3:
             recommendations.append("Explorez plus d'outils BIONIC (carte, analyseur, forecast)")
         
         # 6. Score Pages consultées (max 10)
-        pages_visited = context.get('pages_visited', [])
+        pages_visited = safe_list(context, 'pages_visited')
         breakdown.pages_score = min(10, len(pages_visited) // 2)
         
         # 7. Score Pourvoiries (max 10)
-        pourvoiries = context.get('pourvoiries_consulted', [])
+        pourvoiries = safe_list(context, 'pourvoiries_consulted')
         breakdown.pourvoiries_score = min(10, len(pourvoiries) * 2)
         if not pourvoiries:
             recommendations.append("Consultez des pourvoiries pour planifier vos sorties")
         
         # 8. Score Setups (max 10)
-        setups = context.get('setups_consulted', [])
+        setups = safe_list(context, 'setups_consulted')
         breakdown.setups_score = min(10, len(setups) * 2)
         if not setups:
             recommendations.append("Découvrez des setups recommandés pour votre gibier")
         
         # 9. Score Permis (max 5)
-        permis = context.get('permis_consulted', [])
+        permis = safe_list(context, 'permis_consulted')
         if permis:
             breakdown.permis_score = 5
         else:
