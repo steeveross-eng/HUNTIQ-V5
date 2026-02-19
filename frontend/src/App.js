@@ -59,6 +59,8 @@ import PaymentCancelPage from "@/pages/PaymentCancelPage";
 import AdminPremiumPage from "@/pages/AdminPremiumPage";
 // Marketing Calendar V2
 import MarketingCalendarPage from "@/pages/MarketingCalendarPage";
+// Module Permis de chasse
+import HuntingLicensePage from "@/pages/HuntingLicensePage";
 import { NotificationProvider } from "@/modules/notifications";
 import GoogleOAuthCallback from "@/components/GoogleOAuthCallback";
 import { 
