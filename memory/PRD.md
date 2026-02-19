@@ -32,6 +32,7 @@
 | 2026-02-19 | **4.3.0** | **🎫 MODULE PERMIS DE CHASSE - Dropdown dynamique Pays→Province/État + Redirection portails officiels (13 CA + 50 USA)** |
 | 2026-02-19 | **5.0.0** | **🚀 BIONIC NEXT STEP ENGINE - 13 PHASES COMPLÉTÉES: User Context, Hunter Score, Permis Checklist, Next Steps, Setup Builder, Pourvoirie Finder, Liste Épicerie, Chasseur Jumeau, Plan Saison, Score Préparation (10 modules, 28 endpoints)** |
 | 2026-02-19 | **5.1.0** | **✅ VALIDATION COPILOT MAÎTRE + AUDIT 8 PHASES — MODE STAGING ACTIVÉ (INTERNAL_ONLY=TRUE, EXTERNAL_LOCKS=ALL_LOCKED)** |
+| 2026-02-19 | **5.2.0** | **📋 DIRECTIVE AUDIT UI ET CARTES — 4 PHASES COMPLÉTÉES: (A) Repositionnement UI Permis, (B) Audit Mon Territoire, (C) Audit Carte Interactive, (D) Validation Sécurité STAGING** |
 
 ---
 
