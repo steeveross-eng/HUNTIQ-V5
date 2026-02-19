@@ -39,6 +39,7 @@
 | 2026-02-19 | **5.6.0** | **🔒 VERROUILLAGE P2 — JSON Schema MongoDB + Tests d'intégration + Monitoring automatique** |
 | 2026-02-19 | **5.7.0** | **📊 AUDIT SEO VAL-001 — Score 72/100, 3 issues critiques, 18 checks passés** |
 | 2026-02-19 | **5.8.0** | **✅ P0 SEO CORRECTIONS CRITIQUES — robots.txt + sitemap.xml + 16 attributs alt corrigés** |
+| 2026-02-19 | **5.9.0** | **📊 PHASE L1 LIGHTHOUSE AUDIT — Score Global 79/100, 6 pages auditées, Plan d'optimisation généré** |
 
 ---
 
