@@ -915,7 +915,7 @@ const LandCard = ({ listing, onView, formatPrice, viewMode }) => {
         <CardContent className="p-4 flex items-center gap-4">
           <div className="w-32 h-24 bg-gray-800 rounded-lg flex items-center justify-center text-3xl flex-shrink-0">
             {listing.photos?.[0] ? (
-              <img src={listing.photos[0]} alt="" className="w-full h-full object-cover rounded-lg" />
+              <img src={listing.photos[0]} alt={listing.title || "Photo du terrain de chasse"} className="w-full h-full object-cover rounded-lg" />
             ) : speciesIcons}
           </div>
           <div className="flex-1 min-w-0">
@@ -953,7 +953,7 @@ const LandCard = ({ listing, onView, formatPrice, viewMode }) => {
       {/* Image */}
       <div className="relative h-48 bg-gray-800 flex items-center justify-center">
         {listing.photos?.[0] ? (
-          <img src={listing.photos[0]} alt="" className="w-full h-full object-cover" />
+          <img src={listing.photos[0]} alt={listing.title || "Photo du terrain de chasse"} className="w-full h-full object-cover" />
         ) : (
           <div className="text-5xl">{speciesIcons || '🌲'}</div>
         )}
