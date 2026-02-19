@@ -823,6 +823,16 @@ CORE_ROUTERS: List[Tuple[APIRouter, dict]] = [
         "phase": "GLOBAL-SWITCH",
         "description": "🔴 Global Master Switch - Contrôle global du système publicitaire"
     }),
+    
+    # ==========================================
+    # BIONIC NEXT STEP ENGINE (Phase NSE)
+    # ==========================================
+    (bionic_engine_router, {
+        "name": "bionic_engine",
+        "version": "1.0.0",
+        "phase": "NSE",
+        "description": "🎯 BIONIC Next Step Engine - User Context, Setup Builder, Chasseur Jumeau, Score Préparation"
+    }),
 ]
 
 
