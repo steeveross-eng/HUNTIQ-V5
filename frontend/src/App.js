@@ -1001,6 +1001,8 @@ function App() {
               <Route path="/mon-territoire-bionic" element={<MonTerritoireBionicPage />} />
               <Route path="/marketplace" element={<MarketplacePage />} />
               <Route path="/formations" element={<FormationsPage />} />
+              {/* Module Permis de chasse */}
+              <Route path="/permis-chasse" element={<HuntingLicensePage />} />
               <Route path="/dashboard" element={<DashboardPage />} />
               <Route path="/business" element={<BusinessPage />} />
               <Route path="/plan-maitre" element={<PlanMaitrePage />} />
