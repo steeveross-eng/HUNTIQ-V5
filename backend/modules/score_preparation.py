@@ -106,10 +106,12 @@ class ScorePreparationService:
         if checklist:
             completion = checklist.get('completion_percentage', 0)
             breakdown.permis_score = int(completion * 0.2)  # Max 20
+            # Use safe_list to prevent TypeError on corrupted 'items' field
+            items = safe_list(checklist, 'items')
             breakdown.permis_details = {
                 "has_checklist": True,
                 "completion_percentage": completion,
-                "items_completed": len([i for i in checklist.get('items', []) if i.get('is_completed')])
+                "items_completed": len([i for i in items if isinstance(i, dict) and i.get('is_completed')])
             }
         else:
             breakdown.permis_details = {"has_checklist": False}
@@ -149,7 +151,9 @@ class ScorePreparationService:
         if context:
             has_gps = bool(context.get('gps_lat') and context.get('gps_lng'))
             has_region = bool(context.get('region'))
-            territory_visits = len([p for p in context.get('pages_visited', []) if 'territoire' in p or 'map' in p])
+            # Use safe_list to prevent TypeError on corrupted 'pages_visited' field
+            pages_visited = safe_list(context, 'pages_visited')
+            territory_visits = len([p for p in pages_visited if isinstance(p, str) and ('territoire' in p or 'map' in p)])
             
             if has_gps:
                 breakdown.territoire_score += 10
