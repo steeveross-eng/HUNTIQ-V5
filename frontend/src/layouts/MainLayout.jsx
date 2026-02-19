@@ -22,7 +22,8 @@ import {
   LogIn,
   Map,
   Users,
-  GraduationCap
+  GraduationCap,
+  FileText
 } from 'lucide-react';
 
 const MainLayout = ({ children, cart = [], onLanguageChange }) => {
@@ -38,6 +39,7 @@ const MainLayout = ({ children, cart = [], onLanguageChange }) => {
     { path: "/compare", label: "Comparez" },
     { path: "/shop", label: "Magasin" },
     { path: "/territory", label: "Territoire", Icon: Map },
+    { path: "/permis-chasse", label: "Permis de chasse", Icon: FileText },
     { path: "/marketplace", label: "Marketplace", Icon: ShoppingCart },
     { path: "/network", label: "Réseau", Icon: Users },
     { path: "/formations", label: "Formations", Icon: GraduationCap },
