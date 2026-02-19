@@ -1,7 +1,7 @@
 # HUNTIQ V5-ULTIME-FUSION — Documentation API
 
 **Version:** 5.0.0  
-**Base URL:** `https://permis-chasse-ui.preview.emergentagent.com`  
+**Base URL:** `https://engine-investigation-1.preview.emergentagent.com`  
 **Date:** 2026-02-17  
 **Phase:** Release Candidate RC-1.0.0
 
