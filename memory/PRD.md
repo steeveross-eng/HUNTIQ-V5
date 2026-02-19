@@ -35,6 +35,7 @@
 | 2026-02-19 | **5.2.0** | **📋 DIRECTIVE AUDIT UI ET CARTES — 4 PHASES COMPLÉTÉES: (A) Repositionnement UI Permis, (B) Audit Mon Territoire, (C) Audit Carte Interactive, (D) Validation Sécurité STAGING** |
 | 2026-02-19 | **5.3.0** | **🔍 INVESTIGATION TypeError BIONIC ENGINE — 6 PHASES COMPLÉTÉES** |
 | 2026-02-19 | **5.4.0** | **✅ CORRECTION P0 TypeError — 4 modules corrigés, 2 utils créés, bug éliminé** |
+| 2026-02-19 | **5.5.0** | **🧹 NETTOYAGE P1 — 5 documents de test supprimés, 0 corruption restante** |
 
 ---
 
