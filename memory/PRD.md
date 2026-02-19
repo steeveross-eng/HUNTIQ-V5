@@ -30,6 +30,7 @@
 | 2026-02-18 | **4.1.0** | **📊 DIRECTIVE NORMALISATION URLs (www. ENFORCÉ) - 4 modules créés: seo_normalization, seo_enrichment, seo_database, seo_reporting** |
 | 2026-02-18 | **4.2.0** | **🗄️ INTÉGRATION PARTENAIRES SEO BIONIC - 714 partenaires (1898 bruts → déduplication → normalisation → enrichissement → insertion BDD)** |
 | 2026-02-19 | **4.3.0** | **🎫 MODULE PERMIS DE CHASSE - Dropdown dynamique Pays→Province/État + Redirection portails officiels (13 CA + 50 USA)** |
+| 2026-02-19 | **5.0.0** | **🚀 BIONIC NEXT STEP ENGINE - 13 PHASES COMPLÉTÉES: User Context, Hunter Score, Permis Checklist, Next Steps, Setup Builder, Pourvoirie Finder, Liste Épicerie, Chasseur Jumeau, Plan Saison, Score Préparation (10 modules, 28 endpoints)** |
 
 ---
 
