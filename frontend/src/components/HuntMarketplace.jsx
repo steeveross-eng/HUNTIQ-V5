@@ -1370,7 +1370,7 @@ const MyListingsModal = ({ isOpen, onClose, listings, onDelete, onRefresh, auth,
                     <div className="flex items-center gap-3">
                       <div className="w-16 h-16 bg-gray-800 rounded-lg flex items-center justify-center text-2xl flex-shrink-0 relative">
                         {listing.photos?.[0] ? (
-                          <img src={listing.photos[0]} alt="" className="w-full h-full object-cover rounded-lg" />
+                          <img src={listing.photos[0]} alt={listing.title || "Photo de l'annonce"} className="w-full h-full object-cover rounded-lg" />
                         ) : getCategoryIcon(listing.category)}
                         {listing.is_featured && (
                           <div className="absolute -top-1 -right-1 w-5 h-5 bg-yellow-500 rounded-full flex items-center justify-center">

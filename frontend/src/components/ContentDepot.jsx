@@ -310,7 +310,7 @@ const ContentDepot = () => {
                       {item.visuals?.[0]?.image_base64 ? (
                         <img 
                           src={`data:image/png;base64,${item.visuals[0].image_base64}`} 
-                          alt="" 
+                          alt={item.title || "Aperçu visuel du contenu"} 
                           className="w-full h-full object-cover rounded-lg"
                         />
                       ) : (
