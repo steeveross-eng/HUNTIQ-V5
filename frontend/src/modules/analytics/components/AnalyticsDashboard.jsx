@@ -326,30 +326,19 @@ export const AnalyticsDashboard = () => {
               </CardHeader>
               <CardContent>
                 {species_breakdown.length > 0 ? (
-                  <ResponsiveContainer width="100%" height={300}>
-                    <PieChart>
-                      <Pie
-                        data={species_breakdown}
-                        dataKey="trips"
-                        nameKey="species"
-                        cx="50%"
-                        cy="50%"
-                        outerRadius={100}
-                        label={({ species, trips }) => `${SPECIES_LABELS[species] || species}: ${trips}`}
-                      >
-                        {species_breakdown.map((entry, index) => (
-                          <Cell 
-                            key={`cell-${index}`} 
-                            fill={SPECIES_COLORS[entry.species] || `hsl(${index * 45}, 70%, 50%)`} 
-                          />
-                        ))}
-                      </Pie>
-                      <Tooltip 
-                        contentStyle={{ backgroundColor: '#1e293b', border: '1px solid #475569' }}
-                        formatter={(value, name) => [value, SPECIES_LABELS[name] || name]}
-                      />
-                    </PieChart>
-                  </ResponsiveContainer>
+                  <div className="h-[300px] flex flex-col items-center justify-center">
+                    <LightPieChart
+                      data={species_breakdown.map(item => ({
+                        name: SPECIES_LABELS[item.species] || item.species,
+                        value: item.trips,
+                        color: SPECIES_COLORS[item.species]
+                      }))}
+                      size={220}
+                      innerRadius={0}
+                      showLabels={true}
+                      showTooltip={true}
+                    />
+                  </div>
                 ) : (
                   <div className="h-[300px] flex items-center justify-center text-slate-400">
                     Pas de données disponibles
@@ -373,22 +362,21 @@ export const AnalyticsDashboard = () => {
               </CardHeader>
               <CardContent>
                 {species_breakdown.length > 0 ? (
-                  <ResponsiveContainer width="100%" height={300}>
-                    <BarChart data={species_breakdown}>
-                      <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
-                      <XAxis 
-                        dataKey="species" 
-                        stroke="#9ca3af"
-                        tickFormatter={(value) => SPECIES_LABELS[value] || value}
+                  <div className="h-[300px]">
+                    <ResponsiveChartContainer width="100%" height={300}>
+                      <LightBarChart
+                        data={species_breakdown.map(item => ({
+                          name: SPECIES_LABELS[item.species] || item.species,
+                          value: item.success_rate,
+                          color: SPECIES_COLORS[item.species]
+                        }))}
+                        dataKey="value"
+                        nameKey="name"
+                        color="#22c55e"
+                        showGrid={true}
                       />
-                      <YAxis stroke="#9ca3af" />
-                      <Tooltip 
-                        contentStyle={{ backgroundColor: '#1e293b', border: '1px solid #475569' }}
-                        labelFormatter={(value) => SPECIES_LABELS[value] || value}
-                      />
-                      <Bar dataKey="success_rate" name="Taux de succès (%)" fill="#22c55e" radius={[4, 4, 0, 0]} />
-                    </BarChart>
-                  </ResponsiveContainer>
+                    </ResponsiveChartContainer>
+                  </div>
                 ) : (
                   <div className="h-[300px] flex items-center justify-center text-slate-400">
                     Pas de données disponibles
