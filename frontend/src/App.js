@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback, lazy, Suspense } from "react";
 import "@/App.css";
 import { BrowserRouter, Routes, Route, Link, useLocation, useNavigate } from "react-router-dom";
 import axios from "axios";
@@ -10,59 +10,61 @@ import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Switch } from "@/components/ui/switch";
-import AnalyzerModule from "@/components/AnalyzerModule";
-import TerritoryMap from "@/components/TerritoryMap";
-import HuntMarketplace from "@/components/HuntMarketplace";
+
+// BLOC 2 OPTIMIZATION: Critical path components (loaded synchronously)
 import CookieConsent from "@/components/CookieConsent";
 import SEOHead from "@/components/SEOHead";
-import ContentDepot from "@/components/ContentDepot";
-import SiteAccessControl from "@/components/SiteAccessControl";
-import MaintenancePage from "@/components/MaintenancePage";
-import LandsRental from "@/components/LandsRental";
-import LandsPricingAdmin from "@/components/LandsPricingAdmin";
-import NetworkingHub from "@/components/NetworkingHub";
-import NetworkingAdmin from "@/components/NetworkingAdmin";
-import NotificationCenter from "@/components/NotificationCenter";
-import EmailAdmin from "@/components/EmailAdmin";
-import FeatureControlsAdmin from "@/components/FeatureControlsAdmin";
-import ResetPasswordPage from "@/components/ResetPasswordPage";
-import AdminPage from "@/pages/AdminPage";
 import { AuthProvider, UserMenu, useAuth } from "@/components/GlobalAuth";
 import { OfflineIndicator } from "@/components/OfflineIndicator";
 import { LanguageProvider, useLanguage, LanguageSwitcher } from "@/contexts/LanguageContext";
 import BionicLogo, { BionicLogoGlobal } from "@/components/BionicLogo";
 import ScrollNavigator from "@/components/ScrollNavigator";
-import BecomePartner from "@/components/BecomePartner";
-import PartnerDashboard from "@/components/PartnerDashboard";
-import MonTerritoireBionic from "@/components/territoire/MonTerritoireBionic";
-import MonTerritoireBionicPage from "@/pages/MonTerritoireBionicPage";
-import ProductDiscoveryAdmin from "@/components/ProductDiscoveryAdmin";
-import ReferralModule from "@/components/ReferralModule";
-import ReferralAdminPanel from "@/components/ReferralAdminPanel";
-import DynamicReferralWidget from "@/components/DynamicReferralWidget";
-import TripsPage from "@/pages/TripsPage";
-import { ShopPage, ComparePage } from "@/pages";
-import DashboardPage from "@/pages/DashboardPage";
-import BusinessPage from "@/pages/BusinessPage";
-import PlanMaitrePage from "@/pages/PlanMaitrePage";
-// V5-ULTIME: Analytics réactivé
-import AnalyticsPage from "@/pages/AnalyticsPage";
-import MapPage from "@/pages/MapPage";
-import ForecastPage from "@/pages/ForecastPage";
-import AdminGeoPage from "@/pages/AdminGeoPage";
-import OnboardingPage from "@/pages/OnboardingPage";
-// V5-ULTIME P3: Pages Monétisation
-import PricingPage from "@/pages/PricingPage";
-import PaymentSuccessPage from "@/pages/PaymentSuccessPage";
-import PaymentCancelPage from "@/pages/PaymentCancelPage";
-// V5-ULTIME: Administration Premium
-import AdminPremiumPage from "@/pages/AdminPremiumPage";
-// Marketing Calendar V2
-import MarketingCalendarPage from "@/pages/MarketingCalendarPage";
-// Module Permis de chasse
-import HuntingLicensePage from "@/pages/HuntingLicensePage";
 import { NotificationProvider } from "@/modules/notifications";
-import GoogleOAuthCallback from "@/components/GoogleOAuthCallback";
+
+// BLOC 2 OPTIMIZATION: Lazy-loaded components (non-critical path)
+const AnalyzerModule = lazy(() => import("@/components/AnalyzerModule"));
+const TerritoryMap = lazy(() => import("@/components/TerritoryMap"));
+const HuntMarketplace = lazy(() => import("@/components/HuntMarketplace"));
+const ContentDepot = lazy(() => import("@/components/ContentDepot"));
+const SiteAccessControl = lazy(() => import("@/components/SiteAccessControl"));
+const MaintenancePage = lazy(() => import("@/components/MaintenancePage"));
+const LandsRental = lazy(() => import("@/components/LandsRental"));
+const LandsPricingAdmin = lazy(() => import("@/components/LandsPricingAdmin"));
+const NetworkingHub = lazy(() => import("@/components/NetworkingHub"));
+const NetworkingAdmin = lazy(() => import("@/components/NetworkingAdmin"));
+const NotificationCenter = lazy(() => import("@/components/NotificationCenter"));
+const EmailAdmin = lazy(() => import("@/components/EmailAdmin"));
+const FeatureControlsAdmin = lazy(() => import("@/components/FeatureControlsAdmin"));
+const ResetPasswordPage = lazy(() => import("@/components/ResetPasswordPage"));
+const BecomePartner = lazy(() => import("@/components/BecomePartner"));
+const PartnerDashboard = lazy(() => import("@/components/PartnerDashboard"));
+const MonTerritoireBionic = lazy(() => import("@/components/territoire/MonTerritoireBionic"));
+const ProductDiscoveryAdmin = lazy(() => import("@/components/ProductDiscoveryAdmin"));
+const ReferralModule = lazy(() => import("@/components/ReferralModule"));
+const ReferralAdminPanel = lazy(() => import("@/components/ReferralAdminPanel"));
+const DynamicReferralWidget = lazy(() => import("@/components/DynamicReferralWidget"));
+const GoogleOAuthCallback = lazy(() => import("@/components/GoogleOAuthCallback"));
+
+// BLOC 2 OPTIMIZATION: Lazy-loaded pages
+const AdminPage = lazy(() => import("@/pages/AdminPage"));
+const MonTerritoireBionicPage = lazy(() => import("@/pages/MonTerritoireBionicPage"));
+const TripsPage = lazy(() => import("@/pages/TripsPage"));
+const ShopPage = lazy(() => import("@/pages").then(m => ({ default: m.ShopPage })));
+const ComparePage = lazy(() => import("@/pages").then(m => ({ default: m.ComparePage })));
+const DashboardPage = lazy(() => import("@/pages/DashboardPage"));
+const BusinessPage = lazy(() => import("@/pages/BusinessPage"));
+const PlanMaitrePage = lazy(() => import("@/pages/PlanMaitrePage"));
+const AnalyticsPage = lazy(() => import("@/pages/AnalyticsPage"));
+const MapPage = lazy(() => import("@/pages/MapPage"));
+const ForecastPage = lazy(() => import("@/pages/ForecastPage"));
+const AdminGeoPage = lazy(() => import("@/pages/AdminGeoPage"));
+const OnboardingPage = lazy(() => import("@/pages/OnboardingPage"));
+const PricingPage = lazy(() => import("@/pages/PricingPage"));
+const PaymentSuccessPage = lazy(() => import("@/pages/PaymentSuccessPage"));
+const PaymentCancelPage = lazy(() => import("@/pages/PaymentCancelPage"));
+const AdminPremiumPage = lazy(() => import("@/pages/AdminPremiumPage"));
+const MarketingCalendarPage = lazy(() => import("@/pages/MarketingCalendarPage"));
+const HuntingLicensePage = lazy(() => import("@/pages/HuntingLicensePage"));
 import { 
   ShoppingCart, FlaskConical, GitCompare, Star, DollarSign, ThumbsUp, Heart, Eye,
   Shield, MousePointer, TrendingUp, CheckCircle, ChevronRight, Menu, X, ArrowLeft,
