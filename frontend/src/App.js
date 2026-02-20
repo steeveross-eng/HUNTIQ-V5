@@ -613,7 +613,14 @@ const AnalyzePage = ({ products }) => (
         {products.map((product) => (
           <Card key={product.id} className="bg-card border-border p-6">
             <div className="flex items-start gap-4">
-              <img src={product.image_url} alt={product.name} className="w-24 h-24 object-cover rounded-lg" />
+              {/* PHASE D: Lazy loading */}
+              <img 
+                src={product.image_url} 
+                alt={product.name} 
+                className="w-24 h-24 object-cover rounded-lg" 
+                loading="lazy"
+                decoding="async"
+              />
               <div className="flex-1">
                 <p className="text-[#f5a623] text-sm">{product.brand}</p>
                 <h3 className="text-white font-semibold mb-2">{product.name}</h3>
