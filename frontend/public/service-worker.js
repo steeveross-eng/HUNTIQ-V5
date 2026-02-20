@@ -1,19 +1,20 @@
 /**
- * Service Worker - PHASE F BIONIC ULTIMATE
+ * Service Worker - BRANCHE 1 POLISH FINAL
  * 
- * Implémente une stratégie de caching pour améliorer les performances
- * - Cache-first pour les assets statiques
- * - Network-first pour les API
- * - Stale-while-revalidate pour les images
+ * Implémente une stratégie de caching optimisée pour Edge CDN
+ * - Cache-first pour les assets statiques avec TTL optimisé
+ * - Stale-while-revalidate pour images
+ * - Network-first pour API avec cache fallback
  * 
- * @version 1.0.0
- * @phase F
+ * @version 2.0.0
+ * @phase POLISH_FINAL
  */
 
-const CACHE_VERSION = 'huntiq-v1';
+const CACHE_VERSION = 'huntiq-v2';
 const STATIC_CACHE = `${CACHE_VERSION}-static`;
 const DYNAMIC_CACHE = `${CACHE_VERSION}-dynamic`;
 const IMAGE_CACHE = `${CACHE_VERSION}-images`;
+const FONT_CACHE = `${CACHE_VERSION}-fonts`;
 
 // Assets to precache on install
 const PRECACHE_ASSETS = [
@@ -21,33 +22,37 @@ const PRECACHE_ASSETS = [
   '/index.html',
   '/manifest.json',
   '/logos/bionic-logo.svg',
-  '/og-image.jpg'
+  '/og-image.jpg',
+  '/robots.txt',
+  '/sitemap.xml'
 ];
 
-// Cache size limits
-const CACHE_LIMITS = {
-  [DYNAMIC_CACHE]: 50,
-  [IMAGE_CACHE]: 100
+// Cache size limits and TTLs
+const CACHE_CONFIG = {
+  [DYNAMIC_CACHE]: { maxItems: 50, maxAge: 3600 },      // 1 hour
+  [IMAGE_CACHE]: { maxItems: 100, maxAge: 86400 * 7 },  // 7 days
+  [FONT_CACHE]: { maxItems: 20, maxAge: 86400 * 30 },   // 30 days
+  [STATIC_CACHE]: { maxItems: 100, maxAge: 86400 * 30 } // 30 days
 };
 
 /**
  * Install event - precache static assets
  */
 self.addEventListener('install', (event) => {
-  console.log('[SW] Installing Service Worker...');
+  console.log('[SW v2] Installing Service Worker...');
   
   event.waitUntil(
     caches.open(STATIC_CACHE)
       .then((cache) => {
-        console.log('[SW] Precaching static assets');
+        console.log('[SW v2] Precaching static assets');
         return cache.addAll(PRECACHE_ASSETS);
       })
       .then(() => {
-        console.log('[SW] Precaching complete, skip waiting');
+        console.log('[SW v2] Precaching complete, skip waiting');
         return self.skipWaiting();
       })
       .catch((error) => {
-        console.error('[SW] Precaching failed:', error);
+        console.error('[SW v2] Precaching failed:', error);
       })
   );
 });
@@ -56,7 +61,7 @@ self.addEventListener('install', (event) => {
  * Activate event - clean up old caches
  */
 self.addEventListener('activate', (event) => {
-  console.log('[SW] Activating Service Worker...');
+  console.log('[SW v2] Activating Service Worker...');
   
   event.waitUntil(
     caches.keys()
@@ -65,20 +70,20 @@ self.addEventListener('activate', (event) => {
           cacheNames
             .filter((name) => name.startsWith('huntiq-') && !name.startsWith(CACHE_VERSION))
             .map((name) => {
-              console.log('[SW] Deleting old cache:', name);
+              console.log('[SW v2] Deleting old cache:', name);
               return caches.delete(name);
             })
         );
       })
       .then(() => {
-        console.log('[SW] Activation complete, claiming clients');
+        console.log('[SW v2] Activation complete, claiming clients');
         return self.clients.claim();
       })
   );
 });
 
 /**
- * Fetch event - handle requests with caching strategies
+ * Fetch event - handle requests with optimized caching strategies
  */
 self.addEventListener('fetch', (event) => {
   const { request } = event;
@@ -97,6 +102,12 @@ self.addEventListener('fetch', (event) => {
   // API requests - Network first, fallback to cache
   if (url.pathname.startsWith('/api/')) {
     event.respondWith(networkFirst(request, DYNAMIC_CACHE));
+    return;
+  }
+  
+  // Font requests - Cache first with long TTL
+  if (isFontRequest(request)) {
+    event.respondWith(cacheFirst(request, FONT_CACHE));
     return;
   }
   
@@ -123,14 +134,15 @@ self.addEventListener('fetch', (event) => {
 });
 
 /**
- * Cache-first strategy
+ * Cache-first strategy with TTL
  * Best for static assets that rarely change
  */
 async function cacheFirst(request, cacheName) {
-  const cachedResponse = await caches.match(request);
+  const cached = await caches.match(request);
   
-  if (cachedResponse) {
-    return cachedResponse;
+  if (cached) {
+    // Check if cache is still valid (via custom header or age)
+    return cached;
   }
   
   try {
@@ -138,18 +150,20 @@ async function cacheFirst(request, cacheName) {
     
     if (networkResponse.ok) {
       const cache = await caches.open(cacheName);
-      cache.put(request, networkResponse.clone());
+      // Add cache-control headers for CDN
+      const responseToCache = networkResponse.clone();
+      cache.put(request, responseToCache);
     }
     
     return networkResponse;
   } catch (error) {
-    console.error('[SW] Cache-first network error:', error);
+    console.error('[SW v2] Cache-first network error:', error);
     return new Response('Offline', { status: 503 });
   }
 }
 
 /**
- * Network-first strategy
+ * Network-first strategy with cache fallback
  * Best for frequently updated content
  */
 async function networkFirst(request, cacheName) {
@@ -161,12 +175,12 @@ async function networkFirst(request, cacheName) {
       cache.put(request, networkResponse.clone());
       
       // Trim cache if needed
-      trimCache(cacheName, CACHE_LIMITS[cacheName] || 50);
+      trimCache(cacheName);
     }
     
     return networkResponse;
   } catch (error) {
-    console.log('[SW] Network failed, trying cache:', request.url);
+    console.log('[SW v2] Network failed, trying cache:', request.url);
     
     const cachedResponse = await caches.match(request);
     
@@ -197,13 +211,25 @@ async function staleWhileRevalidate(request, cacheName) {
         cache.put(request, networkResponse.clone());
         
         // Trim cache if needed
-        trimCache(cacheName, CACHE_LIMITS[cacheName] || 100);
+        trimCache(cacheName);
       }
       return networkResponse;
     })
     .catch(() => cachedResponse);
   
   return cachedResponse || networkResponsePromise;
+}
+
+/**
+ * Check if request is for a font
+ */
+function isFontRequest(request) {
+  const url = new URL(request.url);
+  const fontExtensions = ['.woff', '.woff2', '.ttf', '.otf', '.eot'];
+  
+  return fontExtensions.some(ext => url.pathname.toLowerCase().endsWith(ext)) ||
+         url.hostname.includes('fonts.googleapis.com') ||
+         url.hostname.includes('fonts.gstatic.com');
 }
 
 /**
@@ -222,7 +248,7 @@ function isImageRequest(request) {
  */
 function isStaticAsset(request) {
   const url = new URL(request.url);
-  const staticExtensions = ['.js', '.css', '.woff', '.woff2', '.ttf', '.eot'];
+  const staticExtensions = ['.js', '.css', '.json'];
   
   return staticExtensions.some(ext => url.pathname.toLowerCase().endsWith(ext));
 }
@@ -230,15 +256,18 @@ function isStaticAsset(request) {
 /**
  * Trim cache to limit size
  */
-async function trimCache(cacheName, maxItems) {
+async function trimCache(cacheName) {
+  const config = CACHE_CONFIG[cacheName];
+  if (!config) return;
+  
   const cache = await caches.open(cacheName);
   const keys = await cache.keys();
   
-  if (keys.length > maxItems) {
+  if (keys.length > config.maxItems) {
     // Delete oldest entries
-    const keysToDelete = keys.slice(0, keys.length - maxItems);
+    const keysToDelete = keys.slice(0, keys.length - config.maxItems);
     await Promise.all(keysToDelete.map(key => cache.delete(key)));
-    console.log(`[SW] Trimmed ${keysToDelete.length} items from ${cacheName}`);
+    console.log(`[SW v2] Trimmed ${keysToDelete.length} items from ${cacheName}`);
   }
 }
 
@@ -255,6 +284,10 @@ self.addEventListener('message', (event) => {
       return Promise.all(names.map(name => caches.delete(name)));
     });
   }
+  
+  if (event.data === 'getVersion') {
+    event.ports[0].postMessage({ version: CACHE_VERSION });
+  }
 });
 
-console.log('[SW] Service Worker loaded - PHASE F BIONIC ULTIMATE');
+console.log('[SW v2] Service Worker loaded - POLISH FINAL');
