@@ -16,7 +16,6 @@ import {
   Compass, LocateFixed, Plus, Settings, Eye,
   ChevronRight, Activity, Target
 } from 'lucide-react';
-import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from 'recharts';
 import { LightPieChart, ResponsiveChartContainer } from '@/components/charts/LightCharts';
 
 const API_BASE = process.env.REACT_APP_BACKEND_URL;
