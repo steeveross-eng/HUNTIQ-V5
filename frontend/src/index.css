@@ -2,6 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+/* PHASE C: WCAG 2.2 Accessibility - Contrast Enhancement */
+@layer utilities {
+  /* Accessible secondary text color (WCAG AA compliant ~7:1 ratio on dark bg) */
+  .text-accessible-secondary {
+    color: #D1D5DB; /* Replaces text-gray-400 for better contrast */
+  }
+  /* Accessible muted text color (WCAG AA compliant ~5:1 ratio) */
+  .text-accessible-muted {
+    color: #9CA3AF; /* Same as gray-400 but use only for large text */
+  }
+}
+
 html {
     min-height: 100%;
     margin: 0;
