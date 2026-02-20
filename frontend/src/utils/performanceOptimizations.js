@@ -4,10 +4,19 @@
  * Micro-optimisations CPU Main Thread et détection des tâches longues
  * Conforme aux exigences BIONIC V5
  * 
+ * OBJECTIF: Aucune tâche bloquante > 50ms
+ * 
  * @module performanceOptimizations
- * @version 1.0.0
+ * @version 2.0.0
  * @phase POLISH_FINAL
  */
+
+// Performance metrics tracking
+let performanceMetrics = {
+  longTaskCount: 0,
+  totalBlockingTime: 0,
+  lastReportTime: 0
+};
 
 /**
  * Long Task Observer
@@ -21,12 +30,16 @@ export const initLongTaskObserver = () => {
   try {
     const observer = new PerformanceObserver((list) => {
       for (const entry of list.getEntries()) {
+        performanceMetrics.longTaskCount++;
+        performanceMetrics.totalBlockingTime += entry.duration - 50; // Time over threshold
+        
         // Log long tasks in development
         if (process.env.NODE_ENV === 'development') {
           console.warn('[Performance] Long task detected:', {
             duration: `${entry.duration.toFixed(2)}ms`,
             startTime: `${entry.startTime.toFixed(2)}ms`,
-            name: entry.name
+            name: entry.name,
+            totalLongTasks: performanceMetrics.longTaskCount
           });
         }
       }
@@ -36,6 +49,46 @@ export const initLongTaskObserver = () => {
   } catch {
     // PerformanceObserver for longtask not supported
   }
+};
+
+/**
+ * Yield to Main Thread
+ * Permet au navigateur de traiter les événements utilisateur entre les tâches
+ */
+export const yieldToMain = () => {
+  return new Promise(resolve => {
+    if ('scheduler' in window && 'yield' in window.scheduler) {
+      // Use modern scheduler.yield if available
+      window.scheduler.yield().then(resolve);
+    } else {
+      // Fallback to setTimeout
+      setTimeout(resolve, 0);
+    }
+  });
+};
+
+/**
+ * Run Heavy Task in Chunks
+ * Divise les tâches lourdes en morceaux pour éviter de bloquer le main thread
+ */
+export const runInChunks = async (items, processFn, chunkSize = 10) => {
+  const results = [];
+  
+  for (let i = 0; i < items.length; i += chunkSize) {
+    const chunk = items.slice(i, i + chunkSize);
+    
+    // Process chunk
+    for (const item of chunk) {
+      results.push(await processFn(item));
+    }
+    
+    // Yield to main thread between chunks
+    if (i + chunkSize < items.length) {
+      await yieldToMain();
+    }
+  }
+  
+  return results;
 };
 
 /**
@@ -65,7 +118,7 @@ export const upgradePassiveListeners = () => {
     const originalAddEventListener = EventTarget.prototype.addEventListener;
     
     EventTarget.prototype.addEventListener = function(type, listener, options) {
-      const passiveEvents = ['scroll', 'wheel', 'touchstart', 'touchmove'];
+      const passiveEvents = ['scroll', 'wheel', 'touchstart', 'touchmove', 'touchend'];
       
       if (passiveEvents.includes(type)) {
         const newOptions = typeof options === 'object' 
@@ -78,6 +131,50 @@ export const upgradePassiveListeners = () => {
       return originalAddEventListener.call(this, type, listener, options);
     };
   }
+};
+
+/**
+ * Debounce with RAF
+ * Utilise requestAnimationFrame pour les événements de resize/scroll
+ */
+export const rafDebounce = (fn) => {
+  let rafId = null;
+  
+  return function(...args) {
+    if (rafId) {
+      cancelAnimationFrame(rafId);
+    }
+    
+    rafId = requestAnimationFrame(() => {
+      fn.apply(this, args);
+      rafId = null;
+    });
+  };
+};
+
+/**
+ * Throttle Function
+ * Limite la fréquence d'exécution d'une fonction
+ */
+export const throttle = (fn, limit = 16) => {
+  let lastRun = 0;
+  let pending = false;
+  
+  return function(...args) {
+    const now = performance.now();
+    
+    if (now - lastRun >= limit) {
+      fn.apply(this, args);
+      lastRun = now;
+    } else if (!pending) {
+      pending = true;
+      setTimeout(() => {
+        fn.apply(this, args);
+        lastRun = performance.now();
+        pending = false;
+      }, limit - (now - lastRun));
+    }
+  };
 };
 
 /**
@@ -98,16 +195,21 @@ export const deferNonCritical = (callback, timeout = 2000) => {
 
 /**
  * Preload Critical Resources
- * Précharge dynamiquement les ressources critiques
+ * Précharge dynamiquement les ressources critiques (optimisées AVIF/WebP)
  */
 export const preloadCriticalResources = () => {
   if (typeof document === 'undefined') return;
 
   const criticalResources = [
-    { href: '/logos/bionic-logo.svg', as: 'image', type: 'image/svg+xml' },
+    // Priorité aux formats optimisés
+    { href: '/logos/bionic-logo-official.avif', as: 'image', type: 'image/avif' },
+    { href: '/logos/bionic-logo-official.webp', as: 'image', type: 'image/webp' },
   ];
 
   criticalResources.forEach(({ href, as, type }) => {
+    // Vérifier si le preload existe déjà
+    if (document.querySelector(`link[rel="preload"][href="${href}"]`)) return;
+    
     const link = document.createElement('link');
     link.rel = 'preload';
     link.href = href;
@@ -140,6 +242,20 @@ export const optimizeImageLoading = () => {
 };
 
 /**
+ * Optimize DOM Operations
+ * Batch DOM reads/writes to avoid layout thrashing
+ */
+export const batchDOMOperations = (readFn, writeFn) => {
+  // Read phase
+  const readResult = readFn();
+  
+  // Write phase in next frame
+  requestAnimationFrame(() => {
+    writeFn(readResult);
+  });
+};
+
+/**
  * Connection-Aware Loading
  * Adapte le chargement selon la connexion
  */
@@ -167,20 +283,28 @@ export const prefersReducedMotion = () => {
 };
 
 /**
+ * Get Performance Metrics
+ * Retourne les métriques de performance collectées
+ */
+export const getPerformanceMetrics = () => {
+  return { ...performanceMetrics };
+};
+
+/**
  * Initialize All Performance Optimizations
  */
 export const initPerformanceOptimizations = () => {
+  // Critical optimizations immediately
+  upgradePassiveListeners();
+  
   // Defer non-critical optimizations
   deferNonCritical(() => {
     initLongTaskObserver();
     optimizeImageLoading();
+    preloadCriticalResources();
   });
 
-  // Critical optimizations immediately
-  upgradePassiveListeners();
-  preloadCriticalResources();
-
-  // Log connection quality
+  // Log connection quality in development
   if (process.env.NODE_ENV === 'development') {
     console.log('[Performance] Connection quality:', getConnectionQuality());
     console.log('[Performance] Prefers reduced motion:', prefersReducedMotion());
@@ -190,10 +314,16 @@ export const initPerformanceOptimizations = () => {
 export default {
   initLongTaskObserver,
   upgradePassiveListeners,
+  yieldToMain,
+  runInChunks,
+  rafDebounce,
+  throttle,
   deferNonCritical,
   preloadCriticalResources,
   optimizeImageLoading,
+  batchDOMOperations,
   getConnectionQuality,
   prefersReducedMotion,
+  getPerformanceMetrics,
   initPerformanceOptimizations
 };
