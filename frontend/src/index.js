@@ -12,6 +12,12 @@ import { initPerformanceOptimizations } from "@/utils/performanceOptimizations";
 import { initAccessibilityEnhancements } from "@/utils/accessibilityEnhancements";
 import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 
+// BRANCHE 3: Import advanced optimizations
+import { initImageOptimization } from "@/utils/imageCDN";
+import { initHTTP3Optimization } from "@/utils/http3Optimization";
+import { initSSRConfig } from "@/utils/ssrConfig";
+import { preloadCriticalRoutes } from "@/utils/routePreloader";
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
@@ -31,7 +37,13 @@ initPerformanceOptimizations();
 // POLISH FINAL: Accessibility enhancements (WCAG AAA)
 initAccessibilityEnhancements();
 
-// PHASE F: Register Service Worker for caching
+// BRANCHE 3: Advanced optimizations
+initImageOptimization();
+initHTTP3Optimization();
+initSSRConfig();
+preloadCriticalRoutes();
+
+// BRANCHE 3: Register Service Worker V2 for advanced caching
 serviceWorkerRegistration.register({
   onUpdate: (registration) => {
     console.log('[App] New version available. Refresh to update.');
