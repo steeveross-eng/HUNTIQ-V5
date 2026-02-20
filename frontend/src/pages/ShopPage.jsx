@@ -92,7 +92,7 @@ const ProductCard = ({ product, onAddToCart, onAffiliateClick, t }) => {
         </div>
         
         {/* Stats */}
-        <div className="flex items-center gap-3 text-xs text-gray-400">
+        <div className="flex items-center gap-3 text-xs text-gray-300">
           <span className="flex items-center gap-1">
             <Eye className="h-3 w-3" />
             {product.views || 0}
@@ -224,7 +224,7 @@ const ShopPage = ({ products = [], onAddToCart, onAffiliateClick }) => {
         {/* Header */}
         <div className="mb-6">
           <h1 className="golden-text text-h1 font-bold mb-2">{t('shop_title')}</h1>
-          <p className="text-gray-400 text-body">
+          <p className="text-gray-300 text-body">
             {t('shop_all_products')}
           </p>
         </div>
@@ -239,7 +239,7 @@ const ShopPage = ({ products = [], onAddToCart, onAffiliateClick }) => {
         
         {/* Results Count */}
         <div className="mb-4 flex items-center justify-between">
-          <p className="text-gray-400 text-sm">
+          <p className="text-gray-300 text-sm">
             {filteredProducts.length} {t('common_products').toLowerCase()}
           </p>
         </div>
@@ -263,7 +263,7 @@ const ShopPage = ({ products = [], onAddToCart, onAffiliateClick }) => {
               <ShoppingCart className="h-8 w-8 text-gray-500" />
             </div>
             <h3 className="text-white font-semibold mb-2">{t('msg_no_results')}</h3>
-            <p className="text-gray-400 text-sm">
+            <p className="text-gray-300 text-sm">
               {t('shop_clear_filters')}
             </p>
           </div>

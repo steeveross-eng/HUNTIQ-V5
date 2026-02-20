@@ -29,7 +29,7 @@ const PricingPage = () => {
         <Button 
           variant="ghost" 
           onClick={() => navigate(-1)}
-          className="mb-4 text-gray-400 hover:text-white hover:bg-gray-800/50"
+          className="mb-4 text-gray-300 hover:text-white hover:bg-gray-800/50"
           data-testid="back-button-pricing"
         >
           <ArrowLeft className="h-4 w-4 mr-2" />

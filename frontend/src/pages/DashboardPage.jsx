@@ -19,7 +19,7 @@ const DashboardPage = () => {
         <Button 
           variant="ghost" 
           onClick={() => navigate('/')}
-          className="mb-4 text-gray-400 hover:text-white hover:bg-gray-800/50"
+          className="mb-4 text-gray-300 hover:text-white hover:bg-gray-800/50"
           data-testid="back-button-dashboard"
         >
           <ArrowLeft className="h-4 w-4 mr-2" />
