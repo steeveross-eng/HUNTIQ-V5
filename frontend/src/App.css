@@ -2,8 +2,8 @@
    BIONIC TACTICAL Design System Variables
    ============================================ */
 
-/* Import fonts */
-@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;900&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
+/* BLOC 3 OPTIMIZATION: Fonts loaded via index.html <link rel="preload"> */
+/* Removed blocking @import - fonts now preloaded in HTML head */
 
 /* BIONIC TACTICAL Theme Variables */
 :root {
