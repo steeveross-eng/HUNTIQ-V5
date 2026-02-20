@@ -1,8 +1,15 @@
 /**
  * GlobalAuth - Global authentication component with IP-based auto-login
+ * 
+ * BLOC 3 OPTIMIZATION:
+ * - Added useMemo for context value memoization
+ * - Prevents unnecessary re-renders across the app
+ * 
+ * @module GlobalAuth
+ * @version 2.0.0 (BLOC 3)
  */
 
-import React, { useState, useEffect, createContext, useContext, useCallback } from 'react';
+import React, { useState, useEffect, createContext, useContext, useCallback, useMemo } from 'react';
 import axios from 'axios';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
