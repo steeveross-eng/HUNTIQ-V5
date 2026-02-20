@@ -296,7 +296,7 @@ const Navigation = ({ cartCount, onCartOpen }) => {
             
             {/* Admin Dropdown - Hidden on mobile */}
             <div className="hidden lg:block relative group">
-              <Button variant="ghost" size="sm" className="text-gray-300 hover:text-[#F5A623] hover:bg-white/5" data-testid="admin-link">
+              <Button variant="ghost" size="sm" className="text-gray-300 hover:text-[#F5A623] hover:bg-white/5" data-testid="admin-link" aria-label="Menu administration">
                 <Lock className="h-4 w-4" />
               </Button>
               <div className="absolute top-full right-0 mt-1 min-w-[200px] bg-black/95 backdrop-blur-xl border border-white/10 rounded-md shadow-xl py-1 z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
