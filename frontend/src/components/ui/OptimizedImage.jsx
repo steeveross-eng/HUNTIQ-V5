@@ -93,7 +93,7 @@ const OptimizedImage = memo(({
   
   // Ajouter fetchpriority seulement si spécifié (évite les warnings)
   if (fetchpriority) {
-    imgProps.fetchpriority = fetchpriority;
+    imgProps.fetchPriority = fetchpriority;
   }
   
   // Si pas de formats optimisés disponibles, utiliser une img simple
