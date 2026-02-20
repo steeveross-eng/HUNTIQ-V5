@@ -1,9 +1,17 @@
 /**
  * BIONIC™ Territory Map Component
  * Leaflet-based map for wildlife tracking and territory analysis
+ * 
+ * BLOC 3 REFACTORING:
+ * - Constants extracted to ./territory/constants.js
+ * - Helper components extracted to ./territory/MapHelpers.jsx
+ * - Added memo and useMemo for performance optimization
+ * 
+ * @module TerritoryMap
+ * @version 2.0.0 (BLOC 3)
  */
 
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useState, useEffect, useCallback, useRef, useMemo, memo } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, Circle, useMap, LayersControl, LayerGroup, Polyline, WMSTileLayer, Rectangle, Polygon, Tooltip } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
