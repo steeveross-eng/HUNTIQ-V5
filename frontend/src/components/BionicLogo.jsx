@@ -6,10 +6,15 @@
  * - AUTRES PAGES: logo taille normale (96px)
  * - TOUTES PAGES: transparent (mix-blend-mode: screen pour supprimer le noir)
  * - Position: coin supérieur gauche, sous header
+ * 
+ * BRANCHE 1 POLISH FINAL:
+ * - Utilisation du composant OptimizedImage pour AVIF/WebP avec fallback PNG
+ * - Compression 96% des assets visuels
  */
 
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import OptimizedImage from '@/components/ui/OptimizedImage';
 
 export const BionicLogoGlobal = () => {
   const location = useLocation();
@@ -32,9 +37,13 @@ export const BionicLogoGlobal = () => {
       data-testid="bionic-logo-global"
       aria-label="BIONIC - Retour à l'accueil"
     >
-      <img 
+      <OptimizedImage 
         src="/logos/bionic-logo-official.png"
         alt="BIONIC Chasse / Hunt"
+        width={logoSize}
+        height={logoSize}
+        loading={isHomePage ? 'eager' : 'lazy'}
+        fetchpriority={isHomePage ? 'high' : undefined}
         style={{
           width: `${logoSize}px`,
           height: `${logoSize}px`,
@@ -48,9 +57,11 @@ export const BionicLogoGlobal = () => {
 
 const BionicLogo = ({ className = '' }) => {
   return (
-    <img 
+    <OptimizedImage 
       src="/logos/bionic-logo-official.png"
       alt="BIONIC"
+      width={32}
+      height={32}
       className={className}
       style={{ 
         width: '32px', 

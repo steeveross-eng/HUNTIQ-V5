@@ -13,7 +13,8 @@
 
 import React, { createContext, useContext, useState, useEffect, useMemo, useCallback } from 'react';
 
-// Brand names per language - Uses unified logo
+// Brand names per language - Uses unified logo with optimized formats
+// BRANCHE 1 POLISH FINAL: Logo paths avec formats AVIF/WebP disponibles
 export const BRAND_NAMES = {
   fr: {
     full: "Chasse Bionic™",
@@ -21,7 +22,9 @@ export const BRAND_NAMES = {
     company: "Chasse Bionic™",
     tagline: "Votre parcours guidé vers une chasse parfaite",
     slogan: "La science valide ce que le terrain confirme.™",
-    logo: "/logos/bionic-logo-main.png"
+    logo: "/logos/bionic-logo-main.png",
+    logoWebp: "/logos/bionic-logo-main.webp",
+    logoAvif: "/logos/bionic-logo-main.avif"
   },
   en: {
     full: "Bionic Hunt™",
@@ -29,7 +32,9 @@ export const BRAND_NAMES = {
     company: "Bionic Hunt™",
     tagline: "Your guided path to a perfect hunt",
     slogan: "Science validates what the field confirms.™",
-    logo: "/logos/bionic-logo-main.png"
+    logo: "/logos/bionic-logo-main.png",
+    logoWebp: "/logos/bionic-logo-main.webp",
+    logoAvif: "/logos/bionic-logo-main.avif"
   }
 };
 
