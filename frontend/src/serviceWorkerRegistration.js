@@ -1,10 +1,10 @@
 /**
- * Service Worker Registration - PHASE F BIONIC ULTIMATE
+ * Service Worker Registration - BRANCHE 3 (99% → 99.9%)
  * 
- * Enregistre le Service Worker pour le caching et le mode offline
+ * Enregistre le Service Worker V2 pour le caching avancé et le mode offline
  * 
- * @version 1.0.0
- * @phase F
+ * @version 2.0.0
+ * @phase BRANCHE_3
  */
 
 const isLocalhost = Boolean(
@@ -13,24 +13,28 @@ const isLocalhost = Boolean(
   window.location.hostname.match(/^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/)
 );
 
+// Service Worker version
+const SW_VERSION = 'v2';
+
 /**
  * Register Service Worker
  */
 export function register(config) {
-  if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
-    const publicUrl = new URL(process.env.PUBLIC_URL, window.location.href);
+  if ('serviceWorker' in navigator) {
+    const publicUrl = new URL(process.env.PUBLIC_URL || '', window.location.href);
     
     if (publicUrl.origin !== window.location.origin) {
       return;
     }
 
     window.addEventListener('load', () => {
-      const swUrl = `${process.env.PUBLIC_URL}/service-worker.js`;
+      // Use SW V2 for advanced caching strategies
+      const swUrl = `${process.env.PUBLIC_URL || ''}/sw-v2.js`;
 
       if (isLocalhost) {
         checkValidServiceWorker(swUrl, config);
         navigator.serviceWorker.ready.then(() => {
-          console.log('[SW] Service Worker ready (localhost)');
+          console.log(`[SW ${SW_VERSION}] Service Worker ready (localhost)`);
         });
       } else {
         registerValidSW(swUrl, config);
@@ -46,7 +50,12 @@ function registerValidSW(swUrl, config) {
   navigator.serviceWorker
     .register(swUrl)
     .then((registration) => {
-      console.log('[SW] Service Worker registered successfully');
+      console.log(`[SW ${SW_VERSION}] Service Worker registered successfully`);
+      
+      // Check for updates periodically
+      setInterval(() => {
+        registration.update();
+      }, 60 * 60 * 1000); // Check every hour
       
       registration.onupdatefound = () => {
         const installingWorker = registration.installing;
@@ -58,13 +67,13 @@ function registerValidSW(swUrl, config) {
         installingWorker.onstatechange = () => {
           if (installingWorker.state === 'installed') {
             if (navigator.serviceWorker.controller) {
-              console.log('[SW] New content available; please refresh.');
+              console.log(`[SW ${SW_VERSION}] New content available; please refresh.`);
               
               if (config && config.onUpdate) {
                 config.onUpdate(registration);
               }
             } else {
-              console.log('[SW] Content cached for offline use.');
+              console.log(`[SW ${SW_VERSION}] Content cached for offline use.`);
               
               if (config && config.onSuccess) {
                 config.onSuccess(registration);
@@ -75,7 +84,7 @@ function registerValidSW(swUrl, config) {
       };
     })
     .catch((error) => {
-      console.error('[SW] Service Worker registration failed:', error);
+      console.error(`[SW ${SW_VERSION}] Service Worker registration failed:`, error);
     });
 }
 
@@ -103,7 +112,7 @@ function checkValidServiceWorker(swUrl, config) {
       }
     })
     .catch(() => {
-      console.log('[SW] No internet connection. Running in offline mode.');
+      console.log(`[SW ${SW_VERSION}] No internet connection. Running in offline mode.`);
     });
 }
 
@@ -115,10 +124,10 @@ export function unregister() {
     navigator.serviceWorker.ready
       .then((registration) => {
         registration.unregister();
-        console.log('[SW] Service Worker unregistered');
+        console.log(`[SW ${SW_VERSION}] Service Worker unregistered`);
       })
       .catch((error) => {
-        console.error('[SW] Service Worker unregistration failed:', error);
+        console.error(`[SW ${SW_VERSION}] Service Worker unregistration failed:`, error);
       });
   }
 }
@@ -139,8 +148,17 @@ export function checkForUpdates() {
  */
 export function skipWaiting() {
   if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
-    navigator.serviceWorker.controller.postMessage('skipWaiting');
-    window.location.reload();
+    // Send message to SW to skip waiting
+    const messageChannel = new MessageChannel();
+    navigator.serviceWorker.controller.postMessage(
+      { type: 'SKIP_WAITING' },
+      [messageChannel.port2]
+    );
+    
+    // Reload after SW takes over
+    navigator.serviceWorker.addEventListener('controllerchange', () => {
+      window.location.reload();
+    });
   }
 }
 
@@ -149,6 +167,47 @@ export function skipWaiting() {
  */
 export function clearCache() {
   if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
-    navigator.serviceWorker.controller.postMessage('clearCache');
+    return new Promise((resolve) => {
+      const messageChannel = new MessageChannel();
+      messageChannel.port1.onmessage = (event) => {
+        resolve(event.data);
+      };
+      navigator.serviceWorker.controller.postMessage(
+        { type: 'CLEAR_CACHE' },
+        [messageChannel.port2]
+      );
+    });
+  }
+  return Promise.resolve({ success: false });
+}
+
+/**
+ * Get cache statistics
+ */
+export function getCacheStats() {
+  if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
+    return new Promise((resolve) => {
+      const messageChannel = new MessageChannel();
+      messageChannel.port1.onmessage = (event) => {
+        resolve(event.data);
+      };
+      navigator.serviceWorker.controller.postMessage(
+        { type: 'GET_CACHE_STATS' },
+        [messageChannel.port2]
+      );
+    });
+  }
+  return Promise.resolve(null);
+}
+
+/**
+ * Pre-cache a specific route
+ */
+export function cacheRoute(url) {
+  if ('serviceWorker' in navigator && navigator.serviceWorker.controller) {
+    navigator.serviceWorker.controller.postMessage({
+      type: 'CACHE_ROUTE',
+      payload: { url }
+    });
   }
 }
