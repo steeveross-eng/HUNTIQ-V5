@@ -4,6 +4,7 @@
  * 
  * Dashboard principal du module Météo.
  * Composant parent isolé - aucun import croisé.
+ * PHASE F: Migration vers LightCharts (imports nettoyés)
  */
 
 import React, { useState, useEffect } from 'react';
@@ -13,10 +14,6 @@ import {
   Cloud, Sun, CloudRain, Wind, Thermometer, Droplets, 
   Eye, Compass, TrendingUp, AlertTriangle 
 } from 'lucide-react';
-import { 
-  AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer,
-  BarChart, Bar
-} from 'recharts';
 
 const API_BASE = process.env.REACT_APP_BACKEND_URL;
 
