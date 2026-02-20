@@ -481,7 +481,14 @@ const ProductCard = ({ product, onAddToCart }) => (
       <div className="absolute top-3 left-3 z-10">
         <Badge className="rank-badge text-white font-bold px-3 py-1">#{product.rank}</Badge>
       </div>
-      <img src={product.image_url} alt={product.name} className="w-full aspect-square object-cover" />
+      {/* PHASE D: Lazy loading for non-LCP images */}
+      <img 
+        src={product.image_url} 
+        alt={product.name} 
+        className="w-full aspect-square object-cover" 
+        loading="lazy"
+        decoding="async"
+      />
     </div>
     <CardContent className="p-4">
       <p className="text-[#f5a623] text-sm">{product.brand}</p>
