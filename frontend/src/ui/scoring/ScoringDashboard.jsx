@@ -181,18 +181,16 @@ const ScoringDashboard = () => {
               </p>
             </div>
             <div className="h-32 w-32">
-              <ResponsiveContainer width="100%" height="100%">
-                <RadarChart data={displayData.radar || demoData.radar}>
-                  <PolarGrid stroke="rgba(255,255,255,0.1)" />
-                  <PolarAngleAxis dataKey="category" tick={{ fill: '#9ca3af', fontSize: 10 }} />
-                  <Radar
-                    dataKey="value"
-                    stroke="#F5A623"
-                    fill="#F5A623"
-                    fillOpacity={0.3}
-                  />
-                </RadarChart>
-              </ResponsiveContainer>
+                <LightRadarChart 
+                  data={(displayData.radar || demoData.radar).map(item => ({
+                    name: item.category,
+                    value: item.value
+                  }))}
+                  size={128}
+                  color="#F5A623"
+                  maxValue={100}
+                  showLabels={false}
+                />
             </div>
           </div>
         </CardContent>
