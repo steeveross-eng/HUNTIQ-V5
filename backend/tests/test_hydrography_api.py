@@ -29,7 +29,7 @@ def get_base_url():
                     return line.split('=', 1)[1].strip().rstrip('/')
     
     # Fallback
-    return 'https://perf-analysis-stage.preview.emergentagent.com'
+    return 'https://lighthouse-audit-v5.preview.emergentagent.com'
 
 BASE_URL = get_base_url()
 

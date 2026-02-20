@@ -266,7 +266,7 @@ Les endpoints admin utilisent l'authentification existante.
         },
         "servers": [
             {
-                "url": "https://perf-analysis-stage.preview.emergentagent.com",
+                "url": "https://lighthouse-audit-v5.preview.emergentagent.com",
                 "description": "Preview Server"
             }
         ],
