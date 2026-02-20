@@ -213,29 +213,20 @@ const ScoringDashboard = () => {
         </CardHeader>
         <CardContent>
           <div className="h-64">
-            <ResponsiveContainer width="100%" height="100%">
-              <AreaChart data={displayData.trend || demoData.trend}>
-                <defs>
-                  <linearGradient id="scoringGradient" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#F5A623" stopOpacity={0.3} />
-                    <stop offset="95%" stopColor="#F5A623" stopOpacity={0} />
-                  </linearGradient>
-                </defs>
-                <XAxis dataKey="day" stroke="#6b7280" fontSize={12} />
-                <YAxis stroke="#6b7280" fontSize={12} domain={[0, 100]} />
-                <Tooltip
-                  contentStyle={{ backgroundColor: '#111', border: '1px solid #333' }}
-                  labelStyle={{ color: '#fff' }}
-                />
-                <Area
-                  type="monotone"
-                  dataKey="score"
-                  stroke="#F5A623"
-                  fill="url(#scoringGradient)"
-                  strokeWidth={2}
-                />
-              </AreaChart>
-            </ResponsiveContainer>
+            <ResponsiveChartContainer width="100%" height={256}>
+              <LightAreaChart 
+                data={(displayData.trend || demoData.trend).map(item => ({
+                  name: item.day,
+                  value: item.score
+                }))}
+                dataKey="value"
+                nameKey="name"
+                color="#F5A623"
+                showGrid={true}
+                showDots={true}
+                showArea={true}
+              />
+            </ResponsiveChartContainer>
           </div>
         </CardContent>
       </Card>
