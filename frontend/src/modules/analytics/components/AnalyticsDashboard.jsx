@@ -2,6 +2,7 @@
  * AnalyticsDashboard - Main analytics dashboard component
  * Phase P3 - Advanced Analytics
  * BIONIC Design System compliant
+ * PHASE F: Migration vers LightCharts
  */
 import React, { useState, useEffect, useCallback } from 'react';
 import { Card, CardHeader, CardTitle, CardContent } from '../../../components/ui/card';
@@ -9,10 +10,9 @@ import { Button } from '../../../components/ui/button';
 import { Badge } from '../../../components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '../../../components/ui/tabs';
 import { 
-  BarChart, Bar, LineChart, Line, PieChart, Pie, Cell,
-  XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer,
-  RadarChart, Radar, PolarGrid, PolarAngleAxis, PolarRadiusAxis
-} from 'recharts';
+  LightLineChart, LightPieChart, LightBarChart, LightRadarChart,
+  ResponsiveChartContainer 
+} from '../../../components/charts/LightCharts';
 import { 
   BarChart3, TrendingUp, Target, Cloud, CircleDot, Download, RefreshCw,
   Clock, Eye, FileDown, FileText, Scroll, ClipboardList, CloudSun
