@@ -63,17 +63,21 @@ import { useLanguage, BRAND_NAMES } from '@/contexts/LanguageContext';
 
 const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 
-// Logo variants data - uses unified logo
+// BRANCHE 1 POLISH FINAL: Logo variants avec formats optimisés (AVIF/WebP/PNG)
 const LOGO_VARIANTS = {
   main: {
     name: "Logo Principal BIONIC™", 
     url: "/logos/bionic-logo-main.png",
+    urlWebp: "/logos/bionic-logo-main.webp",
+    urlAvif: "/logos/bionic-logo-main.avif",
     description: "Logo unifié Chasse Bionic™ / Bionic Hunt™"
   },
   fr: {
     full: { 
       name: "Logo Complet FR", 
       url: "/logos/bionic-logo-main.png",
+      urlWebp: "/logos/bionic-logo-main.webp",
+      urlAvif: "/logos/bionic-logo-main.avif",
       description: "Logo Chasse Bionic™"
     }
   },
@@ -81,6 +85,8 @@ const LOGO_VARIANTS = {
     full: { 
       name: "Full Logo EN", 
       url: "/logos/bionic-logo-main.png",
+      urlWebp: "/logos/bionic-logo-main.webp",
+      urlAvif: "/logos/bionic-logo-main.avif",
       description: "Bionic Hunt™ logo"
     }
   }
