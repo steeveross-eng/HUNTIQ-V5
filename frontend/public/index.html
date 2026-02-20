@@ -104,16 +104,27 @@
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link rel="preconnect" href="https://customer-assets.emergentagent.com" />
+        
+        <!-- BRANCHE 2: DNS Prefetch for potential external resources -->
+        <link rel="dns-prefetch" href="https://unpkg.com" />
+        <link rel="dns-prefetch" href="https://api.tiles.mapbox.com" />
+        <link rel="dns-prefetch" href="https://tile.openstreetmap.org" />
+        
         <!-- BLOC 3 OPTIMIZATION: Non-blocking font loading with reduced weights -->
         <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" />
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" media="print" onload="this.media='all'" />
         <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700&family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" /></noscript>
+        
         <!-- BLOC 2 OPTIMIZATION: Preload LCP hero image -->
         <link rel="preload" as="image" href="https://customer-assets.emergentagent.com/job_99393da0-0860-424b-8278-2fffa34ca9ef/artifacts/x41bdnbe_IMG_2019%20%281%29.JPG" fetchpriority="high" />
         
         <!-- BRANCHE 1 POLISH FINAL: Preload optimized logo assets (AVIF > WebP > PNG) -->
         <link rel="preload" as="image" href="/logos/bionic-logo-official.avif" type="image/avif" />
         <link rel="preload" as="image" href="/logos/bionic-logo-official.webp" type="image/webp" />
+        
+        <!-- BRANCHE 2: Resource hints for common navigation paths -->
+        <link rel="prefetch" href="/dashboard" as="document" />
+        <link rel="modulepreload" href="/static/js/vendor-react.js" />
         
         <title>Chasse Bionic TM | Bionic Hunt TM</title>
         <script defer src="https://assets.emergent.sh/scripts/emergent-main.js"></script>
