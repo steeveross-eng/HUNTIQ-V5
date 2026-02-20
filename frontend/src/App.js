@@ -86,6 +86,13 @@ import { Toaster, toast } from "sonner";
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 const API = `${BACKEND_URL}/api`;
 
+// BLOC 2 OPTIMIZATION: Lazy loading fallback component
+const LazyLoadFallback = () => (
+  <div className="min-h-screen bg-background flex items-center justify-center">
+    <Loader2 className="h-8 w-8 animate-spin text-[#f5a623]" />
+  </div>
+);
+
 // Session ID helper
 const getSessionId = () => {
   let sessionId = localStorage.getItem("session_id");
