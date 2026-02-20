@@ -54,6 +54,7 @@
 | 2026-02-20 | **6.1.0** | **PHASE B BLOC 3 (PARTIEL) - Fonts non-blocking, 43 duplications supprimées, Leaflet harmonisé** |
 | 2026-02-20 | **6.2.0** | **PHASE B BLOC 3 (COMPLET) - Mémoïsation contexts (Language, Auth), extraction TerritoryMap, documentation isolation** |
 | 2026-02-20 | **7.0.0** | **PHASE C (ACCESSIBILITÉ WCAG 2.2) - Contrastes 70 corrections, focus visible global, aria-labels, structure sémantique** |
+|| 2026-02-20 | **8.0.0** | **PHASE D (CORE WEB VITALS) - 13 optimisations LCP/TBT/INP/CLS, Web Vitals monitoring, 4 rapports générés** |
 
 
 ---
