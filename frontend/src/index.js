@@ -1,5 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+
+// BRANCHE 2: Inject Critical CSS BEFORE main styles
+import { injectCriticalCSS, removeCriticalCSS } from "@/utils/criticalCSS";
+injectCriticalCSS();
+
 import "@/index.css";
 import App from "@/App";
 import { initWebVitals } from "@/utils/webVitals";
@@ -13,6 +18,9 @@ root.render(
     <App />
   </React.StrictMode>,
 );
+
+// BRANCHE 2: Remove Critical CSS after main styles load
+removeCriticalCSS();
 
 // PHASE D: Initialize Web Vitals reporting
 initWebVitals();
