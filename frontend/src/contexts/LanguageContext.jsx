@@ -1,9 +1,17 @@
 /**
  * Language Context - Bilingual system for FR/EN
  * Manages language state across the application
+ * 
+ * BLOC 3 OPTIMIZATION:
+ * - Added useMemo for context value memoization
+ * - Added useCallback for translation function
+ * - Prevents unnecessary re-renders across the app
+ * 
+ * @module LanguageContext
+ * @version 2.0.0 (BLOC 3)
  */
 
-import React, { createContext, useContext, useState, useEffect } from 'react';
+import React, { createContext, useContext, useState, useEffect, useMemo, useCallback } from 'react';
 
 // Brand names per language - Uses unified logo
 export const BRAND_NAMES = {
