@@ -563,7 +563,7 @@ const CartSheet = ({ isOpen, onOpenChange, cartItems, onUpdateQuantity, onRemove
                   <p className="text-white font-medium">{item.product?.name}</p>
                   <p className="text-[#f5a623]">${item.product?.price}</p>
                 </div>
-                <Button variant="ghost" size="sm" onClick={() => onRemoveItem(item.id)}>
+                <Button variant="ghost" size="sm" onClick={() => onRemoveItem(item.id)} aria-label={`${t('cart_remove')} ${item.product?.name}`}>
                   <Trash2 className="h-4 w-4 text-red-400" />
                 </Button>
               </div>
