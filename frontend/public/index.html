@@ -10,9 +10,12 @@
         <meta name="apple-mobile-web-app-title" content="HUNTIQ" />
         <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
         <link rel="apple-touch-icon" href="%PUBLIC_URL%/logos/bionic-logo.svg" />
-        <!-- Preconnect to external resources for faster loading -->
+        <!-- BLOC 2 OPTIMIZATION: Preconnect to external resources for faster loading -->
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link rel="preconnect" href="https://customer-assets.emergentagent.com" />
+        <!-- BLOC 2 OPTIMIZATION: Preload LCP hero image -->
+        <link rel="preload" as="image" href="https://customer-assets.emergentagent.com/job_99393da0-0860-424b-8278-2fffa34ca9ef/artifacts/x41bdnbe_IMG_2019%20%281%29.JPG" fetchpriority="high" />
         <title>Chasse Bionic TM | Bionic Hunt TM</title>
         <script defer src="https://assets.emergent.sh/scripts/emergent-main.js"></script>
         <!--
