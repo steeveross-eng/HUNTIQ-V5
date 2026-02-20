@@ -42,6 +42,30 @@
   .skip-link:focus {
     top: 0;
   }
+  
+  /* PHASE D: Optimize scroll performance */
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  /* PHASE D: Passive event listeners hint */
+  * {
+    touch-action: manipulation;
+  }
+  
+  /* PHASE D: GPU acceleration for animations */
+  .will-change-transform {
+    will-change: transform;
+  }
+  
+  /* PHASE D: Reduce motion for accessibility */
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
 }
 
 html {
