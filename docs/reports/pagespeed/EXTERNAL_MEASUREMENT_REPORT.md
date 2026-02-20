@@ -98,12 +98,12 @@ Le nombre de fichiers JS chargés (8 au lieu de 30+) confirme que **React.lazy()
 
 **URLs à tester manuellement :**
 ```
-https://lighthouse-audit-v5.preview.emergentagent.com/
-https://lighthouse-audit-v5.preview.emergentagent.com/login
-https://lighthouse-audit-v5.preview.emergentagent.com/shop
-https://lighthouse-audit-v5.preview.emergentagent.com/carte-interactive
-https://lighthouse-audit-v5.preview.emergentagent.com/contenus
-https://lighthouse-audit-v5.preview.emergentagent.com/mon-territoire
+https://core-upgrade.preview.emergentagent.com/
+https://core-upgrade.preview.emergentagent.com/login
+https://core-upgrade.preview.emergentagent.com/shop
+https://core-upgrade.preview.emergentagent.com/carte-interactive
+https://core-upgrade.preview.emergentagent.com/contenus
+https://core-upgrade.preview.emergentagent.com/mon-territoire
 ```
 
 **Outil recommandé :** [PageSpeed Insights](https://pagespeed.web.dev/)

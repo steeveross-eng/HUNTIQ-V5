@@ -574,7 +574,7 @@
       "frontend_port": 3000,
       "backend_port": 8001,
       "database": "MongoDB",
-      "preview_url": "https://lighthouse-audit-v5.preview.emergentagent.com"
+      "preview_url": "https://core-upgrade.preview.emergentagent.com"
     }
   },
 

@@ -6,7 +6,7 @@
 set -e
 
 # Configuration
-BASE_URL="${1:-https://lighthouse-audit-v5.preview.emergentagent.com}"
+BASE_URL="${1:-https://core-upgrade.preview.emergentagent.com}"
 OUTPUT_DIR="/app/docs/reports/lighthouse"
 TIMESTAMP=$(date +%Y%m%d_%H%M%S)
 

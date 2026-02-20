@@ -13,7 +13,7 @@ import pytest
 import requests
 import os
 
-BASE_URL = os.environ.get('REACT_APP_BACKEND_URL', 'https://lighthouse-audit-v5.preview.emergentagent.com')
+BASE_URL = os.environ.get('REACT_APP_BACKEND_URL', 'https://core-upgrade.preview.emergentagent.com')
 
 class TestTerritoryGeoJSON:
     """Test GeoJSON API for map integration"""
