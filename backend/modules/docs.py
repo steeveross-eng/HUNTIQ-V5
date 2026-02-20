@@ -266,7 +266,7 @@ Les endpoints admin utilisent l'authentification existante.
         },
         "servers": [
             {
-                "url": "https://core-upgrade.preview.emergentagent.com",
+                "url": "https://branche1-98.preview.emergentagent.com",
                 "description": "Preview Server"
             }
         ],
