@@ -123,10 +123,10 @@ const WeatherModule = () => {
               <CardContent className="p-6">
                 <div className="flex items-start justify-between mb-6">
                   <div>
-                    <p className="text-gray-400 text-sm">{weather.location}</p>
+                    <p className="text-gray-300 text-sm">{weather.location}</p>
                     <div className="flex items-end gap-2 mt-1">
                       <span className="font-barlow text-6xl font-bold text-white">{weather.current.temp}°</span>
-                      <span className="text-gray-400 text-lg mb-2">Ressenti {weather.current.feels_like}°</span>
+                      <span className="text-gray-300 text-lg mb-2">Ressenti {weather.current.feels_like}°</span>
                     </div>
                     <p className="text-gray-300 mt-2">{weather.current.condition}</p>
                   </div>
@@ -143,22 +143,22 @@ const WeatherModule = () => {
                   <div className="text-center">
                     <Wind className="h-5 w-5 text-[#f5a623] mx-auto mb-1" />
                     <p className="text-white font-semibold">{weather.current.wind_speed} km/h</p>
-                    <p className="text-gray-400 text-xs">Vent {weather.current.wind_dir}</p>
+                    <p className="text-gray-300 text-xs">Vent {weather.current.wind_dir}</p>
                   </div>
                   <div className="text-center">
                     <Droplets className="h-5 w-5 text-blue-400 mx-auto mb-1" />
                     <p className="text-white font-semibold">{weather.current.humidity}%</p>
-                    <p className="text-gray-400 text-xs">Humidité</p>
+                    <p className="text-gray-300 text-xs">Humidité</p>
                   </div>
                   <div className="text-center">
                     <Gauge className="h-5 w-5 text-purple-400 mx-auto mb-1" />
                     <p className="text-white font-semibold">{weather.current.pressure} hPa</p>
-                    <p className="text-gray-400 text-xs">Pression</p>
+                    <p className="text-gray-300 text-xs">Pression</p>
                   </div>
                   <div className="text-center">
                     <Eye className="h-5 w-5 text-green-400 mx-auto mb-1" />
                     <p className="text-white font-semibold">{weather.current.visibility} km</p>
-                    <p className="text-gray-400 text-xs">Visibilité</p>
+                    <p className="text-gray-300 text-xs">Visibilité</p>
                   </div>
                 </div>
 
@@ -191,7 +191,7 @@ const WeatherModule = () => {
             <Card className="bg-[#1a1a1a] border-white/5 rounded-md overflow-hidden h-full">
               <CardContent className="p-6 flex flex-col h-full">
                 <div className="text-center mb-6">
-                  <p className="text-gray-400 text-sm uppercase tracking-wider mb-2">Score de chasse</p>
+                  <p className="text-gray-300 text-sm uppercase tracking-wider mb-2">Score de chasse</p>
                   <div className="relative inline-flex items-center justify-center">
                     <svg className="w-32 h-32 transform -rotate-90">
                       <circle
@@ -229,13 +229,13 @@ const WeatherModule = () => {
 
                 {/* 5-Day Forecast */}
                 <div className="mt-6 pt-6 border-t border-white/10">
-                  <p className="text-gray-400 text-xs uppercase tracking-wider mb-3">Prévisions 5 jours</p>
+                  <p className="text-gray-300 text-xs uppercase tracking-wider mb-3">Prévisions 5 jours</p>
                   <div className="flex justify-between">
                     {weather.forecast.map((day, i) => {
                       const ForecastIcon = getWeatherIcon(day.icon);
                       return (
                         <div key={i} className="text-center">
-                          <p className="text-gray-400 text-xs">{day.day}</p>
+                          <p className="text-gray-300 text-xs">{day.day}</p>
                           <ForecastIcon className="h-4 w-4 text-white/60 mx-auto my-1" />
                           <p className="text-white text-xs">{day.temp_high}°</p>
                           <p className="text-gray-500 text-xs">{day.temp_low}°</p>

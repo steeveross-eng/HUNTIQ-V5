@@ -91,7 +91,7 @@ const BentoGridSection = () => {
           <h2 className="font-barlow text-3xl md:text-5xl font-bold text-white uppercase tracking-tight">
             Intelligence <span className="text-[#f5a623]">Tactique</span>
           </h2>
-          <p className="text-gray-400 mt-4 max-w-2xl mx-auto">
+          <p className="text-gray-300 mt-4 max-w-2xl mx-auto">
             Données terrain, météo, IA et analyse — tous vos outils de chasse en un seul endroit.
           </p>
         </div>
@@ -137,7 +137,7 @@ const BentoGridSection = () => {
                         <h3 className="font-barlow text-xl font-bold text-white uppercase tracking-tight mb-2 group-hover:text-[#f5a623] transition-colors">
                           {item.title}
                         </h3>
-                        <p className="text-gray-400 text-sm">{item.description}</p>
+                        <p className="text-gray-300 text-sm">{item.description}</p>
 
                         {/* Stats */}
                         {item.stats && (

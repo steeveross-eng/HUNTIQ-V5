@@ -58,7 +58,7 @@ const CommunitySection = () => {
   const getBadgeIcon = (badge) => {
     switch(badge) {
       case 'crown': return <Crown className="h-4 w-4 text-[#f5a623]" />;
-      case 'medal': return <Medal className="h-4 w-4 text-gray-400" />;
+      case 'medal': return <Medal className="h-4 w-4 text-gray-300" />;
       default: return null;
     }
   };
@@ -68,7 +68,7 @@ const CommunitySection = () => {
       case 'Expert': return 'bg-purple-500/20 text-purple-400';
       case 'Pro': return 'bg-blue-500/20 text-blue-400';
       case 'Guide': return 'bg-green-500/20 text-green-400';
-      default: return 'bg-gray-500/20 text-gray-400';
+      default: return 'bg-gray-500/20 text-gray-300';
     }
   };
 
@@ -84,7 +84,7 @@ const CommunitySection = () => {
           <h2 className="font-barlow text-3xl md:text-4xl font-bold text-white uppercase tracking-tight">
             Chasseurs <span className="text-[#f5a623]">BIONIC™</span>
           </h2>
-          <p className="text-gray-400 mt-2">Rejoignez plus de 12,000 chasseurs passionnés</p>
+          <p className="text-gray-300 mt-2">Rejoignez plus de 12,000 chasseurs passionnés</p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
@@ -177,7 +177,7 @@ const CommunitySection = () => {
                       <div className={`w-6 h-6 flex items-center justify-center rounded-full text-sm font-bold ${
                         user.rank === 1 ? 'bg-[#f5a623] text-black' :
                         user.rank <= 3 ? 'bg-gray-600 text-white' :
-                        'bg-gray-800 text-gray-400'
+                        'bg-gray-800 text-gray-300'
                       }`}>
                         {user.rank}
                       </div>
@@ -194,7 +194,7 @@ const CommunitySection = () => {
 
                 <Button 
                   variant="outline" 
-                  className="w-full mt-4 border-white/20 text-gray-400 hover:border-[#f5a623] hover:text-[#f5a623] rounded-sm"
+                  className="w-full mt-4 border-white/20 text-gray-300 hover:border-[#f5a623] hover:text-[#f5a623] rounded-sm"
                 >
                   Voir le classement complet
                   <ChevronRight className="h-4 w-4 ml-1" />
@@ -202,7 +202,7 @@ const CommunitySection = () => {
 
                 {/* Join Community */}
                 <div className="mt-6 pt-4 border-t border-white/10">
-                  <p className="text-gray-400 text-sm mb-3">Pas encore membre?</p>
+                  <p className="text-gray-300 text-sm mb-3">Pas encore membre?</p>
                   <Button className="w-full bg-[#f5a623] text-black hover:bg-[#d9901c] rounded-sm">
                     <UserPlus className="h-4 w-4 mr-2" />
                     Rejoindre

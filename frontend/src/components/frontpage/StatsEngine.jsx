@@ -53,7 +53,7 @@ export function StatBlock({
         </div>
         
         {/* Label */}
-        <p className="text-gray-400 text-xs uppercase tracking-widest mt-2 font-medium">
+        <p className="text-gray-300 text-xs uppercase tracking-widest mt-2 font-medium">
           {label}
         </p>
         
@@ -132,7 +132,7 @@ export function StatsPanel({ className = "" }) {
           <h2 className="text-3xl md:text-4xl font-bold text-white font-barlow mb-3">
             La Communauté HUNTIQ
           </h2>
-          <p className="text-gray-400 max-w-2xl mx-auto">
+          <p className="text-gray-300 max-w-2xl mx-auto">
             Des milliers de chasseurs font confiance à notre technologie BIONIC™ 
             pour optimiser leurs sorties de chasse.
           </p>

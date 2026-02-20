@@ -115,7 +115,7 @@ const MediaFormationsSection = () => {
                   <h3 className="text-white font-semibold text-lg group-hover:text-[#f5a623] transition-colors">
                     {videos[0].title}
                   </h3>
-                  <div className="flex items-center gap-4 mt-2 text-gray-400 text-sm">
+                  <div className="flex items-center gap-4 mt-2 text-gray-300 text-sm">
                     <span className="flex items-center gap-1"><Eye className="h-4 w-4" /> {videos[0].views}</span>
                     <span className="flex items-center gap-1"><Calendar className="h-4 w-4" /> {videos[0].date}</span>
                   </div>
@@ -214,7 +214,7 @@ const MediaFormationsSection = () => {
                             <h3 className="text-white font-medium group-hover:text-[#f5a623] transition-colors">
                               {formation.title}
                             </h3>
-                            <div className="flex items-center gap-3 mt-2 text-gray-400 text-sm">
+                            <div className="flex items-center gap-3 mt-2 text-gray-300 text-sm">
                               <span className="flex items-center gap-1">
                                 <Clock className="h-3 w-3" /> {formation.duration}
                               </span>
@@ -242,7 +242,7 @@ const MediaFormationsSection = () => {
               <CardContent className="p-4 text-center">
                 <Users className="h-8 w-8 text-[#f5a623] mx-auto mb-2" />
                 <div className="font-barlow text-3xl font-bold text-white">2,847</div>
-                <p className="text-gray-400 text-sm">Chasseurs formés cette année</p>
+                <p className="text-gray-300 text-sm">Chasseurs formés cette année</p>
               </CardContent>
             </Card>
           </div>

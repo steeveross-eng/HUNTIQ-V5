@@ -50,7 +50,7 @@ const NewsletterSection = () => {
             Restez <span className="text-[#f5a623]">connecté</span>
           </h2>
           
-          <p className="text-gray-400 text-lg mb-8 max-w-2xl mx-auto">
+          <p className="text-gray-300 text-lg mb-8 max-w-2xl mx-auto">
             Recevez les alertes météo optimales, les nouveaux produits testés et les conseils exclusifs 
             directement dans votre boîte mail.
           </p>

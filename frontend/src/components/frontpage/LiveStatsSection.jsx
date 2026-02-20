@@ -55,7 +55,7 @@ const LiveStatsSection = () => {
       case 'warning': return <AlertTriangle className="h-4 w-4 text-yellow-400" />;
       case 'info': return <Info className="h-4 w-4 text-blue-400" />;
       case 'success': return <CheckCircle className="h-4 w-4 text-green-400" />;
-      default: return <Bell className="h-4 w-4 text-gray-400" />;
+      default: return <Bell className="h-4 w-4 text-gray-300" />;
     }
   };
 
@@ -66,7 +66,7 @@ const LiveStatsSection = () => {
       case 'weather': return <TrendingUp className="h-4 w-4 text-blue-400" />;
       case 'user': return <Users className="h-4 w-4 text-purple-400" />;
       case 'territory': return <MapPin className="h-4 w-4 text-red-400" />;
-      default: return <Activity className="h-4 w-4 text-gray-400" />;
+      default: return <Activity className="h-4 w-4 text-gray-300" />;
     }
   };
 
@@ -98,7 +98,7 @@ const LiveStatsSection = () => {
                       {stat.trend === 'up' && <ArrowUp className="h-4 w-4 text-green-400" />}
                       {stat.trend === 'down' && <ArrowDown className="h-4 w-4 text-red-400" />}
                     </div>
-                    <p className="text-gray-400 text-xs uppercase tracking-wider">{stat.label}</p>
+                    <p className="text-gray-300 text-xs uppercase tracking-wider">{stat.label}</p>
                   </div>
                 </CardContent>
               </Card>
@@ -127,7 +127,7 @@ const LiveStatsSection = () => {
                 <div key={i} className="flex items-center gap-3 flex-shrink-0">
                   {getTickerIcon(item.type)}
                   <span className="text-white text-sm">{item.message}</span>
-                  <Badge className="bg-white/10 text-gray-400 text-xs">{item.zone}</Badge>
+                  <Badge className="bg-white/10 text-gray-300 text-xs">{item.zone}</Badge>
                   <span className="text-gray-500 text-xs">{item.time}</span>
                 </div>
               ))}
@@ -157,7 +157,7 @@ const LiveStatsSection = () => {
                       {getAlertIcon(alert.type)}
                       <div className="flex-1">
                         <h4 className="text-white font-medium text-sm">{alert.title}</h4>
-                        <p className="text-gray-400 text-xs mt-1">{alert.message}</p>
+                        <p className="text-gray-300 text-xs mt-1">{alert.message}</p>
                         <div className="flex items-center gap-1 mt-2 text-gray-500 text-xs">
                           <Clock className="h-3 w-3" />
                           {alert.time}

@@ -87,7 +87,7 @@ const MarketplaceSection = () => {
               <Badge 
                 key={i} 
                 variant="outline" 
-                className="border-white/20 text-gray-400 hover:border-[#f5a623] hover:text-[#f5a623] cursor-pointer transition-colors"
+                className="border-white/20 text-gray-300 hover:border-[#f5a623] hover:text-[#f5a623] cursor-pointer transition-colors"
               >
                 {cat.name} ({cat.count})
               </Badge>
@@ -109,12 +109,12 @@ const MarketplaceSection = () => {
               </div>
               <div>
                 <p className="text-[#f5a623] font-bold text-lg">VENTE FLASH</p>
-                <p className="text-gray-400 text-sm">Jusqu'à 30% sur les attractants BIONIC™</p>
+                <p className="text-gray-300 text-sm">Jusqu'à 30% sur les attractants BIONIC™</p>
               </div>
             </div>
             <div className="flex items-center gap-4">
               <div className="text-right">
-                <p className="text-gray-400 text-xs">Se termine dans</p>
+                <p className="text-gray-300 text-xs">Se termine dans</p>
                 <p className="text-white font-mono text-lg">02:34:56</p>
               </div>
               <Button className="bg-[#f5a623] text-black hover:bg-[#d9901c] rounded-sm">
@@ -175,7 +175,7 @@ const MarketplaceSection = () => {
                         />
                       ))}
                     </div>
-                    <span className="text-gray-400 text-sm">({item.reviews})</span>
+                    <span className="text-gray-300 text-sm">({item.reviews})</span>
                   </div>
 
                   {/* Price */}

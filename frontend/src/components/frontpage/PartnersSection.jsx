@@ -83,7 +83,7 @@ const PartnersSection = () => {
                     alt={partner.name}
                     className="h-10 object-contain mx-auto opacity-50 group-hover:opacity-100 transition-opacity"
                   />
-                  <p className="text-gray-500 text-xs mt-2 group-hover:text-gray-400">{partner.type}</p>
+                  <p className="text-gray-500 text-xs mt-2 group-hover:text-gray-300">{partner.type}</p>
                 </div>
               </motion.div>
             ))}
@@ -138,7 +138,7 @@ const PartnersSection = () => {
                       {pourvoirie.name}
                     </h3>
                     
-                    <div className="flex items-center gap-1 text-gray-400 text-sm mb-3">
+                    <div className="flex items-center gap-1 text-gray-300 text-sm mb-3">
                       <MapPin className="h-4 w-4" />
                       {pourvoirie.location}
                     </div>
@@ -155,7 +155,7 @@ const PartnersSection = () => {
                     {/* Features */}
                     <div className="flex flex-wrap gap-2">
                       {pourvoirie.features.map((feature, j) => (
-                        <Badge key={j} variant="outline" className="border-white/20 text-gray-400 text-xs">
+                        <Badge key={j} variant="outline" className="border-white/20 text-gray-300 text-xs">
                           {feature}
                         </Badge>
                       ))}

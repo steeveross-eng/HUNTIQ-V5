@@ -34,7 +34,7 @@ const DataSourceIndicator = ({ source }) => {
   return (
     <div className="flex items-center gap-2 px-3 py-1.5 bg-black/40 rounded-sm border border-white/10">
       <div className={`w-2 h-2 rounded-full ${isActive ? 'bg-green-500 animate-pulse' : 'bg-gray-500'}`} />
-      <span className="text-xs text-gray-400 font-mono">{source?.name || 'Source'}</span>
+      <span className="text-xs text-gray-300 font-mono">{source?.name || 'Source'}</span>
     </div>
   );
 };
@@ -174,7 +174,7 @@ const InteractiveMapView = ({ engineStatus, dataSources, onExpand }) => {
                 <div className="absolute left-6 top-0 opacity-0 group-hover:opacity-100 transition-all duration-200 z-30 pointer-events-none">
                   <div className="bg-black/95 backdrop-blur-sm px-3 py-2 rounded-sm border border-[#f5a623]/30 whitespace-nowrap min-w-[140px]">
                     <p className="text-white font-semibold text-sm">{region.name}</p>
-                    <p className="text-gray-400 text-xs font-mono mt-1">
+                    <p className="text-gray-300 text-xs font-mono mt-1">
                       {region.lat.toFixed(1)}°N, {Math.abs(region.lon).toFixed(1)}°W
                     </p>
                     <div className="flex items-center justify-between mt-2">
@@ -198,15 +198,15 @@ const InteractiveMapView = ({ engineStatus, dataSources, onExpand }) => {
             >
               <h4 className="text-white font-semibold text-sm mb-2">{selectedRegion.name}</h4>
               <div className="space-y-2 text-xs">
-                <div className="flex justify-between text-gray-400">
+                <div className="flex justify-between text-gray-300">
                   <span>Latitude</span>
                   <span className="font-mono text-white">{selectedRegion.lat}°N</span>
                 </div>
-                <div className="flex justify-between text-gray-400">
+                <div className="flex justify-between text-gray-300">
                   <span>Longitude</span>
                   <span className="font-mono text-white">{Math.abs(selectedRegion.lon)}°W</span>
                 </div>
-                <div className="flex justify-between text-gray-400">
+                <div className="flex justify-between text-gray-300">
                   <span>Zones</span>
                   <span className="font-mono text-white">{selectedRegion.zones}</span>
                 </div>
@@ -296,7 +296,7 @@ const MapModule = () => {
             <h2 className="font-barlow text-3xl md:text-4xl font-bold text-white uppercase tracking-tight">
               Territoires du <span className="text-[#f5a623]">Québec</span>
             </h2>
-            <p className="text-gray-400 mt-2 max-w-xl">
+            <p className="text-gray-300 mt-2 max-w-xl">
               Explorez les 29 zones de chasse avec données géospatiales en temps réel 
               provenant de sources gouvernementales 100% gratuites
             </p>
@@ -317,7 +317,7 @@ const MapModule = () => {
               <div className="flex items-center justify-center min-h-[520px] bg-[#0d1117]">
                 <div className="text-center">
                   <Loader2 className="h-8 w-8 text-[#f5a623] animate-spin mx-auto mb-3" />
-                  <p className="text-gray-400 text-sm">Chargement du moteur géospatial...</p>
+                  <p className="text-gray-300 text-sm">Chargement du moteur géospatial...</p>
                 </div>
               </div>
             ) : (
@@ -343,7 +343,7 @@ const MapModule = () => {
             >
               <stat.icon className={`h-6 w-6 mx-auto mb-2 ${stat.color}`} />
               <div className="font-barlow text-2xl font-bold text-white">{stat.value}</div>
-              <div className="text-gray-400 text-xs uppercase tracking-wider">{stat.label}</div>
+              <div className="text-gray-300 text-xs uppercase tracking-wider">{stat.label}</div>
             </motion.div>
           ))}
         </div>

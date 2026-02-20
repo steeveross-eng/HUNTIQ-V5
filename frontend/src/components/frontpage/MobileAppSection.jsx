@@ -34,7 +34,7 @@ const MobileAppSection = () => {
               BIONIC™ dans <span className="text-[#f5a623]">votre poche</span>
             </h2>
             
-            <p className="text-gray-400 text-lg mb-8">
+            <p className="text-gray-300 text-lg mb-8">
               Accédez à tous vos outils de chasse où que vous soyez. GPS hors-ligne, météo en temps réel, 
               et votre territoire toujours à portée de main.
             </p>
@@ -71,7 +71,7 @@ const MobileAppSection = () => {
                 </div>
                 <span className="text-white font-semibold">4.9</span>
               </div>
-              <div className="text-gray-400 text-sm">
+              <div className="text-gray-300 text-sm">
                 <span className="text-white font-semibold">25K+</span> téléchargements
               </div>
             </div>
@@ -84,7 +84,7 @@ const MobileAppSection = () => {
                     <path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/>
                   </svg>
                   <div className="text-left">
-                    <p className="text-xs text-gray-400">Télécharger sur</p>
+                    <p className="text-xs text-gray-300">Télécharger sur</p>
                     <p className="font-semibold">App Store</p>
                   </div>
                 </div>
@@ -96,7 +96,7 @@ const MobileAppSection = () => {
                     <path d="M3 20.5v-17c0-.59.34-1.11.84-1.35L13.69 12l-9.85 9.85c-.5-.24-.84-.76-.84-1.35zm13.81-5.38L6.05 21.34l8.49-8.49 2.27 2.27zm3.35-4.31c.34.27.59.69.59 1.19s-.22.9-.57 1.18l-2.29 1.32-2.5-2.5 2.5-2.5 2.27 1.31zM6.05 2.66l10.76 6.22-2.27 2.27-8.49-8.49z"/>
                   </svg>
                   <div className="text-left">
-                    <p className="text-xs text-gray-400">Disponible sur</p>
+                    <p className="text-xs text-gray-300">Disponible sur</p>
                     <p className="font-semibold">Google Play</p>
                   </div>
                 </div>
@@ -138,7 +138,7 @@ const MobileAppSection = () => {
                         </div>
                         <span className="text-white font-bold">BIONIC™</span>
                       </div>
-                      <Bell className="h-5 w-5 text-gray-400" />
+                      <Bell className="h-5 w-5 text-gray-300" />
                     </div>
                     
                     {/* Map preview */}
@@ -158,7 +158,7 @@ const MobileAppSection = () => {
                     <div className="bg-[#1a1a1a] rounded-lg p-3 mb-4 border border-white/5">
                       <div className="flex items-center justify-between">
                         <div>
-                          <p className="text-gray-400 text-xs">Laurentides</p>
+                          <p className="text-gray-300 text-xs">Laurentides</p>
                           <p className="text-white text-2xl font-bold">-5°C</p>
                         </div>
                         <CloudSun className="h-10 w-10 text-[#f5a623]" />
@@ -172,7 +172,7 @@ const MobileAppSection = () => {
                     <div className="grid grid-cols-4 gap-2">
                       {[MapPin, Camera, Compass, Share2].map((Icon, i) => (
                         <div key={i} className="bg-[#1a1a1a] rounded-lg p-3 flex items-center justify-center border border-white/5">
-                          <Icon className="h-5 w-5 text-gray-400" />
+                          <Icon className="h-5 w-5 text-gray-300" />
                         </div>
                       ))}
                     </div>

@@ -59,24 +59,24 @@ const FooterSection = () => {
               <BionicLogo className="h-10 w-10" />
               <span className="font-barlow text-2xl font-bold text-white">BIONIC™</span>
             </Link>
-            <p className="text-gray-400 text-sm mb-6 max-w-xs">
+            <p className="text-gray-300 text-sm mb-6 max-w-xs">
               La plateforme de chasse intelligente du Québec. Analyse de territoire, 
               attractants testés scientifiquement, et communauté de chasseurs passionnés.
             </p>
             
             {/* Contact Info */}
             <div className="space-y-2">
-              <div className="flex items-center gap-2 text-gray-400 text-sm">
+              <div className="flex items-center gap-2 text-gray-300 text-sm">
                 <MapPin className="h-4 w-4 text-[#f5a623]" />
                 <span>Québec, Canada</span>
               </div>
-              <div className="flex items-center gap-2 text-gray-400 text-sm">
+              <div className="flex items-center gap-2 text-gray-300 text-sm">
                 <Mail className="h-4 w-4 text-[#f5a623]" />
                 <a href="mailto:info@huntiq.ca" className="hover:text-white transition-colors">
                   info@huntiq.ca
                 </a>
               </div>
-              <div className="flex items-center gap-2 text-gray-400 text-sm">
+              <div className="flex items-center gap-2 text-gray-300 text-sm">
                 <Clock className="h-4 w-4 text-[#f5a623]" />
                 <span>Lun-Ven: 9h-17h EST</span>
               </div>
@@ -90,7 +90,7 @@ const FooterSection = () => {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-10 h-10 bg-white/5 rounded-sm flex items-center justify-center hover:bg-[#f5a623]/20 hover:text-[#f5a623] transition-colors text-gray-400"
+                  className="w-10 h-10 bg-white/5 rounded-sm flex items-center justify-center hover:bg-[#f5a623]/20 hover:text-[#f5a623] transition-colors text-gray-300"
                   aria-label={social.label}
                 >
                   <social.icon className="h-5 w-5" />
@@ -107,7 +107,7 @@ const FooterSection = () => {
                 <li key={i}>
                   <Link 
                     to={link.href}
-                    className="text-gray-400 text-sm hover:text-[#f5a623] transition-colors flex items-center gap-1"
+                    className="text-gray-300 text-sm hover:text-[#f5a623] transition-colors flex items-center gap-1"
                   >
                     {link.label}
                   </Link>
@@ -123,7 +123,7 @@ const FooterSection = () => {
                 <li key={i}>
                   <Link 
                     to={link.href}
-                    className="text-gray-400 text-sm hover:text-[#f5a623] transition-colors"
+                    className="text-gray-300 text-sm hover:text-[#f5a623] transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -142,7 +142,7 @@ const FooterSection = () => {
                       href={link.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-gray-400 text-sm hover:text-[#f5a623] transition-colors flex items-center gap-1"
+                      className="text-gray-300 text-sm hover:text-[#f5a623] transition-colors flex items-center gap-1"
                     >
                       {link.label}
                       <ExternalLink className="h-3 w-3" />
@@ -150,7 +150,7 @@ const FooterSection = () => {
                   ) : (
                     <Link 
                       to={link.href}
-                      className="text-gray-400 text-sm hover:text-[#f5a623] transition-colors"
+                      className="text-gray-300 text-sm hover:text-[#f5a623] transition-colors"
                     >
                       {link.label}
                     </Link>
@@ -167,7 +167,7 @@ const FooterSection = () => {
                 <li key={i}>
                   <Link 
                     to={link.href}
-                    className="text-gray-400 text-sm hover:text-[#f5a623] transition-colors"
+                    className="text-gray-300 text-sm hover:text-[#f5a623] transition-colors"
                   >
                     {link.label}
                   </Link>

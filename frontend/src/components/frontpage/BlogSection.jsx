@@ -92,7 +92,7 @@ const BlogSection = () => {
                 variant={i === 0 ? 'default' : 'outline'}
                 className={i === 0 
                   ? 'bg-[#f5a623] text-black cursor-pointer' 
-                  : 'border-white/20 text-gray-400 hover:border-[#f5a623] hover:text-[#f5a623] cursor-pointer transition-colors'
+                  : 'border-white/20 text-gray-300 hover:border-[#f5a623] hover:text-[#f5a623] cursor-pointer transition-colors'
                 }
               >
                 {cat}
@@ -134,7 +134,7 @@ const BlogSection = () => {
                 </div>
                 <CardContent className="p-4">
                   <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-4 text-gray-400 text-sm">
+                    <div className="flex items-center gap-4 text-gray-300 text-sm">
                       <span className="flex items-center gap-1">
                         <User className="h-4 w-4" /> {featuredArticle.author}
                       </span>
@@ -178,7 +178,7 @@ const BlogSection = () => {
                         className="w-24 h-24 rounded-sm object-cover flex-shrink-0"
                       />
                       <div className="flex-1 min-w-0">
-                        <Badge variant="outline" className="border-white/20 text-gray-400 text-xs mb-2">
+                        <Badge variant="outline" className="border-white/20 text-gray-300 text-xs mb-2">
                           {article.category}
                         </Badge>
                         <h3 className="text-white font-semibold text-sm line-clamp-2 group-hover:text-[#f5a623] transition-colors">
