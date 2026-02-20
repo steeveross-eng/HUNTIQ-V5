@@ -1013,44 +1013,47 @@ function App() {
               onUpdateQuantity={handleUpdateQuantity}
               onRemoveItem={handleRemoveItem}
             />
-            <Routes>
-              <Route path="/" element={<HomePage products={products} onAddToCart={handleAddToCart} />} />
-              <Route path="/onboarding" element={<OnboardingPage />} />
-              <Route path="/analyze" element={<AnalyzerModule />} />
-              <Route path="/compare" element={<ComparePage products={products} />} />
-              <Route path="/shop" element={<ShopPage products={products} onAddToCart={handleAddToCart} />} />
-              <Route path="/territoire" element={<TerritoryPage />} />
-              <Route path="/mon-territoire-bionic" element={<MonTerritoireBionicPage />} />
-              <Route path="/marketplace" element={<MarketplacePage />} />
-              <Route path="/formations" element={<FormationsPage />} />
-              {/* Module Permis de chasse */}
-              <Route path="/permis-chasse" element={<HuntingLicensePage />} />
-              <Route path="/dashboard" element={<DashboardPage />} />
-              <Route path="/business" element={<BusinessPage />} />
-              <Route path="/plan-maitre" element={<PlanMaitrePage />} />
-              {/* V5-ULTIME: Analytics réactivé */}
-              <Route path="/analytics" element={<AnalyticsPage />} />
-              <Route path="/map" element={<MapPage />} />
-              <Route path="/forecast" element={<ForecastPage />} />
-              <Route path="/trips" element={<TripsPage />} />
-              <Route path="/referral" element={<ReferralModule />} />
-              <Route path="/admin" element={<AdminPage onProductsUpdate={fetchProducts} />} />
-              <Route path="/admin/geo" element={<AdminGeoPage />} />
-              <Route path="/networking" element={<NetworkingHub />} />
-              <Route path="/lands" element={<LandsRental />} />
-              <Route path="/reset-password" element={<ResetPasswordPage />} />
-              <Route path="/become-partner" element={<BecomePartner />} />
-              <Route path="/partner/dashboard" element={<PartnerDashboard />} />
-              <Route path="/auth/google/callback" element={<GoogleOAuthCallback />} />
-              {/* V5-ULTIME P3: Routes Monétisation */}
-              <Route path="/pricing" element={<PricingPage />} />
-              <Route path="/payment/success" element={<PaymentSuccessPage />} />
-              <Route path="/payment/cancel" element={<PaymentCancelPage />} />
-              {/* V5-ULTIME: Administration Premium */}
-              <Route path="/admin-premium" element={<AdminPremiumPage />} />
-              {/* Marketing Calendar V2 */}
-              <Route path="/marketing-calendar" element={<MarketingCalendarPage />} />
-            </Routes>
+            {/* BLOC 2 OPTIMIZATION: Suspense wrapper for lazy-loaded routes */}
+            <Suspense fallback={<LazyLoadFallback />}>
+              <Routes>
+                <Route path="/" element={<HomePage products={products} onAddToCart={handleAddToCart} />} />
+                <Route path="/onboarding" element={<OnboardingPage />} />
+                <Route path="/analyze" element={<AnalyzerModule />} />
+                <Route path="/compare" element={<ComparePage products={products} />} />
+                <Route path="/shop" element={<ShopPage products={products} onAddToCart={handleAddToCart} />} />
+                <Route path="/territoire" element={<TerritoryPage />} />
+                <Route path="/mon-territoire-bionic" element={<MonTerritoireBionicPage />} />
+                <Route path="/marketplace" element={<MarketplacePage />} />
+                <Route path="/formations" element={<FormationsPage />} />
+                {/* Module Permis de chasse */}
+                <Route path="/permis-chasse" element={<HuntingLicensePage />} />
+                <Route path="/dashboard" element={<DashboardPage />} />
+                <Route path="/business" element={<BusinessPage />} />
+                <Route path="/plan-maitre" element={<PlanMaitrePage />} />
+                {/* V5-ULTIME: Analytics réactivé */}
+                <Route path="/analytics" element={<AnalyticsPage />} />
+                <Route path="/map" element={<MapPage />} />
+                <Route path="/forecast" element={<ForecastPage />} />
+                <Route path="/trips" element={<TripsPage />} />
+                <Route path="/referral" element={<ReferralModule />} />
+                <Route path="/admin" element={<AdminPage onProductsUpdate={fetchProducts} />} />
+                <Route path="/admin/geo" element={<AdminGeoPage />} />
+                <Route path="/networking" element={<NetworkingHub />} />
+                <Route path="/lands" element={<LandsRental />} />
+                <Route path="/reset-password" element={<ResetPasswordPage />} />
+                <Route path="/become-partner" element={<BecomePartner />} />
+                <Route path="/partner/dashboard" element={<PartnerDashboard />} />
+                <Route path="/auth/google/callback" element={<GoogleOAuthCallback />} />
+                {/* V5-ULTIME P3: Routes Monétisation */}
+                <Route path="/pricing" element={<PricingPage />} />
+                <Route path="/payment/success" element={<PaymentSuccessPage />} />
+                <Route path="/payment/cancel" element={<PaymentCancelPage />} />
+                {/* V5-ULTIME: Administration Premium */}
+                <Route path="/admin-premium" element={<AdminPremiumPage />} />
+                {/* Marketing Calendar V2 */}
+                <Route path="/marketing-calendar" element={<MarketingCalendarPage />} />
+              </Routes>
+            </Suspense>
             <Footer />
             <ScrollNavigator />
             <Toaster position="bottom-right" richColors />
