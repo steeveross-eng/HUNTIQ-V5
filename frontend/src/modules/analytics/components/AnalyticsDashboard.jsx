@@ -438,24 +438,22 @@ export const AnalyticsDashboard = () => {
               </CardHeader>
               <CardContent>
                 {weather_analysis.length > 0 ? (
-                  <ResponsiveContainer width="100%" height={300}>
-                    <BarChart data={weather_analysis} layout="vertical">
-                      <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
-                      <XAxis type="number" stroke="#9ca3af" />
-                      <YAxis type="category" dataKey="condition" stroke="#9ca3af" width={100} />
-                      <Tooltip 
-                        contentStyle={{ backgroundColor: '#1e293b', border: '1px solid #475569' }}
+                  <div className="h-[300px]">
+                    <ResponsiveChartContainer width="100%" height={300}>
+                      <LightBarChart
+                        data={weather_analysis.map(item => ({
+                          name: item.condition,
+                          value: item.success_rate,
+                          color: WEATHER_COLORS[item.condition]
+                        }))}
+                        dataKey="value"
+                        nameKey="name"
+                        color="#f5a623"
+                        showGrid={true}
+                        horizontal={true}
                       />
-                      <Bar dataKey="success_rate" name="Taux de succès (%)" radius={[0, 4, 4, 0]}>
-                        {weather_analysis.map((entry, index) => (
-                          <Cell 
-                            key={`cell-${index}`} 
-                            fill={WEATHER_COLORS[entry.condition] || '#f5a623'} 
-                          />
-                        ))}
-                      </Bar>
-                    </BarChart>
-                  </ResponsiveContainer>
+                    </ResponsiveChartContainer>
+                  </div>
                 ) : (
                   <div className="h-[300px] flex items-center justify-center text-slate-400">
                     Pas de données météo disponibles
