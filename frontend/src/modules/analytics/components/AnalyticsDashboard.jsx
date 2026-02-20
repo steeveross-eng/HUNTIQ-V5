@@ -510,23 +510,18 @@ export const AnalyticsDashboard = () => {
               </CardHeader>
               <CardContent>
                 {optimal_times.length > 0 ? (
-                  <ResponsiveContainer width="100%" height={300}>
-                    <RadarChart data={optimal_times}>
-                      <PolarGrid stroke="#374151" />
-                      <PolarAngleAxis dataKey="label" stroke="#9ca3af" />
-                      <PolarRadiusAxis stroke="#9ca3af" />
-                      <Radar 
-                        name="Taux de succès" 
-                        dataKey="success_rate" 
-                        stroke="#f5a623" 
-                        fill="#f5a623" 
-                        fillOpacity={0.5} 
-                      />
-                      <Tooltip 
-                        contentStyle={{ backgroundColor: '#1e293b', border: '1px solid #475569' }}
-                      />
-                    </RadarChart>
-                  </ResponsiveContainer>
+                  <div className="h-[300px] flex items-center justify-center">
+                    <LightRadarChart
+                      data={optimal_times.map(item => ({
+                        name: item.label,
+                        value: item.success_rate
+                      }))}
+                      size={280}
+                      color="#f5a623"
+                      maxValue={100}
+                      showLabels={true}
+                    />
+                  </div>
                 ) : (
                   <div className="h-[300px] flex items-center justify-center text-slate-400">
                     Pas de données horaires disponibles
@@ -545,20 +540,20 @@ export const AnalyticsDashboard = () => {
               </CardHeader>
               <CardContent>
                 {optimal_times.length > 0 ? (
-                  <ResponsiveContainer width="100%" height={300}>
-                    <BarChart data={optimal_times}>
-                      <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
-                      <XAxis dataKey="hour" stroke="#9ca3af" tickFormatter={(h) => `${h}h`} />
-                      <YAxis stroke="#9ca3af" />
-                      <Tooltip 
-                        contentStyle={{ backgroundColor: '#1e293b', border: '1px solid #475569' }}
-                        labelFormatter={(h) => `${h}h - ${optimal_times.find(t => t.hour === h)?.label || ''}`}
+                  <div className="h-[300px]">
+                    <ResponsiveChartContainer width="100%" height={300}>
+                      <LightBarChart
+                        data={optimal_times.map(item => ({
+                          name: `${item.hour}h`,
+                          value: item.trips
+                        }))}
+                        dataKey="value"
+                        nameKey="name"
+                        color="#3b82f6"
+                        showGrid={true}
                       />
-                      <Legend />
-                      <Bar dataKey="trips" name="Sorties" fill="#3b82f6" radius={[4, 4, 0, 0]} />
-                      <Bar dataKey="activity_score" name="Score activité" fill="#f5a623" radius={[4, 4, 0, 0]} />
-                    </BarChart>
-                  </ResponsiveContainer>
+                    </ResponsiveChartContainer>
+                  </div>
                 ) : (
                   <div className="h-[300px] flex items-center justify-center text-slate-400">
                     Pas de données horaires disponibles
