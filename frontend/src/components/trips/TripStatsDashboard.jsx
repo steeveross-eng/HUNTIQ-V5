@@ -1,14 +1,12 @@
 /**
  * TripStatsDashboard - Statistics dashboard for hunting trips
  * BIONIC Design System compliant - No emojis
+ * PHASE F: Migration vers LightCharts
  */
 import React from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import {
-  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
-  PieChart, Pie, Cell, LineChart, Line, Legend
-} from 'recharts';
+import { LightPieChart, LightBarChart, ResponsiveChartContainer } from '@/components/charts/LightCharts';
 import {
   Calendar, Clock, Target, Eye, TrendingUp, Award, MapPin,
   Sunrise, Sunset, Cloud, ThumbsUp
