@@ -3,6 +3,7 @@
  * =======================================
  * 
  * Statistiques et métriques du Plan Maître.
+ * PHASE F: Migration vers LightCharts
  */
 
 import React, { useState, useEffect } from 'react';
@@ -13,10 +14,7 @@ import {
   BarChart3, Target, CheckCircle2, Clock, TrendingUp, Award,
   Calendar, Compass
 } from 'lucide-react';
-import { 
-  AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer,
-  PieChart, Pie, Cell
-} from 'recharts';
+import { LightAreaChart, LightPieChart, ResponsiveChartContainer } from '@/components/charts/LightCharts';
 
 const API_BASE = process.env.REACT_APP_BACKEND_URL;
 
