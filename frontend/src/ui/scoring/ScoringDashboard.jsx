@@ -4,6 +4,7 @@
  * 
  * Dashboard principal du module Scoring.
  * Composant parent isolé - aucun import croisé.
+ * PHASE F: Migration vers LightCharts
  */
 
 import React, { useState, useEffect } from 'react';
@@ -11,10 +12,7 @@ import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Progress } from '@/components/ui/progress';
 import { Target, TrendingUp, Zap, Thermometer, Wind, Droplets } from 'lucide-react';
-import { 
-  RadarChart, Radar, PolarGrid, PolarAngleAxis, PolarRadiusAxis,
-  ResponsiveContainer, AreaChart, Area, XAxis, YAxis, Tooltip
-} from 'recharts';
+import { LightRadarChart, LightAreaChart, ResponsiveChartContainer } from '@/components/charts/LightCharts';
 
 const API_BASE = process.env.REACT_APP_BACKEND_URL;
 
