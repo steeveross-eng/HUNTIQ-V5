@@ -167,25 +167,13 @@ export const PlanMaitreStats = ({ userId }) => {
           <CardContent>
             <div className="flex items-center gap-6">
               <div className="h-40 w-40">
-                <ResponsiveContainer width="100%" height="100%">
-                  <PieChart>
-                    <Pie
-                      data={demoStrategyBreakdown}
-                      cx="50%"
-                      cy="50%"
-                      innerRadius={35}
-                      outerRadius={55}
-                      dataKey="value"
-                    >
-                      {demoStrategyBreakdown.map((entry, index) => (
-                        <Cell key={index} fill={entry.color} />
-                      ))}
-                    </Pie>
-                    <Tooltip 
-                      contentStyle={{ backgroundColor: '#111', border: '1px solid #333' }}
-                    />
-                  </PieChart>
-                </ResponsiveContainer>
+                <LightPieChart
+                  data={demoStrategyBreakdown}
+                  size={160}
+                  innerRadius={0.5}
+                  showLabels={false}
+                  showTooltip={true}
+                />
               </div>
               <div className="flex-1 space-y-2">
                 {demoStrategyBreakdown.map((item, idx) => (
