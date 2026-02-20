@@ -266,7 +266,7 @@ Les endpoints admin utilisent l'authentification existante.
         },
         "servers": [
             {
-                "url": "https://frontend-image-audit.preview.emergentagent.com",
+                "url": "https://perf-analysis-stage.preview.emergentagent.com",
                 "description": "Preview Server"
             }
         ],
