@@ -300,27 +300,16 @@ const TripStatsDashboard = ({ statistics }) => {
           </CardHeader>
           <CardContent>
             <div className="h-64">
-              <ResponsiveContainer width="100%" height="100%">
-                <BarChart data={observationTypes} layout="vertical">
-                  <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
-                  <XAxis type="number" stroke="#94a3b8" tick={{ fill: '#94a3b8' }} />
-                  <YAxis 
-                    dataKey="name" 
-                    type="category" 
-                    stroke="#94a3b8" 
-                    tick={{ fill: '#94a3b8' }}
-                    width={100}
-                  />
-                  <Tooltip 
-                    contentStyle={{ 
-                      backgroundColor: '#1e293b', 
-                      border: '1px solid #334155',
-                      borderRadius: '8px'
-                    }}
-                  />
-                  <Bar dataKey="value" fill="#8b5cf6" radius={[0, 4, 4, 0]} />
-                </BarChart>
-              </ResponsiveContainer>
+              <ResponsiveChartContainer width="100%" height={256}>
+                <LightBarChart
+                  data={observationTypes}
+                  dataKey="value"
+                  nameKey="name"
+                  color="#8b5cf6"
+                  showGrid={true}
+                  horizontal={true}
+                />
+              </ResponsiveChartContainer>
             </div>
           </CardContent>
         </Card>
