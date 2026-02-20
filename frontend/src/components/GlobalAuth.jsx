@@ -175,10 +175,12 @@ export const AuthProvider = ({ children }) => {
     toast.success('Déconnexion réussie');
   };
 
-  const openLoginModal = () => setShowLoginModal(true);
-  const closeLoginModal = () => setShowLoginModal(false);
+  // BLOC 3: Memoized callbacks
+  const openLoginModal = useCallback(() => setShowLoginModal(true), []);
+  const closeLoginModal = useCallback(() => setShowLoginModal(false), []);
 
-  const value = {
+  // BLOC 3: Memoized context value to prevent re-renders
+  const value = useMemo(() => ({
     user,
     token,
     loading,
@@ -190,7 +192,7 @@ export const AuthProvider = ({ children }) => {
     openLoginModal,
     closeLoginModal,
     showLoginModal
-  };
+  }), [user, token, loading, deviceTrusted, login, register, logout, openLoginModal, closeLoginModal, showLoginModal]);
 
   return (
     <AuthContext.Provider value={value}>
