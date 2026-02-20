@@ -292,21 +292,22 @@ export const AnalyticsDashboard = () => {
               </CardHeader>
               <CardContent>
                 {monthly_trends.length > 0 ? (
-                  <ResponsiveContainer width="100%" height={300}>
-                    <LineChart data={monthly_trends}>
-                      <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
-                      <XAxis dataKey="month" stroke="#9ca3af" />
-                      <YAxis stroke="#9ca3af" />
-                      <Tooltip 
-                        contentStyle={{ backgroundColor: '#1e293b', border: '1px solid #475569' }}
-                        labelStyle={{ color: '#f5a623' }}
+                  <div className="h-[300px]">
+                    <ResponsiveChartContainer width="100%" height={300}>
+                      <LightLineChart
+                        data={monthly_trends.map(item => ({
+                          name: item.month,
+                          value: item.trips
+                        }))}
+                        dataKey="value"
+                        nameKey="name"
+                        color="#f5a623"
+                        showGrid={true}
+                        showDots={true}
+                        showArea={false}
                       />
-                      <Legend />
-                      <Line type="monotone" dataKey="trips" name="Sorties" stroke="#f5a623" strokeWidth={2} />
-                      <Line type="monotone" dataKey="successes" name="Succès" stroke="#22c55e" strokeWidth={2} />
-                      <Line type="monotone" dataKey="observations" name="Observations" stroke="#8b5cf6" strokeWidth={2} />
-                    </LineChart>
-                  </ResponsiveContainer>
+                    </ResponsiveChartContainer>
+                  </div>
                 ) : (
                   <div className="h-[300px] flex items-center justify-center text-slate-400">
                     Pas de données disponibles
