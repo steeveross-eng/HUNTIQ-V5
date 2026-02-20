@@ -291,27 +291,14 @@ const TerritoireDashboard = () => {
               <CardTitle className="text-white text-sm">Répartition des Zones</CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="h-40">
-                <ResponsiveContainer width="100%" height="100%">
-                  <PieChart>
-                    <Pie
-                      data={demoStats}
-                      cx="50%"
-                      cy="50%"
-                      innerRadius={40}
-                      outerRadius={60}
-                      dataKey="value"
-                    >
-                      {demoStats.map((entry, index) => (
-                        <Cell key={index} fill={entry.color} />
-                      ))}
-                    </Pie>
-                    <Tooltip 
-                      contentStyle={{ backgroundColor: '#111', border: '1px solid #333' }}
-                      formatter={(value) => [`${value}%`, '']}
-                    />
-                  </PieChart>
-                </ResponsiveContainer>
+              <div className="h-40 flex items-center justify-center">
+                <LightPieChart
+                  data={demoStats}
+                  size={140}
+                  innerRadius={0.5}
+                  showLabels={true}
+                  showTooltip={true}
+                />
               </div>
               <div className="grid grid-cols-2 gap-2 mt-4">
                 {demoStats.map((stat, idx) => (
