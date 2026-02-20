@@ -101,37 +101,26 @@ const TripStatsDashboard = ({ statistics }) => {
           </CardHeader>
           <CardContent>
             {speciesData.length > 0 ? (
-              <div className="h-64">
-                <ResponsiveContainer width="100%" height="100%">
-                  <PieChart>
-                    <Pie
-                      data={speciesData}
-                      cx="50%"
-                      cy="50%"
-                      innerRadius={60}
-                      outerRadius={80}
-                      paddingAngle={5}
-                      dataKey="value"
-                    >
-                      {speciesData.map((entry, index) => (
-                        <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                      ))}
-                    </Pie>
-                    <Tooltip 
-                      contentStyle={{ 
-                        backgroundColor: '#1e293b', 
-                        border: '1px solid #334155',
-                        borderRadius: '8px'
-                      }}
-                      itemStyle={{ color: '#f5a623' }}
-                    />
-                    <Legend 
-                      verticalAlign="bottom" 
-                      height={36}
-                      formatter={(value) => <span style={{ color: '#94a3b8' }}>{value}</span>}
-                    />
-                  </PieChart>
-                </ResponsiveContainer>
+              <div className="h-64 flex flex-col items-center justify-center">
+                <LightPieChart
+                  data={speciesData}
+                  size={180}
+                  innerRadius={0.5}
+                  colors={COLORS}
+                  showLabels={true}
+                  showTooltip={true}
+                />
+                <div className="flex flex-wrap justify-center gap-2 mt-4">
+                  {speciesData.map((entry, index) => (
+                    <div key={index} className="flex items-center gap-1 text-xs text-gray-400">
+                      <div 
+                        className="w-2 h-2 rounded-full" 
+                        style={{ backgroundColor: COLORS[index % COLORS.length] }}
+                      />
+                      {entry.name}
+                    </div>
+                  ))}
+                </div>
               </div>
             ) : (
               <div className="h-64 flex items-center justify-center text-gray-400">
@@ -152,29 +141,18 @@ const TripStatsDashboard = ({ statistics }) => {
           <CardContent>
             {monthlyData.length > 0 ? (
               <div className="h-64">
-                <ResponsiveContainer width="100%" height="100%">
-                  <BarChart data={monthlyData}>
-                    <CartesianGrid strokeDasharray="3 3" stroke="#334155" />
-                    <XAxis 
-                      dataKey="month" 
-                      stroke="#94a3b8"
-                      tick={{ fill: '#94a3b8' }}
-                    />
-                    <YAxis 
-                      stroke="#94a3b8"
-                      tick={{ fill: '#94a3b8' }}
-                    />
-                    <Tooltip 
-                      contentStyle={{ 
-                        backgroundColor: '#1e293b', 
-                        border: '1px solid #334155',
-                        borderRadius: '8px'
-                      }}
-                    />
-                    <Bar dataKey="trips" fill="#f5a623" name="Sorties" radius={[4, 4, 0, 0]} />
-                    <Bar dataKey="observations" fill="#8b5cf6" name="Observations" radius={[4, 4, 0, 0]} />
-                  </BarChart>
-                </ResponsiveContainer>
+                <ResponsiveChartContainer width="100%" height={256}>
+                  <LightBarChart
+                    data={monthlyData.map(item => ({
+                      name: item.month,
+                      value: item.trips
+                    }))}
+                    dataKey="value"
+                    nameKey="name"
+                    color="#f5a623"
+                    showGrid={true}
+                  />
+                </ResponsiveChartContainer>
               </div>
             ) : (
               <div className="h-64 flex items-center justify-center text-gray-400">
