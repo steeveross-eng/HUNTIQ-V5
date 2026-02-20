@@ -47,6 +47,7 @@
 | 2026-02-20 | **5.14.0** | **📋 APPROFONDISSEMENT ANALYTIQUE V5 — Risques étendus + Dépendances + 3 Scénarios + Rollback multi-niveaux** |
 | 2026-02-20 | **5.15.0** | **VALIDATION PREALABLE V5 ULTIME - Integrite 22 rapports verifiee + Synthese Executive MAITRE generee** |
 | 2026-02-20 | **5.16.0** | **ANALYSE FINALE V5 ULTIME - 7 rapports couche analytique finale + L2_MASTER_SYNTHESIS reconstruit** |
+| 2026-02-20 | **5.17.0** | **COUCHE ANALYTIQUE L2.10 ULTIME - 7 analyses avancees (regression multi-phases, stabilite croisee, securite structurelle)** |
 
 
 ---
