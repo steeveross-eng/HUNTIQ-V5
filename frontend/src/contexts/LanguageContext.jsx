@@ -2893,7 +2893,10 @@ export const TRANSLATIONS = {
 // Context
 const LanguageContext = createContext();
 
-// Provider
+/**
+ * LanguageProvider - BLOC 3 Optimized
+ * Added useMemo for context value to prevent unnecessary re-renders
+ */
 export const LanguageProvider = ({ children }) => {
   const [language, setLanguage] = useState(() => {
     // Check localStorage first
@@ -2914,25 +2917,33 @@ export const LanguageProvider = ({ children }) => {
     document.documentElement.lang = language;
   }, [language]);
 
-  const toggleLanguage = () => {
+  const toggleLanguage = useCallback(() => {
     setLanguage(prev => prev === 'fr' ? 'en' : 'fr');
-  };
+  }, []);
 
-  const t = (key) => {
+  // BLOC 3: Memoized translation function
+  const t = useCallback((key) => {
     return TRANSLATIONS[language][key] || key;
-  };
+  }, [language]);
 
-  const brand = BRAND_NAMES[language];
+  // BLOC 3: Memoized brand object
+  const brand = useMemo(() => BRAND_NAMES[language], [language]);
+  
+  // BLOC 3: Memoized translations reference
+  const translations = useMemo(() => TRANSLATIONS[language], [language]);
+
+  // BLOC 3: Memoized context value to prevent re-renders
+  const contextValue = useMemo(() => ({ 
+    language, 
+    setLanguage, 
+    toggleLanguage, 
+    t, 
+    brand,
+    translations
+  }), [language, setLanguage, toggleLanguage, t, brand, translations]);
 
   return (
-    <LanguageContext.Provider value={{ 
-      language, 
-      setLanguage, 
-      toggleLanguage, 
-      t, 
-      brand,
-      translations: TRANSLATIONS[language]
-    }}>
+    <LanguageContext.Provider value={contextValue}>
       {children}
     </LanguageContext.Provider>
   );
