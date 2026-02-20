@@ -328,10 +328,11 @@ const Navigation = ({ cartCount, onCartOpen }) => {
               onClick={onCartOpen} 
               className="relative border-white/20 hover:border-[#F5A623]/50 hover:bg-[#F5A623]/10 transition-all" 
               data-testid="cart-button"
+              aria-label={t('nav_cart')}
             >
               <ShoppingCart className="h-5 w-5" />
               {cartCount > 0 && (
-                <span className="absolute -top-2 -right-2 bg-[#F5A623] text-black text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold shadow-[0_0_10px_rgba(245,166,35,0.4)]">
+                <span className="absolute -top-2 -right-2 bg-[#F5A623] text-black text-xs rounded-full w-5 h-5 flex items-center justify-center font-bold shadow-[0_0_10px_rgba(245,166,35,0.4)]" aria-label={`${cartCount} items`}>
                   {cartCount}
                 </span>
               )}
@@ -342,8 +343,11 @@ const Navigation = ({ cartCount, onCartOpen }) => {
               className="lg:hidden p-2 text-gray-300 hover:text-white hover:bg-white/5 rounded-sm transition-colors" 
               onClick={() => setIsOpen(!isOpen)}
               data-testid="mobile-menu-btn"
+              aria-label={isOpen ? t('common_close') : t('common_menu')}
+              aria-expanded={isOpen}
             >
               {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </button>
             </button>
           </div>
         </div>
