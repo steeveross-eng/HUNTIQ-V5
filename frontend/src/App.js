@@ -141,7 +141,7 @@ const Navigation = ({ cartCount, onCartOpen }) => {
             {/* Home */}
             <Link 
               to="/" 
-              className={`flex items-center gap-2 px-3 py-2 text-sm font-medium uppercase tracking-wider rounded-sm transition-all duration-200 hover:bg-white/5 ${isActive('/') ? 'text-[#F5A623] bg-[#F5A623]/10' : 'text-gray-400 hover:text-white'}`}
+              className={`flex items-center gap-2 px-3 py-2 text-sm font-medium uppercase tracking-wider rounded-sm transition-all duration-200 hover:bg-white/5 ${isActive('/') ? 'text-[#F5A623] bg-[#F5A623]/10' : 'text-gray-300 hover:text-white'}`}
               data-testid="nav-home"
             >
               <Home className="h-4 w-4" />
@@ -151,7 +151,7 @@ const Navigation = ({ cartCount, onCartOpen }) => {
             {/* Dashboard */}
             <Link 
               to="/dashboard" 
-              className={`flex items-center gap-2 px-3 py-2 text-sm font-medium uppercase tracking-wider rounded-sm transition-all duration-200 hover:bg-white/5 ${isActive('/dashboard') ? 'text-[#F5A623] bg-[#F5A623]/10' : 'text-gray-400 hover:text-white'}`}
+              className={`flex items-center gap-2 px-3 py-2 text-sm font-medium uppercase tracking-wider rounded-sm transition-all duration-200 hover:bg-white/5 ${isActive('/dashboard') ? 'text-[#F5A623] bg-[#F5A623]/10' : 'text-gray-300 hover:text-white'}`}
               data-testid="nav-dashboard"
             >
               <BarChart3 className="h-4 w-4" />
@@ -161,7 +161,7 @@ const Navigation = ({ cartCount, onCartOpen }) => {
             {/* Intelligence Dropdown (Analytics + Forecast + Plan Maître) */}
             <div className="relative group">
               <button 
-                className={`flex items-center gap-2 px-3 py-2 text-sm font-medium uppercase tracking-wider rounded-sm transition-all duration-200 hover:bg-white/5 ${['/analytics', '/forecast', '/plan-maitre'].includes(location.pathname) ? 'text-[#F5A623] bg-[#F5A623]/10' : 'text-gray-400 hover:text-white'}`}
+                className={`flex items-center gap-2 px-3 py-2 text-sm font-medium uppercase tracking-wider rounded-sm transition-all duration-200 hover:bg-white/5 ${['/analytics', '/forecast', '/plan-maitre'].includes(location.pathname) ? 'text-[#F5A623] bg-[#F5A623]/10' : 'text-gray-300 hover:text-white'}`}
                 data-testid="nav-intelligence"
               >
                 <Brain className="h-4 w-4" />
@@ -171,21 +171,21 @@ const Navigation = ({ cartCount, onCartOpen }) => {
               <div className="absolute top-full left-0 mt-1 min-w-[220px] bg-black/95 backdrop-blur-xl border border-white/10 rounded-md shadow-xl py-1 z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
                 {/* V5-ULTIME: Analytics réactivé */}
                 <Link to="/analytics" className="flex items-start gap-3 px-4 py-2 hover:bg-white/5 group/item">
-                  <TrendingUp className="h-4 w-4 mt-0.5 text-gray-400 group-hover/item:text-[#F5A623]" />
+                  <TrendingUp className="h-4 w-4 mt-0.5 text-gray-300 group-hover/item:text-[#F5A623]" />
                   <div>
                     <div className="text-sm font-medium text-white group-hover/item:text-[#F5A623]">{t('common_analytics')}</div>
                     <div className="text-xs text-gray-500">{t('common_stats_charts')}</div>
                   </div>
                 </Link>
                 <Link to="/forecast" className="flex items-start gap-3 px-4 py-2 hover:bg-white/5 group/item">
-                  <Target className="h-4 w-4 mt-0.5 text-gray-400 group-hover/item:text-[#F5A623]" />
+                  <Target className="h-4 w-4 mt-0.5 text-gray-300 group-hover/item:text-[#F5A623]" />
                   <div>
                     <div className="text-sm font-medium text-white group-hover/item:text-[#F5A623]">{t('common_forecast')}</div>
                     <div className="text-xs text-gray-500">{t('common_weather_wildlife')}</div>
                   </div>
                 </Link>
                 <Link to="/plan-maitre" className="flex items-start gap-3 px-4 py-2 hover:bg-white/5 group/item">
-                  <Radar className="h-4 w-4 mt-0.5 text-gray-400 group-hover/item:text-[#F5A623]" />
+                  <Radar className="h-4 w-4 mt-0.5 text-gray-300 group-hover/item:text-[#F5A623]" />
                   <div>
                     <div className="text-sm font-medium text-white group-hover/item:text-[#F5A623]">{t('common_plan_master')}</div>
                     <div className="text-xs text-gray-500">{t('common_full_strategy')}</div>
@@ -197,7 +197,7 @@ const Navigation = ({ cartCount, onCartOpen }) => {
             {/* Carte & Territoire Dropdown */}
             <div className="relative group">
               <button 
-                className={`flex items-center gap-2 px-3 py-2 text-sm font-medium uppercase tracking-wider rounded-sm transition-all duration-200 hover:bg-white/5 ${['/map', '/territoire'].includes(location.pathname) ? 'text-[#F5A623] bg-[#F5A623]/10' : 'text-gray-400 hover:text-white'}`}
+                className={`flex items-center gap-2 px-3 py-2 text-sm font-medium uppercase tracking-wider rounded-sm transition-all duration-200 hover:bg-white/5 ${['/map', '/territoire'].includes(location.pathname) ? 'text-[#F5A623] bg-[#F5A623]/10' : 'text-gray-300 hover:text-white'}`}
                 data-testid="nav-carte"
               >
                 <Map className="h-4 w-4" />
@@ -206,14 +206,14 @@ const Navigation = ({ cartCount, onCartOpen }) => {
               </button>
               <div className="absolute top-full left-0 mt-1 min-w-[220px] bg-black/95 backdrop-blur-xl border border-white/10 rounded-md shadow-xl py-1 z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
                 <Link to="/map" className="flex items-start gap-3 px-4 py-2 hover:bg-white/5 group/item">
-                  <Globe className="h-4 w-4 mt-0.5 text-gray-400 group-hover/item:text-[#F5A623]" />
+                  <Globe className="h-4 w-4 mt-0.5 text-gray-300 group-hover/item:text-[#F5A623]" />
                   <div>
                     <div className="text-sm font-medium text-white group-hover/item:text-[#F5A623]">{t('common_interactive_map')}</div>
                     <div className="text-xs text-gray-500">{t('common_gps_waypoints')}</div>
                   </div>
                 </Link>
                 <Link to="/territoire" className="flex items-start gap-3 px-4 py-2 hover:bg-white/5 group/item">
-                  <Crosshair className="h-4 w-4 mt-0.5 text-gray-400 group-hover/item:text-[#F5A623]" />
+                  <Crosshair className="h-4 w-4 mt-0.5 text-gray-300 group-hover/item:text-[#F5A623]" />
                   <div>
                     <div className="text-sm font-medium text-white group-hover/item:text-[#F5A623]">{t('common_my_territory')}</div>
                     <div className="text-xs text-gray-500">{t('common_bionic_analysis')}</div>
@@ -225,7 +225,7 @@ const Navigation = ({ cartCount, onCartOpen }) => {
             {/* Permis de chasse - Module Stratégique Indépendant */}
             <Link 
               to="/permis-chasse" 
-              className={`flex items-center gap-2 px-3 py-2 text-sm font-medium uppercase tracking-wider rounded-sm transition-all duration-200 hover:bg-white/5 ${isActive('/permis-chasse') ? 'text-[#F5A623] bg-[#F5A623]/10' : 'text-gray-400 hover:text-white'}`}
+              className={`flex items-center gap-2 px-3 py-2 text-sm font-medium uppercase tracking-wider rounded-sm transition-all duration-200 hover:bg-white/5 ${isActive('/permis-chasse') ? 'text-[#F5A623] bg-[#F5A623]/10' : 'text-gray-300 hover:text-white'}`}
               data-testid="nav-permis-chasse"
             >
               <Shield className="h-4 w-4" />
@@ -235,7 +235,7 @@ const Navigation = ({ cartCount, onCartOpen }) => {
             {/* Sorties */}
             <Link 
               to="/trips" 
-              className={`flex items-center gap-2 px-3 py-2 text-sm font-medium uppercase tracking-wider rounded-sm transition-all duration-200 hover:bg-white/5 ${isActive('/trips') ? 'text-[#F5A623] bg-[#F5A623]/10' : 'text-gray-400 hover:text-white'}`}
+              className={`flex items-center gap-2 px-3 py-2 text-sm font-medium uppercase tracking-wider rounded-sm transition-all duration-200 hover:bg-white/5 ${isActive('/trips') ? 'text-[#F5A623] bg-[#F5A623]/10' : 'text-gray-300 hover:text-white'}`}
               data-testid="nav-trips"
             >
               <RouteIcon className="h-4 w-4" />
@@ -245,7 +245,7 @@ const Navigation = ({ cartCount, onCartOpen }) => {
             {/* Analysez */}
             <Link 
               to="/analyze" 
-              className={`flex items-center gap-2 px-3 py-2 text-sm font-medium uppercase tracking-wider rounded-sm transition-all duration-200 hover:bg-white/5 ${isActive('/analyze') ? 'text-[#F5A623] bg-[#F5A623]/10' : 'text-gray-400 hover:text-white'}`}
+              className={`flex items-center gap-2 px-3 py-2 text-sm font-medium uppercase tracking-wider rounded-sm transition-all duration-200 hover:bg-white/5 ${isActive('/analyze') ? 'text-[#F5A623] bg-[#F5A623]/10' : 'text-gray-300 hover:text-white'}`}
               data-testid="nav-analyze"
             >
               <FlaskConical className="h-4 w-4" />
@@ -255,7 +255,7 @@ const Navigation = ({ cartCount, onCartOpen }) => {
             {/* Magasin */}
             <Link 
               to="/shop" 
-              className={`flex items-center gap-2 px-3 py-2 text-sm font-medium uppercase tracking-wider rounded-sm transition-all duration-200 hover:bg-white/5 ${isActive('/shop') ? 'text-[#F5A623] bg-[#F5A623]/10' : 'text-gray-400 hover:text-white'}`}
+              className={`flex items-center gap-2 px-3 py-2 text-sm font-medium uppercase tracking-wider rounded-sm transition-all duration-200 hover:bg-white/5 ${isActive('/shop') ? 'text-[#F5A623] bg-[#F5A623]/10' : 'text-gray-300 hover:text-white'}`}
               data-testid="nav-shop"
             >
               <Store className="h-4 w-4" />
@@ -296,12 +296,12 @@ const Navigation = ({ cartCount, onCartOpen }) => {
             
             {/* Admin Dropdown - Hidden on mobile */}
             <div className="hidden lg:block relative group">
-              <Button variant="ghost" size="sm" className="text-gray-400 hover:text-[#F5A623] hover:bg-white/5" data-testid="admin-link">
+              <Button variant="ghost" size="sm" className="text-gray-300 hover:text-[#F5A623] hover:bg-white/5" data-testid="admin-link">
                 <Lock className="h-4 w-4" />
               </Button>
               <div className="absolute top-full right-0 mt-1 min-w-[200px] bg-black/95 backdrop-blur-xl border border-white/10 rounded-md shadow-xl py-1 z-50 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200">
                 <Link to="/admin" className="flex items-center gap-3 px-4 py-2 hover:bg-white/5 group/item">
-                  <Shield className="h-4 w-4 text-gray-400 group-hover/item:text-[#F5A623]" />
+                  <Shield className="h-4 w-4 text-gray-300 group-hover/item:text-[#F5A623]" />
                   <div>
                     <div className="text-sm font-medium text-white group-hover/item:text-[#F5A623]">Administration</div>
                     <div className="text-xs text-gray-500">Gestion classique</div>
@@ -339,7 +339,7 @@ const Navigation = ({ cartCount, onCartOpen }) => {
             
             {/* Mobile Menu Button */}
             <button 
-              className="lg:hidden p-2 text-gray-400 hover:text-white hover:bg-white/5 rounded-sm transition-colors" 
+              className="lg:hidden p-2 text-gray-300 hover:text-white hover:bg-white/5 rounded-sm transition-colors" 
               onClick={() => setIsOpen(!isOpen)}
               data-testid="mobile-menu-btn"
             >
@@ -353,38 +353,38 @@ const Navigation = ({ cartCount, onCartOpen }) => {
       {isOpen && (
         <div className="lg:hidden border-t border-white/10 bg-black/95 backdrop-blur-xl">
           <div className="px-4 py-4 space-y-2">
-            <Link to="/" onClick={() => setIsOpen(false)} className="flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-sm hover:bg-white/5 text-gray-400 hover:text-white">
+            <Link to="/" onClick={() => setIsOpen(false)} className="flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-sm hover:bg-white/5 text-gray-300 hover:text-white">
               <Home className="h-4 w-4" /> {t('common_home')}
             </Link>
-            <Link to="/dashboard" onClick={() => setIsOpen(false)} className="flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-sm hover:bg-white/5 text-gray-400 hover:text-white">
+            <Link to="/dashboard" onClick={() => setIsOpen(false)} className="flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-sm hover:bg-white/5 text-gray-300 hover:text-white">
               <BarChart3 className="h-4 w-4" /> {t('common_dashboard')}
             </Link>
             {/* V5-ULTIME: Analytics réactivé */}
-            <Link to="/analytics" onClick={() => setIsOpen(false)} className="flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-sm hover:bg-white/5 text-gray-400 hover:text-white">
+            <Link to="/analytics" onClick={() => setIsOpen(false)} className="flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-sm hover:bg-white/5 text-gray-300 hover:text-white">
               <TrendingUp className="h-4 w-4" /> {t('common_analytics')}
             </Link>
-            <Link to="/forecast" onClick={() => setIsOpen(false)} className="flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-sm hover:bg-white/5 text-gray-400 hover:text-white">
+            <Link to="/forecast" onClick={() => setIsOpen(false)} className="flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-sm hover:bg-white/5 text-gray-300 hover:text-white">
               <Target className="h-4 w-4" /> {t('common_forecast')}
             </Link>
-            <Link to="/plan-maitre" onClick={() => setIsOpen(false)} className="flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-sm hover:bg-white/5 text-gray-400 hover:text-white">
+            <Link to="/plan-maitre" onClick={() => setIsOpen(false)} className="flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-sm hover:bg-white/5 text-gray-300 hover:text-white">
               <Radar className="h-4 w-4" /> {t('common_plan_master')}
             </Link>
-            <Link to="/map" onClick={() => setIsOpen(false)} className="flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-sm hover:bg-white/5 text-gray-400 hover:text-white">
+            <Link to="/map" onClick={() => setIsOpen(false)} className="flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-sm hover:bg-white/5 text-gray-300 hover:text-white">
               <Globe className="h-4 w-4" /> {t('common_map')}
             </Link>
-            <Link to="/territoire" onClick={() => setIsOpen(false)} className="flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-sm hover:bg-white/5 text-gray-400 hover:text-white">
+            <Link to="/territoire" onClick={() => setIsOpen(false)} className="flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-sm hover:bg-white/5 text-gray-300 hover:text-white">
               <Crosshair className="h-4 w-4" /> {t('nav_territory')}
             </Link>
             <Link to="/permis-chasse" onClick={() => setIsOpen(false)} className="flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-sm hover:bg-white/5 text-[#F5A623]" data-testid="mobile-nav-permis-chasse">
               <Shield className="h-4 w-4" /> Permis de chasse
             </Link>
-            <Link to="/trips" onClick={() => setIsOpen(false)} className="flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-sm hover:bg-white/5 text-gray-400 hover:text-white">
+            <Link to="/trips" onClick={() => setIsOpen(false)} className="flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-sm hover:bg-white/5 text-gray-300 hover:text-white">
               <RouteIcon className="h-4 w-4" /> {t('common_trips')}
             </Link>
-            <Link to="/analyze" onClick={() => setIsOpen(false)} className="flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-sm hover:bg-white/5 text-gray-400 hover:text-white">
+            <Link to="/analyze" onClick={() => setIsOpen(false)} className="flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-sm hover:bg-white/5 text-gray-300 hover:text-white">
               <FlaskConical className="h-4 w-4" /> {t('nav_analyze')}
             </Link>
-            <Link to="/shop" onClick={() => setIsOpen(false)} className="flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-sm hover:bg-white/5 text-gray-400 hover:text-white">
+            <Link to="/shop" onClick={() => setIsOpen(false)} className="flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-sm hover:bg-white/5 text-gray-300 hover:text-white">
               <Store className="h-4 w-4" /> {t('nav_shop')}
             </Link>
             {isBusinessOrAdmin && (
@@ -397,7 +397,7 @@ const Navigation = ({ cartCount, onCartOpen }) => {
             <div className="border-t border-white/10 my-2" />
             
             {/* Admin links on mobile */}
-            <Link to="/admin" onClick={() => setIsOpen(false)} className="flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-sm hover:bg-white/5 text-gray-400 hover:text-white">
+            <Link to="/admin" onClick={() => setIsOpen(false)} className="flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-sm hover:bg-white/5 text-gray-300 hover:text-white">
               <Lock className="h-4 w-4" /> Administration
             </Link>
             <Link to="/admin-premium" onClick={() => setIsOpen(false)} className="flex items-center gap-3 px-3 py-2 text-sm font-medium rounded-sm hover:bg-white/5 text-[#F5A623]">
@@ -429,7 +429,7 @@ const Footer = () => {
   return (
     <footer className="bg-black py-8 border-t border-border">
       <div className="max-w-7xl mx-auto px-4 text-center">
-        <p className="text-gray-400">© 2024 HUNTIQ - Chasse BIONIC™</p>
+        <p className="text-gray-300">© 2024 HUNTIQ - Chasse BIONIC™</p>
       </div>
     </footer>
   );
@@ -531,7 +531,7 @@ const FeaturesSection = () => {
                 <feature.icon className="h-8 w-8 text-[#f5a623]" />
               </div>
               <h3 className="text-xl font-semibold text-white mb-2">{t(feature.titleKey)}</h3>
-              <p className="text-gray-400">{t(feature.descKey)}</p>
+              <p className="text-gray-300">{t(feature.descKey)}</p>
             </div>
           ))}
         </div>
@@ -554,7 +554,7 @@ const CartSheet = ({ isOpen, onOpenChange, cartItems, onUpdateQuantity, onRemove
         </SheetHeader>
         <div className="mt-6 space-y-4 flex-1 overflow-auto">
           {cartItems.length === 0 ? (
-            <p className="text-gray-400 text-center py-8">{t('cart_empty')}</p>
+            <p className="text-gray-300 text-center py-8">{t('cart_empty')}</p>
           ) : (
             cartItems.map((item) => (
               <div key={item.id} className="flex items-center gap-4 p-4 bg-background rounded-lg">
@@ -598,7 +598,7 @@ const AnalyzePage = ({ products }) => (
   <main className="pt-20 min-h-screen bg-background">
     <div className="max-w-7xl mx-auto px-4 py-8">
       <h1 className="golden-text text-4xl font-bold mb-4">Analysez</h1>
-      <p className="text-gray-400 mb-8">Analysez en profondeur chaque attractant avec nos critères scientifiques.</p>
+      <p className="text-gray-300 mb-8">Analysez en profondeur chaque attractant avec nos critères scientifiques.</p>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {products.map((product) => (
           <Card key={product.id} className="bg-card border-border p-6">
@@ -756,7 +756,7 @@ const FormationsPage = () => {
         <Button 
           variant="ghost" 
           onClick={() => navigate('/')}
-          className="mb-4 text-gray-400 hover:text-white hover:bg-gray-800/50"
+          className="mb-4 text-gray-300 hover:text-white hover:bg-gray-800/50"
           data-testid="back-button-formations"
         >
           <ArrowLeft className="h-4 w-4 mr-2" />
@@ -770,7 +770,7 @@ const FormationsPage = () => {
               <GraduationCap className="h-8 w-8 text-[#f5a623]" />
               Centre de Formations
             </h1>
-            <p className="text-gray-400">FédéCP & BIONIC™ - Devenez un chasseur expert</p>
+            <p className="text-gray-300">FédéCP & BIONIC™ - Devenez un chasseur expert</p>
           </div>
         </div>
 
@@ -782,7 +782,7 @@ const FormationsPage = () => {
             </div>
             <div>
               <h2 className="text-xl font-bold text-white">Formations FédéCP officielles</h2>
-              <p className="text-gray-400 text-sm">Fédération québécoise des chasseurs et pêcheurs</p>
+              <p className="text-gray-300 text-sm">Fédération québécoise des chasseurs et pêcheurs</p>
             </div>
             <a 
               href="https://fedecp.com" 
@@ -802,7 +802,7 @@ const FormationsPage = () => {
                 <CardHeader className="pb-2">
                   <div className="flex items-start justify-between">
                     <formation.Icon className="h-8 w-8 text-blue-400" />
-                    <Badge className={formation.type === 'Obligatoire' || formation.type.includes('Obligatoire') ? 'bg-red-500/20 text-red-400' : 'bg-gray-500/20 text-gray-400'}>
+                    <Badge className={formation.type === 'Obligatoire' || formation.type.includes('Obligatoire') ? 'bg-red-500/20 text-red-400' : 'bg-gray-500/20 text-gray-300'}>
                       {formation.type}
                     </Badge>
                   </div>
@@ -810,11 +810,11 @@ const FormationsPage = () => {
                   <CardDescription className="text-xs">{formation.description}</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="flex items-center gap-2 text-xs text-gray-400 mb-2">
+                  <div className="flex items-center gap-2 text-xs text-gray-300 mb-2">
                     <Clock className="h-3 w-3" />
                     <span>{formation.duration}</span>
                   </div>
-                  <div className="flex items-center gap-2 text-xs text-gray-400 mb-3">
+                  <div className="flex items-center gap-2 text-xs text-gray-300 mb-3">
                     <DollarSign className="h-3 w-3" />
                     <span>{formation.price}</span>
                   </div>
@@ -848,7 +848,7 @@ const FormationsPage = () => {
             </div>
             <div>
               <h2 className="text-xl font-bold text-white">Formations BIONIC™</h2>
-              <p className="text-gray-400 text-sm">Maîtrisez les outils d'analyse de territoire</p>
+              <p className="text-gray-300 text-sm">Maîtrisez les outils d'analyse de territoire</p>
             </div>
             <Badge className="ml-auto bg-[#f5a623]/20 text-[#f5a623]">Exclusif</Badge>
           </div>
@@ -865,7 +865,7 @@ const FormationsPage = () => {
                   <CardDescription className="text-xs">{formation.description}</CardDescription>
                 </CardHeader>
                 <CardContent>
-                  <div className="flex items-center gap-2 text-xs text-gray-400 mb-3">
+                  <div className="flex items-center gap-2 text-xs text-gray-300 mb-3">
                     <Clock className="h-3 w-3" />
                     <span>{formation.duration}</span>
                   </div>
@@ -894,7 +894,7 @@ const FormationsPage = () => {
             </div>
             <div>
               <h2 className="text-xl font-bold text-white">Types de Territoires au Québec</h2>
-              <p className="text-gray-400 text-sm">Connaissez les différentes zones de chasse</p>
+              <p className="text-gray-300 text-sm">Connaissez les différentes zones de chasse</p>
             </div>
           </div>
 
