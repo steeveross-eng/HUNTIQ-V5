@@ -51,6 +51,57 @@
 | 2026-02-20 | **5.18.0** | **PHASE A BLINDEE - 3 audits stabilisation structurelle (rupture points, modules sensibles, zones isolation)** |
 | 2026-02-20 | **5.19.0** | **PHASE B BLOC 1 - Optimisation images (4.7MB→2.0MB) + index.html (defer, preconnect)** |
 | 2026-02-20 | **6.0.0** | **PHASE B BLOC 2 EXECUTE - React.lazy() 40+ composants, 71 chunks code-splitting, preload LCP image** |
+| 2026-02-20 | **6.1.0** | **PHASE B BLOC 3 (PARTIEL) - Fonts non-blocking, 43 duplications supprimées, Leaflet harmonisé** |
+
+
+---
+
+## PHASE B BLOC 3 — EXECUTION PARTIELLE (v6.1.0)
+
+### Resume Executif
+- **Directive:** BLOC 3 EXECUTION PARTIELLE — MODE OPTIMISATION SECURISEE
+- **Status:** EXECUTE
+- **Risque:** CONTROLE (0% zones sensibles)
+
+### Optimisations Effectuees
+
+#### 1. Fonts Google Non-Blocking
+- Suppression @import bloquant dans App.css
+- Ajout preload + media="print" onload dans index.html
+- Reduction weights: 12 → 8
+
+#### 2. Suppression Duplications
+- **43 fichiers supprimes** (duplications identiques)
+- Modules nettoyes: admin, affiliate, territory, analytics, marketplace, etc.
+- Impact: -1.5MB code source
+
+#### 3. Harmonisation Leaflet
+- Toutes les references mises a jour: 1.7.1 → 1.9.4
+
+### Fichiers Modifies
+- `/app/frontend/src/App.css` — Suppression @import fonts
+- `/app/frontend/public/index.html` — Preload fonts non-blocking
+- `/app/frontend/src/components/territoire/MonTerritoireBionic.jsx` — Leaflet 1.9.4
+- `/app/frontend/src/pages/MonTerritoireBionicPage.jsx` — Leaflet 1.9.4
+- 43 fichiers supprimes (duplications)
+
+### Conformite VERROUILLAGE MAITRE
+| Zone | Statut |
+|------|--------|
+| /core/engine/** | INTACT |
+| /core/contexts/** | INTACT |
+| /core/bionic/** | INTACT |
+| /core/maps/TerritoryMap/internal/** | INTACT |
+
+### Impact Estime
+| Metrique | Amelioration |
+|----------|--------------|
+| LCP | -130ms (fonts non-blocking) |
+| Build time | -3.6s |
+| Code source | -43 fichiers |
+
+### Rapports Generes
+- `/app/architecture/optimisation/bloc3_execution_report.md`
 
 
 ---
