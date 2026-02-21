@@ -1,10 +1,11 @@
 """
-BIONIC ENGINE - P0 Unit Tests
+BIONIC ENGINE - P0-BETA2 Unit Tests
 PHASE G - G-QA Compliance
 
-Tests unitaires pour les modules P0:
+Tests unitaires pour les modules P0-BETA2 avec 12 facteurs comportementaux:
 - predictive_territorial.py
 - behavioral_models.py
+- advanced_factors.py
 
 Conformite: Plan de Tests G-QA
 """
@@ -37,6 +38,21 @@ from modules.bionic_engine_p0.contracts.data_contracts import (
     score_to_rating,
     score_to_activity_level,
     normalize_weights
+)
+from modules.bionic_engine_p0.contracts.advanced_factors import (
+    PredatorRiskModel,
+    StressModel,
+    SocialHierarchyModel,
+    InterspeciesCompetitionModel,
+    WeakSignalsModel,
+    HormonalCycleModel,
+    DigestiveCycleModel,
+    TerritorialMemoryModel,
+    AdaptiveBehaviorModel,
+    HumanDisturbanceModel,
+    MineralAvailabilityModel,
+    SnowConditionModel,
+    IntegratedBehavioralFactors
 )
 
 
