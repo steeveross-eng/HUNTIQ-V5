@@ -36,6 +36,13 @@ Ce document constitue l'**INVENTAIRE PREDICTIF TOTAL** requis avant toute implem
 13. [SOURCES EMPIRIQUES & SCIENTIFIQUES](#sources-empiriques--scientifiques)
 14. [MAPPING MODULES P0](#mapping-modules-p0)
 15. [SYNTHESE EXECUTIVE](#synthese-executive)
+16. [COMPLEMENTS CRITIQUES P0 (v1.1.0)](#complements-critiques-p0-version-110)
+    - [BLOC 1: Agregats Cameras Avances](#bloc-critique-1-agregats-cameras-avances)
+    - [BLOC 2: Microclimats et Zones Thermiques](#bloc-critique-2-microclimats-et-zones-thermiques)
+    - [BLOC 3: Pression de Chasse](#bloc-critique-3-pression-de-chasse-et-derangement)
+    - [BLOC 4: Cycles Temporels Avances](#bloc-critique-4-cycles-temporels-avances)
+17. [SOURCES EMPIRIQUES & SCIENTIFIQUES - EDITION COMPLETE](#sources-empiriques--scientifiques---edition-complete)
+18. [ANNEXES](#annexes)
 
 ---
 
