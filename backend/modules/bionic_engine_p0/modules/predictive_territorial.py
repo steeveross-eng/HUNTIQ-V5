@@ -57,6 +57,28 @@ logger = logging.getLogger("bionic_engine.predictive_territorial")
 
 
 # =============================================================================
+# EXTENDED OUTPUT MODEL - Score avec 12 facteurs
+# =============================================================================
+
+class ExtendedScoreComponents(ScoreComponents):
+    """Composantes etendues avec les 12 facteurs comportementaux"""
+    # Facteurs comportementaux avances (12 facteurs)
+    predation_factor: float = 0.0
+    thermal_stress_factor: float = 0.0
+    hydric_stress_factor: float = 0.0
+    social_stress_factor: float = 0.0
+    competition_factor: float = 0.0
+    weak_signals_factor: float = 0.0
+    hormonal_factor: float = 0.0
+    digestive_factor: float = 0.0
+    territorial_memory_factor: float = 0.0
+    adaptive_behavior_factor: float = 0.0
+    human_disturbance_factor: float = 0.0
+    mineral_availability_factor: float = 0.0
+    snow_conditions_factor: float = 0.0
+
+
+# =============================================================================
 # CONSTANTS - Constantes conformes a l'Inventaire v1.2
 # =============================================================================
 
