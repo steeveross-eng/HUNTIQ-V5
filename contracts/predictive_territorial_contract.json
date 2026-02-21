@@ -1,23 +1,47 @@
 {
   "$schema": "https://huntiq.ca/schemas/bionic-contract-v1.json",
   "contract_id": "predictive_territorial_v1",
-  "contract_version": "1.0.0",
+  "contract_version": "1.1.0-beta2",
   "module_name": "predictive_territorial",
-  "phase": "P0",
-  "status": "DRAFT",
+  "phase": "P0-BETA2",
+  "status": "ACTIVE",
   "created_at": "2025-12-21",
   "updated_at": "2025-12-21",
   "author": "BIONIC Engine Team",
-  "approved_by": null,
-  "description": "Contrat de donnees et interfaces pour le module Predictive Territorial P0",
+  "approved_by": "COPILOT MAITRE",
+  "description": "Contrat de donnees et interfaces pour le module Predictive Territorial P0-BETA2 avec 12 facteurs comportementaux",
 
   "purpose": {
     "primary": "Calculer un score de probabilite de presence/activite faunique pour une position geographique donnee",
     "secondary": [
       "Identifier les zones optimales de chasse",
       "Generer des recommandations de positionnement",
-      "Alimenter les overlays cartographiques INTELLIGENCE"
+      "Alimenter les overlays cartographiques INTELLIGENCE",
+      "Integrer les 12 facteurs comportementaux avances (BIONIC V5 ULTIME x2)"
     ]
+  },
+
+  "advanced_behavioral_factors": {
+    "version": "P0-BETA2",
+    "description": "12 facteurs comportementaux avances pour BIONIC V5 ULTIME x2",
+    "factors": [
+      {"id": 1, "name": "predation", "description": "PredatorRisk, PredatorCorridors", "weight": 0.020},
+      {"id": 2, "name": "thermal_stress", "description": "Stress thermique", "weight": 0.015},
+      {"id": 3, "name": "hydric_stress", "description": "Stress hydrique", "weight": 0.010},
+      {"id": 4, "name": "social_stress", "description": "Stress social", "weight": 0.010},
+      {"id": 5, "name": "social_hierarchy", "description": "DominanceScore, GroupBehavior", "weight": 0.015},
+      {"id": 6, "name": "competition", "description": "Competition inter-especes", "weight": 0.010},
+      {"id": 7, "name": "weak_signals", "description": "WeakSignals, Anomalies", "weight": 0.010},
+      {"id": 8, "name": "hormonal", "description": "Cycles hormonaux (rut, lactation, bois)", "weight": 0.025},
+      {"id": 9, "name": "digestive", "description": "Cycles digestifs (feeding->bedding)", "weight": 0.015},
+      {"id": 10, "name": "territorial_memory", "description": "AvoidanceMemory, PreferredRoutes", "weight": 0.015},
+      {"id": 11, "name": "adaptive_behavior", "description": "AdaptiveBehavior", "weight": 0.020},
+      {"id": 12, "name": "human_disturbance", "description": "Activite humaine non-chasse", "weight": 0.015},
+      {"id": 13, "name": "mineral", "description": "MineralAvailability, SaltLickAttraction", "weight": 0.010},
+      {"id": 14, "name": "snow", "description": "SnowDepth, CrustRisk, WinterPenalty", "weight": 0.020}
+    ],
+    "total_weight": 0.20,
+    "base_score_weight": 0.80
   },
 
   "inputs": {
