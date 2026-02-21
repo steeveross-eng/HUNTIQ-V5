@@ -299,10 +299,15 @@ class BehavioralModelsService:
         latitude: Optional[float] = None,
         longitude: Optional[float] = None,
         weather_context: Optional[WeatherOverride] = None,
-        include_strategy: bool = True
+        include_strategy: bool = True,
+        snow_depth_cm: float = 0,
+        is_crusted: bool = False,
+        include_advanced_factors: bool = True
     ) -> BehavioralPredictionOutput:
         """
         Prediction comportementale complete.
+        
+        VERSION P0-BETA2: Integration des 12 facteurs comportementaux
         
         Args:
             species: Espece cible
@@ -311,15 +316,27 @@ class BehavioralModelsService:
             longitude: Longitude (optionnel)
             weather_context: Contexte meteo
             include_strategy: Inclure recommandations strategie
+            snow_depth_cm: Profondeur de neige (cm)
+            is_crusted: Presence de croute de glace
+            include_advanced_factors: Inclure les 12 facteurs avances
             
         Returns:
-            BehavioralPredictionOutput complet
+            BehavioralPredictionOutput complet avec 12 facteurs
         """
         # Datetime par defaut
         if datetime_target is None:
             datetime_target = datetime.now(timezone.utc)
         
         warnings = []
+        hour = datetime_target.hour
+        month = datetime_target.month
+        weekday = datetime_target.weekday()
+        is_weekend = weekday >= 5
+        species_str = species.value
+        
+        # Latitude par defaut si non fournie
+        if latitude is None:
+            latitude = 47.5  # Centre Quebec
         
         # Verification hibernation ours
         if species == Species.BEAR:
@@ -345,7 +362,9 @@ class BehavioralModelsService:
                     warnings=["BEAR_HIBERNATION_PERIOD"],
                     metadata={
                         "species": species.value,
-                        "hibernation": True
+                        "hibernation": True,
+                        "advanced_factors_enabled": False,
+                        "version": "P0-beta2"
                     }
                 )
         
@@ -358,10 +377,201 @@ class BehavioralModelsService:
         # Contexte saisonnier
         seasonal_context = self._get_seasonal_context(species, datetime_target)
         
+        # =================================================================
+        # P0-BETA2: INTEGRATION DES 12 FACTEURS COMPORTEMENTAUX
+        # =================================================================
+        advanced_factors = {}
+        behavioral_modifiers = {}
+        temperature = weather_context.temperature if weather_context and weather_context.temperature else 10
+        
+        if include_advanced_factors:
+            # 1. PREDATION
+            predation = PredatorRiskModel.calculate_predation_risk(
+                species_str, latitude, hour, month
+            )
+            advanced_factors["predation"] = predation
+            behavioral_modifiers["vigilance_increase"] = predation["risk_score"] / 100
+            
+            # 2. STRESS THERMIQUE
+            thermal_stress = StressModel.calculate_thermal_stress(species_str, temperature)
+            advanced_factors["thermal_stress"] = thermal_stress
+            behavioral_modifiers["thermal_response"] = thermal_stress["behavioral_response"]
+            
+            # 3. STRESS HYDRIQUE
+            estimated_water_distance = 300 if latitude < 50 else 500
+            hydric_stress = StressModel.calculate_hydric_stress(
+                species_str, estimated_water_distance, temperature
+            )
+            advanced_factors["hydric_stress"] = hydric_stress
+            behavioral_modifiers["water_seeking"] = hydric_stress["water_seeking"]
+            
+            # 4. STRESS SOCIAL
+            social_stress = StressModel.calculate_social_stress(species_str, month, group_size=3)
+            advanced_factors["social_stress"] = social_stress
+            
+            # 5. HIERARCHIE SOCIALE
+            dominance = SocialHierarchyModel.calculate_dominance_context(
+                species_str, month, is_male=True
+            )
+            advanced_factors["social_hierarchy"] = dominance
+            behavioral_modifiers["movement_pattern"] = dominance["movement_pattern"]
+            
+            # 6. COMPETITION INTER-ESPECES
+            region_species = ["deer", "bear"] if latitude < 50 else ["moose", "caribou"]
+            competition = InterspeciesCompetitionModel.calculate_competition(
+                species_str, region_species
+            )
+            advanced_factors["competition"] = competition
+            
+            # 7. SIGNAUX FAIBLES
+            weak_signals = WeakSignalsModel.detect_anomalies(
+                current_score=activity.activity_score,
+                historical_avg=65,
+                weather_rapid_change=abs(temperature) > 20,
+                unusual_activity=False
+            )
+            advanced_factors["weak_signals"] = weak_signals
+            
+            # 8. CYCLES HORMONAUX
+            hormonal = HormonalCycleModel.get_hormonal_phase(species_str, month)
+            advanced_factors["hormonal"] = hormonal
+            behavioral_modifiers["hormonal_activity_modifier"] = hormonal["activity_modifier"]
+            behavioral_modifiers["behavioral_focus"] = hormonal["behavioral_focus"]
+            
+            # 9. CYCLES DIGESTIFS
+            digestive = DigestiveCycleModel.get_digestive_phase(species_str, hour)
+            advanced_factors["digestive"] = digestive
+            behavioral_modifiers["digestive_phase"] = digestive["phase"]
+            behavioral_modifiers["movement_likelihood"] = digestive["movement_likelihood"]
+            
+            # 10. MEMOIRE TERRITORIALE
+            territorial_memory = TerritorialMemoryModel.calculate_avoidance_factor(
+                species_str, days_since_disturbance=7, disturbance_intensity=0.5
+            )
+            advanced_factors["territorial_memory"] = territorial_memory
+            behavioral_modifiers["route_avoidance"] = territorial_memory["preferred_route_shift"]
+            
+            # 11. APPRENTISSAGE COMPORTEMENTAL
+            adaptive = AdaptiveBehaviorModel.calculate_adaptation(
+                species_str,
+                hunting_pressure_history=[30, 40, 35, 50, 45],
+                success_rate_hunters=0.15
+            )
+            advanced_factors["adaptive_behavior"] = adaptive
+            behavioral_modifiers["nocturnal_shift"] = adaptive["nocturnal_shift"]
+            behavioral_modifiers["behavioral_shift"] = adaptive["behavioral_shift"]
+            
+            # 12. ACTIVITE HUMAINE NON-CHASSE
+            disturbances = ["hiking"] if is_weekend else []
+            human_disturbance = HumanDisturbanceModel.calculate_disturbance(
+                disturbances,
+                is_weekend=is_weekend,
+                is_summer=month in [6, 7, 8]
+            )
+            advanced_factors["human_disturbance"] = human_disturbance
+            behavioral_modifiers["human_avoidance"] = human_disturbance["behavioral_response"]
+            
+            # 13. DISPONIBILITE MINERALE
+            mineral = MineralAvailabilityModel.calculate_mineral_attraction(
+                species_str, month, salt_lick_distance_m=800
+            )
+            advanced_factors["mineral"] = mineral
+            behavioral_modifiers["mineral_seeking"] = mineral["seeking_behavior"]
+            
+            # 14. CONDITIONS DE NEIGE
+            snow = SnowConditionModel.calculate_snow_impact(
+                species_str, snow_depth_cm, is_crusted, temperature
+            )
+            advanced_factors["snow"] = snow
+            behavioral_modifiers["yarding"] = snow["yarding_likelihood"]
+            behavioral_modifiers["energy_expenditure"] = snow["energy_expenditure_increase"]
+            
+            # =================================================================
+            # AJUSTEMENT DU SCORE D'ACTIVITE AVEC LES 12 FACTEURS
+            # =================================================================
+            adjusted_score = activity.activity_score
+            
+            # Appliquer les modificateurs
+            adjusted_score *= hormonal["activity_modifier"]
+            
+            # Reduction si conditions difficiles
+            if snow["winter_penalty_score"] > 30:
+                adjusted_score *= (1 - snow["winter_penalty_score"] / 200)
+            
+            # Reduction si stress thermique
+            if thermal_stress["stress_score"] > 30:
+                adjusted_score *= 0.85
+            
+            # Augmentation si alimentation active et mineraux
+            if digestive["phase"] == "active_feeding" and mineral["seeking_behavior"]:
+                adjusted_score *= 1.1
+            
+            # Shift nocturne - reduction diurne
+            if adaptive["nocturnal_shift"] > 0.2 and 8 <= hour <= 16:
+                adjusted_score *= (1 - adaptive["nocturnal_shift"])
+            
+            adjusted_score = max(0, min(100, adjusted_score))
+            
+            # Mettre a jour l'activite avec le score ajuste
+            activity = ActivityPrediction(
+                current_behavior=activity.current_behavior,
+                behavior_confidence=activity.behavior_confidence,
+                activity_level=score_to_activity_level(adjusted_score),
+                activity_score=round(adjusted_score, 1),
+                behavior_probabilities=activity.behavior_probabilities
+            )
+            
+            # Ajouter warnings des facteurs avances
+            if predation["risk_score"] > 50:
+                warnings.append("HIGH_PREDATION_RISK")
+            if thermal_stress["stress_score"] > 40:
+                warnings.append(f"THERMAL_STRESS_{thermal_stress['stress_type'].upper()}")
+            if snow["winter_penalty_score"] > 50:
+                warnings.append("DIFFICULT_SNOW_CONDITIONS")
+            if adaptive["behavioral_shift"] == "highly_nocturnal":
+                warnings.append("NOCTURNAL_SHIFT_DETECTED")
+            if hormonal["phase"] in ["rut_peak", "pre_rut"]:
+                warnings.append(f"HORMONAL_PHASE_{hormonal['phase'].upper()}")
+        
         # Strategies
         strategies = []
         if include_strategy:
             strategies = self._generate_strategies(species, datetime_target, seasonal_context)
+            
+            # Ajouter strategies basees sur les facteurs avances
+            if include_advanced_factors:
+                advanced_strategies = self._generate_advanced_strategies(
+                    advanced_factors, species, behavioral_modifiers
+                )
+                strategies.extend(advanced_strategies)
+        
+        # Construire metadata avec les 12 facteurs
+        metadata = {
+            "species": species.value,
+            "datetime": datetime_target.isoformat(),
+            "latitude": latitude,
+            "longitude": longitude,
+            "has_location": latitude is not None,
+            "has_weather": weather_context is not None,
+            "advanced_factors_enabled": include_advanced_factors,
+            "version": "P0-beta2"
+        }
+        
+        if include_advanced_factors:
+            metadata["advanced_factors"] = advanced_factors
+            metadata["behavioral_modifiers"] = behavioral_modifiers
+            
+            # Identifier les facteurs dominants
+            dominant_factors = []
+            if predation["risk_score"] > 50:
+                dominant_factors.append("high_predation")
+            if hormonal["activity_modifier"] > 1.2:
+                dominant_factors.append("hormonal_peak")
+            if snow["winter_penalty_score"] > 40:
+                dominant_factors.append("snow_impact")
+            if adaptive["nocturnal_shift"] > 0.25:
+                dominant_factors.append("nocturnal_adaptation")
+            metadata["dominant_factors"] = dominant_factors if dominant_factors else ["balanced"]
         
         return BehavioralPredictionOutput(
             success=True,
@@ -370,14 +580,7 @@ class BehavioralModelsService:
             seasonal_context=seasonal_context,
             strategies=strategies,
             warnings=warnings,
-            metadata={
-                "species": species.value,
-                "datetime": datetime_target.isoformat(),
-                "latitude": latitude,
-                "longitude": longitude,
-                "has_location": latitude is not None,
-                "has_weather": weather_context is not None
-            }
+            metadata=metadata
         )
     
     # =========================================================================
