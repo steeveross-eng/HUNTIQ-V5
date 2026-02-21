@@ -120,6 +120,7 @@ class TerritorialScoreInput(BaseModel):
     Input pour calcul de score territorial.
     
     Conforme a: predictive_territorial_contract.json
+    P0-BETA2: Support des 12 facteurs comportementaux avances
     """
     model_config = ConfigDict(populate_by_name=True)
     
@@ -132,6 +133,10 @@ class TerritorialScoreInput(BaseModel):
     historical_mode: bool = Field(default=False)
     include_recommendations: bool = Field(default=True)
     include_zones: bool = Field(default=False)
+    # P0-BETA2: 12 facteurs comportementaux avances
+    include_advanced_factors: bool = Field(default=True, description="Inclure les 12 facteurs comportementaux avances")
+    snow_depth_cm: float = Field(default=0, ge=0, le=300, description="Profondeur de neige en cm")
+    is_crusted: bool = Field(default=False, description="Presence de croute de glace sur la neige")
 
 
 class BehavioralPredictionInput(BaseModel):
@@ -139,6 +144,7 @@ class BehavioralPredictionInput(BaseModel):
     Input pour prediction comportementale.
     
     Conforme a: behavioral_models_contract.json
+    P0-BETA2: Support des 12 facteurs comportementaux avances
     """
     model_config = ConfigDict(populate_by_name=True)
     
@@ -151,6 +157,10 @@ class BehavioralPredictionInput(BaseModel):
     canopy_cover: Optional[float] = Field(None, ge=0, le=100)
     include_zones: bool = Field(default=False)
     include_strategy: bool = Field(default=True)
+    # P0-BETA2: 12 facteurs comportementaux avances
+    include_advanced_factors: bool = Field(default=True, description="Inclure les 12 facteurs comportementaux avances")
+    snow_depth_cm: float = Field(default=0, ge=0, le=300, description="Profondeur de neige en cm")
+    is_crusted: bool = Field(default=False, description="Presence de croute de glace sur la neige")
 
 
 # =============================================================================
