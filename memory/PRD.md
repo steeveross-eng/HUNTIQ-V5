@@ -62,11 +62,60 @@
 | 2026-02-20 | **13.0.0** | **BRANCHE 2 (98%→99%) - Critical CSS Inlining, Code Splitting avancé, Compression Gzip, HTTP/2 Resource Hints, Réduction JS -60%, Route Preloader** |
 | 2026-02-20 | **14.0.0** | **BRANCHE 3 (99%→99.9%) - Service Worker V2, Edge Caching CDN, Image CDN, HTTP/3 QUIC, SSR/Pre-rendering config** |
 | 2025-12-21 | **15.0.0** | **PHASE G - INVENTAIRE PREDICTIF TOTAL - 12 familles de donnees, mapping P0, sources scientifiques** |
+| 2025-12-21 | **15.1.0** | **PHASE G - COMPLEMENTS CRITIQUES P0 - 4 blocs detailles + Sources CA/USA completes (Top 10)** |
 
 
 ---
 
-## PHASE G - BIONIC ULTIMATE INTEGRATION (v15.0.0)
+## PHASE G - COMPLEMENTS CRITIQUES P0 (v15.1.0)
+
+### Resume Executif
+- **Directive:** Complements requis par COPILOT MAITRE avant GO P0
+- **Status:** COMPLETE - EN ATTENTE VALIDATION
+- **Mode:** DOCUMENTATION (AUCUNE MODIFICATION CODE)
+
+### Blocs Critiques Completes (4/4)
+
+| Bloc | Contenu | Lignes Ajoutees |
+|------|---------|-----------------|
+| **1. Agregats Cameras** | Structure exacte, regles fusion temporelle, ponderations especes, cas extremes | ~150 |
+| **2. Microclimats** | Formule IMC, composantes (elevation, aspect, canopy, wind), resolution, frequence MAJ | ~120 |
+| **3. Pression Chasse** | Granularite, sources, IPC (Indice Pression Chasse), seuils comportementaux, cumulative | ~180 |
+| **4. Cycles Temporels** | Horaires par espece, hebdomadaires, combines (meteo x habitat x saison), ponderations dynamiques | ~200 |
+
+### Sources Empiriques & Scientifiques Completes
+
+**Organismes Gouvernementaux:**
+- Canada: MELCCFP, Ontario MNRF, BC Wildlife, Alberta F&W, Environnement Canada
+- USA: Montana FWP, Wyoming G&F, Colorado PW, Idaho F&G, USGS
+
+**Universites/Recherche:**
+- Canada: CRAAQ, U. Laval, UQAR, U. Alberta, CEN
+- USA: U. Montana, Wyoming Migration Initiative, Colorado State, Penn State DFS
+
+**Sources Terrain:**
+- Canada: SEPAQ, ZECs, FQF, Pourvoiries, Guides Nordiques
+- USA: RMEF, NDA (ex-QDMA)
+
+### Top 10 Sources Absolues
+1. MELCCFP Quebec (0.95) - **P0 CRITIQUE**
+2. UQAR / Louis Gagnon (0.93) - **P0 CRITIQUE**
+3. Penn State Deer-Forest Study (0.94) - **P0**
+4. Montana FWP (0.94) - P1
+5. Wyoming Migration Initiative (0.95) - P1
+6. Colorado Parks & Wildlife (0.93) - P1
+7. USGS (0.96) - P0
+8. CRAAQ (0.88) - P1
+9. NDA (0.90) - P1
+10. Sentinel-2 + LiDAR QC (0.92) - **INTEGRE**
+
+### Document Mis a Jour
+`/app/docs/reports/phase-g/INVENTAIRE_PREDICTIF_TOTAL.md` - Version 1.1.0
+
+### Statut
+**EN ATTENTE VALIDATION COPILOT MAITRE (GO/NO GO)**
+
+---
 
 ### Resume Executif
 - **Directive:** PHASE G - INVENTAIRE PREDICTIF TOTAL
