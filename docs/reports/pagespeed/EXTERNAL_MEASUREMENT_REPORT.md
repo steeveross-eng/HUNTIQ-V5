@@ -98,12 +98,12 @@ Le nombre de fichiers JS chargés (8 au lieu de 30+) confirme que **React.lazy()
 
 **URLs à tester manuellement :**
 ```
-https://huntiq-inventory.preview.emergentagent.com/
-https://huntiq-inventory.preview.emergentagent.com/login
-https://huntiq-inventory.preview.emergentagent.com/shop
-https://huntiq-inventory.preview.emergentagent.com/carte-interactive
-https://huntiq-inventory.preview.emergentagent.com/contenus
-https://huntiq-inventory.preview.emergentagent.com/mon-territoire
+https://huntiq-predictive.preview.emergentagent.com/
+https://huntiq-predictive.preview.emergentagent.com/login
+https://huntiq-predictive.preview.emergentagent.com/shop
+https://huntiq-predictive.preview.emergentagent.com/carte-interactive
+https://huntiq-predictive.preview.emergentagent.com/contenus
+https://huntiq-predictive.preview.emergentagent.com/mon-territoire
 ```
 
 **Outil recommandé :** [PageSpeed Insights](https://pagespeed.web.dev/)
