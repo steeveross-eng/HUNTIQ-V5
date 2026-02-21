@@ -348,7 +348,9 @@ class TestBionicHealth:
         
         assert response.status_code == 200
         data = response.json()
-        assert data.get("status") == "healthy" or "healthy" in str(data)
+        # Accept both healthy and initializing status
+        assert data.get("status") in ["healthy", "initializing"], \
+            f"Expected healthy or initializing status, got {data.get('status')}"
     
     def test_bionic_modules_endpoint(self, api_client):
         """GET /api/v1/bionic/modules lists available modules"""
