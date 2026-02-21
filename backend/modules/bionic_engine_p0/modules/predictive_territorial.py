@@ -1058,3 +1058,159 @@ class PredictiveTerritorialService:
             ))
         
         return recommendations
+
+    # =========================================================================
+    # P0-BETA2: ADVANCED FACTOR RECOMMENDATIONS
+    # =========================================================================
+    
+    def _generate_advanced_recommendations(
+        self,
+        advanced_factors: Dict,
+        species: Species
+    ) -> List[Recommendation]:
+        """
+        Genere des recommandations basees sur les 12 facteurs comportementaux.
+        
+        P0-BETA2: Integration des facteurs avances dans les recommandations
+        
+        G-DOC: Chaque recommandation est justifiee par un facteur specifique
+        """
+        recommendations = []
+        
+        # 1. Recommandations PREDATION
+        predation = advanced_factors.get("predation", {})
+        if predation.get("risk_score", 0) > 50:
+            dominant_predator = predation.get("dominant_predator", "unknown")
+            recommendations.append(Recommendation(
+                type="strategy",
+                priority="high",
+                message_fr=f"Risque de predation eleve ({dominant_predator}). Les animaux seront plus vigilants - privilegiez les zones de couvert dense.",
+                message_en=f"High predation risk ({dominant_predator}). Animals will be more vigilant - favor dense cover areas."
+            ))
+        
+        # 2. Recommandations STRESS THERMIQUE
+        thermal = advanced_factors.get("thermal_stress", {})
+        if thermal.get("stress_score", 0) > 30:
+            response = thermal.get("behavioral_response", "")
+            if response == "seeking_water_shade":
+                recommendations.append(Recommendation(
+                    type="position",
+                    priority="high",
+                    message_fr="Stress thermique eleve - les animaux cherchent l'eau et l'ombre. Postez-vous pres des cours d'eau ou zones ombragees.",
+                    message_en="High thermal stress - animals seeking water and shade. Position near water or shaded areas."
+                ))
+            elif response == "seeking_shelter":
+                recommendations.append(Recommendation(
+                    type="position",
+                    priority="medium",
+                    message_fr="Froid intense - les animaux cherchent des abris. Surveillez les ravages et zones de coniferes denses.",
+                    message_en="Intense cold - animals seeking shelter. Watch yards and dense conifer areas."
+                ))
+        
+        # 3. Recommandations HIERARCHIE SOCIALE
+        hierarchy = advanced_factors.get("social_hierarchy", {})
+        if hierarchy.get("aggression_level") == "high":
+            recommendations.append(Recommendation(
+                type="strategy",
+                priority="high",
+                message_fr="Periode de forte dominance - les males se deplacent davantage. Utilisez leurres et appels de defi.",
+                message_en="High dominance period - males moving more. Use decoys and challenge calls."
+            ))
+        
+        # 4. Recommandations CYCLES HORMONAUX
+        hormonal = advanced_factors.get("hormonal", {})
+        phase = hormonal.get("phase", "")
+        if phase == "rut_peak":
+            recommendations.append(Recommendation(
+                type="strategy",
+                priority="critical",
+                message_fr="PIC DU RUT - Activite maximale des males. Moment ideal pour les appels et techniques de rattling.",
+                message_en="RUT PEAK - Maximum male activity. Ideal time for calls and rattling techniques."
+            ))
+        elif phase == "antler_growth":
+            recommendations.append(Recommendation(
+                type="strategy",
+                priority="medium",
+                message_fr="Croissance des bois - les animaux recherchent les mineraux. Surveillez les salines naturelles.",
+                message_en="Antler growth - animals seeking minerals. Watch natural salt licks."
+            ))
+        
+        # 5. Recommandations CYCLES DIGESTIFS
+        digestive = advanced_factors.get("digestive", {})
+        if digestive.get("phase") == "active_feeding":
+            recommendations.append(Recommendation(
+                type="timing",
+                priority="high",
+                message_fr="Phase d'alimentation active - les animaux sont en deplacement vers les sources de nourriture.",
+                message_en="Active feeding phase - animals moving toward food sources."
+            ))
+        elif digestive.get("phase") == "transitioning":
+            recommendations.append(Recommendation(
+                type="timing",
+                priority="medium",
+                message_fr="Transition alimentation/repos - surveillez les corridors entre zones d'alimentation et de repos.",
+                message_en="Feeding/resting transition - watch corridors between feeding and bedding areas."
+            ))
+        
+        # 6. Recommandations MEMOIRE TERRITORIALE
+        memory = advanced_factors.get("territorial_memory", {})
+        if memory.get("memory_active") and memory.get("avoidance_score", 0) > 50:
+            days_until = memory.get("days_until_return", 0)
+            recommendations.append(Recommendation(
+                type="position",
+                priority="medium",
+                message_fr=f"Zone recemment perturbee - evitement actif. Retour normal dans ~{days_until} jours.",
+                message_en=f"Recently disturbed area - active avoidance. Normal return in ~{days_until} days."
+            ))
+        
+        # 7. Recommandations APPRENTISSAGE COMPORTEMENTAL
+        adaptive = advanced_factors.get("adaptive_behavior", {})
+        if adaptive.get("behavioral_shift") in ["highly_nocturnal", "increased_caution"]:
+            nocturnal_shift = adaptive.get("nocturnal_shift", 0)
+            recommendations.append(Recommendation(
+                type="strategy",
+                priority="high",
+                message_fr=f"Animaux tres prudents (shift nocturne {nocturnal_shift*100:.0f}%). Privilegiez les premieres lueurs de l'aube.",
+                message_en=f"Highly cautious animals (nocturnal shift {nocturnal_shift*100:.0f}%). Prioritize first light."
+            ))
+        
+        # 8. Recommandations DERANGEMENT HUMAIN
+        disturbance = advanced_factors.get("human_disturbance", {})
+        if disturbance.get("disturbance_score", 0) > 40:
+            recommendations.append(Recommendation(
+                type="position",
+                priority="medium",
+                message_fr="Activite humaine detectee dans la zone. Les animaux seront plus eloignes des sentiers.",
+                message_en="Human activity detected in the area. Animals will be further from trails."
+            ))
+        
+        # 9. Recommandations DISPONIBILITE MINERALE
+        mineral = advanced_factors.get("mineral", {})
+        if mineral.get("seeking_behavior"):
+            optimal_time = mineral.get("optimal_monitoring_time", "anytime")
+            recommendations.append(Recommendation(
+                type="position",
+                priority="medium",
+                message_fr=f"Forte attraction minerale - surveillez les salines. Moment optimal: {optimal_time}.",
+                message_en=f"Strong mineral attraction - watch salt licks. Optimal time: {optimal_time}."
+            ))
+        
+        # 10. Recommandations CONDITIONS DE NEIGE
+        snow = advanced_factors.get("snow", {})
+        if snow.get("yarding_likelihood"):
+            recommendations.append(Recommendation(
+                type="position",
+                priority="critical",
+                message_fr="Neige profonde - les animaux se concentrent dans les ravages. Localisez les zones de cedres et sapins denses.",
+                message_en="Deep snow - animals yarding. Locate dense cedar and fir areas."
+            ))
+        elif snow.get("snow_condition") == "crusted":
+            recommendations.append(Recommendation(
+                type="strategy",
+                priority="high",
+                message_fr="Croute de neige - mobilite reduite pour le gibier. Approche plus facile mais soyez patient.",
+                message_en="Snow crust - reduced mobility for game. Easier approach but be patient."
+            ))
+        
+        return recommendations
+
