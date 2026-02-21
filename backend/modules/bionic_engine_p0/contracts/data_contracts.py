@@ -91,13 +91,15 @@ class LocationInput(BaseModel):
     latitude: float = Field(..., ge=45.0, le=62.0, description="Latitude WGS84")
     longitude: float = Field(..., ge=-80.0, le=-57.0, description="Longitude WGS84")
     
-    @validator('latitude')
+    @field_validator('latitude')
+    @classmethod
     def validate_latitude(cls, v):
         if not (45.0 <= v <= 62.0):
             raise ValueError("Latitude must be within Quebec bounds (45.0-62.0)")
         return v
     
-    @validator('longitude')
+    @field_validator('longitude')
+    @classmethod
     def validate_longitude(cls, v):
         if not (-80.0 <= v <= -57.0):
             raise ValueError("Longitude must be within Quebec bounds (-80.0 to -57.0)")
