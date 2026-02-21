@@ -1,48 +1,214 @@
 # INVENTAIRE PREDICTIF TOTAL - HUNTIQ BIONIC V5
 ## PHASE G - BIONIC ULTIMATE INTEGRATION
-### Document preparé pour COPILOT MAITRE (STEEVE)
-### Version: 1.2.0 | Date: Decembre 2025 | Revision: Normalisation & Hierarchie P0
+### Document préparé pour COPILOT MAITRE (STEEVE)
+### Version: 1.3.0-beta2 | Date: Decembre 2025 | Revision: Integration 12 Facteurs Comportementaux
 
 ---
 
 # PREAMBULE
 
-Ce document constitue l'**INVENTAIRE PREDICTIF TOTAL** requis avant toute implementation des modules P0 de la PHASE G. Il couvre exhaustivement les **12 familles de donnees obligatoires** definies par la COMMANDE OFFICIELLE ULTIME, avec pour chaque famille:
+Ce document constitue l'**INVENTAIRE PREDICTIF TOTAL** pour la Phase G P0-BETA2. Cette version integre les **12 FACTEURS COMPORTEMENTAUX** requis pour atteindre le niveau **BIONIC V5 ULTIME x2**.
 
-- Donnees existantes (avec localisation precise dans le code)
-- Donnees manquantes (gap analysis)
-- Donnees a acquerir (sources potentielles)
-- Limites, biais et risques identifies
+**Nouveautes v1.3.0-beta2:**
+- Integration complete des 12 facteurs comportementaux
+- Nouvelles pondérations dynamiques
+- Recommandations contextuelles avancées
+- Strategies basées sur les facteurs
 
 **Conformite:** G-SEC | G-QA | G-DOC
 **Objectif:** Alimenter l'onglet INTELLIGENCE (Analytics, Previsions, Plan Maitre)
 
 ---
 
+# 12 FACTEURS COMPORTEMENTAUX - BIONIC V5 ULTIME x2
+
+## RESUME EXECUTIF
+
+| # | Facteur | Module | Poids | Status |
+|---|---------|--------|-------|--------|
+| 1 | Prédation (PredatorRisk, PredatorCorridors) | advanced_factors.py | 2.0% | ✅ INTEGRE |
+| 2 | Stress Thermique | advanced_factors.py | 1.5% | ✅ INTEGRE |
+| 3 | Stress Hydrique | advanced_factors.py | 1.0% | ✅ INTEGRE |
+| 4 | Stress Social | advanced_factors.py | 1.0% | ✅ INTEGRE |
+| 5 | Hiérarchie Sociale (DominanceScore, GroupBehavior) | advanced_factors.py | 1.5% | ✅ INTEGRE |
+| 6 | Compétition Inter-espèces | advanced_factors.py | 1.0% | ✅ INTEGRE |
+| 7 | Signaux Faibles (WeakSignals, Anomalies) | advanced_factors.py | 1.0% | ✅ INTEGRE |
+| 8 | Cycles Hormonaux (rut, lactation, bois) | advanced_factors.py | 2.5% | ✅ INTEGRE |
+| 9 | Cycles Digestifs (feeding→bedding) | advanced_factors.py | 1.5% | ✅ INTEGRE |
+| 10 | Mémoire Territoriale (AvoidanceMemory, PreferredRoutes) | advanced_factors.py | 1.5% | ✅ INTEGRE |
+| 11 | Apprentissage Comportemental (AdaptiveBehavior) | advanced_factors.py | 2.0% | ✅ INTEGRE |
+| 12 | Activité Humaine Non-Chasse (HumanDisturbance) | advanced_factors.py | 1.5% | ✅ INTEGRE |
+| 13 | Disponibilité Minérale (MineralAvailability, SaltLickAttraction) | advanced_factors.py | 1.0% | ✅ INTEGRE |
+| 14 | Conditions de Neige (SnowDepth, CrustRisk, WinterPenalty) | advanced_factors.py | 2.0% | ✅ INTEGRE |
+
+**Total Poids Facteurs Avancés:** 20%
+**Poids Score de Base:** 80%
+
+## DETAILS DES FACTEURS
+
+### Facteur 1: PREDATION (PredatorRisk, PredatorCorridors)
+- **Classe:** `PredatorRiskModel`
+- **Inputs:** species, latitude, hour, month
+- **Outputs:** risk_score, dominant_predator, wolf_risk, bear_risk, corridor_risk
+- **Logique:** 
+  - Risque loup élevé à l'aube/crépuscule (6-8h, 17-20h)
+  - Risque ours = 0 en hiver (hibernation mois 12,1,2,3)
+  - Plus haut risque en automne (chasse active des loups)
+
+### Facteur 2: STRESS THERMIQUE
+- **Classe:** `StressModel.calculate_thermal_stress`
+- **Inputs:** species, temperature
+- **Outputs:** stress_score, stress_type, behavioral_response
+- **Logique:**
+  - Orignal: optimal 0-15°C, stress >18°C ou <-20°C
+  - Cerf: optimal 5-18°C, stress >22°C ou <-15°C
+  - Reponses: seeking_water_shade, seeking_shelter, normal
+
+### Facteur 3: STRESS HYDRIQUE
+- **Classe:** `StressModel.calculate_hydric_stress`
+- **Inputs:** species, water_distance_m, temperature
+- **Outputs:** stress_score, water_seeking
+- **Logique:**
+  - Distance >1000m = stress élevé
+  - Amplifié par température >20°C
+  - Déclenche recherche d'eau active
+
+### Facteur 4: STRESS SOCIAL
+- **Classe:** `StressModel.calculate_social_stress`
+- **Inputs:** species, month, group_size
+- **Outputs:** stress_score, dominance_seeking
+- **Logique:**
+  - Pic pendant le rut (mois 10-11)
+  - Groupes >5 individus = stress
+  - Déclenche comportements de dominance
+
+### Facteur 5: HIERARCHIE SOCIALE
+- **Classe:** `SocialHierarchyModel`
+- **Inputs:** species, month, is_male
+- **Outputs:** dominance_score, aggression_level, movement_pattern
+- **Logique:**
+  - Males: dominance élevée pendant rut
+  - Mouvement: expanded_range vs core_territory
+  - Agressivité: high/medium/low
+
+### Facteur 6: COMPETITION INTER-ESPECES
+- **Classe:** `InterspeciesCompetitionModel`
+- **Inputs:** target_species, region_species_list
+- **Outputs:** total_competition_score, competitors
+- **Logique:**
+  - Chevauchement d'habitat
+  - Concurrence alimentaire
+  - Effets de displacement
+
+### Facteur 7: SIGNAUX FAIBLES
+- **Classe:** `WeakSignalsModel`
+- **Inputs:** current_score, historical_avg, weather_rapid_change, unusual_activity
+- **Outputs:** anomaly_score, anomalies_detected, confidence_adjustment
+- **Logique:**
+  - Détecte déviation >15% de la baseline
+  - Changement météo rapide
+  - Activité anormale
+  - Ajuste la confiance du score
+
+### Facteur 8: CYCLES HORMONAUX
+- **Classe:** `HormonalCycleModel`
+- **Inputs:** species, month
+- **Outputs:** phase, activity_modifier, behavioral_focus, aggression_level
+- **Phases:**
+  - pre_rut (Sep): modifier 1.3x
+  - rut_peak (Oct-Nov): modifier 1.5x
+  - post_rut (Dec): modifier 0.8x
+  - antler_growth (Avr-Jun): mineral_seeking
+  - recovery (Jan-Mar): modifier 0.7x
+
+### Facteur 9: CYCLES DIGESTIFS
+- **Classe:** `DigestiveCycleModel`
+- **Inputs:** species, hour
+- **Outputs:** phase, feeding_probability, movement_likelihood
+- **Phases:**
+  - active_feeding (6-8h, 17-19h): prob 0.9
+  - transitioning (5h, 9-11h, 16h, 20-21h): prob 0.5
+  - resting (12-15h, 22-4h): prob 0.1-0.2
+
+### Facteur 10: MEMOIRE TERRITORIALE
+- **Classe:** `TerritorialMemoryModel`
+- **Inputs:** species, days_since_disturbance, disturbance_intensity
+- **Outputs:** memory_active, avoidance_score, days_until_return, preferred_route_shift
+- **Logique:**
+  - Mémoire active si perturbation <7-14 jours
+  - Évitement proportionnel à l'intensité
+  - Shift vers routes alternatives
+
+### Facteur 11: APPRENTISSAGE COMPORTEMENTAL
+- **Classe:** `AdaptiveBehaviorModel`
+- **Inputs:** species, hunting_pressure_history, success_rate_hunters
+- **Outputs:** adaptation_level, behavioral_shift, nocturnal_shift
+- **Logique:**
+  - Pression >50 = adaptation élevée
+  - Success rate >0.25 = shift nocturne
+  - Comportements: highly_nocturnal, increased_caution, modified_patterns
+
+### Facteur 12: ACTIVITE HUMAINE NON-CHASSE
+- **Classe:** `HumanDisturbanceModel`
+- **Inputs:** disturbances_list, is_weekend, is_summer
+- **Outputs:** disturbance_score, behavioral_response
+- **Types:** hiking, atv, logging, camping, fishing
+- **Logique:**
+  - Weekend = +30% perturbation
+  - Été = +20% perturbation
+  - Réponses: avoidance, caution, normal
+
+### Facteur 13: DISPONIBILITE MINERALE
+- **Classe:** `MineralAvailabilityModel`
+- **Inputs:** species, month, salt_lick_distance_m
+- **Outputs:** mineral_need_score, salt_lick_attraction, seeking_behavior, optimal_monitoring_time
+- **Logique:**
+  - Besoin max printemps (Avr-Jun): croissance des bois
+  - Distance <500m = forte attraction
+  - Meilleur monitoring: matin
+
+### Facteur 14: CONDITIONS DE NEIGE
+- **Classe:** `SnowConditionModel`
+- **Inputs:** species, snow_depth_cm, is_crusted, temperature
+- **Outputs:** snow_condition, winter_penalty_score, yarding_likelihood, energy_expenditure_increase, crust_risk
+- **Conditions:**
+  - none: 0cm
+  - light: <20cm
+  - moderate: 20-50cm
+  - deep: >50cm
+  - crusted: croûte de glace
+- **Logique:**
+  - Neige profonde = ravage (yarding)
+  - Croûte = mobilité réduite
+  - Pénalité énergétique proportionnelle
+
+---
+
 # TABLE DES MATIERES
 
-1. [FAMILLE 1: Donnees Territoriales Avancees](#famille-1-donnees-territoriales-avancees)
-2. [FAMILLE 2: Vegetation & Transitions d'Habitats](#famille-2-vegetation--transitions-dhabitats)
-3. [FAMILLE 3: Alimentation & Carences](#famille-3-alimentation--carences)
-4. [FAMILLE 4: Topographie & Geologie](#famille-4-topographie--geologie)
-5. [FAMILLE 5: Zones Thermiques & Microclimats](#famille-5-zones-thermiques--microclimats)
-6. [FAMILLE 6: Corridors de Deplacement](#famille-6-corridors-de-deplacement)
-7. [FAMILLE 7: Zones de Repos & Abris](#famille-7-zones-de-repos--abris)
-8. [FAMILLE 8: Pression de Chasse & Derangement](#famille-8-pression-de-chasse--derangement)
-9. [FAMILLE 9: Conditions Extremes](#famille-9-conditions-extremes)
-10. [FAMILLE 10: Historiques Multi-Annees](#famille-10-historiques-multi-annees)
-11. [FAMILLE 11: Agregats Cameras Avances](#famille-11-agregats-cameras-avances)
-12. [FAMILLE 12: Cycles Temporels Avances](#famille-12-cycles-temporels-avances)
-13. [SOURCES EMPIRIQUES & SCIENTIFIQUES](#sources-empiriques--scientifiques)
-14. [MAPPING MODULES P0](#mapping-modules-p0)
-15. [SYNTHESE EXECUTIVE](#synthese-executive)
-16. [COMPLEMENTS CRITIQUES P0 (v1.1.0)](#complements-critiques-p0-version-110)
+1. [12 FACTEURS COMPORTEMENTAUX](#12-facteurs-comportementaux---bionic-v5-ultime-x2)
+2. [FAMILLE 1: Donnees Territoriales Avancees](#famille-1-donnees-territoriales-avancees)
+3. [FAMILLE 2: Vegetation & Transitions d'Habitats](#famille-2-vegetation--transitions-dhabitats)
+4. [FAMILLE 3: Alimentation & Carences](#famille-3-alimentation--carences)
+5. [FAMILLE 4: Topographie & Geologie](#famille-4-topographie--geologie)
+6. [FAMILLE 5: Zones Thermiques & Microclimats](#famille-5-zones-thermiques--microclimats)
+7. [FAMILLE 6: Corridors de Deplacement](#famille-6-corridors-de-deplacement)
+8. [FAMILLE 7: Zones de Repos & Abris](#famille-7-zones-de-repos--abris)
+9. [FAMILLE 8: Pression de Chasse & Derangement](#famille-8-pression-de-chasse--derangement)
+10. [FAMILLE 9: Conditions Extremes](#famille-9-conditions-extremes)
+11. [FAMILLE 10: Historiques Multi-Annees](#famille-10-historiques-multi-annees)
+12. [FAMILLE 11: Agregats Cameras Avances](#famille-11-agregats-cameras-avances)
+13. [FAMILLE 12: Cycles Temporels Avances](#famille-12-cycles-temporels-avances)
+14. [SOURCES EMPIRIQUES & SCIENTIFIQUES](#sources-empiriques--scientifiques)
+15. [MAPPING MODULES P0](#mapping-modules-p0)
+16. [SYNTHESE EXECUTIVE](#synthese-executive)
+17. [COMPLEMENTS CRITIQUES P0 (v1.1.0)](#complements-critiques-p0-version-110)
     - [BLOC 1: Agregats Cameras Avances](#bloc-critique-1-agregats-cameras-avances)
     - [BLOC 2: Microclimats et Zones Thermiques](#bloc-critique-2-microclimats-et-zones-thermiques)
     - [BLOC 3: Pression de Chasse](#bloc-critique-3-pression-de-chasse-et-derangement)
     - [BLOC 4: Cycles Temporels Avances](#bloc-critique-4-cycles-temporels-avances)
-17. [SOURCES EMPIRIQUES & SCIENTIFIQUES - EDITION COMPLETE](#sources-empiriques--scientifiques---edition-complete)
-18. [ANNEXES](#annexes)
+18. [SOURCES EMPIRIQUES & SCIENTIFIQUES - EDITION COMPLETE](#sources-empiriques--scientifiques---edition-complete)
+19. [ANNEXES](#annexes)
 
 ---
 
