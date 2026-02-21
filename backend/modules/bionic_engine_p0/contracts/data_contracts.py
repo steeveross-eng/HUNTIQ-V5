@@ -140,6 +140,8 @@ class BehavioralPredictionInput(BaseModel):
     
     Conforme a: behavioral_models_contract.json
     """
+    model_config = ConfigDict(populate_by_name=True)
+    
     species: Species
     datetime_target: Optional[datetime] = Field(default=None, alias="datetime")
     latitude: Optional[float] = Field(None, ge=45.0, le=62.0)
@@ -149,9 +151,6 @@ class BehavioralPredictionInput(BaseModel):
     canopy_cover: Optional[float] = Field(None, ge=0, le=100)
     include_zones: bool = Field(default=False)
     include_strategy: bool = Field(default=True)
-    
-    class Config:
-        populate_by_name = True
 
 
 # =============================================================================
