@@ -1,10 +1,24 @@
 """
 BIONIC ENGINE - Predictive Territorial Module
-PHASE G - P0 IMPLEMENTATION
-Version: 1.0.0-alpha
+PHASE G - P0-BETA2 IMPLEMENTATION
+Version: 1.0.0-beta2
 
 Module de calcul de score territorial predictif.
 Strictement conforme au contrat: predictive_territorial_contract.json
+
+INTEGRATION DES 12 FACTEURS COMPORTEMENTAUX (BIONIC V5 ULTIME x2):
+1. Predation (PredatorRisk, PredatorCorridors)
+2. Stress physiologique (Thermal/Hydric/Social Stress)
+3. Hierarchie sociale (DominanceScore, GroupBehavior)
+4. Competition inter-especes
+5. Signaux faibles (WeakSignals, Anomalies)
+6. Cycles hormonaux (rut, lactation, croissance des bois)
+7. Cycles digestifs (feeding->bedding transitions)
+8. Memoire territoriale (AvoidanceMemory, PreferredRoutes)
+9. Apprentissage comportemental (AdaptiveBehavior)
+10. Activite humaine non-chasse (HumanDisturbance)
+11. Disponibilite minerale (MineralAvailability, SaltLickAttraction)
+12. Conditions de neige (SnowDepth, CrustRisk, WinterPenalty)
 
 Conformite: G-SEC | G-QA | G-DOC
 """
@@ -20,6 +34,23 @@ from modules.bionic_engine_p0.contracts.data_contracts import (
     TerritorialScoreInput, TerritorialScoreOutput,
     ScoreComponents, Recommendation, WeatherOverride,
     PT_WEIGHTS_CONFIG, normalize_weights, score_to_rating
+)
+
+# Import des 12 facteurs comportementaux avances
+from modules.bionic_engine_p0.contracts.advanced_factors import (
+    PredatorRiskModel,
+    StressModel,
+    SocialHierarchyModel,
+    InterspeciesCompetitionModel,
+    WeakSignalsModel,
+    HormonalCycleModel,
+    DigestiveCycleModel,
+    TerritorialMemoryModel,
+    AdaptiveBehaviorModel,
+    HumanDisturbanceModel,
+    MineralAvailabilityModel,
+    SnowConditionModel,
+    IntegratedBehavioralFactors
 )
 
 logger = logging.getLogger("bionic_engine.predictive_territorial")
