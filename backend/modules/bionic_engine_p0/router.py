@@ -14,14 +14,14 @@ from typing import Optional
 from datetime import datetime
 import logging
 
-from modules.bionic_engine.modules.predictive_territorial import PredictiveTerritorialService
-from modules.bionic_engine.modules.behavioral_models import BehavioralModelsService
-from modules.bionic_engine.contracts.data_contracts import (
+from modules.bionic_engine_p0.modules.predictive_territorial import PredictiveTerritorialService
+from modules.bionic_engine_p0.modules.behavioral_models import BehavioralModelsService
+from modules.bionic_engine_p0.contracts.data_contracts import (
     Species,
     TerritorialScoreInput,
     BehavioralPredictionInput
 )
-from modules.bionic_engine.core import get_engine
+from modules.bionic_engine_p0.core import get_engine
 
 logger = logging.getLogger("bionic_engine.router")
 

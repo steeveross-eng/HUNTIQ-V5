@@ -15,7 +15,7 @@ from enum import Enum
 import math
 import logging
 
-from modules.bionic_engine.contracts.data_contracts import (
+from modules.bionic_engine_p0.contracts.data_contracts import (
     Species, ScoreRating, SeasonPhase, HierarchyLevel,
     TerritorialScoreInput, TerritorialScoreOutput,
     ScoreComponents, Recommendation, WeatherOverride,
