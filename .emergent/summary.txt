@@ -1,47 +1,42 @@
 <analysis>**original_problem_statement:**
-L'utilisateur, COPILOT MAÎTRE (Steeve), dirige le projet HUNTIQ-V5 avec pour objectif d'atteindre un score Lighthouse de 99.9%. Après avoir complété une série de phases d'optimisation intensives (Branches 1, 2, 3) qui ont permis d'atteindre la version GOLD MASTER BIONIC V5, le projet entre maintenant dans la PHASE G - BIONIC ULTIMATE INTEGRATION. Cette nouvelle phase vise à intégrer un écosystème intelligent complet (moteur prédictif, modèles comportementaux, etc.) tout en respectant une architecture modulaire stricte et de nouveaux cadres de qualité (G-QA), de sécurité (G-SEC) et de documentation (G-DOC). Toutes les opérations sont menées sous un VERROUILLAGE MAÎTRE qui interdit les modifications non autorisées de la GOLD MASTER et une directive de NON-DÉPLOIEMENT PUBLIC est en vigueur.
+L'utilisateur, COPILOT MAÎTRE (Steeve), dirige le projet HUNTIQ-V5. Après avoir atteint un état GOLD MASTER BIONIC V5 hautement optimisé, le projet est entré dans la PHASE G - BIONIC ULTIMATE INTEGRATION. Cette phase vise à construire un écosystème d'intelligence artificielle (moteur prédictif, modèles comportementaux) dans une branche dédiée sans altérer la version GOLD MASTER.
+
+Au début de cette session, l'utilisateur a émis une directive prioritaire : **VALIDATION REQUISE — INVENTAIRE GLOBAL DES DONNÉES EXISTANTES**. Il a demandé un inventaire exhaustif et structuré de toutes les données utilisées, calculées ou affichées dans les modules existants (Analytics, Prévisions, Plan Maître, Cartes) afin d'éviter les redondances et de garantir la cohérence avant de finaliser l'architecture des nouveaux modules P0.
 
 PRODUCT REQUIREMENTS:
-- **GOLD MASTER BIONIC V5:** L'état de l'application post-optimisation (Branches 1, 2, 3) est validé et figé. Aucune modification ne doit lui être apportée.
-- **PHASE G (BIONIC ULTIMATE INTEGRATION):** Développer et intégrer une série de modules intelligents dans une branche dédiée ().
+- **GOLD MASTER BIONIC V5:** L'état de l'application est figé. Aucune modification ne doit lui être apportée.
+- **PHASE G (BIONIC ULTIMATE INTEGRATION):** Développer et intégrer des modules intelligents dans une branche dédiée.
     - **P0 (Fondations):** Moteur Prédictif Territorial, Modèles Comportementaux.
     - **P1 (Données & Visualisation):** Intégration de données environnementales, Système de Scoring, Overlays Visuels.
     - **P2 (Intelligence Avancée):** Moteur de Recommandations, Intégration API Externes.
     - **P3 (Écosystème):** Préparation BionicMarket.
-- **Architecture Hybride (IA/ML):** Utiliser des modèles locaux déterministes pour les fonctions critiques et un LLM (GPT-5.2) uniquement pour l'enrichissement contextuel non critique.
-- **Cadres G-QA, G-SEC, G-DOC:** Chaque nouveau module doit obligatoirement être accompagné de tests complets, de mesures de sécurité et d'une documentation standardisée.
+- **INVENTAIRE DES DONNÉES:** Produire un rapport complet sur les données existantes pour guider le développement de la PHASE G.
+- **Cadres Stricts (G-QA, G-SEC, G-DOC):** Tout nouveau module doit inclure des tests, des mesures de sécurité et une documentation.
 
 **User's preferred language**: Français
 
 **what currently exists?**
-L'application est une stack full-stack (React, FastAPI, MongoDB) hautement optimisée, désignée comme la GOLD MASTER BIONIC V5. Cet état inclut des optimisations de performance avancées (Service Worker V2, Critical CSS, Code Splitting, Image CDN, etc.) et a atteint les objectifs de performance cibles.
-Le développement de la **PHASE G** a commencé. L'architecture de base pour le nouveau  a été créée côté backend, incluant les fichiers pour les contrats d'API, un orchestrateur central, et le premier module P0 (Moteur Prédictif Territorial). Ces fichiers contiennent pour l'instant une structure de base sans la logique métier complète.
+L'application est une stack full-stack (React, FastAPI, MongoDB) dans un état stable et optimisé (GOLD MASTER BIONIC V5).
+La structure de base du nouveau  backend a été créée lors d'une session précédente.
+Au cours de cette session, l'agent a effectué une analyse approfondie de l'ensemble du code source frontend et de certains modules backend pour répondre à la demande de l'utilisateur. Le résultat est un rapport d'inventaire de données complet, stocké dans un fichier Markdown.
 
 **Last working item**:
-- **Last item agent was working:** Initialisation de la **PHASE G** en créant la structure de base du backend pour les modules P0.
-    - Création du répertoire .
-    - Création des contrats d'API dans .
-    - Création du module orchestrateur .
-    - Création du squelette pour le premier module, le Moteur Prédictif Territorial ().
-- **Status:** IN PROGRESS
-- **Agent Testing Done:** N
-- **Which testing method agent to use?** backend testing agent. L'agent devra créer des tests unitaires et d'intégration pour chaque module conformément au cadre G-QA.
-- **User Testing Done:** N
+- **Last item agent was working:** Création d'un inventaire exhaustif des données de l'application HUNTIQ-V5. L'agent a analysé de nombreux fichiers pour cataloguer toutes les variables, scores, règles métier et sources de données à travers les modules d'intelligence et de cartographie. Le travail a abouti à la création d'un rapport détaillé.
+- **Status:** USER VERIFICATION PENDING
+- **Agent Testing Done:** N/A (Tâche d'analyse et de documentation, pas de modification de code).
+- **Which testing method agent to use?** N/A
+- **User Testing Done:** N (L'utilisateur doit maintenant examiner le rapport généré).
 
 **All Pending/In progress Issue list**:
-- Aucun problème ou bug identifié. Le travail est piloté par de nouvelles exigences de fonctionnalités.
+- Aucun problème technique n'a été identifié. La seule attente est la validation par l'utilisateur du rapport d'inventaire des données.
 
 **In progress Task List**:
-- **Task 1:** Implémenter la logique métier des modules P0 de la PHASE G (P0)
-    - **Where to resume:**
-        1.  Développer la logique de calcul et de prédiction dans .
-        2.  Créer et implémenter le second module P0, , dans un nouveau fichier .
-        3.  Intégrer ces modules dans l'application FastAPI en créant les routes API nécessaires.
-        4.  Mettre en œuvre les exigences G-QA (tests unitaires/intégration), G-SEC (logging, isolation) et G-DOC (documentation) pour ces deux modules.
-    - **What will be achieved with this?** Les deux premiers modules de l'écosystème intelligent seront fonctionnels et conformes aux nouveaux cadres de qualité, prêts pour la suite du développement (P1).
-    - **Status:** IN PROGRESS
+- **Task 1:** Implémenter la logique métier des modules P0 de la PHASE G (Priorité : P0)
+    - **Where to resume:** Le développement de la logique pour  et la création du module  sont en attente. Ce travail ne pourra reprendre qu'après que l'utilisateur (COPILOT MAÎTRE) ait validé l'inventaire des données (), car ce document est la base de la conception de ces modules.
+    - **What will be achieved with this?** Les deux premiers modules de l'écosystème intelligent seront fonctionnels et conformes aux cadres de qualité (G-QA, G-SEC, G-DOC).
+    - **Status:** BLOCKED
     - **Should Test frontend/backend/both after fix?** Backend
-    - **Blocked on something:** Non
+    - **Blocked on something:** Validation par l'utilisateur de l'inventaire des données.
 
 **Upcoming and Future Tasks**
 *   **Upcoming Tasks (Phase G - P1):**
@@ -50,16 +45,14 @@ Le développement de la **PHASE G** a commencé. L'architecture de base pour le 
     *   (P1) Créer les Overlays Visuels (heatmaps).
 *   **Future Tasks (Backlog):**
     *   (P2) Moteur de Recommandations.
-    *   (P2) Intégration d'API externes supplémentaires.
+    *   (P2) Intégration d'API externes supplémentaires (GPT-5.2).
     *   (P3) Préparation de la plateforme BionicMarket.
     *   Intégrations marketing (Meta, TikTok).
     *   Moteur Outreach Engine.
 
 **Completed work in this session**
-- **BRANCHE 1, 2 et 3 (DONE):** Exécution et validation de toutes les optimisations de performance, SEO et accessibilité.
-- **Audit Lighthouse Externe (DONE):** Génération d'un rapport confirmant l'atteinte des objectifs de performance.
-- **VALIDATION FINALE (DONE):** L'état de l'application a été officiellement figé en tant que GOLD MASTER BIONIC V5.
-- **Lancement de la PHASE G (DONE):** Création de l'architecture et des fichiers de base pour le nouvel écosystème intelligent backend.
+- **Analyse des données existantes (DONE):** Exploration complète des fichiers frontend et backend pour identifier toutes les données pertinentes.
+- **Création du rapport d'inventaire (DONE):** Compilation de toutes les informations recueillies dans un rapport structuré : .
 
 **Earlier issues found/mentioned but not fixed**
 - Aucun.
@@ -71,69 +64,54 @@ Le développement de la **PHASE G** a commencé. L'architecture de base pour le 
 
 
 **Key Technical Concepts**
-- **Architecture BIONIC V5:** Approche modulaire stricte où chaque fonctionnalité est isolée, versionnée et communique via des contrats d'API internes.
-- **Cadres G-QA, G-SEC, G-DOC:** Nouveaux standards obligatoires de Qualité, Sécurité et Documentation pour tout nouveau développement.
-- **Hybrid AI:** Utilisation combinée de modèles locaux déterministes (pour la logique critique) et d'un LLM (GPT-5.2 pour l'enrichissement contextuel).
-- **ENV-BRIDGE:** Pattern d'architecture (adaptateur) pour gérer et isoler les appels aux API externes (météo, etc.).
-- **GOLD MASTER:** Un état de version stable et figé de l'application qui ne doit pas être altéré.
+- **Architecture BIONIC V5:** Approche modulaire stricte, communication via contrats d'API internes.
+- **Cadres G-QA, G-SEC, G-DOC:** Standards obligatoires de Qualité, Sécurité, Documentation.
+- **GOLD MASTER:** Version stable et figée de l'application qui ne doit pas être altérée.
+- **Inventaire de données:** Analyse exhaustive du code pour cataloguer les flux de données avant de construire de nouvelles fonctionnalités.
 
 **key DB schema**
-- Aucun changement récent. La PHASE G nécessitera probablement de nouveaux schémas/collections pour stocker les données prédictives, comportementales et environnementales.
+- Aucun changement.
 
 **changes in tech stack**
-- **Supprimé :**  a été retiré du projet.
-- **Planifié :** Intégration d'API externes comme OpenWeatherMap et l'API GPT-5.2.
+- Aucun changement.
 
 **All files of reference**
-*   **Fichiers créés (principaux) :**
+*   **Fichier créé (critique) :**
+    *   : Contient l'inventaire complet des données de l'application, base pour la suite du développement de la PHASE G.
+*   **Documents de référence :**
     *   
-    *   
-    *   
-*   **Documents & Rapports :**
-    *   Tous les rapports dans  (branche1, branche2, branche3, lighthouse-audit, gold-master-validation).
-    *    (mis à jour avec toutes les phases).
 
 **Areas that need refactoring**:
-- Pas de refactoring. Le travail consiste à construire les nouveaux modules de la PHASE G en respectant la nouvelle architecture.
+- Aucun.
 
 **key api endpoints**
-- Les endpoints existants sont stables.
-- De nouveaux endpoints devront être créés pour exposer les fonctionnalités du , par exemple sous .
+- Aucun nouvel endpoint n'a été créé.
 
 **Critical Info for New Agent**
 - **Langue :** La communication doit impérativement être en **Français**.
-- **Utilisateur (COPILOT MAÎTRE) :** Les directives de l'utilisateur sont absolues, non interprétables et doivent être suivies à la lettre.
-- **GOLD MASTER:** Le code source de l'application (hors PHASE G) est figé. Tout le nouveau développement doit se faire de manière additive et isolée dans la branche  sans jamais modifier la base existante.
-- **Architecture BIONIC V5:** Le respect des nouveaux cadres (Modularité, G-QA, G-SEC, G-DOC) est la priorité absolue pour tout le code de la PHASE G.
+- **Utilisateur (COPILOT MAÎTRE) :** Les directives de l'utilisateur sont absolues et prioritaires. La session actuelle a été entièrement redirigée par sa demande d'inventaire de données.
+- **Prochaine Étape :** Ne pas reprendre le développement des modules P0. La priorité est d'attendre la validation et les instructions de l'utilisateur concernant le rapport . Ce document est maintenant la source de vérité pour la conception du .
+- **GOLD MASTER:** Le code source existant (hors du répertoire ) est intouchable.
 
 **documents and test reports created in this job**
-- Rapports pour les Branches 1, 2, 3, l'audit Lighthouse et la validation Gold Master dans .
 - 
 
 **Last 10 User Messages and any pending HUMAN messages**
-1.  **User (LATEST - IN PROGRESS):** Directive COMMANDE ARCHITECTURE ULTIME - Confirmation des choix techniques et priorités pour la PHASE G (Modules P0 en premier, architecture hybride IA, API externes, etc.).
-2.  **User (COMPLETED):** Directive de lancement de la PHASE G — BIONIC ULTIMATE INTEGRATION.
-3.  **User (COMPLETED):** Directive de VALIDATION FINALE pour figer la GOLD MASTER BIONIC V5.
-4.  **User (COMPLETED):** Directive de lancement de l'AUDIT LIGHTHOUSE EXTERNE.
-5.  **User (COMPLETED):** Directive de lancement de la BRANCHE 3.
-6.  **User (COMPLETED):** Validation de la BRANCHE 2.
-7.  **User (COMPLETED):** Directive de lancement de la BRANCHE 2.
-8.  **User (COMPLETED):** Validation de la BRANCHE 1.
-9.  **User (COMPLETED):** Directive de lancement de la BRANCHE 1.
-10. **User (COMPLETED):** Accusé de réception de la directive sur l'architecture.
+1.  **User (LATEST - PENDING ACTION):** A demandé des détails sur les données/éléments trouvés dans les modules analysés, suite à la création du rapport d'inventaire. L'agent a fourni un résumé. L'attente est maintenant la validation ou les prochaines étapes de la part de l'utilisateur.
+2.  **User (ADDRESSED):** A émis la directive VALIDATION REQUISE — INVENTAIRE GLOBAL DES DONNÉES EXISTANTES, demandant une analyse complète des données de l'application avant de continuer le développement.
 
 **Project Health Check:**
 - **Broken:** Rien. La version GOLD MASTER est stable.
-- **Mocked:** La logique métier à l'intérieur des nouveaux fichiers du  est actuellement une coquille vide/placeholder.
+- **Mocked:** La logique métier à l'intérieur des fichiers du  () reste une coquille vide.
 
 **3rd Party Integrations**
 - **Actives:** Google Fonts, .
 - **Planifiées (Phase G):** OpenWeatherMap, APIs gouvernementales du Québec (chasse), GPT-5.2.
 
 **Testing status**
-- **Testing agent used after significant changes:** YES. Utilisé intensivement pour valider les optimisations des Branches 1, 2 et 3.
+- **Testing agent used after significant changes:** NO (Aucun changement de code n'a été effectué).
 - **Troubleshoot agent used after agent stuck in loop:** NO
-- **Test files created:** Aucun fichier de test n'a encore été créé pour les nouveaux modules de la PHASE G, mais c'est une exigence obligatoire du cadre G-QA pour les prochaines étapes.
+- **Test files created:** Aucun.
 - **Known regressions:** Aucune.
 
 **Credentials to test flow:**
@@ -141,4 +119,4 @@ Le développement de la **PHASE G** a commencé. L'architecture de base pour le 
 - **Password:** 
 
 **What agent forgot to execute**
-- L'agent n'a rien oublié. Il a suivi les directives de manière séquentielle et précise. La création de la structure de base de la PHASE G était la dernière tâche demandée, et la prochaine étape logique est l'implémentation de la logique métier à l'intérieur de cette structure.</analysis>
+- L'agent n'a rien oublié. Il a correctement mis en pause la tâche de développement planifiée pour exécuter la nouvelle directive prioritaire de l'utilisateur (l'inventaire des données), ce qui était la bonne marche à suivre.</analysis>
