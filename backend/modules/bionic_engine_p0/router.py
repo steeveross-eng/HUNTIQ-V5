@@ -85,12 +85,18 @@ async def calculate_territorial_score(request: TerritorialScoreInput):
     Calcule le score territorial predictif.
     
     Conforme a: predictive_territorial_contract.json
+    P0-BETA2: Integration des 12 facteurs comportementaux avances
     
     Args:
         request: TerritorialScoreInput conforme au contrat
+            - include_advanced_factors: bool (default True) - Inclure les 12 facteurs
+            - snow_depth_cm: float (default 0) - Profondeur de neige
+            - is_crusted: bool (default False) - Presence de croute de glace
         
     Returns:
         TerritorialScoreOutput avec score 0-100 et recommandations
+        - metadata.version = "P0-beta2"
+        - metadata.advanced_factors = Dict des 12 facteurs si enabled
     
     G-SEC: Validation automatique via Pydantic
     G-QA: P95 < 500ms
@@ -103,7 +109,10 @@ async def calculate_territorial_score(request: TerritorialScoreInput):
             datetime_target=request.datetime_target,
             radius_km=request.radius_km,
             weather_override=request.weather_override,
-            include_recommendations=request.include_recommendations
+            include_recommendations=request.include_recommendations,
+            snow_depth_cm=request.snow_depth_cm,
+            is_crusted=request.is_crusted,
+            include_advanced_factors=request.include_advanced_factors
         )
         
         return result.dict()
@@ -165,12 +174,18 @@ async def predict_behavior(request: BehavioralPredictionInput):
     Prediction comportementale complete.
     
     Conforme a: behavioral_models_contract.json
+    P0-BETA2: Integration des 12 facteurs comportementaux avances
     
     Args:
         request: BehavioralPredictionInput conforme au contrat
+            - include_advanced_factors: bool (default True) - Inclure les 12 facteurs
+            - snow_depth_cm: float (default 0) - Profondeur de neige
+            - is_crusted: bool (default False) - Presence de croute de glace
         
     Returns:
         BehavioralPredictionOutput avec activite, timeline, strategies
+        - metadata.version = "P0-beta2"
+        - metadata.advanced_factors = Dict des 12 facteurs si enabled
     
     G-SEC: Validation automatique via Pydantic
     G-QA: P95 < 300ms
@@ -182,7 +197,10 @@ async def predict_behavior(request: BehavioralPredictionInput):
             latitude=request.latitude,
             longitude=request.longitude,
             weather_context=request.weather_context,
-            include_strategy=request.include_strategy
+            include_strategy=request.include_strategy,
+            snow_depth_cm=request.snow_depth_cm,
+            is_crusted=request.is_crusted,
+            include_advanced_factors=request.include_advanced_factors
         )
         
         return result.dict()
