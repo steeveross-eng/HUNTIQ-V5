@@ -15,7 +15,7 @@ from enum import Enum
 import math
 import logging
 
-from .contracts.data_contracts import (
+from modules.bionic_engine.contracts.data_contracts import (
     Species, ActivityLevel, BehaviorType, SeasonPhase, HierarchyLevel,
     BehavioralPredictionInput, BehavioralPredictionOutput,
     ActivityPrediction, TimelineEntry, SeasonalContext,
