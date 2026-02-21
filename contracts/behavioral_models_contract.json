@@ -1,0 +1,499 @@
+{
+  "$schema": "https://huntiq.ca/schemas/bionic-contract-v1.json",
+  "contract_id": "behavioral_models_v1",
+  "contract_version": "1.0.0",
+  "module_name": "behavioral_models",
+  "phase": "P0",
+  "status": "DRAFT",
+  "created_at": "2025-12-21",
+  "updated_at": "2025-12-21",
+  "author": "BIONIC Engine Team",
+  "approved_by": null,
+  "description": "Contrat de donnees et interfaces pour le module Behavioral Models P0",
+
+  "purpose": {
+    "primary": "Modeliser et predire les comportements fauniques (alimentation, deplacement, repos, rut) selon le contexte spatio-temporel",
+    "secondary": [
+      "Identifier les corridors de deplacement probables",
+      "Predire les zones d'alimentation actives",
+      "Detecter les periodes d'activite optimales",
+      "Alimenter le Plan Maitre avec des strategies comportementales"
+    ]
+  },
+
+  "inputs": {
+    "required": {
+      "species": {
+        "type": "enum",
+        "values": ["moose", "deer", "bear", "wild_turkey", "elk"],
+        "source": "user_selection",
+        "validation": "valid_species_enum"
+      },
+      "datetime": {
+        "type": "datetime",
+        "format": "ISO8601",
+        "timezone": "America/Toronto",
+        "source": "system | user_selection"
+      }
+    },
+    "optional": {
+      "location": {
+        "type": "object",
+        "properties": {
+          "latitude": {"type": "number"},
+          "longitude": {"type": "number"}
+        },
+        "description": "Position pour analyse locale (si omis: patterns generaux)"
+      },
+      "weather_context": {
+        "type": "object",
+        "properties": {
+          "temperature": {"type": "number"},
+          "wind_speed": {"type": "number"},
+          "precipitation": {"type": "number"},
+          "pressure_trend": {"type": "enum", "values": ["rising", "falling", "stable"]}
+        }
+      },
+      "habitat_context": {
+        "type": "object",
+        "properties": {
+          "type": {"type": "enum", "values": ["coniferous", "deciduous", "mixed", "wetland", "clearcut", "agricultural"]},
+          "canopy_cover": {"type": "number", "min": 0, "max": 100}
+        }
+      },
+      "include_camera_data": {
+        "type": "boolean",
+        "default": false,
+        "description": "Inclure agregats cameras (si disponibles)"
+      }
+    }
+  },
+
+  "outputs": {
+    "primary": {
+      "activity_prediction": {
+        "type": "object",
+        "properties": {
+          "current_behavior": {
+            "type": "enum",
+            "values": ["feeding", "traveling", "resting", "rutting", "bedding", "watering", "unknown"],
+            "confidence": {"type": "number", "min": 0, "max": 1}
+          },
+          "activity_level": {
+            "type": "enum",
+            "values": ["very_high", "high", "moderate", "low", "minimal"],
+            "score": {"type": "number", "min": 0, "max": 100}
+          },
+          "peak_times": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "start": {"type": "string", "format": "time"},
+                "end": {"type": "string", "format": "time"},
+                "activity_type": {"type": "string"},
+                "score": {"type": "number"}
+              }
+            }
+          }
+        }
+      },
+      "behavioral_timeline": {
+        "type": "array",
+        "description": "Timeline d'activite sur 24h",
+        "items": {
+          "type": "object",
+          "properties": {
+            "hour": {"type": "integer", "min": 0, "max": 23},
+            "activity_score": {"type": "number", "min": 0, "max": 100},
+            "primary_behavior": {"type": "string"},
+            "probability": {"type": "number"},
+            "is_legal_hunting": {"type": "boolean"}
+          }
+        }
+      }
+    },
+    "secondary": {
+      "movement_prediction": {
+        "type": "object",
+        "properties": {
+          "likely_direction": {"type": "enum", "values": ["N", "NE", "E", "SE", "S", "SW", "W", "NW", "stationary"]},
+          "movement_probability": {"type": "number", "min": 0, "max": 1},
+          "estimated_range_km": {"type": "number"},
+          "corridor_ids": {"type": "array", "items": {"type": "string"}}
+        }
+      },
+      "feeding_zones": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "zone_id": {"type": "string"},
+            "zone_type": {"type": "enum", "values": ["primary", "secondary", "opportunistic"]},
+            "food_source": {"type": "string"},
+            "activity_probability": {"type": "number"},
+            "best_time": {"type": "string"}
+          }
+        }
+      },
+      "bedding_areas": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "area_id": {"type": "string"},
+            "habitat_type": {"type": "string"},
+            "security_score": {"type": "number"},
+            "thermal_score": {"type": "number"},
+            "usage_probability": {"type": "number"}
+          }
+        }
+      },
+      "seasonal_context": {
+        "type": "object",
+        "properties": {
+          "current_season": {"type": "enum", "values": ["pre_rut", "rut", "post_rut", "winter", "spring", "summer", "early_fall"]},
+          "activity_modifier": {"type": "number"},
+          "primary_behaviors": {"type": "array", "items": {"type": "string"}},
+          "key_events": {"type": "array", "items": {"type": "string"}}
+        }
+      },
+      "strategy_recommendations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "strategy_type": {"type": "enum", "values": ["ambush", "stalk", "call", "rattling", "decoy", "stand"]},
+            "effectiveness_score": {"type": "number"},
+            "best_conditions": {"type": "string"},
+            "tips_fr": {"type": "array", "items": {"type": "string"}}
+          }
+        }
+      }
+    }
+  },
+
+  "data_sources": {
+    "primary": [
+      {
+        "id": "species_knowledge",
+        "family": "F3",
+        "path": "/app/backend/modules/bionic_knowledge_engine/data/species/*.json",
+        "status": "INTEGRATED",
+        "priority": "P0",
+        "data": ["activity_patterns", "food_sources", "habitat_preferences", "breeding_info"]
+      },
+      {
+        "id": "wildlife_behavior_engine",
+        "family": "F6,F7",
+        "path": "/app/backend/modules/wildlife_behavior_engine/v1/service.py",
+        "status": "INTEGRATED",
+        "priority": "P0",
+        "data": ["movement_patterns", "concentration_zones", "seasonal_behavior"]
+      },
+      {
+        "id": "species_patterns",
+        "family": "F12",
+        "path": "/app/backend/modules/predictive_engine/v1/service.py",
+        "status": "INTEGRATED",
+        "priority": "P0",
+        "data": ["SPECIES_PATTERNS", "SEASON_FACTORS", "hourly_activity"]
+      }
+    ],
+    "secondary": [
+      {
+        "id": "behavioral_service",
+        "family": "F6,F7",
+        "path": "/app/frontend/src/modules/behavioral/BehavioralService.js",
+        "status": "INTEGRATED",
+        "priority": "P0",
+        "data": ["corridors", "feeding_zones", "bedding_areas"]
+      },
+      {
+        "id": "weather_context",
+        "family": "F5",
+        "source": "weather_engine",
+        "status": "INTEGRATED",
+        "priority": "P0"
+      }
+    ],
+    "future": [
+      {
+        "id": "camera_aggregates",
+        "family": "F11",
+        "status": "PLACEHOLDER",
+        "priority": "P1",
+        "data": ["species_detections", "temporal_patterns", "behavioral_tags"]
+      },
+      {
+        "id": "telemetry_data",
+        "family": "F6",
+        "source": "MFFP/UQAR partnerships",
+        "status": "PLACEHOLDER",
+        "priority": "P2"
+      },
+      {
+        "id": "historical_observations",
+        "family": "F10",
+        "source": "user_observations + MELCCFP",
+        "status": "PLACEHOLDER",
+        "priority": "P1"
+      }
+    ]
+  },
+
+  "behavioral_models": {
+    "hourly_activity_model": {
+      "description": "Modele d'activite horaire par espece",
+      "inputs": ["species", "hour", "season", "weather"],
+      "outputs": ["activity_score", "behavior_probabilities"],
+      "formula": "activity = base_hourly[hour] * seasonal_mod * weather_mod * weekly_mod",
+      "weights": {
+        "base_hourly": 0.40,
+        "seasonal_modifier": 0.25,
+        "weather_modifier": 0.20,
+        "weekly_modifier": 0.10,
+        "lunar_modifier": 0.05
+      }
+    },
+    "movement_model": {
+      "description": "Modele de prediction de mouvement",
+      "inputs": ["species", "time_of_day", "habitat", "season", "pressure"],
+      "outputs": ["direction", "distance_estimate", "corridor_probability"],
+      "rules": [
+        "dawn: feeding_area -> bedding_area (0.7 prob)",
+        "dusk: bedding_area -> feeding_area (0.8 prob)",
+        "high_pressure: move_away_from_disturbance",
+        "rut: males_expand_range_3x"
+      ]
+    },
+    "feeding_model": {
+      "description": "Modele de prediction d'alimentation",
+      "inputs": ["species", "month", "habitat_type", "food_availability"],
+      "outputs": ["feeding_zones", "food_preference", "timing"],
+      "seasonal_food_matrix": {
+        "moose": {
+          "spring": ["willow", "birch", "aspen"],
+          "summer": ["aquatic_plants", "willow", "forbs"],
+          "fall": ["willow", "birch", "balsam_fir"],
+          "winter": ["balsam_fir", "cedar", "bark"]
+        },
+        "deer": {
+          "spring": ["forbs", "browse", "agricultural"],
+          "summer": ["forbs", "browse", "fruit"],
+          "fall": ["mast", "agricultural", "browse"],
+          "winter": ["browse", "cedar", "hemlock"]
+        }
+      }
+    },
+    "resting_model": {
+      "description": "Modele de prediction de zones de repos",
+      "inputs": ["species", "weather", "pressure", "time_of_day"],
+      "outputs": ["bedding_probability", "area_characteristics"],
+      "preferences": {
+        "moose": {
+          "summer": "shade, proximity_water, thick_cover",
+          "winter": "conifer_cover, south_slope, wind_protection"
+        },
+        "deer": {
+          "general": "thick_cover, elevated_view, multiple_escape_routes"
+        }
+      }
+    }
+  },
+
+  "cycle_integration": {
+    "description": "Integration des cycles temporels",
+    "hourly_cycles": {
+      "source": "HOURLY_ACTIVITY_PATTERNS from inventory v1.1",
+      "species_specific": true,
+      "adjustable_by": ["season", "weather", "pressure"]
+    },
+    "weekly_cycles": {
+      "source": "WEEKLY_MODIFIERS from inventory v1.1",
+      "pattern": {
+        "monday": 1.10,
+        "tuesday": 1.10,
+        "wednesday": 1.08,
+        "thursday": 1.05,
+        "friday": 1.00,
+        "saturday": 0.80,
+        "sunday": 0.85
+      }
+    },
+    "seasonal_cycles": {
+      "source": "ANNUAL_CALENDAR from inventory v1.1",
+      "key_periods": {
+        "moose_rut": {"start": "2025-09-15", "peak": "2025-10-01", "end": "2025-10-20"},
+        "deer_rut": {"start": "2025-10-20", "peak": "2025-11-10", "end": "2025-11-25"},
+        "bear_hyperphagia": {"start": "2025-09-01", "end": "2025-11-15"},
+        "bear_hibernation": {"start": "2025-12-01", "end": "2026-03-31"}
+      }
+    },
+    "combined_cycle_formula": {
+      "description": "Formule de combinaison des cycles",
+      "formula": "final_score = hourly * seasonal * weekly * weather_mod * habitat_mod * interaction_mod",
+      "interactions": [
+        {"condition": "heat + forest", "effect": "refuge_bonus", "modifier": 1.3},
+        {"condition": "cold + open", "effect": "stress_penalty", "modifier": 0.6},
+        {"condition": "rut + cool_weather", "effect": "max_activity", "modifier": 1.4},
+        {"condition": "pressure_falling + dawn", "effect": "peak_activity", "modifier": 1.25}
+      ]
+    }
+  },
+
+  "weights_hierarchy": {
+    "primary_factors": {
+      "temporal_pattern": {
+        "weight": 0.30,
+        "components": ["hourly", "seasonal", "lunar"]
+      },
+      "habitat_suitability": {
+        "weight": 0.25,
+        "components": ["cover", "food_proximity", "water_proximity"]
+      },
+      "weather_influence": {
+        "weight": 0.20,
+        "components": ["temperature", "wind", "precipitation"]
+      }
+    },
+    "secondary_factors": {
+      "pressure_influence": {
+        "weight": 0.15,
+        "components": ["cumulative_pressure", "recent_disturbance"]
+      },
+      "camera_validation": {
+        "weight": 0.10,
+        "status": "P1_PLACEHOLDER",
+        "fallback": "use_model_only"
+      }
+    },
+    "arbitrage_rules": [
+      {
+        "rule_id": "BAR001",
+        "condition": "is_rut_period",
+        "action": "temporal_weight = 0.40, reduce_habitat_weight",
+        "description": "Rut: comportement temporel domine"
+      },
+      {
+        "rule_id": "BAR002",
+        "condition": "extreme_weather",
+        "action": "weather_weight = 0.35, add_shelter_seeking_behavior",
+        "description": "Meteo extreme: survie prioritaire"
+      },
+      {
+        "rule_id": "BAR003",
+        "condition": "high_pressure_zone",
+        "action": "pressure_weight = 0.25, activate_avoidance_model",
+        "description": "Forte pression: evitement actif"
+      },
+      {
+        "rule_id": "BAR004",
+        "condition": "bear_hibernation_period",
+        "action": "return_zero_activity",
+        "description": "Ours en hibernation"
+      }
+    ]
+  },
+
+  "validation_rules": {
+    "input_validation": [
+      {"rule": "species_valid", "allowed": ["moose", "deer", "bear", "wild_turkey", "elk"]},
+      {"rule": "datetime_valid", "format": "ISO8601"},
+      {"rule": "coordinates_if_provided", "lat_range": [45, 62], "lng_range": [-80, -57]}
+    ],
+    "output_validation": [
+      {"rule": "activity_score_range", "min": 0, "max": 100},
+      {"rule": "probabilities_sum_to_1", "field": "behavior_probabilities", "tolerance": 0.01},
+      {"rule": "timeline_complete", "expected_entries": 24}
+    ],
+    "business_rules": [
+      {"rule": "no_activity_during_hibernation", "species": "bear", "months": [12, 1, 2, 3]},
+      {"rule": "turkey_no_night_activity", "species": "wild_turkey", "hours": [0,1,2,3,4,20,21,22,23]},
+      {"rule": "legal_hours_flagged", "integrate_with": "legal_time_engine"}
+    ]
+  },
+
+  "api_contract": {
+    "endpoints": [
+      {
+        "path": "/api/v1/bionic/behavioral/activity",
+        "method": "GET",
+        "description": "Obtenir le niveau d'activite actuel",
+        "params": ["species", "datetime", "lat", "lng"]
+      },
+      {
+        "path": "/api/v1/bionic/behavioral/timeline",
+        "method": "GET",
+        "description": "Obtenir la timeline 24h",
+        "params": ["species", "date", "lat", "lng"]
+      },
+      {
+        "path": "/api/v1/bionic/behavioral/predict",
+        "method": "POST",
+        "description": "Prediction comportementale complete",
+        "body": {
+          "species": "string",
+          "datetime": "string",
+          "location": {"lat": "number", "lng": "number"},
+          "include_zones": "boolean",
+          "include_strategy": "boolean"
+        }
+      }
+    ]
+  },
+
+  "error_handling": {
+    "unknown_species": {"action": "return_error", "code": 400},
+    "missing_weather_data": {"action": "use_defaults", "confidence_penalty": 0.2},
+    "missing_camera_data": {"action": "model_only", "confidence_penalty": 0.1},
+    "calculation_error": {"action": "fallback_to_basic_model", "log": true}
+  },
+
+  "performance_requirements": {
+    "response_time_p95_ms": 300,
+    "response_time_p99_ms": 800,
+    "cache_ttl_seconds": 600,
+    "timeline_cache_ttl_seconds": 3600
+  },
+
+  "dependencies": {
+    "internal": [
+      "bionic_knowledge_engine",
+      "wildlife_behavior_engine",
+      "weather_engine",
+      "legal_time_engine",
+      "predictive_territorial (P0)"
+    ],
+    "external": [
+      "weather_api"
+    ]
+  },
+
+  "testing_requirements": {
+    "unit_tests": [
+      "test_hourly_pattern_calculation",
+      "test_seasonal_modifier",
+      "test_behavior_probability_distribution",
+      "test_species_specific_rules",
+      "test_cycle_combination"
+    ],
+    "integration_tests": [
+      "test_weather_integration",
+      "test_habitat_integration",
+      "test_full_prediction_pipeline"
+    ],
+    "validation_tests": [
+      "test_against_camera_observations",
+      "test_expert_knowledge_validation"
+    ]
+  },
+
+  "metadata": {
+    "families_used": ["F3", "F5", "F6", "F7", "F12"],
+    "families_future": ["F8", "F10", "F11"],
+    "compliance": ["G-QA", "G-SEC", "G-DOC"],
+    "gold_master_safe": true,
+    "blocs_critiques_integrated": ["bloc1_cameras", "bloc2_microclimats", "bloc3_pression", "bloc4_cycles"]
+  }
+}

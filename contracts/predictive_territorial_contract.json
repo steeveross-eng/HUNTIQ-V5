@@ -1,0 +1,403 @@
+{
+  "$schema": "https://huntiq.ca/schemas/bionic-contract-v1.json",
+  "contract_id": "predictive_territorial_v1",
+  "contract_version": "1.0.0",
+  "module_name": "predictive_territorial",
+  "phase": "P0",
+  "status": "DRAFT",
+  "created_at": "2025-12-21",
+  "updated_at": "2025-12-21",
+  "author": "BIONIC Engine Team",
+  "approved_by": null,
+  "description": "Contrat de donnees et interfaces pour le module Predictive Territorial P0",
+
+  "purpose": {
+    "primary": "Calculer un score de probabilite de presence/activite faunique pour une position geographique donnee",
+    "secondary": [
+      "Identifier les zones optimales de chasse",
+      "Generer des recommandations de positionnement",
+      "Alimenter les overlays cartographiques INTELLIGENCE"
+    ]
+  },
+
+  "inputs": {
+    "required": {
+      "location": {
+        "type": "object",
+        "properties": {
+          "latitude": {"type": "number", "min": 45.0, "max": 62.0, "description": "Latitude WGS84"},
+          "longitude": {"type": "number", "min": -80.0, "max": -57.0, "description": "Longitude WGS84"}
+        },
+        "source": "user_waypoints | map_click | gps_device",
+        "validation": "coordinates_within_quebec"
+      },
+      "species": {
+        "type": "enum",
+        "values": ["moose", "deer", "bear", "wild_turkey", "elk"],
+        "default": "moose",
+        "source": "user_selection",
+        "validation": "valid_species_enum"
+      },
+      "datetime": {
+        "type": "datetime",
+        "format": "ISO8601",
+        "timezone": "America/Toronto",
+        "source": "system | user_selection",
+        "validation": "valid_datetime_range"
+      }
+    },
+    "optional": {
+      "radius_km": {
+        "type": "number",
+        "min": 0.5,
+        "max": 25.0,
+        "default": 5.0,
+        "description": "Rayon d'analyse en km"
+      },
+      "weather_override": {
+        "type": "object",
+        "description": "Donnees meteo manuelles si API indisponible",
+        "properties": {
+          "temperature": {"type": "number"},
+          "wind_speed": {"type": "number"},
+          "pressure": {"type": "number"},
+          "precipitation": {"type": "number"}
+        }
+      },
+      "historical_mode": {
+        "type": "boolean",
+        "default": false,
+        "description": "Activer analyse historique (P1)"
+      }
+    }
+  },
+
+  "outputs": {
+    "primary": {
+      "territorial_score": {
+        "type": "object",
+        "properties": {
+          "overall_score": {"type": "number", "min": 0, "max": 100, "description": "Score global 0-100"},
+          "confidence": {"type": "number", "min": 0, "max": 1, "description": "Niveau de confiance 0-1"},
+          "rating": {"type": "enum", "values": ["exceptional", "excellent", "good", "moderate", "low", "poor"]},
+          "components": {
+            "type": "object",
+            "properties": {
+              "habitat_score": {"type": "number", "min": 0, "max": 100, "weight": 0.25},
+              "weather_score": {"type": "number", "min": 0, "max": 100, "weight": 0.20},
+              "temporal_score": {"type": "number", "min": 0, "max": 100, "weight": 0.20},
+              "pressure_score": {"type": "number", "min": 0, "max": 100, "weight": 0.15},
+              "microclimate_score": {"type": "number", "min": 0, "max": 100, "weight": 0.10},
+              "historical_score": {"type": "number", "min": 0, "max": 100, "weight": 0.10}
+            }
+          }
+        }
+      }
+    },
+    "secondary": {
+      "recommendations": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "type": {"type": "enum", "values": ["position", "timing", "equipment", "strategy"]},
+            "priority": {"type": "enum", "values": ["critical", "high", "medium", "low"]},
+            "message_fr": {"type": "string"},
+            "message_en": {"type": "string"}
+          }
+        }
+      },
+      "optimal_zones": {
+        "type": "array",
+        "description": "Zones optimales dans le rayon (P1)",
+        "items": {
+          "type": "object",
+          "properties": {
+            "center": {"type": "object", "properties": {"lat": {}, "lng": {}}},
+            "score": {"type": "number"},
+            "reason": {"type": "string"}
+          }
+        }
+      },
+      "factors_detail": {
+        "type": "array",
+        "items": {
+          "type": "object",
+          "properties": {
+            "name": {"type": "string"},
+            "impact": {"type": "enum", "values": ["very_positive", "positive", "neutral", "negative", "very_negative"]},
+            "score": {"type": "number"},
+            "description_fr": {"type": "string"}
+          }
+        }
+      }
+    }
+  },
+
+  "data_sources": {
+    "primary": [
+      {
+        "id": "habitat_variables",
+        "family": "F2",
+        "path": "/app/backend/modules/bionic_knowledge_engine/data/habitat_variables.json",
+        "status": "INTEGRATED",
+        "priority": "P0"
+      },
+      {
+        "id": "weather_engine",
+        "family": "F5",
+        "path": "/app/backend/modules/weather_engine/v1/service.py",
+        "status": "INTEGRATED",
+        "priority": "P0"
+      },
+      {
+        "id": "species_patterns",
+        "family": "F12",
+        "path": "/app/backend/modules/predictive_engine/v1/service.py",
+        "status": "INTEGRATED",
+        "priority": "P0"
+      },
+      {
+        "id": "waypoints",
+        "family": "F1",
+        "collection": "territory_waypoints",
+        "status": "INTEGRATED",
+        "priority": "P0"
+      }
+    ],
+    "secondary": [
+      {
+        "id": "dem_elevation",
+        "family": "F4",
+        "source": "SRTM / LiDAR Quebec",
+        "status": "PARTIAL",
+        "priority": "P0"
+      },
+      {
+        "id": "pressure_index",
+        "family": "F8",
+        "source": "hunting_trips + cameras",
+        "status": "TO_CREATE",
+        "priority": "P0"
+      },
+      {
+        "id": "microclimate_index",
+        "family": "F5",
+        "source": "calculated",
+        "status": "TO_CREATE",
+        "priority": "P0"
+      }
+    ],
+    "future": [
+      {
+        "id": "corridors_detected",
+        "family": "F6",
+        "status": "PLACEHOLDER",
+        "priority": "P1"
+      },
+      {
+        "id": "historical_harvest",
+        "family": "F10",
+        "source": "MELCCFP",
+        "status": "PLACEHOLDER",
+        "priority": "P1"
+      },
+      {
+        "id": "camera_aggregates",
+        "family": "F11",
+        "status": "PLACEHOLDER",
+        "priority": "P1"
+      }
+    ]
+  },
+
+  "weights_hierarchy": {
+    "description": "Hierarchie des facteurs avec regles d'arbitrage",
+    "primary_factors": {
+      "habitat_quality": {
+        "weight": 0.25,
+        "override_conditions": ["extreme_weather", "high_pressure"],
+        "components": ["ndvi", "canopy_cover", "water_proximity", "edge_density"]
+      },
+      "temporal_alignment": {
+        "weight": 0.20,
+        "override_conditions": [],
+        "components": ["hourly_pattern", "seasonal_factor", "lunar_phase"]
+      },
+      "weather_conditions": {
+        "weight": 0.20,
+        "override_conditions": ["extreme_values"],
+        "components": ["temperature", "wind_speed", "pressure_trend", "precipitation"]
+      }
+    },
+    "secondary_factors": {
+      "pressure_index": {
+        "weight": 0.15,
+        "max_override": 0.25,
+        "condition": "pressure_score < 30"
+      },
+      "microclimate": {
+        "weight": 0.10,
+        "components": ["imc_score", "thermal_zones"]
+      },
+      "historical": {
+        "weight": 0.10,
+        "fallback_if_unavailable": "use_regional_baseline"
+      }
+    },
+    "arbitrage_rules": [
+      {
+        "rule_id": "AR001",
+        "condition": "weather.temperature > 30 OR weather.temperature < -25",
+        "action": "weather_weight *= 2.0, normalize_others",
+        "description": "Conditions extremes: meteo devient facteur dominant"
+      },
+      {
+        "rule_id": "AR002",
+        "condition": "pressure_index > 80",
+        "action": "pressure_weight = 0.30, reduce_habitat_weight",
+        "description": "Pression extreme: faune deplacee, habitat moins predictif"
+      },
+      {
+        "rule_id": "AR003",
+        "condition": "is_rut_period AND species IN ['moose', 'deer']",
+        "action": "temporal_weight *= 1.5, add_rut_bonus",
+        "description": "Periode rut: comportement temporel plus predictif"
+      },
+      {
+        "rule_id": "AR004",
+        "condition": "data_source_unavailable",
+        "action": "redistribute_weight_to_available_sources",
+        "description": "Donnee manquante: redistribution ponderee"
+      }
+    ]
+  },
+
+  "validation_rules": {
+    "input_validation": [
+      {"rule": "latitude_in_range", "min": 45.0, "max": 62.0, "error": "ERR_LAT_OUT_OF_RANGE"},
+      {"rule": "longitude_in_range", "min": -80.0, "max": -57.0, "error": "ERR_LNG_OUT_OF_RANGE"},
+      {"rule": "species_valid", "allowed": ["moose", "deer", "bear", "wild_turkey", "elk"], "error": "ERR_INVALID_SPECIES"},
+      {"rule": "datetime_valid", "format": "ISO8601", "error": "ERR_INVALID_DATETIME"}
+    ],
+    "output_validation": [
+      {"rule": "score_in_range", "field": "overall_score", "min": 0, "max": 100},
+      {"rule": "confidence_in_range", "field": "confidence", "min": 0, "max": 1},
+      {"rule": "components_sum_approx_1", "tolerance": 0.05}
+    ],
+    "business_rules": [
+      {"rule": "no_hunting_outside_legal_hours", "action": "flag_recommendation"},
+      {"rule": "bear_hibernation_zero_score", "condition": "species=bear AND month IN [12,1,2,3]", "score": 0},
+      {"rule": "minimum_confidence_threshold", "threshold": 0.5, "action": "add_low_confidence_warning"}
+    ]
+  },
+
+  "error_handling": {
+    "weather_api_failure": {
+      "action": "use_cached_or_default",
+      "fallback_confidence": 0.6,
+      "log_level": "WARNING"
+    },
+    "database_unavailable": {
+      "action": "return_error_response",
+      "retry_count": 3,
+      "log_level": "ERROR"
+    },
+    "invalid_coordinates": {
+      "action": "return_validation_error",
+      "http_code": 400
+    },
+    "calculation_timeout": {
+      "timeout_ms": 5000,
+      "action": "return_partial_result",
+      "log_level": "WARNING"
+    }
+  },
+
+  "api_contract": {
+    "endpoint": "/api/v1/bionic/territorial/score",
+    "method": "POST",
+    "request_schema": {
+      "type": "object",
+      "required": ["latitude", "longitude", "species"],
+      "properties": {
+        "latitude": {"type": "number"},
+        "longitude": {"type": "number"},
+        "species": {"type": "string"},
+        "datetime": {"type": "string", "format": "date-time"},
+        "radius_km": {"type": "number"},
+        "include_recommendations": {"type": "boolean", "default": true},
+        "include_zones": {"type": "boolean", "default": false}
+      }
+    },
+    "response_schema": {
+      "type": "object",
+      "properties": {
+        "success": {"type": "boolean"},
+        "data": {"$ref": "#/outputs/primary/territorial_score"},
+        "recommendations": {"$ref": "#/outputs/secondary/recommendations"},
+        "metadata": {
+          "type": "object",
+          "properties": {
+            "calculation_time_ms": {"type": "number"},
+            "data_sources_used": {"type": "array"},
+            "warnings": {"type": "array"}
+          }
+        }
+      }
+    }
+  },
+
+  "performance_requirements": {
+    "response_time_p95_ms": 500,
+    "response_time_p99_ms": 1000,
+    "cache_ttl_seconds": 300,
+    "max_concurrent_requests": 100
+  },
+
+  "dependencies": {
+    "internal": [
+      "bionic_knowledge_engine",
+      "weather_engine",
+      "waypoint_engine",
+      "legal_time_engine"
+    ],
+    "external": [
+      "open_meteo_api",
+      "environment_canada_api"
+    ]
+  },
+
+  "testing_requirements": {
+    "unit_tests": [
+      "test_score_calculation_basic",
+      "test_weight_normalization",
+      "test_arbitrage_rules",
+      "test_species_specific_logic",
+      "test_edge_cases"
+    ],
+    "integration_tests": [
+      "test_weather_api_integration",
+      "test_database_queries",
+      "test_full_pipeline"
+    ],
+    "validation_tests": [
+      "test_known_good_locations",
+      "test_expert_validation_set"
+    ]
+  },
+
+  "versioning": {
+    "breaking_changes": "Major version bump",
+    "new_features": "Minor version bump",
+    "bug_fixes": "Patch version bump",
+    "deprecation_policy": "2 minor versions notice"
+  },
+
+  "metadata": {
+    "families_used": ["F1", "F2", "F4", "F5", "F8", "F9", "F12"],
+    "families_future": ["F6", "F7", "F10", "F11"],
+    "compliance": ["G-QA", "G-SEC", "G-DOC"],
+    "gold_master_safe": true
+  }
+}
