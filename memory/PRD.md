@@ -68,6 +68,8 @@
 | 2025-12-21 | **16.0.0-beta** | **PHASE G - P0-BETA: Correctifs Pydantic V2, arbitrage rut/pression, 3 rapports revue executive** |
 | 2025-12-21 | **16.0.0-beta2** | **🎯 PHASE G - P0-BETA2: INTEGRATION 12 FACTEURS COMPORTEMENTAUX - BIONIC V5 ULTIME x2** |
 | 2025-12-21 | **16.1.0-beta2** | **📋 REVUE EXECUTIVE P0-BETA2: 4 Rapports (Fonctionnelle 97%, Technique 99%, Architecturale 99%, Delta) - GO P0-STABLE** |
+| 2025-12-21 | **17.0.0-stable** | **🚀 P0-STABLE VALIDÉ: 12 facteurs comportementaux, 91 tests PASS, GOLD MASTER intact** |
+| 2025-12-21 | **17.1.0-draft** | **📋 PLANS P1 PRÉPARÉS: P1-ENV (OpenWeatherMap), P1-SCORE (Scoring Dynamique), P1-VIS (Heatmaps), analyze_hunt_plan** |
 
 
 ---
