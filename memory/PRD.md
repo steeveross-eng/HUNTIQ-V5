@@ -64,6 +64,7 @@
 | 2025-12-21 | **15.0.0** | **PHASE G - INVENTAIRE PREDICTIF TOTAL - 12 familles de donnees, mapping P0, sources scientifiques** |
 | 2025-12-21 | **15.1.0** | **PHASE G - COMPLEMENTS CRITIQUES P0 - 4 blocs detailles + Sources CA/USA completes (Top 10)** |
 | 2025-12-21 | **15.2.0** | **PHASE G - LIVRABLES FINAUX PRE-GO: Inventaire v1.2, Contrats P0, Matrice Coherence, Plan Tests G-QA** |
+| 2025-12-21 | **16.0.0-alpha** | **PHASE G - P0-ALPHA IMPLEMENTATION: predictive_territorial.py, behavioral_models.py, router API, 35 tests passes** |
 
 
 ---
