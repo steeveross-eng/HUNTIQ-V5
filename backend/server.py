@@ -171,8 +171,19 @@ orchestrator.register_special_routers()
 # 4. Register legacy router (backward compatibility)
 orchestrator.register_legacy_router()
 
+# 5. Register BIONIC Engine P0 router (Phase G)
+try:
+    from modules.bionic_engine.router import router as bionic_router
+    app.include_router(bionic_router, prefix="/api")
+    logger.info("✓ BIONIC Engine P0 registered (/api/v1/bionic)")
+except ImportError as e:
+    logger.warning(f"BIONIC Engine P0 not loaded: {e}")
+except Exception as e:
+    logger.error(f"BIONIC Engine P0 registration failed: {e}")
+
 logger.info("=" * 60)
 logger.info(f"✓ V5-ULTIME-FUSION: {len(CORE_ROUTERS)} modules registered")
+logger.info("✓ PHASE G: BIONIC Engine P0 active")
 logger.info("=" * 60)
 
 
