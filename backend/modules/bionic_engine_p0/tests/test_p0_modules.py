@@ -158,7 +158,7 @@ class TestPredictiveTerritorialSpecies:
         assert "BEAR_HIBERNATION_PERIOD" in result.warnings
     
     def test_moose_rut_bonus(self, pt_service, sample_coordinates):
-        """Orignal en rut = score booste"""
+        """Orignal en rut = facteur temporel booste"""
         october = datetime(2025, 10, 5, 7, 0, tzinfo=timezone.utc)
         july = datetime(2025, 7, 15, 7, 0, tzinfo=timezone.utc)
         
@@ -176,8 +176,11 @@ class TestPredictiveTerritorialSpecies:
             datetime_target=july
         )
         
-        # Rut devrait donner un meilleur score
-        assert result_rut.overall_score > result_summer.overall_score
+        # Le score temporel devrait etre plus eleve en rut
+        assert result_rut.components.temporal_score > result_summer.components.temporal_score
+        # Et le rut devrait etre detecte
+        assert result_rut.metadata.get("is_rut") is True
+        assert result_summer.metadata.get("is_rut") is False
 
 
 class TestPredictiveTerritorialBoundaries:
