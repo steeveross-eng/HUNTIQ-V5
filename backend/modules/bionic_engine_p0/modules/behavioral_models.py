@@ -725,9 +725,6 @@ class BehavioralModelsService:
         hourly_scores = patterns.get("hourly_scores", {})
         activity_probs = patterns.get("activity_probabilities", {})
         
-        # Date du jour
-        base_date = datetime_target.replace(hour=0, minute=0, second=0, microsecond=0)
-        
         # Heures legales de chasse (approximation)
         legal_start = 6  # 30 min avant lever soleil
         legal_end = 18   # 30 min apres coucher soleil
