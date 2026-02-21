@@ -244,14 +244,20 @@ class PredictiveTerritorialService:
         datetime_target: Optional[datetime] = None,
         radius_km: float = 5.0,
         weather_override: Optional[WeatherOverride] = None,
-        include_recommendations: bool = True
+        include_recommendations: bool = True,
+        snow_depth_cm: float = 0,
+        is_crusted: bool = False,
+        include_advanced_factors: bool = True
     ) -> TerritorialScoreOutput:
         """
         Calcule le score territorial pour une position.
         
+        VERSION P0-BETA2: Integration des 12 facteurs comportementaux
+        
         Formule:
         Score = sum(component_score * weight) pour tous les composants
         Avec ajustements arbitrage selon hierarchie
+        + Integration des 12 facteurs comportementaux avances
         
         Args:
             latitude: Latitude WGS84
@@ -261,15 +267,23 @@ class PredictiveTerritorialService:
             radius_km: Rayon d'analyse
             weather_override: Donnees meteo manuelles
             include_recommendations: Inclure recommandations
+            snow_depth_cm: Profondeur de neige (cm)
+            is_crusted: Presence de croute de glace
+            include_advanced_factors: Inclure les 12 facteurs avances
             
         Returns:
-            TerritorialScoreOutput complet
+            TerritorialScoreOutput complet avec 12 facteurs
         """
         # Datetime par defaut
         if datetime_target is None:
             datetime_target = datetime.now(timezone.utc)
         
         warnings = []
+        hour = datetime_target.hour
+        month = datetime_target.month
+        weekday = datetime_target.weekday()
+        is_weekend = weekday >= 5
+        species_str = species.value
         
         # Verification hibernation ours (Niveau 1 - CRITIQUE)
         if species == Species.BEAR and datetime_target.month in BEAR_HIBERNATION_MONTHS:
@@ -298,11 +312,12 @@ class PredictiveTerritorialService:
                 metadata={
                     "species": species.value,
                     "hibernation": True,
-                    "datetime": datetime_target.isoformat()
+                    "datetime": datetime_target.isoformat(),
+                    "advanced_factors_enabled": False
                 }
             )
         
-        # Calculer chaque composante
+        # Calculer chaque composante de base
         habitat_score = self._calculate_habitat_score(latitude, longitude, species)
         weather_score, weather_data = self._calculate_weather_score(
             latitude, longitude, weather_override
@@ -323,6 +338,133 @@ class PredictiveTerritorialService:
         # Detection haute pression
         is_high_pressure = pressure_score < 30  # IPC inverse
         
+        # =================================================================
+        # P0-BETA2: INTEGRATION DES 12 FACTEURS COMPORTEMENTAUX
+        # =================================================================
+        advanced_factors = {}
+        advanced_factor_scores = {}
+        temperature = weather_data.get("temperature", 10)
+        
+        if include_advanced_factors:
+            # 1. PREDATION (PredatorRisk, PredatorCorridors)
+            predation_result = PredatorRiskModel.calculate_predation_risk(
+                species_str, latitude, hour, month
+            )
+            advanced_factors["predation"] = predation_result
+            advanced_factor_scores["predation"] = predation_result["risk_score"]
+            
+            # 2. STRESS THERMIQUE
+            thermal_stress = StressModel.calculate_thermal_stress(species_str, temperature)
+            advanced_factors["thermal_stress"] = thermal_stress
+            advanced_factor_scores["thermal_stress"] = thermal_stress["stress_score"]
+            
+            # 3. STRESS HYDRIQUE
+            estimated_water_distance = 300 if latitude < 50 else 500
+            hydric_stress = StressModel.calculate_hydric_stress(
+                species_str, estimated_water_distance, temperature
+            )
+            advanced_factors["hydric_stress"] = hydric_stress
+            advanced_factor_scores["hydric_stress"] = hydric_stress["stress_score"]
+            
+            # 4. STRESS SOCIAL
+            social_stress = StressModel.calculate_social_stress(species_str, month, group_size=3)
+            advanced_factors["social_stress"] = social_stress
+            advanced_factor_scores["social_stress"] = social_stress["stress_score"]
+            
+            # 5. HIERARCHIE SOCIALE
+            dominance = SocialHierarchyModel.calculate_dominance_context(
+                species_str, month, is_male=True
+            )
+            advanced_factors["social_hierarchy"] = dominance
+            advanced_factor_scores["social_hierarchy"] = dominance["dominance_score"]
+            
+            # 6. COMPETITION INTER-ESPECES
+            region_species = ["deer", "bear"] if latitude < 50 else ["moose", "caribou"]
+            competition = InterspeciesCompetitionModel.calculate_competition(
+                species_str, region_species
+            )
+            advanced_factors["competition"] = competition
+            advanced_factor_scores["competition"] = competition["total_competition_score"]
+            
+            # 7. SIGNAUX FAIBLES
+            weak_signals = WeakSignalsModel.detect_anomalies(
+                current_score=70,
+                historical_avg=65,
+                weather_rapid_change=abs(temperature) > 20,
+                unusual_activity=False
+            )
+            advanced_factors["weak_signals"] = weak_signals
+            advanced_factor_scores["weak_signals"] = weak_signals["anomaly_score"]
+            
+            # 8. CYCLES HORMONAUX
+            hormonal = HormonalCycleModel.get_hormonal_phase(species_str, month)
+            advanced_factors["hormonal"] = hormonal
+            # Convertir activity_modifier en score (1.5 = 50 bonus, 0.5 = -50)
+            hormonal_score = (hormonal["activity_modifier"] - 1.0) * 100 + 50
+            advanced_factor_scores["hormonal"] = max(0, min(100, hormonal_score))
+            
+            # 9. CYCLES DIGESTIFS
+            digestive = DigestiveCycleModel.get_digestive_phase(species_str, hour)
+            advanced_factors["digestive"] = digestive
+            # Score base sur probabilite d'alimentation
+            advanced_factor_scores["digestive"] = digestive["feeding_probability"] * 100
+            
+            # 10. MEMOIRE TERRITORIALE
+            territorial_memory = TerritorialMemoryModel.calculate_avoidance_factor(
+                species_str, days_since_disturbance=7, disturbance_intensity=0.5
+            )
+            advanced_factors["territorial_memory"] = territorial_memory
+            # Score inverse (evitement = mauvais)
+            advanced_factor_scores["territorial_memory"] = 100 - territorial_memory["avoidance_score"]
+            
+            # 11. APPRENTISSAGE COMPORTEMENTAL
+            adaptive = AdaptiveBehaviorModel.calculate_adaptation(
+                species_str,
+                hunting_pressure_history=[30, 40, 35, 50, 45],
+                success_rate_hunters=0.15
+            )
+            advanced_factors["adaptive_behavior"] = adaptive
+            # Score inverse (adaptation = animal plus difficile)
+            advanced_factor_scores["adaptive_behavior"] = 100 - adaptive["adaptation_level"]
+            
+            # 12. ACTIVITE HUMAINE NON-CHASSE
+            disturbances = ["hiking"] if is_weekend else []
+            human_disturbance = HumanDisturbanceModel.calculate_disturbance(
+                disturbances,
+                is_weekend=is_weekend,
+                is_summer=month in [6, 7, 8]
+            )
+            advanced_factors["human_disturbance"] = human_disturbance
+            # Score inverse (perturbation = mauvais)
+            advanced_factor_scores["human_disturbance"] = 100 - human_disturbance["disturbance_score"]
+            
+            # 13. DISPONIBILITE MINERALE
+            mineral = MineralAvailabilityModel.calculate_mineral_attraction(
+                species_str, month, salt_lick_distance_m=800
+            )
+            advanced_factors["mineral"] = mineral
+            advanced_factor_scores["mineral"] = mineral["salt_lick_attraction"]
+            
+            # 14. CONDITIONS DE NEIGE
+            snow = SnowConditionModel.calculate_snow_impact(
+                species_str, snow_depth_cm, is_crusted, temperature
+            )
+            advanced_factors["snow"] = snow
+            # Score inverse (penalite = mauvais)
+            advanced_factor_scores["snow"] = 100 - snow["winter_penalty_score"]
+            
+            # Ajouter warnings des facteurs avances
+            if predation_result["risk_score"] > 50:
+                warnings.append("HIGH_PREDATION_RISK")
+            if thermal_stress["stress_score"] > 40:
+                warnings.append(f"THERMAL_STRESS_{thermal_stress['stress_type'].upper()}")
+            if snow["winter_penalty_score"] > 50:
+                warnings.append("DIFFICULT_SNOW_CONDITIONS")
+            if human_disturbance["disturbance_score"] > 40:
+                warnings.append("HUMAN_DISTURBANCE_DETECTED")
+            if hormonal["phase"] in ["rut_peak", "pre_rut"]:
+                warnings.append(f"HORMONAL_PHASE_{hormonal['phase'].upper()}")
+        
         # Obtenir poids dynamiques selon contexte
         weights = self._get_dynamic_weights(
             is_extreme=is_extreme,
@@ -330,7 +472,7 @@ class PredictiveTerritorialService:
             is_high_pressure=is_high_pressure
         )
         
-        # Calcul score pondere
+        # Calcul score pondere de base
         component_scores = {
             "habitat_quality": habitat_score,
             "weather_conditions": weather_score,
@@ -340,10 +482,42 @@ class PredictiveTerritorialService:
             "historical_baseline": historical_score
         }
         
-        overall_score = sum(
+        base_score = sum(
             score * weights.get(key, 0)
             for key, score in component_scores.items()
         )
+        
+        # =================================================================
+        # INTEGRATION AVANCEE: Appliquer les modificateurs des 12 facteurs
+        # =================================================================
+        overall_score = base_score
+        
+        if include_advanced_factors and advanced_factor_scores:
+            # Poids des 12 facteurs (total = 0.20 du score final)
+            ADVANCED_WEIGHTS = {
+                "predation": 0.020,
+                "thermal_stress": 0.015,
+                "hydric_stress": 0.010,
+                "social_stress": 0.010,
+                "social_hierarchy": 0.015,
+                "competition": 0.010,
+                "weak_signals": 0.010,
+                "hormonal": 0.025,
+                "digestive": 0.015,
+                "territorial_memory": 0.015,
+                "adaptive_behavior": 0.020,
+                "human_disturbance": 0.015,
+                "mineral": 0.010,
+                "snow": 0.020
+            }
+            
+            # Le score de base represente 80% du total
+            overall_score = base_score * 0.80
+            
+            # Les facteurs avances representent 20%
+            for factor_name, factor_score in advanced_factor_scores.items():
+                weight = ADVANCED_WEIGHTS.get(factor_name, 0.01)
+                overall_score += factor_score * weight * 100
         
         # Borner le score
         overall_score = max(0, min(100, overall_score))
@@ -353,6 +527,11 @@ class PredictiveTerritorialService:
             weather_override is None,
             is_extreme
         )
+        
+        # Ajuster confiance si signaux faibles detectes
+        if include_advanced_factors and advanced_factors.get("weak_signals", {}).get("confidence_adjustment"):
+            confidence += advanced_factors["weak_signals"]["confidence_adjustment"]
+            confidence = max(0.5, min(1.0, confidence))
         
         # Rating
         rating = score_to_rating(overall_score)
