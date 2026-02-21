@@ -557,7 +557,39 @@ class PredictiveTerritorialService:
                 weather_data=weather_data
             )
         
-        # Construire output
+        # Construire output avec les 12 facteurs avances
+        metadata = {
+            "species": species.value,
+            "datetime": datetime_target.isoformat(),
+            "latitude": latitude,
+            "longitude": longitude,
+            "weights_applied": weights,
+            "is_rut": is_rut,
+            "is_extreme": is_extreme,
+            "data_sources_used": self._available_sources,
+            "advanced_factors_enabled": include_advanced_factors,
+            "version": "P0-beta2"
+        }
+        
+        # Ajouter les donnees des 12 facteurs si actives
+        if include_advanced_factors and advanced_factors:
+            metadata["advanced_factors"] = advanced_factors
+            metadata["advanced_factor_scores"] = advanced_factor_scores
+            
+            # Identifier les facteurs dominants
+            dominant_factors = []
+            for factor_name, score in advanced_factor_scores.items():
+                if factor_name in ["predation", "thermal_stress", "snow"] and score > 50:
+                    dominant_factors.append(f"{factor_name}_impact")
+                elif factor_name == "hormonal" and score > 70:
+                    dominant_factors.append("hormonal_peak")
+            metadata["dominant_factors"] = dominant_factors if dominant_factors else ["balanced"]
+            
+            # Recommandations basees sur les facteurs avances
+            if include_recommendations:
+                advanced_recs = self._generate_advanced_recommendations(advanced_factors, species)
+                recommendations.extend(advanced_recs)
+        
         return TerritorialScoreOutput(
             success=True,
             overall_score=round(overall_score, 1),
@@ -573,16 +605,7 @@ class PredictiveTerritorialService:
             ),
             recommendations=recommendations,
             warnings=warnings,
-            metadata={
-                "species": species.value,
-                "datetime": datetime_target.isoformat(),
-                "latitude": latitude,
-                "longitude": longitude,
-                "weights_applied": weights,
-                "is_rut": is_rut,
-                "is_extreme": is_extreme,
-                "data_sources_used": self._available_sources
-            }
+            metadata=metadata
         )
     
     # =========================================================================
