@@ -66,7 +66,76 @@
 | 2025-12-21 | **15.2.0** | **PHASE G - LIVRABLES FINAUX PRE-GO: Inventaire v1.2, Contrats P0, Matrice Coherence, Plan Tests G-QA** |
 | 2025-12-21 | **16.0.0-alpha** | **PHASE G - P0-ALPHA IMPLEMENTATION: predictive_territorial.py, behavioral_models.py, router API, 35 tests passes** |
 | 2025-12-21 | **16.0.0-beta** | **PHASE G - P0-BETA: Correctifs Pydantic V2, arbitrage rut/pression, 3 rapports revue executive** |
+| 2025-12-21 | **16.0.0-beta2** | **🎯 PHASE G - P0-BETA2: INTEGRATION 12 FACTEURS COMPORTEMENTAUX - BIONIC V5 ULTIME x2** |
 
+
+---
+
+## 🎯 PHASE G - P0-BETA2 (v16.0.0-beta2) - BIONIC V5 ULTIME x2
+
+### Resume Executif
+- **Directive:** Integrer les 12 facteurs comportementaux majeurs
+- **Status:** ✅ COMPLET - 91 TESTS PASSES (70 unitaires + 21 API)
+- **Version:** P0-beta2
+- **Mode:** IMPLEMENTATION (GOLD MASTER RESPECTE)
+
+### 12 Facteurs Comportementaux Integres
+
+| # | Facteur | Classe | Poids | Status |
+|---|---------|--------|-------|--------|
+| 1 | Predation (PredatorRisk, PredatorCorridors) | PredatorRiskModel | 2.0% | ✅ |
+| 2 | Stress Thermique | StressModel | 1.5% | ✅ |
+| 3 | Stress Hydrique | StressModel | 1.0% | ✅ |
+| 4 | Stress Social | StressModel | 1.0% | ✅ |
+| 5 | Hierarchie Sociale (DominanceScore, GroupBehavior) | SocialHierarchyModel | 1.5% | ✅ |
+| 6 | Competition Inter-especes | InterspeciesCompetitionModel | 1.0% | ✅ |
+| 7 | Signaux Faibles (WeakSignals, Anomalies) | WeakSignalsModel | 1.0% | ✅ |
+| 8 | Cycles Hormonaux (rut, lactation, bois) | HormonalCycleModel | 2.5% | ✅ |
+| 9 | Cycles Digestifs (feeding→bedding) | DigestiveCycleModel | 1.5% | ✅ |
+| 10 | Memoire Territoriale (AvoidanceMemory, PreferredRoutes) | TerritorialMemoryModel | 1.5% | ✅ |
+| 11 | Apprentissage Comportemental (AdaptiveBehavior) | AdaptiveBehaviorModel | 2.0% | ✅ |
+| 12 | Activite Humaine Non-Chasse (HumanDisturbance) | HumanDisturbanceModel | 1.5% | ✅ |
+| 13 | Disponibilite Minerale (MineralAvailability, SaltLickAttraction) | MineralAvailabilityModel | 1.0% | ✅ |
+| 14 | Conditions de Neige (SnowDepth, CrustRisk, WinterPenalty) | SnowConditionModel | 2.0% | ✅ |
+
+**Total Poids Facteurs Avances:** 20%
+**Poids Score de Base:** 80%
+
+### Fichiers Mis a Jour
+
+| Fichier | Changements |
+|---------|-------------|
+| `predictive_territorial.py` | +Integration 12 facteurs, +Recommandations avancees, +Version P0-beta2 |
+| `behavioral_models.py` | +Integration 12 facteurs, +Strategies avancees, +behavioral_modifiers |
+| `data_contracts.py` | +snow_depth_cm, +is_crusted, +include_advanced_factors |
+| `router.py` | +Passage nouveaux parametres aux services |
+| `test_p0_modules.py` | +35 nouveaux tests pour 12 facteurs |
+| `predictive_territorial_contract.json` | +v1.1.0-beta2, +advanced_behavioral_factors |
+| `behavioral_models_contract.json` | +v1.1.0-beta2, +behavioral_modifiers_output |
+| `INVENTAIRE_PREDICTIF_TOTAL.md` | +v1.3.0-beta2, +Details 12 facteurs |
+| `MATRICE_DE_COHERENCE_P0.md` | +v2.0.0, +Validation 12 facteurs |
+
+### Tests Valides
+
+| Type | Nombre | Status |
+|------|--------|--------|
+| Tests Unitaires | 70 | ✅ PASS |
+| Tests API | 21 | ✅ PASS |
+| **Total** | **91** | **✅ 100% PASS** |
+
+### API Endpoints Testes
+
+```
+POST /api/v1/bionic/territorial/score
+  - include_advanced_factors=true ✅
+  - metadata.version = "P0-beta2" ✅
+  - metadata.advanced_factors = {14 facteurs} ✅
+
+POST /api/v1/bionic/behavioral/predict
+  - include_advanced_factors=true ✅
+  - metadata.version = "P0-beta2" ✅
+  - metadata.behavioral_modifiers = {14 outputs} ✅
+```
 
 ---
 
