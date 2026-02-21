@@ -13,7 +13,7 @@ import pytest
 from datetime import datetime, timezone
 from typing import Dict
 
-from modules.bionic_engine.modules.predictive_territorial import (
+from modules.bionic_engine_p0.modules.predictive_territorial import (
     PredictiveTerritorialService,
     HOURLY_ACTIVITY_PATTERNS as PT_PATTERNS,
     SEASON_FACTORS,
@@ -21,13 +21,13 @@ from modules.bionic_engine.modules.predictive_territorial import (
     RUT_PERIODS,
     BEAR_HIBERNATION_MONTHS
 )
-from modules.bionic_engine.modules.behavioral_models import (
+from modules.bionic_engine_p0.modules.behavioral_models import (
     BehavioralModelsService,
     HOURLY_ACTIVITY_PATTERNS as BM_PATTERNS,
     ANNUAL_CALENDAR,
     HUNTING_STRATEGIES
 )
-from modules.bionic_engine.contracts.data_contracts import (
+from modules.bionic_engine_p0.contracts.data_contracts import (
     Species,
     ScoreRating,
     ActivityLevel,
