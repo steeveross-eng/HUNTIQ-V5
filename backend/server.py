@@ -173,8 +173,8 @@ orchestrator.register_legacy_router()
 
 # 5. Register BIONIC Engine P0 router (Phase G)
 try:
-    from modules.bionic_engine.router import router as bionic_router
-    app.include_router(bionic_router, prefix="/api")
+    from modules.bionic_engine.router import router as bionic_p0_router
+    app.include_router(bionic_p0_router, prefix="/api")
     logger.info("✓ BIONIC Engine P0 registered (/api/v1/bionic)")
 except ImportError as e:
     logger.warning(f"BIONIC Engine P0 not loaded: {e}")
