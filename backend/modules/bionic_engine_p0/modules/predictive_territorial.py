@@ -661,22 +661,33 @@ class PredictiveTerritorialService:
         Retourne les poids dynamiques selon le contexte.
         
         Conforme a: Inventaire v1.2 - Ponderations Dynamiques
+        
+        Regles d'arbitrage (priorite):
+        1. Conditions extremes -> weather domine
+        2. Rut actif -> temporal domine, pression reduite
+        3. Haute pression seule -> pression augmentee
         """
         weights = self.weights_config.base.copy()
         
-        # Conditions extremes (Niveau 1)
+        # Conditions extremes (Niveau 1 - Override)
         if is_extreme:
             weights["weather_conditions"] *= 2.0
             weights["microclimate"] *= 1.5
         
-        # Periode rut
+        # Periode rut (Niveau 2 - Primaire)
         if is_rut:
             weights["temporal_alignment"] *= 1.5
             weights["habitat_quality"] *= 1.25
-            weights["pressure_index"] *= 0.7
+            # REGLE ARBITRAGE: Rut domine pression
+            # Le rut transcende la pression de chasse - les animaux
+            # sont plus actifs malgre la presence de chasseurs
+            if is_high_pressure:
+                weights["pressure_index"] *= 0.5  # Reduire impact pression
+            else:
+                weights["pressure_index"] *= 0.7
         
-        # Haute pression chasse
-        if is_high_pressure:
+        # Haute pression seule (sans rut)
+        elif is_high_pressure:
             weights["pressure_index"] *= 2.0
             weights["habitat_quality"] *= 0.8
         
