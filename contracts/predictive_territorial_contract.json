@@ -351,7 +351,10 @@
         "datetime": {"type": "string", "format": "date-time"},
         "radius_km": {"type": "number"},
         "include_recommendations": {"type": "boolean", "default": true},
-        "include_zones": {"type": "boolean", "default": false}
+        "include_zones": {"type": "boolean", "default": false},
+        "snow_depth_cm": {"type": "number", "default": 0, "description": "Profondeur de neige en cm"},
+        "is_crusted": {"type": "boolean", "default": false, "description": "Presence de croute de glace"},
+        "include_advanced_factors": {"type": "boolean", "default": true, "description": "Inclure les 12 facteurs comportementaux"}
       }
     },
     "response_schema": {
@@ -365,7 +368,12 @@
           "properties": {
             "calculation_time_ms": {"type": "number"},
             "data_sources_used": {"type": "array"},
-            "warnings": {"type": "array"}
+            "warnings": {"type": "array"},
+            "version": {"type": "string", "description": "Version du module (P0-beta2)"},
+            "advanced_factors_enabled": {"type": "boolean"},
+            "advanced_factors": {"type": "object", "description": "Donnees des 12 facteurs comportementaux"},
+            "advanced_factor_scores": {"type": "object", "description": "Scores des 12 facteurs"},
+            "dominant_factors": {"type": "array", "description": "Facteurs dominants identifies"}
           }
         }
       }
