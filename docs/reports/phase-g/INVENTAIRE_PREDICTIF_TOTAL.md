@@ -1002,6 +1002,234 @@ SEASON_FACTORS = {
 | Qualite photos cameras | Moyenne | Moyen | Pre-traitement, seuils |
 | Changement reglementation | Basse | Haut | MAJ trimestrielle sources |
 
+---
+
+# NORMALISATION DES PONDERATIONS (Version 1.2.0)
+
+## HIERARCHIE OFFICIELLE DES FACTEURS
+
+### Niveau 1 - CRITIQUE (Override Absolu)
+Ces facteurs ANNULENT ou DOMINENT tous les autres quand actifs.
+
+| Facteur | Condition Declenchement | Action | Priorite |
+|---------|------------------------|--------|----------|
+| **F9 - Conditions Extremes** | temp < -30C OU temp > 32C OU vent > 60km/h | Override all, survival_mode | 1 |
+| **F8 - Pression Extreme** | IPC > 80 | Override habitat, avoidance_mode | 2 |
+| **Bear Hibernation** | species=bear AND month IN [12,1,2,3] | score = 0, no_calculation | 1 |
+
+### Niveau 2 - PRIMAIRE (Facteurs Dominants)
+Poids de base eleves, ajustables selon contexte.
+
+| Facteur | Poids Base | Module | Ajustement Contextuel |
+|---------|------------|--------|----------------------|
+| **F12 - Cycles Temporels** | 0.25 | PT + BM | +50% si rut_period |
+| **F5 - Microclimats** | 0.20 | PT | +30% si extreme_temp |
+| **F2 - Vegetation/Habitat** | 0.20 | PT + BM | Standard |
+
+### Niveau 3 - SECONDAIRE (Facteurs Modulateurs)
+Poids moderes, modifient le score final.
+
+| Facteur | Poids Base | Module | Condition Elevation |
+|---------|------------|--------|---------------------|
+| **F8 - Pression Chasse** | 0.15 | PT + BM | +66% si IPC > 60 |
+| **F5 - Weather** | 0.15 | PT | +100% si extreme |
+| **F1 - Territoriales** | 0.10 | PT | Standard |
+
+### Niveau 4 - VALIDATION (Facteurs Confirmatoires)
+Poids faibles, confirment ou ajustent.
+
+| Facteur | Poids Base | Module | Role |
+|---------|------------|--------|------|
+| **F11 - Cameras** | 0.10 | BM | Validation patterns |
+| **F10 - Historiques** | 0.10 | PT | Baseline regional |
+| **F3 - Alimentation** | 0.05 | BM | Contexte saisonnier |
+
+---
+
+## REGLES D'ARBITRAGE EN CAS DE CONFLIT
+
+### Matrice de Priorite
+
+| Conflit | Gagnant | Perdant | Justification |
+|---------|---------|---------|---------------|
+| Meteo extreme vs Habitat optimal | F9 | F2 | Survie > Confort |
+| Pression elevee vs Zone ideale | F8 | F1/F2 | Evitement > Attractivite |
+| Rut vs Mauvais temps | F12 | F5 | Reproduction > Confort |
+| Camera observations vs Modele | F11 | F12 | Observations > Predictions |
+| Historique vs Temps reel | Temps reel | F10 | Actualite > Baseline |
+| Cycles horaires vs Cycles hebdo | F12-horaire | F12-hebdo | Precision > Tendance |
+
+### Algorithme de Resolution
+
+```python
+def resolve_conflict(factor_a: Factor, factor_b: Factor) -> Factor:
+    """
+    Resolution de conflit entre deux facteurs.
+    
+    Regle 1: Niveau hierarchique le plus eleve gagne
+    Regle 2: A niveau egal, facteur avec confiance > 0.8 gagne
+    Regle 3: A confiance egale, facteur avec source primaire gagne
+    Regle 4: Sinon, moyenne ponderee des deux
+    """
+    
+    # Regle 1: Niveau hierarchique
+    if factor_a.level < factor_b.level:  # 1 = plus prioritaire
+        return factor_a
+    elif factor_b.level < factor_a.level:
+        return factor_b
+    
+    # Regle 2: Confiance
+    if factor_a.confidence > 0.8 and factor_b.confidence <= 0.8:
+        return factor_a
+    elif factor_b.confidence > 0.8 and factor_a.confidence <= 0.8:
+        return factor_b
+    
+    # Regle 3: Source primaire
+    if factor_a.source_type == "primary" and factor_b.source_type != "primary":
+        return factor_a
+    elif factor_b.source_type == "primary" and factor_a.source_type != "primary":
+        return factor_b
+    
+    # Regle 4: Moyenne ponderee
+    return weighted_average(factor_a, factor_b)
+```
+
+---
+
+## NORMALISATION DES POIDS
+
+### Formule de Normalisation
+
+```python
+def normalize_weights(weights: Dict[str, float], available_sources: List[str]) -> Dict[str, float]:
+    """
+    Normalisation dynamique des poids selon disponibilite des sources.
+    
+    1. Filtrer poids des sources indisponibles
+    2. Redistribuer proportionnellement aux sources disponibles
+    3. Appliquer contraintes (min/max par facteur)
+    4. Verifier somme = 1.0
+    """
+    
+    # Filtrer indisponibles
+    active_weights = {k: v for k, v in weights.items() if k in available_sources}
+    
+    # Redistribuer
+    total = sum(active_weights.values())
+    normalized = {k: v / total for k, v in active_weights.items()}
+    
+    # Contraintes
+    MIN_WEIGHT = 0.05
+    MAX_WEIGHT = 0.40
+    
+    for k, v in normalized.items():
+        normalized[k] = max(MIN_WEIGHT, min(MAX_WEIGHT, v))
+    
+    # Re-normaliser
+    total = sum(normalized.values())
+    normalized = {k: v / total for k, v in normalized.items()}
+    
+    return normalized
+```
+
+### Exemple de Normalisation
+
+| Scenario | Sources Actives | Poids Original | Poids Normalise |
+|----------|-----------------|----------------|-----------------|
+| **Complet** | Toutes | habitat:0.25, weather:0.20, temporal:0.20, pressure:0.15, micro:0.10, historical:0.10 | Inchange |
+| **Sans meteo** | -weather | habitat:0.25, temporal:0.20, pressure:0.15, micro:0.10, historical:0.10 | habitat:0.31, temporal:0.25, pressure:0.19, micro:0.12, historical:0.13 |
+| **Sans historique** | -historical | Autres | +2.5% chaque autre facteur |
+| **Minimum** | habitat, temporal | habitat:0.50, temporal:0.50 | Maximum possible avec 2 facteurs |
+
+---
+
+## PONDERATIONS DYNAMIQUES PAR CONTEXTE
+
+### Contexte: PERIODE RUT
+
+| Facteur | Poids Normal | Poids Rut | Delta |
+|---------|--------------|-----------|-------|
+| F12 Cycles | 0.20 | 0.30 | +50% |
+| F8 Pression | 0.15 | 0.10 | -33% |
+| F2 Habitat | 0.20 | 0.25 | +25% |
+| Autres | - | - | Redistribue |
+
+### Contexte: CONDITIONS EXTREMES
+
+| Facteur | Poids Normal | Poids Extreme | Delta |
+|---------|--------------|---------------|-------|
+| F5 Weather | 0.15 | 0.35 | +133% |
+| F9 Extremes | 0.05 | 0.20 | +300% |
+| F2 Habitat | 0.20 | 0.15 | -25% |
+| Autres | - | - | Redistribue |
+
+### Contexte: HAUTE PRESSION CHASSE
+
+| Facteur | Poids Normal | Poids Haute Pression | Delta |
+|---------|--------------|---------------------|-------|
+| F8 Pression | 0.15 | 0.30 | +100% |
+| F7 Repos/Abris | 0.10 | 0.15 | +50% |
+| F12 Cycles | 0.20 | 0.15 | -25% |
+| Autres | - | - | Redistribue |
+
+---
+
+## INTEGRATION DANS MODULES P0
+
+### predictive_territorial.py
+
+```python
+# Configuration des poids P0
+PT_WEIGHTS_CONFIG = {
+    "base": {
+        "habitat_quality": 0.25,
+        "weather_conditions": 0.20,
+        "temporal_alignment": 0.20,
+        "pressure_index": 0.15,
+        "microclimate": 0.10,
+        "historical_baseline": 0.10
+    },
+    "constraints": {
+        "min_weight": 0.05,
+        "max_weight": 0.40,
+        "sum_tolerance": 0.01
+    },
+    "arbitrage": {
+        "extreme_weather_threshold": {"temp_min": -30, "temp_max": 32, "wind_max": 60},
+        "high_pressure_threshold": 80,
+        "rut_boost_factor": 1.5
+    }
+}
+```
+
+### behavioral_models.py
+
+```python
+# Configuration des poids P0
+BM_WEIGHTS_CONFIG = {
+    "base": {
+        "temporal_pattern": 0.30,
+        "habitat_suitability": 0.25,
+        "weather_influence": 0.20,
+        "pressure_influence": 0.15,
+        "camera_validation": 0.10
+    },
+    "constraints": {
+        "min_weight": 0.05,
+        "max_weight": 0.45,
+        "sum_tolerance": 0.01
+    },
+    "arbitrage": {
+        "rut_temporal_boost": 1.33,
+        "extreme_weather_boost": 1.75,
+        "high_pressure_boost": 1.67,
+        "hibernation_zero": ["bear"]
+    }
+}
+```
+
+---
+
 ## RECOMMANDATIONS
 
 ### POUR PREDICTIVE_TERRITORIAL.PY
