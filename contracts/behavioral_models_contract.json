@@ -1,15 +1,15 @@
 {
   "$schema": "https://huntiq.ca/schemas/bionic-contract-v1.json",
   "contract_id": "behavioral_models_v1",
-  "contract_version": "1.0.0",
+  "contract_version": "1.1.0-beta2",
   "module_name": "behavioral_models",
-  "phase": "P0",
-  "status": "DRAFT",
+  "phase": "P0-BETA2",
+  "status": "ACTIVE",
   "created_at": "2025-12-21",
   "updated_at": "2025-12-21",
   "author": "BIONIC Engine Team",
-  "approved_by": null,
-  "description": "Contrat de donnees et interfaces pour le module Behavioral Models P0",
+  "approved_by": "COPILOT MAITRE",
+  "description": "Contrat de donnees et interfaces pour le module Behavioral Models P0-BETA2 avec 12 facteurs comportementaux",
 
   "purpose": {
     "primary": "Modeliser et predire les comportements fauniques (alimentation, deplacement, repos, rut) selon le contexte spatio-temporel",
@@ -17,8 +17,31 @@
       "Identifier les corridors de deplacement probables",
       "Predire les zones d'alimentation actives",
       "Detecter les periodes d'activite optimales",
-      "Alimenter le Plan Maitre avec des strategies comportementales"
+      "Alimenter le Plan Maitre avec des strategies comportementales",
+      "Integrer les 12 facteurs comportementaux avances (BIONIC V5 ULTIME x2)"
     ]
+  },
+
+  "advanced_behavioral_factors": {
+    "version": "P0-BETA2",
+    "description": "12 facteurs comportementaux avances integres dans les predictions",
+    "factors": [
+      {"id": 1, "name": "predation", "output": "vigilance_increase", "description": "Impact sur la vigilance"},
+      {"id": 2, "name": "thermal_stress", "output": "thermal_response", "description": "Reponse comportementale thermique"},
+      {"id": 3, "name": "hydric_stress", "output": "water_seeking", "description": "Recherche d'eau active"},
+      {"id": 4, "name": "social_stress", "output": "dominance_seeking", "description": "Comportement de dominance"},
+      {"id": 5, "name": "social_hierarchy", "output": "movement_pattern", "description": "Patron de deplacement"},
+      {"id": 6, "name": "competition", "output": "spatial_displacement", "description": "Deplacement spatial"},
+      {"id": 7, "name": "weak_signals", "output": "anomaly_detection", "description": "Detection d'anomalies"},
+      {"id": 8, "name": "hormonal", "output": "activity_modifier", "description": "Modificateur d'activite"},
+      {"id": 9, "name": "digestive", "output": "digestive_phase", "description": "Phase digestive actuelle"},
+      {"id": 10, "name": "territorial_memory", "output": "route_avoidance", "description": "Evitement de routes"},
+      {"id": 11, "name": "adaptive_behavior", "output": "nocturnal_shift", "description": "Decalage vers nocturnalite"},
+      {"id": 12, "name": "human_disturbance", "output": "human_avoidance", "description": "Evitement humain"},
+      {"id": 13, "name": "mineral", "output": "mineral_seeking", "description": "Recherche de mineraux"},
+      {"id": 14, "name": "snow", "output": "yarding_likelihood", "description": "Probabilite de ravage"}
+    ],
+    "behavioral_modifiers_output": true
   },
 
   "inputs": {
@@ -44,6 +67,21 @@
           "longitude": {"type": "number"}
         },
         "description": "Position pour analyse locale (si omis: patterns generaux)"
+      },
+      "snow_depth_cm": {
+        "type": "number",
+        "default": 0,
+        "description": "Profondeur de neige en cm"
+      },
+      "is_crusted": {
+        "type": "boolean",
+        "default": false,
+        "description": "Presence de croute de glace"
+      },
+      "include_advanced_factors": {
+        "type": "boolean",
+        "default": true,
+        "description": "Inclure les 12 facteurs comportementaux avances"
       },
       "weather_context": {
         "type": "object",
