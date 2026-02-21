@@ -63,11 +63,79 @@
 | 2026-02-20 | **14.0.0** | **BRANCHE 3 (99%→99.9%) - Service Worker V2, Edge Caching CDN, Image CDN, HTTP/3 QUIC, SSR/Pre-rendering config** |
 | 2025-12-21 | **15.0.0** | **PHASE G - INVENTAIRE PREDICTIF TOTAL - 12 familles de donnees, mapping P0, sources scientifiques** |
 | 2025-12-21 | **15.1.0** | **PHASE G - COMPLEMENTS CRITIQUES P0 - 4 blocs detailles + Sources CA/USA completes (Top 10)** |
+| 2025-12-21 | **15.2.0** | **PHASE G - LIVRABLES FINAUX PRE-GO: Inventaire v1.2, Contrats P0, Matrice Coherence, Plan Tests G-QA** |
 
 
 ---
 
-## PHASE G - COMPLEMENTS CRITIQUES P0 (v15.1.0)
+## PHASE G - LIVRABLES FINAUX PRE-GO (v15.2.0)
+
+### Resume Executif
+- **Directive:** Completer les 4 etapes requises avant GO P0
+- **Status:** COMPLETE - EN ATTENTE VALIDATION FINALE
+- **Mode:** DOCUMENTATION (AUCUNE MODIFICATION CODE)
+- **GOLD MASTER:** RESPECTE A 100%
+
+### Documents Livres
+
+| # | Document | Chemin | Contenu |
+|---|----------|--------|---------|
+| 1 | **Inventaire v1.2.0** | `/app/docs/reports/phase-g/INVENTAIRE_PREDICTIF_TOTAL.md` | +Normalisation ponderations, +Hierarchie facteurs |
+| 2 | **Contrat PT** | `/app/contracts/predictive_territorial_contract.json` | Inputs/Outputs, Sources, Arbitrage, API, Tests |
+| 3 | **Contrat BM** | `/app/contracts/behavioral_models_contract.json` | Inputs/Outputs, Modeles, Cycles, API, Tests |
+| 4 | **Matrice Coherence** | `/app/docs/reports/phase-g/MATRICE_COHERENCE_P0.md` | 12 familles x 4 blocs x 2 modules |
+| 5 | **Plan Tests G-QA** | `/app/docs/reports/phase-g/tests/PLAN_TESTS_P0.md` | Unit, Integration, Coherence, Limites, Validation |
+
+### Normalisation des Ponderations (v1.2)
+
+**Hierarchie a 4 niveaux:**
+1. **CRITIQUE** (Override): F9 Extremes, F8 Pression >80, Hibernation
+2. **PRIMAIRE** (Dominants): F12 Cycles (0.25), F5 Microclimats (0.20), F2 Habitat (0.20)
+3. **SECONDAIRE** (Modulateurs): F8 Pression (0.15), F5 Weather (0.15), F1 Territoriales (0.10)
+4. **VALIDATION** (Confirmatoires): F11 Cameras (0.10), F10 Historiques (0.10), F3 Alimentation (0.05)
+
+**Regles d'arbitrage:** 6 regles documentees avec algorithme de resolution
+
+### Contrats P0 - Points Cles
+
+| Module | Endpoint | Input | Output | Performance |
+|--------|----------|-------|--------|-------------|
+| `predictive_territorial` | `/api/v1/bionic/territorial/score` | lat, lng, species, datetime | score 0-100, components, recommendations | P95 < 500ms |
+| `behavioral_models` | `/api/v1/bionic/behavioral/predict` | species, datetime, location | activity_level, timeline, strategies | P95 < 300ms |
+
+### Matrice Coherence - Synthese
+
+- **12 familles x 2 modules:** 7 U + 2 O + 3 F pour PT, 8 U + 2 O + 2 F pour BM
+- **Zero contradiction** entre familles
+- **Zero duplication** de sources
+- **Placeholders prepares** pour P1/P2
+
+### Plan Tests G-QA - Structure
+
+```
+/app/backend/tests/
+├── unit/           (30+ tests)
+├── integration/    (10+ tests)
+├── coherence/      (5+ tests)
+├── limits/         (15+ tests)
+└── validation/     (Expert dataset)
+```
+
+**Cibles:** Couverture >80%, P95 <500ms, Erreur expert <10%
+
+### Conformite
+
+| Cadre | Statut |
+|-------|--------|
+| G-QA | CONFORME |
+| G-SEC | CONFORME |
+| G-DOC | CONFORME |
+| GOLD MASTER | INTACT |
+
+### Statut
+**EN ATTENTE VALIDATION COPILOT MAITRE (GO FORMEL POUR P0)**
+
+---
 
 ### Resume Executif
 - **Directive:** Complements requis par COPILOT MAITRE avant GO P0
