@@ -912,3 +912,187 @@ class BehavioralModelsService:
         Retourne uniquement la prediction d'activite (endpoint simplifie).
         """
         return self._predict_current_activity(species, datetime_target, weather_context)
+
+    # =========================================================================
+    # P0-BETA2: ADVANCED FACTOR STRATEGIES
+    # =========================================================================
+    
+    def _generate_advanced_strategies(
+        self,
+        advanced_factors: Dict,
+        species: Species,
+        behavioral_modifiers: Dict
+    ) -> List[StrategyRecommendation]:
+        """
+        Genere des strategies basees sur les 12 facteurs comportementaux.
+        
+        P0-BETA2: Integration des facteurs avances dans les recommandations
+        
+        G-DOC: Chaque strategie est justifiee par un facteur specifique
+        """
+        strategies = []
+        
+        # Strategie PREDATION
+        predation = advanced_factors.get("predation", {})
+        if predation.get("risk_score", 0) > 40:
+            strategies.append(StrategyRecommendation(
+                strategy_type="predator_aware",
+                effectiveness_score=75,
+                best_conditions=f"Zone a risque de predation ({predation.get('dominant_predator', 'wolf')})",
+                tips_fr=[
+                    "Positionnez-vous pres des zones de couvert dense",
+                    "Les animaux seront plus vigilants et groups",
+                    "Utilisez le terrain pour bloquer les lignes de vue des predateurs"
+                ]
+            ))
+        
+        # Strategie STRESS THERMIQUE
+        thermal = advanced_factors.get("thermal_stress", {})
+        if thermal.get("stress_type") == "heat":
+            strategies.append(StrategyRecommendation(
+                strategy_type="thermal_comfort",
+                effectiveness_score=80,
+                best_conditions="Chaleur - animaux cherchant fraicheur",
+                tips_fr=[
+                    "Surveillez les points d'eau et zones ombragees",
+                    "Les animaux seront moins actifs en milieu de journee",
+                    "Privilegiez l'aube et le crepuscule"
+                ]
+            ))
+        elif thermal.get("stress_type") == "cold":
+            strategies.append(StrategyRecommendation(
+                strategy_type="cold_weather",
+                effectiveness_score=70,
+                best_conditions="Froid intense - animaux cherchant abri",
+                tips_fr=[
+                    "Surveillez les ravages et zones de coniferes",
+                    "Les animaux s'alimentent plus intensement",
+                    "Reduisez vos deplacements - le froid porte les sons"
+                ]
+            ))
+        
+        # Strategie CYCLES HORMONAUX
+        hormonal = advanced_factors.get("hormonal", {})
+        if hormonal.get("phase") == "rut_peak":
+            strategies.append(StrategyRecommendation(
+                strategy_type="rut_peak_strategy",
+                effectiveness_score=95,
+                best_conditions="PIC DU RUT - Activite maximale",
+                tips_fr=[
+                    "Utilisez les appels de femelles et de defi",
+                    "Le rattling est extremement efficace",
+                    "Les males negligent leur securite - profitez-en",
+                    "Surveillez les zones ouvertes pour les confrontations"
+                ]
+            ))
+        elif hormonal.get("phase") == "antler_growth":
+            strategies.append(StrategyRecommendation(
+                strategy_type="mineral_focus",
+                effectiveness_score=70,
+                best_conditions="Croissance des bois - recherche de mineraux",
+                tips_fr=[
+                    "Installez-vous pres des salines naturelles",
+                    "Les males visitent regulierement ces sites",
+                    "Horaire optimal: tot le matin"
+                ]
+            ))
+        
+        # Strategie CYCLES DIGESTIFS
+        digestive = advanced_factors.get("digestive", {})
+        if digestive.get("phase") == "active_feeding":
+            strategies.append(StrategyRecommendation(
+                strategy_type="feeding_pattern",
+                effectiveness_score=85,
+                best_conditions="Phase d'alimentation active",
+                tips_fr=[
+                    "Identifiez les sources de nourriture preferees",
+                    "Les animaux sont en deplacement - soyez pret",
+                    "Bons moments: 6-8h et 17-19h"
+                ]
+            ))
+        elif digestive.get("phase") == "transitioning":
+            strategies.append(StrategyRecommendation(
+                strategy_type="transition_ambush",
+                effectiveness_score=80,
+                best_conditions="Transition alimentation/repos",
+                tips_fr=[
+                    "Postez-vous sur les corridors de deplacement",
+                    "Les animaux suivent des routes previsibles",
+                    "Moment ideal pour l'embuscade"
+                ]
+            ))
+        
+        # Strategie APPRENTISSAGE COMPORTEMENTAL
+        adaptive = advanced_factors.get("adaptive_behavior", {})
+        if adaptive.get("behavioral_shift") == "highly_nocturnal":
+            strategies.append(StrategyRecommendation(
+                strategy_type="nocturnal_adapted",
+                effectiveness_score=75,
+                best_conditions="Animaux tres prudents avec shift nocturne",
+                tips_fr=[
+                    "Concentrez-vous sur les 30 premieres minutes apres l'aube",
+                    "Les dernieres minutes de lumiere sont critiques",
+                    "Evitez les zones a forte pression de chasse",
+                    "Patience maximale requise"
+                ]
+            ))
+        
+        # Strategie CONDITIONS DE NEIGE
+        snow = advanced_factors.get("snow", {})
+        if snow.get("yarding_likelihood"):
+            strategies.append(StrategyRecommendation(
+                strategy_type="yarding_strategy",
+                effectiveness_score=90,
+                best_conditions="Neige profonde - animaux en ravage",
+                tips_fr=[
+                    "Localisez les ravages (cedres/sapins denses)",
+                    "Les animaux sont concentres - approche discrete",
+                    "Utilisez les raquettes ou skis pour acceder",
+                    "Ethique: evitez de stresser les groupes en survie"
+                ]
+            ))
+        elif snow.get("snow_condition") == "crusted":
+            strategies.append(StrategyRecommendation(
+                strategy_type="crusted_snow",
+                effectiveness_score=80,
+                best_conditions="Croute de neige - mobilite reduite",
+                tips_fr=[
+                    "La croute ralentit le gibier plus que vous",
+                    "Approche plus silencieuse possible",
+                    "Les animaux restent sur les pistes battues"
+                ]
+            ))
+        
+        # Strategie DISPONIBILITE MINERALE
+        mineral = advanced_factors.get("mineral", {})
+        if mineral.get("seeking_behavior"):
+            strategies.append(StrategyRecommendation(
+                strategy_type="mineral_site",
+                effectiveness_score=75,
+                best_conditions="Forte attraction vers les mineraux",
+                tips_fr=[
+                    "Identifiez les salines naturelles ou artificielles",
+                    f"Meilleur moment: {mineral.get('optimal_monitoring_time', 'matin')}",
+                    "Camera de trail recommandee pour reperage"
+                ]
+            ))
+        
+        # Strategie MEMOIRE TERRITORIALE
+        memory = advanced_factors.get("territorial_memory", {})
+        if memory.get("memory_active") and memory.get("avoidance_score", 0) > 40:
+            strategies.append(StrategyRecommendation(
+                strategy_type="avoidance_aware",
+                effectiveness_score=65,
+                best_conditions="Zone avec evitement actif",
+                tips_fr=[
+                    "Cette zone a ete perturbee recemment",
+                    "Explorez les zones alternatives moins frequentees",
+                    f"Retour normal estime dans {memory.get('days_until_return', 7)} jours"
+                ]
+            ))
+        
+        # Trier par efficacite
+        strategies.sort(key=lambda x: x.effectiveness_score, reverse=True)
+        
+        return strategies
+
