@@ -98,12 +98,12 @@ Le nombre de fichiers JS chargés (8 au lieu de 30+) confirme que **React.lazy()
 
 **URLs à tester manuellement :**
 ```
-https://branche1-98.preview.emergentagent.com/
-https://branche1-98.preview.emergentagent.com/login
-https://branche1-98.preview.emergentagent.com/shop
-https://branche1-98.preview.emergentagent.com/carte-interactive
-https://branche1-98.preview.emergentagent.com/contenus
-https://branche1-98.preview.emergentagent.com/mon-territoire
+https://bionic-p0-dev.preview.emergentagent.com/
+https://bionic-p0-dev.preview.emergentagent.com/login
+https://bionic-p0-dev.preview.emergentagent.com/shop
+https://bionic-p0-dev.preview.emergentagent.com/carte-interactive
+https://bionic-p0-dev.preview.emergentagent.com/contenus
+https://bionic-p0-dev.preview.emergentagent.com/mon-territoire
 ```
 
 **Outil recommandé :** [PageSpeed Insights](https://pagespeed.web.dev/)

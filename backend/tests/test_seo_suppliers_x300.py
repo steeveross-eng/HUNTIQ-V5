@@ -14,7 +14,7 @@ import pytest
 import requests
 import os
 
-BASE_URL = os.environ.get('REACT_APP_BACKEND_URL', 'https://branche1-98.preview.emergentagent.com').rstrip('/')
+BASE_URL = os.environ.get('REACT_APP_BACKEND_URL', 'https://bionic-p0-dev.preview.emergentagent.com').rstrip('/')
 
 
 class TestSEOSuppliersDatabase:

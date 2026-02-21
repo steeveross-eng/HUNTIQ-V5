@@ -10,7 +10,7 @@ import os
 import uuid
 
 # Get BASE_URL from environment
-BASE_URL = os.environ.get('REACT_APP_BACKEND_URL', 'https://branche1-98.preview.emergentagent.com')
+BASE_URL = os.environ.get('REACT_APP_BACKEND_URL', 'https://bionic-p0-dev.preview.emergentagent.com')
 
 class TestWaypointEngineAPI:
     """Tests for /api/v1/waypoints endpoints"""

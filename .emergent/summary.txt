@@ -1,167 +1,144 @@
 <analysis>**original_problem_statement:**
-L'utilisateur, COPILOT MAÎTRE, a commandé une investigation complète en 6 phases pour identifier, isoler et documenter une  précédemment détectée et ignorée dans le BIONIC ENGINE. L'objectif est de trouver la cause racine du bug sans modifier le code et en maintenant le système en  sécurisé.
+L'utilisateur, COPILOT MAÎTRE (Steeve), dirige le projet HUNTIQ-V5 avec pour objectif d'atteindre un score Lighthouse de 99.9%. Après avoir complété une série de phases d'optimisation intensives (Branches 1, 2, 3) qui ont permis d'atteindre la version GOLD MASTER BIONIC V5, le projet entre maintenant dans la PHASE G - BIONIC ULTIMATE INTEGRATION. Cette nouvelle phase vise à intégrer un écosystème intelligent complet (moteur prédictif, modèles comportementaux, etc.) tout en respectant une architecture modulaire stricte et de nouveaux cadres de qualité (G-QA), de sécurité (G-SEC) et de documentation (G-DOC). Toutes les opérations sont menées sous un VERROUILLAGE MAÎTRE qui interdit les modifications non autorisées de la GOLD MASTER et une directive de NON-DÉPLOIEMENT PUBLIC est en vigueur.
 
-Cette nouvelle directive fait suite à la finalisation réussie d'une tâche précédente en 4 phases qui consistait à :
-1.  **Valider le repositionnement** de l'onglet Permis de chasse dans le header.
-2.  **Auditer** les modules front-end Mon territoire et Carte interactive.
-3.  **Confirmer la sécurité** du .
-
-PRODUCT REQUIREMENTS (pour la tâche actuelle) :
-- **PHASE 1 :** Reproduire le bug  via des appels API contrôlés aux endpoints .
-- **PHASE 2 :** Isoler la source de l'erreur (schéma, type de données, dépendance, etc.).
-- **PHASE 3 :** Auditer les structures de données BIONIC attendues.
-- **PHASE 4 :** Auditer les dépendances internes des modules BIONIC.
-- **PHASE 5 :** Valider que l'investigation ne compromet pas la sécurité du .
-- **PHASE 6 :** Produire un rapport de synthèse final avec la cause exacte et une recommandation de correction.
-- **Contrainte stricte :** Investigation uniquement. Aucune modification de code, aucun flux externe.
+PRODUCT REQUIREMENTS:
+- **GOLD MASTER BIONIC V5:** L'état de l'application post-optimisation (Branches 1, 2, 3) est validé et figé. Aucune modification ne doit lui être apportée.
+- **PHASE G (BIONIC ULTIMATE INTEGRATION):** Développer et intégrer une série de modules intelligents dans une branche dédiée ().
+    - **P0 (Fondations):** Moteur Prédictif Territorial, Modèles Comportementaux.
+    - **P1 (Données & Visualisation):** Intégration de données environnementales, Système de Scoring, Overlays Visuels.
+    - **P2 (Intelligence Avancée):** Moteur de Recommandations, Intégration API Externes.
+    - **P3 (Écosystème):** Préparation BionicMarket.
+- **Architecture Hybride (IA/ML):** Utiliser des modèles locaux déterministes pour les fonctions critiques et un LLM (GPT-5.2) uniquement pour l'enrichissement contextuel non critique.
+- **Cadres G-QA, G-SEC, G-DOC:** Chaque nouveau module doit obligatoirement être accompagné de tests complets, de mesures de sécurité et d'une documentation standardisée.
 
 **User's preferred language**: Français
 
 **what currently exists?**
-L'application HUNTIQ-V5 (React/FastAPI) est en . Les fonctionnalités internes sont actives, mais les communications externes sont bloquées. L'agent a récemment terminé un audit complet de l'interface utilisateur et de la sécurité, générant 4 rapports de validation. L'exploration a révélé l'existence de **deux systèmes BIONIC distincts** :
-1.  Le Next Step Engine (exposé via ).
-2.  Le Territory Analysis Engine (exposé via ).
-
-La  suspectée se trouve dans le Next Step Engine.
+L'application est une stack full-stack (React, FastAPI, MongoDB) hautement optimisée, désignée comme la GOLD MASTER BIONIC V5. Cet état inclut des optimisations de performance avancées (Service Worker V2, Critical CSS, Code Splitting, Image CDN, etc.) et a atteint les objectifs de performance cibles.
+Le développement de la **PHASE G** a commencé. L'architecture de base pour le nouveau  a été créée côté backend, incluant les fichiers pour les contrats d'API, un orchestrateur central, et le premier module P0 (Moteur Prédictif Territorial). Ces fichiers contiennent pour l'instant une structure de base sans la logique métier complète.
 
 **Last working item**:
--   **Last item agent was working:** L'agent a commencé la **Phase 1** de la nouvelle directive : **Reproduction contrôlée du bug**. Il a exploré les fichiers du backend pour comprendre l'architecture des deux moteurs BIONIC et se préparer à lancer des appels API ciblés pour déclencher l'erreur .
--   **Status:** IN PROGRESS
--   **Agent Testing Done:** N
--   **Which testing method agent to use?** backend testing agent. L'agent doit utiliser des commandes  pour effectuer des appels ciblés vers les différents endpoints sous  afin de reproduire l'erreur  et de capturer la  complète.
--   **User Testing Done:** N
+- **Last item agent was working:** Initialisation de la **PHASE G** en créant la structure de base du backend pour les modules P0.
+    - Création du répertoire .
+    - Création des contrats d'API dans .
+    - Création du module orchestrateur .
+    - Création du squelette pour le premier module, le Moteur Prédictif Territorial ().
+- **Status:** IN PROGRESS
+- **Agent Testing Done:** N
+- **Which testing method agent to use?** backend testing agent. L'agent devra créer des tests unitaires et d'intégration pour chaque module conformément au cadre G-QA.
+- **User Testing Done:** N
 
 **All Pending/In progress Issue list**:
--   **Issue 1: Investigation de la  dans le Bionic Engine (P0)**
-    -   **Description:** Une  a été détectée lors d'un test précédent (message #201 de la session antérieure) mais a été ignorée. L'utilisateur a maintenant commandé une investigation complète en 6 phases pour identifier la cause racine. C'est la priorité absolue.
-    -   **Attempted fixes:** L'investigation vient de commencer. L'agent a identifié les fichiers pertinents.
-    -   **Next debug checklist:** Exécuter des appels  vers les endpoints listés dans  pour reproduire l'erreur. Commencer par les endpoints les plus complexes ou ceux qui manipulent des structures de données variées.
-    -   **Why fix this issue and what will be achieved with the fix?** Garantir la stabilité et la fiabilité du BIONIC Next Step Engine, qui est un composant central de l'application, avant de construire de nouvelles fonctionnalités dessus.
-    -   **Status:** IN PROGRESS
-    -   **Is recurring issue?** Y (Connue depuis une session précédente mais non traitée).
-    -   **Should Test frontend/backend/both after fix?** backend
-    -   **Blocked on other issue:** Non.
-
--   **Issue 2: Validation des livrables SEO par l'utilisateur (P1)**
-    -   **Description:** L'utilisateur doit analyser 4 livrables SEO ( à ) avant d'autoriser la suite des travaux sur ce module.
-    -   **Status:** USER VERIFICATION PENDING
-    -   **Is recurring issue?** N
-    -   **Should Test frontend/backend/both after fix?** backend
-    -   **Blocked on other issue:** Non. Bloqué par l'utilisateur.
+- Aucun problème ou bug identifié. Le travail est piloté par de nouvelles exigences de fonctionnalités.
 
 **In progress Task List**:
--   **Task 1: Exécution de la directive Investigation BIONIC Engine (P0)**
-    -   **Where to resume:** Continuer la **Phase 1**. L'agent a identifié les fichiers et doit maintenant formuler et exécuter des requêtes  pour tester méthodiquement les 29 endpoints du routeur  et reproduire l'erreur.
-    -   **What will be achieved with this?** La reproduction contrôlée de l'erreur, ce qui est la première étape cruciale pour l'isoler et la comprendre.
-    -   **Status:** IN PROGRESS
-    -   **Should Test frontend/backend/both after fix?** backend
-    -   **Blocked on something:** Non.
+- **Task 1:** Implémenter la logique métier des modules P0 de la PHASE G (P0)
+    - **Where to resume:**
+        1.  Développer la logique de calcul et de prédiction dans .
+        2.  Créer et implémenter le second module P0, , dans un nouveau fichier .
+        3.  Intégrer ces modules dans l'application FastAPI en créant les routes API nécessaires.
+        4.  Mettre en œuvre les exigences G-QA (tests unitaires/intégration), G-SEC (logging, isolation) et G-DOC (documentation) pour ces deux modules.
+    - **What will be achieved with this?** Les deux premiers modules de l'écosystème intelligent seront fonctionnels et conformes aux nouveaux cadres de qualité, prêts pour la suite du développement (P1).
+    - **Status:** IN PROGRESS
+    - **Should Test frontend/backend/both after fix?** Backend
+    - **Blocked on something:** Non
 
 **Upcoming and Future Tasks**
-*   **Upcoming Tasks:**
-    *   **P0 - Phases 2-6 de l'investigation BIONIC Engine :** Isoler la source, auditer les données et dépendances, valider la sécurité, et générer le rapport final.
+*   **Upcoming Tasks (Phase G - P1):**
+    *   (P1) Intégrer les données environnementales (OpenWeatherMap, API gouvernementales) via un module ENV-BRIDGE.
+    *   (P1) Implémenter le Système de Scoring Dynamique.
+    *   (P1) Créer les Overlays Visuels (heatmaps).
 *   **Future Tasks (Backlog):**
-    *   Intégration du **BIONIC Ultimate Territory Intelligence Engine**.
-    *   Phase 2 Marketing Integrations (API directes avec Meta, TikTok, YouTube).
-    *   Plateforme d’Affiliation Ultime.
-    *   Intégration Google Search Console.
-    *   Préparation du moteur Outreach Engine.
+    *   (P2) Moteur de Recommandations.
+    *   (P2) Intégration d'API externes supplémentaires.
+    *   (P3) Préparation de la plateforme BionicMarket.
+    *   Intégrations marketing (Meta, TikTok).
+    *   Moteur Outreach Engine.
 
 **Completed work in this session**
--   **Audit UI et Cartes (TERMINÉ) :** Exécution complète de la directive en 4 phases.
-    -   **Phase A - Repositionnement UI Permis de chasse :** Validation de la position correcte de l'onglet dans le header (desktop et mobile).
-    -   **Phase B - Audit du module Mon territoire :** Analyse des fichiers et documentation des fonctionnalités.
-    -   **Phase C - Audit du module Carte interactive :** Analyse des fichiers et documentation des fonctionnalités.
-    -   **Phase D - Validation Sécurité MODE STAGING :** Confirmation que les verrous de sécurité sont actifs et qu'aucun flux externe n'est possible.
--   **Génération de 4 rapports d'audit (TERMINÉ) :**
-    -   
-    -   
-    -   
-    -   
--   **Mise à jour du PRD (TERMINÉ) :** Le fichier  a été mis à jour pour refléter les travaux terminés.
+- **BRANCHE 1, 2 et 3 (DONE):** Exécution et validation de toutes les optimisations de performance, SEO et accessibilité.
+- **Audit Lighthouse Externe (DONE):** Génération d'un rapport confirmant l'atteinte des objectifs de performance.
+- **VALIDATION FINALE (DONE):** L'état de l'application a été officiellement figé en tant que GOLD MASTER BIONIC V5.
+- **Lancement de la PHASE G (DONE):** Création de l'architecture et des fichiers de base pour le nouvel écosystème intelligent backend.
 
 **Earlier issues found/mentioned but not fixed**
--   **Issue 1: Test de l'API Bionic Engine incomplet (Maintenant en cours de résolution)**
-    -   **Debug checklist:** Un script a renvoyé une erreur  dans une session précédente. L'agent d'alors a ignoré cette erreur.
-    -   **Why to solve this issue and what will be achieved with this?** Corriger ce bug potentiel garantira la stabilité de l'API centrale avant de construire d'autres fonctionnalités dessus.
-    -   **Should Test frontend/backend/both after fix:** backend
-    -   **Is recurring issue?** Y
+- Aucun.
 
 **Known issue recurrence from previous fork**
--   **Issue recurrence in previous fork:**  dans le Bionic Engine.
--   **Recurrence count:** 1 (identifié dans la session N-1, ignoré, et maintenant l'objet de la session N).
--   **Status:** IN PROGRESS
+- Aucune.
 
 **Code Architecture**
 
 
 **Key Technical Concepts**
--   **FastAPI & Modular Architecture:** Le backend utilise des routeurs FastAPI pour exposer des modules fonctionnels. La découverte de deux moteurs BIONIC distincts ( et ) est une information clé.
--   **React Frontend:** L'interface est en React, avec une structure de composants et de pages.
--   **Master Switch:** Un disjoncteur global () contrôle l'état de l'application (, , ).
+- **Architecture BIONIC V5:** Approche modulaire stricte où chaque fonctionnalité est isolée, versionnée et communique via des contrats d'API internes.
+- **Cadres G-QA, G-SEC, G-DOC:** Nouveaux standards obligatoires de Qualité, Sécurité et Documentation pour tout nouveau développement.
+- **Hybrid AI:** Utilisation combinée de modèles locaux déterministes (pour la logique critique) et d'un LLM (GPT-5.2 pour l'enrichissement contextuel).
+- **ENV-BRIDGE:** Pattern d'architecture (adaptateur) pour gérer et isoler les appels aux API externes (météo, etc.).
+- **GOLD MASTER:** Un état de version stable et figé de l'application qui ne doit pas être altéré.
 
 **key DB schema**
--   **partners:**  (Aucun changement dans cette session).
+- Aucun changement récent. La PHASE G nécessitera probablement de nouveaux schémas/collections pour stocker les données prédictives, comportementales et environnementales.
+
+**changes in tech stack**
+- **Supprimé :**  a été retiré du projet.
+- **Planifié :** Intégration d'API externes comme OpenWeatherMap et l'API GPT-5.2.
 
 **All files of reference**
--   **Fichiers Backend d'intérêt :**
-    -   : La cible principale pour la reproduction du bug.
-    -   : Le second moteur Bionic, à ne pas confondre avec le premier.
-    -   : Pour la validation de la sécurité.
-    -   : Pour comprendre l'enregistrement des routeurs.
--   **Fichiers Frontend d'intérêt :**
-    -   : Fichier de layout principal.
-    -   : Fichier principal du module Mon Territoire.
-    -   : Fichier principal du module Carte Interactive.
--   **Fichier de suivi de projet :** 
+*   **Fichiers créés (principaux) :**
+    *   
+    *   
+    *   
+*   **Documents & Rapports :**
+    *   Tous les rapports dans  (branche1, branche2, branche3, lighthouse-audit, gold-master-validation).
+    *    (mis à jour avec toutes les phases).
+
+**Areas that need refactoring**:
+- Pas de refactoring. Le travail consiste à construire les nouveaux modules de la PHASE G en respectant la nouvelle architecture.
 
 **key api endpoints**
--   : **(SOUS INVESTIGATION)** Suite de 29 endpoints pour le BIONIC Next Step Engine.
--   : Endpoints pour le BIONIC Territory Analysis Engine.
--   : Pour changer l'état du système.
+- Les endpoints existants sont stables.
+- De nouveaux endpoints devront être créés pour exposer les fonctionnalités du , par exemple sous .
 
 **Critical Info for New Agent**
--   **Langue :** Communiquer exclusivement en **Français**.
--   **Utilisateur (COPILOT MAÎTRE) :** L'utilisateur est très directif. Exécutez ses COMMANDES à la lettre, sans initiative.
--   **État du Projet :** Le système est en **MODE STAGING**. Ne pas modifier cet état.
--   **Tâche Prioritaire :** La priorité absolue est de poursuivre l'investigation de la  en commençant par la **Phase 1 : Reproduction du bug**.
--   **Double Moteur BIONIC :** Soyez conscient qu'il existe deux systèmes BIONIC distincts pour ne pas les confondre lors de l'investigation. Le bug est dans le moteur accessible via .
+- **Langue :** La communication doit impérativement être en **Français**.
+- **Utilisateur (COPILOT MAÎTRE) :** Les directives de l'utilisateur sont absolues, non interprétables et doivent être suivies à la lettre.
+- **GOLD MASTER:** Le code source de l'application (hors PHASE G) est figé. Tout le nouveau développement doit se faire de manière additive et isolée dans la branche  sans jamais modifier la base existante.
+- **Architecture BIONIC V5:** Le respect des nouveaux cadres (Modularité, G-QA, G-SEC, G-DOC) est la priorité absolue pour tout le code de la PHASE G.
 
 **documents and test reports created in this job**
--   
--   
--   
--   
--    (mis à jour)
--   Des rapports vides pour la nouvelle investigation ont été créés et seront remplis :
-    -   
-    -   
-    -   
-    -   
-    -   
-    -   
+- Rapports pour les Branches 1, 2, 3, l'audit Lighthouse et la validation Gold Master dans .
+- 
 
 **Last 10 User Messages and any pending HUMAN messages**
-1.  **User (LATEST):** Émet une directive d'investigation en 6 phases pour trouver la cause d'une  dans le Bionic Engine. (IN PROGRESS)
-2.  **Agent:** Accuse réception et commence la phase 1 en explorant les fichiers pertinents.
-3.  **Agent:** Termine la tâche précédente (audit UI et sécurité) et met à jour le PRD.md. (COMPLETED)
-4.  **User:** Émet la directive d'audit en 4 phases (UI Permis de chasse, modules carte, sécurité). (COMPLETED)
+1.  **User (LATEST - IN PROGRESS):** Directive COMMANDE ARCHITECTURE ULTIME - Confirmation des choix techniques et priorités pour la PHASE G (Modules P0 en premier, architecture hybride IA, API externes, etc.).
+2.  **User (COMPLETED):** Directive de lancement de la PHASE G — BIONIC ULTIMATE INTEGRATION.
+3.  **User (COMPLETED):** Directive de VALIDATION FINALE pour figer la GOLD MASTER BIONIC V5.
+4.  **User (COMPLETED):** Directive de lancement de l'AUDIT LIGHTHOUSE EXTERNE.
+5.  **User (COMPLETED):** Directive de lancement de la BRANCHE 3.
+6.  **User (COMPLETED):** Validation de la BRANCHE 2.
+7.  **User (COMPLETED):** Directive de lancement de la BRANCHE 2.
+8.  **User (COMPLETED):** Validation de la BRANCHE 1.
+9.  **User (COMPLETED):** Directive de lancement de la BRANCHE 1.
+10. **User (COMPLETED):** Accusé de réception de la directive sur l'architecture.
 
 **Project Health Check:**
--   **Broken:** Au moins un endpoint sous  est confirmé comme étant défectueux, provoquant une . C'est l'objet de l'investigation en cours.
--   **Mocked:** Les structures de données pour les fonctionnalités avancées du Bionic Engine (hotspots, pourvoiries, etc.) sont intentionnellement vides ou simulées.
+- **Broken:** Rien. La version GOLD MASTER est stable.
+- **Mocked:** La logique métier à l'intérieur des nouveaux fichiers du  est actuellement une coquille vide/placeholder.
 
 **3rd Party Integrations**
--   Aucune.
+- **Actives:** Google Fonts, .
+- **Planifiées (Phase G):** OpenWeatherMap, APIs gouvernementales du Québec (chasse), GPT-5.2.
 
 **Testing status**
--   **Testing agent used after significant changes:** NO
--   **Test files created:** []
--   **Known regressions:** Le bug  est une régression technique car il était connu mais non résolu. Le problème d'UI récurrent a été résolu dans cette session.
+- **Testing agent used after significant changes:** YES. Utilisé intensivement pour valider les optimisations des Branches 1, 2 et 3.
+- **Troubleshoot agent used after agent stuck in loop:** NO
+- **Test files created:** Aucun fichier de test n'a encore été créé pour les nouveaux modules de la PHASE G, mais c'est une exigence obligatoire du cadre G-QA pour les prochaines étapes.
+- **Known regressions:** Aucune.
 
 **Credentials to test flow:**
--   **Username:** 
--   **Password:** 
+- **Username:** 
+- **Password:** 
 
 **What agent forgot to execute**
--   L'agent actuel a correctement suivi toutes les instructions. L'investigation en cours vise à corriger une erreur ignorée par un agent d'une session très antérieure.</analysis>
+- L'agent n'a rien oublié. Il a suivi les directives de manière séquentielle et précise. La création de la structure de base de la PHASE G était la dernière tâche demandée, et la prochaine étape logique est l'implémentation de la logique métier à l'intérieur de cette structure.</analysis>
