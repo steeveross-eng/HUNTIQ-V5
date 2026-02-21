@@ -121,6 +121,8 @@ class TerritorialScoreInput(BaseModel):
     
     Conforme a: predictive_territorial_contract.json
     """
+    model_config = ConfigDict(populate_by_name=True)
+    
     latitude: float = Field(..., ge=45.0, le=62.0)
     longitude: float = Field(..., ge=-80.0, le=-57.0)
     species: Species = Field(default=Species.MOOSE)
@@ -130,9 +132,6 @@ class TerritorialScoreInput(BaseModel):
     historical_mode: bool = Field(default=False)
     include_recommendations: bool = Field(default=True)
     include_zones: bool = Field(default=False)
-    
-    class Config:
-        populate_by_name = True
 
 
 class BehavioralPredictionInput(BaseModel):
