@@ -71,6 +71,7 @@
 | 2025-12-21 | **17.0.0-stable** | **🚀 P0-STABLE VALIDÉ: 12 facteurs comportementaux, 91 tests PASS, GOLD MASTER intact** |
 | 2025-12-21 | **17.1.0-draft** | **📋 PLANS P1 PRÉPARÉS: P1-ENV (OpenWeatherMap), P1-SCORE (Scoring Dynamique), P1-VIS (Heatmaps), analyze_hunt_plan** |
 | 2025-12-21 | **17.2.0-draft** | **📋 P1-HOTSPOTS PLAN: Endpoints /map/hotspots, /map/zones, /map/corridors + Contours 200% réalistes + Périmètre P1 consolidé (~16.5 jours)** |
+| 2025-12-21 | **17.2.1-final** | **✅ P1-HOTSPOTS PLAN VERSION FINALE: 18 livrables, 3 contrats JSON, séquence 5 jours - PRÊT POUR GO** |
 
 
 ---
